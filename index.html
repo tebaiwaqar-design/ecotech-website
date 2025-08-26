@@ -7,99 +7,159 @@
   <meta name="description" content="EcoTech provides lithium-ion battery collection, safe discharge, recycling and exchange services for EV and micromobility operators in Estonia and the Baltics.">
   <style>
     :root{
-      --bg:#0b1320;
-      --surface:#0f1a2b;
-      --card:#111f33;
-      --ink:#eaf2ff;
-      --muted:#a9b8d4;
-      --brand:#25d366;
-      --brand-2:#3ba3ff;
-      --accent:#9ce5b2;
-      --line:#1e2d46;
+      --bg:#0a0e1a;
+      --surface:#1a202c;
+      --card:#ffffff;
+      --card-elevated:#ffffff;
+      --ink:#1a202c;
+      --muted:#4a5568;
+      --muted-light:#2d3748;
+      --brand:#2c5282;
+      --brand-light:#3182ce;
+      --brand-2:#1a365d;
+      --accent:#d69e2e;
+      --line:#e2e8f0;
+      --line-light:#cbd5e1;
+      --shadow:rgba(26,32,44,0.08);
+      --shadow-elevated:rgba(26,32,44,0.15);
+      --gradient-primary:linear-gradient(135deg, #2c5282 0%, #3182ce 100%);
+      --gradient-accent:linear-gradient(135deg, #d69e2e 0%, #ecc94b 100%);
+      --gradient-subtle:linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
     }
-    *{box-sizing:border-box}
-    html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;line-height:1.6}
-    a{color:var(--brand-2);text-decoration:none}
-    .container{max-width:1200px;margin:0 auto;padding:0 24px}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{margin:0;background:var(--gradient-subtle);color:var(--ink);font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-weight:400}
+    a{color:var(--brand-2);text-decoration:none;transition:all 0.2s ease}
+    .container{max-width:1280px;margin:0 auto;padding:0 32px}
+    h1,h2,h3,h4,h5,h6{font-weight:600;letter-spacing:-0.025em;line-height:1.25}
+    p{margin:0 0 16px 0;color:var(--muted-light)}
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
     
     /* Header */
-    header.site{position:sticky;top:0;backdrop-filter:saturate(140%) blur(6px);background:rgba(11,19,32,.85);border-bottom:1px solid var(--line);z-index:10}
-    nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0}
-    .brand{display:flex;gap:12px;align-items:center}
-    .brand .logo{width:40px;height:40px;background:linear-gradient(135deg,var(--brand),var(--accent));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800}
-    .brand .title{font-weight:800;letter-spacing:.2px;font-size:1.2rem}
-    .brand .subtitle{color:var(--muted);font-size:.85rem;margin-left:8px}
-    .nav-links{display:flex;gap:24px;align-items:center}
-    .nav-links a{color:var(--muted);font-weight:500;transition:color 0.2s}
-    .nav-links a:hover{color:var(--ink)}
+    header.site{position:sticky;top:0;backdrop-filter:saturate(180%) blur(20px);background:rgba(255,255,255,.98);border-bottom:1px solid var(--line);z-index:100;box-shadow:0 2px 32px var(--shadow-elevated)}
+    nav{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:24px 0}
+    .brand{display:flex;gap:16px;align-items:center}
+    .brand .logo{width:44px;height:44px;background:linear-gradient(135deg,var(--brand),var(--brand-light));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;box-shadow:0 4px 12px rgba(5,150,105,0.2)}
+    .brand .title{font-weight:600;letter-spacing:-0.01em;font-size:1.4rem;color:var(--ink)}
+    .brand .subtitle{color:var(--muted);font-size:0.85rem;font-weight:400;margin-left:12px;text-transform:uppercase;letter-spacing:0.5px}
+    .nav-links{display:flex;gap:40px;align-items:center}
+    .nav-links a{color:var(--muted-light);font-weight:500;font-size:0.9rem;padding:12px 0;position:relative;transition:all 0.3s ease;text-transform:uppercase;letter-spacing:0.5px}
+    .nav-links a:hover{color:var(--brand)}
+    .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--brand);transition:width 0.3s ease}
+    .nav-links a:hover::after{width:100%}
     
     /* Buttons */
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:8px;background:linear-gradient(135deg,var(--brand),#15c25b);color:#032610;font-weight:600;border:0;transition:all 0.2s ease;cursor:pointer}
-    .btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(37,211,102,0.3)}
-    .btn.outline{background:transparent;color:var(--ink);border:1px solid var(--line);background:rgba(255,255,255,0.02)}
-    .btn.outline:hover{background:rgba(255,255,255,0.05);border-color:var(--brand-2)}
+    .btn{display:inline-flex;align-items:center;gap:12px;padding:16px 32px;border-radius:6px;background:var(--brand);color:white;font-weight:500;font-size:0.9rem;border:0;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);cursor:pointer;box-shadow:0 2px 16px rgba(44,82,130,0.2);position:relative;overflow:hidden;text-transform:uppercase;letter-spacing:0.5px}
+    .btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);transition:left 0.6s ease}
+    .btn:hover::before{left:100%}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 4px 24px rgba(44,82,130,0.3);background:var(--brand-light)}
+    .btn.outline{background:transparent;color:var(--brand);border:1px solid var(--brand);box-shadow:none}
+    .btn.outline:hover{background:var(--brand);color:white;box-shadow:0 2px 16px rgba(44,82,130,0.2)}
     
     /* Hero Section */
-    .hero{padding:60px 0;text-align:center}
-    .hero h1{font-size:3.2rem;line-height:1.1;margin:0 0 16px;background:linear-gradient(135deg,var(--ink),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .hero .subtitle{font-size:1.3rem;color:var(--muted);margin:0 0 32px;max-width:600px;margin-left:auto;margin-right:auto}
-    .hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
+    .hero{padding:80px 0 60px;text-align:center;position:relative}
+    .hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:100%;height:100%;background:radial-gradient(ellipse at center,rgba(30,64,175,0.08) 0%,transparent 70%);pointer-events:none}
+    .hero h1{font-size:3.2rem;line-height:1.15;margin:0 0 32px;color:var(--ink);font-weight:600;letter-spacing:-0.02em;max-width:900px;margin-left:auto;margin-right:auto}
+    .hero .subtitle{font-size:1.25rem;color:var(--muted-light);margin:0 0 48px;max-width:680px;margin-left:auto;margin-right:auto;line-height:1.6;font-weight:400}
+    .hero-actions{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:64px}
     
     /* Stats */
-    .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;margin:48px 0}
-    .stat{text-align:center;padding:24px;background:rgba(255,255,255,0.02);border:1px solid var(--line);border-radius:12px}
-    .stat-value{font-size:2.5rem;font-weight:800;color:var(--accent);margin:0}
-    .stat-label{color:var(--muted);font-size:0.9rem;margin:4px 0 0}
+    .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px;margin:64px 0}
+    .stat{text-align:center;padding:40px 32px;background:var(--card-elevated);border:1px solid var(--line);border-radius:8px;position:relative;transition:all 0.3s ease;box-shadow:0 2px 16px var(--shadow)}
+    .stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--brand);border-radius:8px 8px 0 0}
+    .stat:hover{transform:translateY(-2px);box-shadow:0 8px 32px var(--shadow-elevated)}
+    .stat-value{font-size:2.5rem;font-weight:700;color:var(--brand);margin:0;line-height:1}
+    .stat-label{color:var(--muted-light);font-size:0.9rem;margin:12px 0 0;font-weight:400;text-transform:uppercase;letter-spacing:0.5px}
     
     /* Cards */
-    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:32px;margin:32px 0}
-    .card h2{margin:0 0 16px;display:flex;align-items:center;gap:12px}
-    .card h2 svg{opacity:0.9}
+    .card{background:var(--card-elevated);border:1px solid var(--line);border-radius:8px;padding:64px;margin:64px 0;box-shadow:0 4px 32px var(--shadow);position:relative}
+    .card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--line-light),transparent)}
+    .card h2{margin:0 0 24px;display:flex;align-items:center;gap:20px;font-size:1.8rem;font-weight:600;color:var(--ink);text-transform:uppercase;letter-spacing:0.5px}
+    .card h2 svg{opacity:0.7;color:var(--brand)}
     
     /* Services Grid */
-    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin:32px 0}
-    .service-card{background:rgba(255,255,255,0.02);border:1px solid var(--line);border-radius:12px;padding:24px;transition:all 0.2s ease}
-    .service-card:hover{background:rgba(255,255,255,0.04);transform:translateY(-2px)}
-    .service-icon{width:48px;height:48px;background:linear-gradient(135deg,var(--brand-2),#2563eb);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px}
-    .service-card h3{margin:0 0 8px;color:var(--ink)}
-    .service-card p{color:var(--muted);margin:0;line-height:1.5}
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px;margin:40px 0}
+    .service-card{background:var(--card-elevated);border:1px solid var(--line);border-radius:8px;padding:40px;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;box-shadow:0 2px 16px var(--shadow)}
+    .service-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:1px;background:var(--brand);transform:scaleX(0);transition:transform 0.3s ease}
+    .service-card:hover::before{transform:scaleX(1)}
+    .service-card:hover{transform:translateY(-3px);box-shadow:0 8px 32px var(--shadow-elevated)}
+    .service-icon{width:64px;height:64px;background:var(--brand);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:24px;box-shadow:0 4px 16px rgba(44,82,130,0.2)}
+    .service-card h3{margin:0 0 16px;color:var(--ink);font-size:1.2rem;font-weight:600}
+    .service-card p{color:var(--muted-light);margin:0;line-height:1.7;font-size:0.95rem}
     
     /* Process Steps */
-    .process-steps{display:grid;gap:24px;margin:32px 0}
-    .step{display:flex;gap:20px;align-items:flex-start}
-    .step-number{width:40px;height:40px;background:linear-gradient(135deg,var(--brand),var(--accent));border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:#032610;flex-shrink:0}
-    .step-content h3{margin:0 0 8px;color:var(--ink)}
-    .step-content p{color:var(--muted);margin:0}
+    .process-steps{display:grid;gap:32px;margin:40px 0}
+    .step{display:flex;gap:32px;align-items:flex-start;padding:32px;background:var(--card-elevated);border:1px solid var(--line);border-radius:8px;transition:all 0.3s ease;box-shadow:0 2px 16px var(--shadow)}
+    .step:hover{transform:translateX(4px);box-shadow:0 4px 24px var(--shadow-elevated)}
+    .step-number{width:56px;height:56px;background:var(--brand);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;color:white;flex-shrink:0;font-size:1.2rem;box-shadow:0 2px 12px rgba(44,82,130,0.25)}
+    .step-content h3{margin:0 0 16px;color:var(--ink);font-size:1.2rem;font-weight:600}
+    .step-content p{color:var(--muted-light);margin:0;line-height:1.7}
     
+    /* Founders */
+    .founders-grid{display:grid;gap:32px;margin:40px 0}
+    @media(min-width:768px){.founders-grid{grid-template-columns:repeat(auto-fit,minmax(350px,1fr))}}
+    .founder-card{background:var(--card-elevated);border:1px solid var(--line);border-radius:8px;padding:40px;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;box-shadow:0 2px 16px var(--shadow)}
+    .founder-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:var(--brand);transform:scaleX(0);transition:transform 0.3s ease}
+    .founder-card:hover::before{transform:scaleX(1)}
+    .founder-card:hover{transform:translateY(-3px);box-shadow:0 8px 32px var(--shadow-elevated)}
+    .founder-avatar{display:flex;justify-content:center;margin-bottom:32px}
+    .avatar-placeholder{width:96px;height:96px;background:var(--brand);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;color:white;box-shadow:0 4px 20px rgba(44,82,130,0.25)}
+    .founder-info{text-align:center}
+    .founder-info h3{margin:0 0 12px;color:var(--ink);font-size:1.4rem;font-weight:600}
+    .founder-title{color:var(--brand);font-weight:500;font-size:0.95rem;margin-bottom:20px;text-transform:uppercase;letter-spacing:0.5px}
+    .founder-bio{color:var(--muted-light);margin:0 0 24px;line-height:1.7;text-align:left;font-size:0.95rem}
+    .founder-credentials{margin-bottom:24px}
+    .credential{display:block;color:var(--muted);font-size:0.85rem;margin:6px 0;font-style:normal}
+    .founder-expertise{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+    .expertise-tag{background:rgba(44,82,130,0.1);color:var(--brand);padding:8px 16px;border-radius:4px;font-size:0.8rem;font-weight:500;border:1px solid rgba(44,82,130,0.2);text-transform:uppercase;letter-spacing:0.5px}
+
     /* Documentation */
-    .doc-grid{display:grid;gap:16px;margin-top:24px}
+    .doc-grid{display:grid;gap:24px;margin-top:32px}
     @media(min-width:640px){.doc-grid{grid-template-columns:1fr 1fr}}
-    .doc-item{display:flex;align-items:center;gap:16px;padding:20px;background:rgba(255,255,255,0.02);border:1px solid var(--line);border-radius:12px;transition:all 0.2s ease}
-    .doc-item:hover{background:rgba(255,255,255,0.04);border-color:var(--brand-2);transform:translateY(-2px)}
-    .doc-icon{width:48px;height:48px;background:linear-gradient(135deg,var(--brand-2),#2563eb);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+    .doc-item{display:flex;align-items:center;gap:20px;padding:28px;background:linear-gradient(145deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));border:1px solid var(--line-light);border-radius:16px;transition:all 0.4s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden}
+    .doc-item::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--brand-2),var(--brand));transform:scaleX(0);transition:transform 0.3s ease}
+    .doc-item:hover::before{transform:scaleX(1)}
+    .doc-item:hover{background:linear-gradient(145deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02));transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.1)}
+    .doc-icon{width:56px;height:56px;background:linear-gradient(135deg,var(--brand-2),var(--brand));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;box-shadow:0 6px 20px rgba(14,165,233,0.2)}
     .doc-content{flex:1}
-    .doc-title{font-weight:600;font-size:1.1rem;margin:0 0 4px 0;color:var(--ink)}
-    .doc-desc{color:var(--muted);font-size:0.9rem;margin:0;line-height:1.4}
-    .doc-meta{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:0.85rem;color:var(--muted)}
+    .doc-title{font-weight:600;font-size:1.15rem;margin:0 0 6px 0;color:var(--ink)}
+    .doc-desc{color:var(--muted-light);font-size:0.9rem;margin:0;line-height:1.5}
+    .doc-meta{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:0.85rem;color:var(--muted)}
     
     /* Footer */
-    footer{border-top:1px solid var(--line);padding:48px 0;margin-top:64px;background:var(--surface)}
-    .footer-content{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:32px}
-    .footer-section h3{margin:0 0 16px;color:var(--ink)}
-    .footer-section p,.footer-section li{color:var(--muted);margin:8px 0}
+    footer{border-top:1px solid var(--line);padding:80px 0 40px;margin-top:100px;background:var(--ink);color:white;position:relative}
+    footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--line-light),transparent)}
+    .footer-content{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:48px}
+    .footer-section h3{margin:0 0 24px;color:white;font-weight:600;font-size:1rem;text-transform:uppercase;letter-spacing:0.5px}
+    .footer-section p,.footer-section li{color:rgba(255,255,255,0.8);margin:12px 0;line-height:1.7;font-size:0.9rem}
     .footer-section ul{list-style:none;padding:0;margin:0}
-    .footer-section a{color:var(--muted);transition:color 0.2s}
-    .footer-section a:hover{color:var(--brand-2)}
-    .footer-bottom{text-align:center;padding-top:32px;margin-top:32px;border-top:1px solid var(--line);color:var(--muted);font-size:0.9rem}
+    .footer-section a{color:rgba(255,255,255,0.7);transition:all 0.2s ease;padding:6px 0;display:inline-block;font-size:0.9rem}
+    .footer-section a:hover{color:white;transform:translateX(2px)}
+    .footer-bottom{text-align:center;padding-top:48px;margin-top:48px;border-top:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.6);font-size:0.85rem}
     
     /* Responsive */
+    @media(max-width:1024px){
+      .container{padding:0 24px}
+      .card{padding:32px 24px}
+    }
     @media(max-width:768px){
-      .hero h1{font-size:2.4rem}
-      .hero .subtitle{font-size:1.1rem}
-      .hero-actions{flex-direction:column;align-items:center}
+      .hero{padding:60px 0 40px}
+      .hero h1{font-size:2.8rem}
+      .hero .subtitle{font-size:1.2rem}
+      .hero-actions{flex-direction:column;align-items:center;gap:16px}
       .nav-links{display:none}
-      .stats{grid-template-columns:1fr 1fr}
-      .step{flex-direction:column;text-align:center}
+      .stats{grid-template-columns:1fr 1fr;gap:20px}
+      .stat{padding:24px 16px}
+      .step{flex-direction:column;text-align:center;padding:20px}
+      .step-number{margin:0 auto 16px}
+      .services-grid{grid-template-columns:1fr;gap:24px}
+      .doc-grid{grid-template-columns:1fr}
+      .footer-content{grid-template-columns:1fr;gap:32px;text-align:center}
+    }
+    @media(max-width:480px){
+      .hero h1{font-size:2.2rem}
+      .hero .subtitle{font-size:1.1rem}
+      .stats{grid-template-columns:1fr}
+      .btn{padding:12px 20px;font-size:0.9rem}
     }
   </style>
 </head>
@@ -108,7 +168,18 @@
     <div class="container">
       <nav>
         <div class="brand">
-          <div class="logo">🔋</div>
+          <div class="logo">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <rect width="40" height="40" rx="10" fill="url(#logoGradient)"/>
+              <text x="20" y="28" text-anchor="middle" fill="white" font-family="Inter" font-weight="800" font-size="16">ET</text>
+              <defs>
+                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#1e40af"/>
+                  <stop offset="100%" style="stop-color:#3b82f6"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
           <div>
             <div class="title">EcoTech Energy & Materials</div>
             <div class="subtitle">Battery Recycling Solutions</div>
@@ -117,6 +188,7 @@
         <div class="nav-links">
           <a href="#services">Services</a>
           <a href="#process">Process</a>
+          <a href="#founders">Team</a>
           <a href="#docs">Documentation</a>
           <a href="#contact">Contact</a>
         </div>
@@ -229,6 +301,82 @@
       </div>
     </section>
 
+    <section id="founders" class="card">
+      <h2>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        Leadership Team
+      </h2>
+      <p style="color:var(--muted);margin:0 0 40px;font-size:1.1rem">Meet the experienced professionals driving innovation in sustainable battery recycling across the Baltic region.</p>
+      
+      <div class="founders-grid">
+        <div class="founder-card">
+          <div class="founder-avatar">
+            <div class="avatar-placeholder">WL</div>
+          </div>
+          <div class="founder-info">
+            <h3>Waqar Lund</h3>
+            <div class="founder-title">Chief Executive Officer & Founder</div>
+            <p class="founder-bio">Visionary leader with extensive experience in sustainable technology and environmental engineering. Specializes in developing innovative solutions for battery recycling and circular economy initiatives across the Baltic region.</p>
+            <div class="founder-credentials">
+              <span class="credential">PGD Global Sustainability Engineering, Heriot-Watt University Scotland</span>
+              <span class="credential">NEBOSH Safety Certification</span>
+              <span class="credential">OSHA 30 Certification</span>
+              <span class="credential">Expert in Sustainable Technology Solutions</span>
+            </div>
+            <div class="founder-expertise">
+              <span class="expertise-tag">Sustainability Engineering</span>
+              <span class="expertise-tag">Safety Management</span>
+              <span class="expertise-tag">Leadership</span>
+              <span class="expertise-tag">Innovation</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="founder-card">
+          <div class="founder-avatar">
+            <div class="avatar-placeholder">SL</div>
+          </div>
+          <div class="founder-info">
+            <h3>Muhammad Saleem Lund</h3>
+            <div class="founder-title">Co-Founder & Technical Director</div>
+            <p class="founder-bio">Industry veteran with over 20 years of specialized experience in battery recycling technologies. Deep expertise in lithium-ion battery processing, material recovery, and sustainable recycling methodologies.</p>
+            <div class="founder-credentials">
+              <span class="credential">20+ Years Battery Recycling Experience</span>
+              <span class="credential">Technical Expert in Material Recovery</span>
+            </div>
+            <div class="founder-expertise">
+              <span class="expertise-tag">Battery Recycling</span>
+              <span class="expertise-tag">Technical Operations</span>
+              <span class="expertise-tag">Material Recovery</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="founder-card">
+          <div class="founder-avatar">
+            <div class="avatar-placeholder">MU</div>
+          </div>
+          <div class="founder-info">
+            <h3>Muhammad Umer</h3>
+            <div class="founder-title">Chief Operating Officer</div>
+            <p class="founder-bio">Strategic operations expert with proven track record in project management and operational excellence. Leads day-to-day operations and strategic project implementation across all EcoTech facilities.</p>
+            <div class="founder-credentials">
+              <span class="credential">PGD Strategic Project Management, Heriot-Watt University Scotland</span>
+              <span class="credential">Operations & Strategic Planning Expert</span>
+            </div>
+            <div class="founder-expertise">
+              <span class="expertise-tag">Project Management</span>
+              <span class="expertise-tag">Operations</span>
+              <span class="expertise-tag">Strategic Planning</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="docs" class="card">
       <h2>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -294,8 +442,8 @@
         </div>
         <div class="footer-section">
           <h3>Contact Information</h3>
-          <p><strong>Email:</strong> info@ecotech.ee</p>
-          <p><strong>Phone:</strong> +372 XXX XXXX</p>
+          <p><strong>Email:</strong> Tebaiwaqar@gmail.com</p>
+          <p><strong>Phone:</strong> +923002096549</p>
           <p><strong>Address:</strong> Tallinn, Estonia</p>
           <p><strong>Service Area:</strong> Estonia, Latvia, Lithuania</p>
         </div>
@@ -314,5 +462,5 @@
       </div>
     </div>
   </footer>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'975694a992025b2e',t:'MTc1NjI0NTQwMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9756b01dd638e89f',t:'MTc1NjI0NjUyOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

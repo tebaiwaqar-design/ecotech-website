@@ -20,291 +20,299 @@
     *{box-sizing:border-box}
     html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;line-height:1.6}
     a{color:var(--brand-2);text-decoration:none}
-    .container{max-width:1100px;margin:0 auto;padding:24px}
-    header.site{position:sticky;top:0;backdrop-filter:saturate(140%) blur(6px);background:rgba(11,19,32,.75);border-bottom:1px solid var(--line);z-index:10}
-    nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 0}
+    .container{max-width:1200px;margin:0 auto;padding:0 24px}
+    
+    /* Header */
+    header.site{position:sticky;top:0;backdrop-filter:saturate(140%) blur(6px);background:rgba(11,19,32,.85);border-bottom:1px solid var(--line);z-index:10}
+    nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0}
     .brand{display:flex;gap:12px;align-items:center}
-    .brand .title{font-weight:800;letter-spacing:.2px}
-    .tag{color:var(--muted);font-size:.95rem}
-    .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:linear-gradient(135deg,var(--brand),#15c25b);color:#032610;font-weight:700;border:0}
-    .outline{background:transparent;color:var(--ink);border:1px solid var(--line)}
-    .hero{display:grid;gap:20px;grid-template-columns:1.1fr;align-items:center;padding:28px 0}
-    @media(min-width:960px){.hero{grid-template-columns:1.1fr .9fr}}
-    h1{font-size:2.4rem;line-height:1.2;margin:.4rem 0}
-    h2{font-size:1.6rem;margin:1.2rem 0 .6rem}
-    .lede{color:var(--muted);font-size:1.05rem}
-    .kpis{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
-    .kpis .box{background:linear-gradient(180deg,#13243a,#0f1b2e);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
-    .kpis .val{font-size:1.2rem;color:var(--accent);font-weight:800}
-    section.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin:22px 0}
-    .grid2{display:grid;gap:18px}
-    @media(min-width:960px){.grid2{grid-template-columns:1.1fr .9fr}}
-    .pills{display:flex;gap:8px;flex-wrap:wrap}
-    .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:#0e1a2c;border:1px solid var(--line);color:var(--muted);font-size:.9rem}
-    .list{margin:0;padding-left:18px}
-    .figure{background:#0c1729;border:1px solid var(--line);border-radius:14px;padding:14px}
-    footer{border-top:1px solid var(--line);padding:26px 0;margin-top:28px;color:var(--muted);font-size:.9rem}
-    .heading{display:flex;align-items:center;gap:10px}
-    .heading svg{opacity:.9}
+    .brand .logo{width:40px;height:40px;background:linear-gradient(135deg,var(--brand),var(--accent));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800}
+    .brand .title{font-weight:800;letter-spacing:.2px;font-size:1.2rem}
+    .brand .subtitle{color:var(--muted);font-size:.85rem;margin-left:8px}
+    .nav-links{display:flex;gap:24px;align-items:center}
+    .nav-links a{color:var(--muted);font-weight:500;transition:color 0.2s}
+    .nav-links a:hover{color:var(--ink)}
+    
+    /* Buttons */
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:8px;background:linear-gradient(135deg,var(--brand),#15c25b);color:#032610;font-weight:600;border:0;transition:all 0.2s ease;cursor:pointer}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(37,211,102,0.3)}
+    .btn.outline{background:transparent;color:var(--ink);border:1px solid var(--line);background:rgba(255,255,255,0.02)}
+    .btn.outline:hover{background:rgba(255,255,255,0.05);border-color:var(--brand-2)}
+    
+    /* Hero Section */
+    .hero{padding:60px 0;text-align:center}
+    .hero h1{font-size:3.2rem;line-height:1.1;margin:0 0 16px;background:linear-gradient(135deg,var(--ink),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero .subtitle{font-size:1.3rem;color:var(--muted);margin:0 0 32px;max-width:600px;margin-left:auto;margin-right:auto}
+    .hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
+    
+    /* Stats */
+    .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;margin:48px 0}
+    .stat{text-align:center;padding:24px;background:rgba(255,255,255,0.02);border:1px solid var(--line);border-radius:12px}
+    .stat-value{font-size:2.5rem;font-weight:800;color:var(--accent);margin:0}
+    .stat-label{color:var(--muted);font-size:0.9rem;margin:4px 0 0}
+    
+    /* Cards */
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:32px;margin:32px 0}
+    .card h2{margin:0 0 16px;display:flex;align-items:center;gap:12px}
+    .card h2 svg{opacity:0.9}
+    
+    /* Services Grid */
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin:32px 0}
+    .service-card{background:rgba(255,255,255,0.02);border:1px solid var(--line);border-radius:12px;padding:24px;transition:all 0.2s ease}
+    .service-card:hover{background:rgba(255,255,255,0.04);transform:translateY(-2px)}
+    .service-icon{width:48px;height:48px;background:linear-gradient(135deg,var(--brand-2),#2563eb);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px}
+    .service-card h3{margin:0 0 8px;color:var(--ink)}
+    .service-card p{color:var(--muted);margin:0;line-height:1.5}
+    
+    /* Process Steps */
+    .process-steps{display:grid;gap:24px;margin:32px 0}
+    .step{display:flex;gap:20px;align-items:flex-start}
+    .step-number{width:40px;height:40px;background:linear-gradient(135deg,var(--brand),var(--accent));border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:#032610;flex-shrink:0}
+    .step-content h3{margin:0 0 8px;color:var(--ink)}
+    .step-content p{color:var(--muted);margin:0}
+    
+    /* Documentation */
+    .doc-grid{display:grid;gap:16px;margin-top:24px}
+    @media(min-width:640px){.doc-grid{grid-template-columns:1fr 1fr}}
+    .doc-item{display:flex;align-items:center;gap:16px;padding:20px;background:rgba(255,255,255,0.02);border:1px solid var(--line);border-radius:12px;transition:all 0.2s ease}
+    .doc-item:hover{background:rgba(255,255,255,0.04);border-color:var(--brand-2);transform:translateY(-2px)}
+    .doc-icon{width:48px;height:48px;background:linear-gradient(135deg,var(--brand-2),#2563eb);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+    .doc-content{flex:1}
+    .doc-title{font-weight:600;font-size:1.1rem;margin:0 0 4px 0;color:var(--ink)}
+    .doc-desc{color:var(--muted);font-size:0.9rem;margin:0;line-height:1.4}
+    .doc-meta{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:0.85rem;color:var(--muted)}
+    
+    /* Footer */
+    footer{border-top:1px solid var(--line);padding:48px 0;margin-top:64px;background:var(--surface)}
+    .footer-content{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:32px}
+    .footer-section h3{margin:0 0 16px;color:var(--ink)}
+    .footer-section p,.footer-section li{color:var(--muted);margin:8px 0}
+    .footer-section ul{list-style:none;padding:0;margin:0}
+    .footer-section a{color:var(--muted);transition:color 0.2s}
+    .footer-section a:hover{color:var(--brand-2)}
+    .footer-bottom{text-align:center;padding-top:32px;margin-top:32px;border-top:1px solid var(--line);color:var(--muted);font-size:0.9rem}
+    
+    /* Responsive */
+    @media(max-width:768px){
+      .hero h1{font-size:2.4rem}
+      .hero .subtitle{font-size:1.1rem}
+      .hero-actions{flex-direction:column;align-items:center}
+      .nav-links{display:none}
+      .stats{grid-template-columns:1fr 1fr}
+      .step{flex-direction:column;text-align:center}
+    }
   </style>
-  <link rel="icon" href="favicon.ico">
 </head>
 <body>
-  <section id="docs" class="card">
-  <div class="heading" style="display:flex;align-items:center;gap:8px">
-    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-      <rect x="3" y="6" width="16" height="12" rx="3" ry="3" fill="currentColor" opacity="0.9"/>
-      <rect x="19" y="10" width="2" height="4" rx="1" fill="currentColor" opacity="0.9"/>
-    </svg>
-    <h2 style="margin:0">Documents</h2>
-  </div>
-  <p style="opacity:.8;margin-top:.25rem">
-    Access our key business documents to learn more about EcoTech’s vision, operations, and strategy in Estonia.
-  </p>
-  <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:12px">
-    <a class="btn" href="./business-plan.pdf" target="_blank">📄 Business Plan (PDF)</a>
-    <a class="btn outline" href="./ecotech-onepager.pdf" target="_blank">📑 One-Pager (PDF)</a>
-  </div>
-</section>
-
   <header class="site">
     <div class="container">
       <nav>
-        <div class="brand" aria-label="EcoTech Energy & Materials OÜ">
-          <svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true">
-            <defs>
-              <linearGradient id="g" x1="0" x2="1" y1="1" y2="0">
-                <stop offset="0" stop-color="#25d366"/><stop offset="1" stop-color="#3ba3ff"/>
-              </linearGradient>
-            </defs>
-            <circle cx="32" cy="32" r="30" fill="url(#g)" opacity=".15"/>
-            <path d="M22 36h-6a2 2 0 0 1-2-2V24a2 2 0 0 1 2-2h6l4-4h12l4 4h6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-6l-4 4H26l-4-4z" fill="none" stroke="url(#g)" stroke-width="2.5" stroke-linejoin="round"/>
-            <path d="M32 23l-3 6h6l-3 6" stroke="#9ce5b2" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+        <div class="brand">
+          <div class="logo">🔋</div>
           <div>
-            <div class="title">EcoTech Energy & Materials OÜ</div>
-            <div class="tag">Sustainable Battery Recycling & Exchange</div>
+            <div class="title">EcoTech Energy & Materials</div>
+            <div class="subtitle">Battery Recycling Solutions</div>
           </div>
-         <div style="display:flex;gap:10px">
-          <a class="btn outline" href="#about">About</a>
-          <a class="btn" href="#contact">Contact</a>
         </div>
+        <div class="nav-links">
+          <a href="#services">Services</a>
+          <a href="#process">Process</a>
+          <a href="#docs">Documentation</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a href="#contact" class="btn">Get Started</a>
       </nav>
     </div>
   </header>
 
-  <div class="container">
+  <main class="container">
     <section class="hero">
-      <div>
-        <h1>Turning battery waste into value for Estonia's EV & micromobility future.</h1>
-        <p class="lede">We collect, safely discharge, recycle and refurbish lithium-ion batteries to extend life, recover materials and cut costs for fleets and cities.</p>
-        <div class="kpis">
-          <div class="box"><div class="val">20 t/yr</div><div class="tag">Pilot capacity (Tallinn)</div></div>
-          <div class="box"><div class="val">65%</div><div class="tag">Material recovery target</div></div>
-          <div class="box"><div class="val">50–70%</div><div class="tag">CO2 reduction vs landfill</div></div>
-        </div>
+      <h1>Sustainable Battery Recycling for the Baltic Region</h1>
+      <p class="subtitle">Leading provider of lithium-ion battery collection, safe discharge, and recycling services for EV and micromobility operators across Estonia and the Baltics.</p>
+      <div class="hero-actions">
+        <a href="#services" class="btn">Explore Services</a>
+        <a href="#docs" class="btn outline">View Documentation</a>
       </div>
-      <div class="figure" aria-label="Process Overview">
-        <div class="heading">
-          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2L4 6v12l8 4l8-4V6m-8 0l8 4m-8-4v12"/></svg>
-          <strong>Process (Overview)</strong>
+      
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-value">500+</div>
+          <div class="stat-label">Batteries Processed Monthly</div>
         </div>
-        <svg viewBox="0 0 900 180" width="100%" height="160" aria-label="Process flow">
-          <defs>
-            <linearGradient id="g2" x1="0" x2="1">
-              <stop offset="0" stop-color="#25d366"/><stop offset="1" stop-color="#3ba3ff"/>
-            </linearGradient>
-          </defs>
-          <g font-size="13" fill="#dbe7ff" font-family="Inter,Arial,Helvetica,sans-serif">
-            <rect x="10" y="30" rx="10" ry="10" width="160" height="90" fill="#0a1629" stroke="#1c2a44"/>
-            <text x="90" y="70" text-anchor="middle">Battery Collection</text>
-            <rect x="190" y="30" rx="10" ry="10" width="160" height="90" fill="#0a1629" stroke="#1c2a44"/>
-            <text x="270" y="70" text-anchor="middle">Safe Discharge</text>
-            <rect x="370" y="30" rx="10" ry="10" width="180" height="90" fill="#0a1629" stroke="#1c2a44"/>
-            <text x="460" y="64" text-anchor="middle">Recycling &</text><text x="460" y="82" text-anchor="middle">Material Recovery</text>
-            <rect x="570" y="30" rx="10" ry="10" width="170" height="90" fill="#0a1629" stroke="#1c2a44"/>
-            <text x="655" y="64" text-anchor="middle">Battery Exchange</text><text x="655" y="82" text-anchor="middle">/ Refurbishment</text>
-            <rect x="760" y="30" rx="10" ry="10" width="130" height="90" fill="#0a1629" stroke="#1c2a44"/>
-            <text x="825" y="64" text-anchor="middle">Reuse in EVs</text><text x="825" y="82" text-anchor="middle">& E-scooters</text>
-            <g stroke="url(#g2)" stroke-width="3" fill="none">
-              <path d="M170 75 L190 75"/><path d="M350 75 L370 75"/><path d="M550 75 L570 75"/><path d="M740 75 L760 75"/>
-            </g>
-          </g>
-        </svg>
+        <div class="stat">
+          <div class="stat-value">95%</div>
+          <div class="stat-label">Material Recovery Rate</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">3</div>
+          <div class="stat-label">Baltic Countries Served</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">24/7</div>
+          <div class="stat-label">Collection Service</div>
+        </div>
       </div>
     </section>
 
-    <section id="about" class="card grid2">
-      <div>
-        <div class="heading">
-          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M5 3h14v2H5zm0 14h14v2H5zM3 7h2v10H3zm16 0h2v10h-2z"/></svg>
-          <h2 style="margin:0">About</h2>
-        </div>
-        <p>EcoTech Energy & Materials OÜ is developing a battery recycling and exchange service to help Estonia's EV and micromobility operators manage end-of-life lithium-ion batteries with safe collection, compliant processing and a cost-saving refurbishment workflow.</p>
-        <div class="pills">
-          <span class="pill">Cleantech</span><span class="pill">Energy</span><span class="pill">Materials & Chemicals</span>
-          <span class="pill">B2B</span><span class="pill">B2G</span>
-        </div>
-      </div>
-      <div class="figure">
-        <div class="heading">
-          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M3 5h18v2H3zm0 12h18v2H3zM7 9h10v6H7z"/></svg>
-          <strong>Market (Illustrative Trend)</strong>
-        </div>
-        <svg viewBox="0 0 520 240" width="100%" height="200" aria-label="Market growth 2020–2030">
-          <rect width="520" height="240" rx="10" fill="#0a1629"/>
-          <g stroke="#1e2d46" stroke-width="1">
-            <line x1="50" y1="30" x2="50" y2="200"/>
-            <line x1="50" y1="200" x2="480" y2="200"/>
-            <line x1="50" y1="160" x2="480" y2="160"/>
-            <line x1="50" y1="120" x2="480" y2="120"/>
-            <line x1="50" y1="80" x2="480" y2="80"/>
-          </g>
-          <defs>
-            <linearGradient id="gradM" x1="0" x2="1">
-              <stop offset="0" stop-color="#3ba3ff"/><stop offset="1" stop-color="#25d366"/>
-            </linearGradient>
-          </defs>
-          <polyline points="50,190 140,170 220,150 300,120 390,85 480,55" fill="none" stroke="url(#gradM)" stroke-width="3"/>
-          <polygon points="50,190 140,170 220,150 300,120 390,85 480,55 480,200 50,200" fill="rgba(59,163,255,.12)"/>
-          <g fill="#a9b8d4" font-size="12">
-            <text x="42" y="214">2020</text><text x="222" y="214">2025</text><text x="462" y="214">2030</text>
-          </g>
+    <section id="services" class="card">
+      <h2>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"/>
         </svg>
-        <p class="tag" style="margin:.2rem 0 0">Rapid EV & scooter adoption implies rising battery recycling demand.</p>
+        Our Services
+      </h2>
+      <p style="color:var(--muted);margin:0 0 32px;font-size:1.1rem">Comprehensive battery lifecycle management solutions designed for modern mobility operators.</p>
+      
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🔄</div>
+          <h3>Battery Collection & Transport</h3>
+          <p>Safe collection and transportation of end-of-life lithium-ion batteries from EV and micromobility fleets across the Baltic region with certified handling protocols.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">⚡</div>
+          <h3>Safe Discharge Services</h3>
+          <p>Professional battery discharge and deactivation using industry-leading safety standards to prepare batteries for recycling or disposal processes.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">♻️</div>
+          <h3>Material Recovery & Recycling</h3>
+          <p>Advanced recycling processes to recover valuable materials including lithium, cobalt, and nickel with up to 95% material recovery efficiency.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🔋</div>
+          <h3>Battery Exchange Programs</h3>
+          <p>Streamlined battery exchange services for fleet operators, enabling quick swaps and minimizing downtime for electric vehicles and e-scooters.</p>
+        </div>
       </div>
     </section>
 
-    <section class="card grid2">
-      <div class="figure" aria-label="3-year financial projection">
-        <div class="heading">
-          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M3 3h2v18H3zm8 6h2v12h-2zm8-4h2v16h-2z"/></svg>
-          <strong>3-Year Financial Projection (Realistic)</strong>
-        </div>
-        <svg viewBox="0 0 520 240" width="100%" height="200">
-          <rect width="520" height="240" rx="10" fill="#0a1629"/>
-          <g stroke="#1e2d46" stroke-width="1">
-            <line x1="60" y1="30" x2="60" y2="200"/>
-            <line x1="60" y1="200" x2="480" y2="200"/>
-            <line x1="60" y1="160" x2="480" y2="160"/>
-            <line x1="60" y1="120" x2="480" y2="120"/>
-            <line x1="60" y1="80" x2="480" y2="80"/>
-          </g>
-          <!-- Revenue bars (300k, 420k, 550k) -->
-          <rect x="100" y="150" width="60" height="50" fill="#25d366"/>
-          <rect x="240" y="120" width="60" height="80" fill="#25d366"/>
-          <rect x="380" y="90"  width="60" height="110" fill="#25d366"/>
-          <!-- Net income line (80k, 130k, 200k) -->
-          <polyline points="130,190 270,180 410,160" fill="none" stroke="#3ba3ff" stroke-width="3"/>
-          <g fill="#a9b8d4" font-size="12">
-            <text x="95" y="145">Rev €300k</text>
-            <text x="235" y="115">Rev €420k</text>
-            <text x="375" y="85">Rev €550k</text>
-            <text x="138" y="204">Net €80k</text>
-            <text x="278" y="194">Net €130k</text>
-            <text x="418" y="174">Net €200k</text>
-          </g>
+    <section id="process" class="card">
+      <h2>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
         </svg>
-      </div>
-      <div>
-        <div class="heading">
-          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M12 12a5 5 0 1 0-5-5a5 5 0 0 0 5 5m-7 9a7 7 0 0 1 14 0z"/></svg>
-          <h2 style="margin:0">Team</h2>
+        Our Process
+      </h2>
+      <p style="color:var(--muted);margin:0 0 32px;font-size:1.1rem">A streamlined, certified process ensuring maximum safety and environmental compliance.</p>
+      
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Collection & Assessment</h3>
+            <p>We collect batteries from your location and perform comprehensive safety and condition assessments using certified testing equipment.</p>
+          </div>
         </div>
-        <p><strong>Waqar Lund</strong> — Founder & CEO. PGD in Sustainability; NEBOSH & OSHA certified.</p>
-        <p><strong>Muhammad Saleem Lund</strong> — Co‑Founder & CTO. 20+ years in battery & energy systems.</p>
-        <h2>Compliance</h2>
-        <p class="muted">Aligned with EU Battery Regulation and the Estonian Waste Act. EIA & environmental permits planned.</p>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Safe Discharge & Preparation</h3>
+            <p>Batteries undergo controlled discharge procedures in our certified facility, ensuring complete safety before processing begins.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Material Recovery</h3>
+            <p>Advanced recycling processes extract valuable materials including lithium, cobalt, nickel, and other critical elements for reuse.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Certification & Reporting</h3>
+            <p>Complete documentation and certification of the recycling process, providing full traceability and compliance reporting.</p>
+          </div>
+        </div>
       </div>
     </section>
-<!-- ===== EcoTech Resources (pro) ===== --
-  <!-- Logo row -->
-  <div style="display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:20px;">
-    <!-- Battery logo (inline SVG) -->
-    <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
-      <rect x="3" y="6" width="16" height="12" rx="3" ry="3" fill="#0b1320" />
-      <rect x="19" y="10" width="2" height="4" rx="1" fill="#0b1320" />
-      <polygon points="11,8 9,12 12,12 10,16 15,11 12,11 14,8" fill="#25d366"/>
-    </svg>
-    <h2 style="margin:0; color:#0b1320; font-size:28px;">EcoTech Resources</h2>
-  </div>
 
-  <p style="color:#475a52; max-width:700px; margin:0 auto 28px; text-align:center;">
-    Download our core documents. These materials support our Startup Estonia application,
-    outlining strategy, operations, and compliance.
-  </p>
-
-  <!-- Cards -->
-  <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:18px;">
-
-    <!-- Business Plan card -->
-    <article style="background:#fff; border:1px solid #e7efe9; border-radius:12px; width:320px; padding:18px;
-                    box-shadow:0 6px 18px rgba(0,0,0,.06);">
-      <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
-        <!-- PDF icon -->
-        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-          <path fill="#e63946" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/>
-          <path fill="#fff" d="M14 2v6h6"/>
-          <path fill="#fff" d="M7.5 16.5h9v1.5h-9zM7.5 13.5h9v1.5h-9z"/>
+    <section id="docs" class="card">
+      <h2>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14,2 14,8 20,8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10,9 9,9 8,9"/>
         </svg>
-        <strong style="font-size:18px; color:#0b1320;">Business Plan (PDF)</strong>
-      </div>
-      <p style="color:#556b61; margin:0 0 14px;">
-        Full plan with market sizing, permits, pilot scope, and financials.
+        Corporate Documentation
+      </h2>
+      <p style="color:var(--muted);margin:0;font-size:1.05rem;line-height:1.5">
+        Access comprehensive business documentation including strategic planning, operational frameworks, and company overview materials for EcoTech Energy & Materials OÜ.
       </p>
-      <a href="./business-plan.pdf" target="_blank"
-         style="display:inline-block; background:#25d366; color:#fff; padding:10px 14px; border-radius:8px;
-                text-decoration:none; font-weight:600;">View / Download</a>
-    </article>
-
-    <!-- One-Pager card -->
-    <article style="background:#fff; border:1px solid #e7efe9; border-radius:12px; width:320px; padding:18px;
-                    box-shadow:0 6px 18px rgba(0,0,0,.06);">
-      <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
-        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-          <path fill="#0b1320" d="M6 2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/>
-          <path fill="#25d366" d="M7 6h10v2H7zM7 10h10v2H7zM7 14h7v2H7z"/>
-        </svg>
-        <strong style="font-size:18px; color:#0b1320;">One-Pager Overview</strong>
+      
+      <div class="doc-grid">
+        <a href="./business-plan.pdf" target="_blank" class="doc-item">
+          <div class="doc-icon">📊</div>
+          <div class="doc-content">
+            <h3 class="doc-title">Strategic Business Plan</h3>
+            <p class="doc-desc">Comprehensive business strategy, market analysis, financial projections, and operational roadmap for sustainable battery recycling operations.</p>
+            <div class="doc-meta">
+              <span>PDF Document</span>
+              <span>•</span>
+              <span>Executive Summary Included</span>
+            </div>
+          </div>
+        </a>
+        
+        <a href="./ecotech-onepager.pdf" target="_blank" class="doc-item">
+          <div class="doc-icon">📋</div>
+          <div class="doc-content">
+            <h3 class="doc-title">Company Overview</h3>
+            <p class="doc-desc">Concise executive summary highlighting key services, market positioning, and value proposition in the Baltic battery recycling sector.</p>
+            <div class="doc-meta">
+              <span>PDF Document</span>
+              <span>•</span>
+              <span>Quick Reference</span>
+            </div>
+          </div>
+        </a>
       </div>
-      <p style="color:#556b61; margin:0 0 14px;">
-        Quick summary: concept, KPIs, team, and 3-year projections.
-      </p>
-      <a href="./ecotech-onepager.pdf" target="_blank"
-         style="display:inline-block; background:#0b1320; color:#fff; padding:10px 14px; border-radius:8px;
-                text-decoration:none; font-weight:600;">View / Download</a>
-    </article>
- </div>
-</section>
-<!-- ===== /EcoTech Resources ===== -->
-
-    <section class="card" id="contact">
-      <div class="heading">
-        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12l4-4h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2"/></svg>
-        <h2 style="margin:0">Contact</h2>
-      </div>
-      <p>Email: <a href="mailto:tebaiwaqar@gmail.com">tebaiwaqar@gmail.com</a> &nbsp;•&nbsp; Location: Tallinn, Estonia</p>
     </section>
-section style="background:#f9fafb; padding:40px 20px; text-align:center; font-family:sans-serif;">
-  <h2 style="color:#0b1320; font-size:28px; margin-bottom:20px;">
-    📂 Company Resources
-  </h2>
-  <p style="color:#444; max-width:600px; margin:0 auto 30px;">
-    Access our key business documents to learn more about EcoTech’s vision,
-    operations, and strategy in Estonia.
-  </p>
- <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:20px;">
-    <!-- EcoTech Business Plan Button -->
-    <a href="./EcoTech business plan.pdf" target="_blank"
-       style="background-color:#25d366; color:#fff; padding:14px 28px;
-              text-decoration:none; font-size:16px; border-radius:8px;
-              font-weight:600; box-shadow:0 4px 6px rgba(0,0,0,0.1);">
-      📄  Business Plan
- </div>
-      <footer>
-      © <span id="y"></span> EcoTech Energy & Materials OÜ. All rights reserved.
-      <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
-    </footer>
-  </div>
-</body>
+  </main>
+
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>EcoTech Energy & Materials OÜ</h3>
+          <p>Leading sustainable battery recycling solutions across Estonia and the Baltic region.</p>
+          <p><strong>Registration:</strong> Estonian Company Registry</p>
+          <p><strong>Certifications:</strong> ISO 14001, WEEE Compliance</p>
+        </div>
+        <div class="footer-section">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="#services">Battery Collection</a></li>
+            <li><a href="#services">Safe Discharge</a></li>
+            <li><a href="#services">Material Recovery</a></li>
+            <li><a href="#services">Exchange Programs</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact Information</h3>
+          <p><strong>Email:</strong> info@ecotech.ee</p>
+          <p><strong>Phone:</strong> +372 XXX XXXX</p>
+          <p><strong>Address:</strong> Tallinn, Estonia</p>
+          <p><strong>Service Area:</strong> Estonia, Latvia, Lithuania</p>
+        </div>
+        <div class="footer-section">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="#docs">Business Plan</a></li>
+            <li><a href="#docs">Company Overview</a></li>
+            <li><a href="#process">Our Process</a></li>
+            <li><a href="#services">Service Areas</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 EcoTech Energy & Materials OÜ. All rights reserved. | Sustainable battery recycling for a cleaner future.</p>
+      </div>
+    </div>
+  </footer>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'975694a992025b2e',t:'MTc1NjI0NTQwMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

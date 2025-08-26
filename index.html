@@ -7,24 +7,24 @@
   <meta name="description" content="EcoTech provides lithium-ion battery collection, safe discharge, recycling and exchange services for EV and micromobility operators in Estonia and the Baltics.">
   <style>
     :root{
-      --bg:#0a0e1a;
-      --surface:#1a202c;
-      --card:#ffffff;
-      --card-elevated:#ffffff;
-      --ink:#1a202c;
-      --muted:#4a5568;
-      --muted-light:#2d3748;
-      --brand:#2c5282;
-      --brand-light:#3182ce;
-      --brand-2:#1a365d;
-      --accent:#d69e2e;
-      --line:#e2e8f0;
-      --line-light:#cbd5e1;
-      --shadow:rgba(26,32,44,0.08);
-      --shadow-elevated:rgba(26,32,44,0.15);
-      --gradient-primary:linear-gradient(135deg, #2c5282 0%, #3182ce 100%);
-      --gradient-accent:linear-gradient(135deg, #d69e2e 0%, #ecc94b 100%);
-      --gradient-subtle:linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+      --bg:#0f1419;
+      --surface:#1a1f2e;
+      --card:#1e2532;
+      --card-elevated:#252b3a;
+      --ink:#ffffff;
+      --muted:#94a3b8;
+      --muted-light:#cbd5e1;
+      --brand:#f59e0b;
+      --brand-light:#fbbf24;
+      --brand-2:#d97706;
+      --accent:#10b981;
+      --line:#334155;
+      --line-light:#475569;
+      --shadow:rgba(0,0,0,0.25);
+      --shadow-elevated:rgba(0,0,0,0.4);
+      --gradient-primary:linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+      --gradient-accent:linear-gradient(135deg, #10b981 0%, #34d399 100%);
+      --gradient-subtle:linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{margin:0;background:var(--gradient-subtle);color:var(--ink);font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-weight:400}
@@ -35,7 +35,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
     
     /* Header */
-    header.site{position:sticky;top:0;backdrop-filter:saturate(180%) blur(20px);background:rgba(255,255,255,.98);border-bottom:1px solid var(--line);z-index:100;box-shadow:0 2px 32px var(--shadow-elevated)}
+    header.site{position:sticky;top:0;backdrop-filter:saturate(180%) blur(20px);background:rgba(30,37,50,.98);border-bottom:1px solid var(--line);z-index:100;box-shadow:0 2px 32px var(--shadow-elevated)}
     nav{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:24px 0}
     .brand{display:flex;gap:16px;align-items:center}
     .brand .logo{width:44px;height:44px;background:linear-gradient(135deg,var(--brand),var(--brand-light));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;box-shadow:0 4px 12px rgba(5,150,105,0.2)}
@@ -48,16 +48,16 @@
     .nav-links a:hover::after{width:100%}
     
     /* Buttons */
-    .btn{display:inline-flex;align-items:center;gap:12px;padding:16px 32px;border-radius:6px;background:var(--brand);color:white;font-weight:500;font-size:0.9rem;border:0;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);cursor:pointer;box-shadow:0 2px 16px rgba(44,82,130,0.2);position:relative;overflow:hidden;text-transform:uppercase;letter-spacing:0.5px}
+    .btn{display:inline-flex;align-items:center;gap:12px;padding:16px 32px;border-radius:6px;background:var(--brand);color:var(--bg);font-weight:500;font-size:0.9rem;border:0;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);cursor:pointer;box-shadow:0 2px 16px rgba(245,158,11,0.3);position:relative;overflow:hidden;text-transform:uppercase;letter-spacing:0.5px}
     .btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);transition:left 0.6s ease}
     .btn:hover::before{left:100%}
-    .btn:hover{transform:translateY(-1px);box-shadow:0 4px 24px rgba(44,82,130,0.3);background:var(--brand-light)}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 4px 24px rgba(245,158,11,0.4);background:var(--brand-light)}
     .btn.outline{background:transparent;color:var(--brand);border:1px solid var(--brand);box-shadow:none}
-    .btn.outline:hover{background:var(--brand);color:white;box-shadow:0 2px 16px rgba(44,82,130,0.2)}
+    .btn.outline:hover{background:var(--brand);color:var(--bg);box-shadow:0 2px 16px rgba(245,158,11,0.3)}
     
     /* Hero Section */
     .hero{padding:80px 0 60px;text-align:center;position:relative}
-    .hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:100%;height:100%;background:radial-gradient(ellipse at center,rgba(30,64,175,0.08) 0%,transparent 70%);pointer-events:none}
+    .hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:100%;height:100%;background:radial-gradient(ellipse at center,rgba(245,158,11,0.15) 0%,transparent 70%);pointer-events:none}
     .hero h1{font-size:3.2rem;line-height:1.15;margin:0 0 32px;color:var(--ink);font-weight:600;letter-spacing:-0.02em;max-width:900px;margin-left:auto;margin-right:auto}
     .hero .subtitle{font-size:1.25rem;color:var(--muted-light);margin:0 0 48px;max-width:680px;margin-left:auto;margin-right:auto;line-height:1.6;font-weight:400}
     .hero-actions{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:64px}
@@ -82,7 +82,7 @@
     .service-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:1px;background:var(--brand);transform:scaleX(0);transition:transform 0.3s ease}
     .service-card:hover::before{transform:scaleX(1)}
     .service-card:hover{transform:translateY(-3px);box-shadow:0 8px 32px var(--shadow-elevated)}
-    .service-icon{width:64px;height:64px;background:var(--brand);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:24px;box-shadow:0 4px 16px rgba(44,82,130,0.2)}
+    .service-icon{width:64px;height:64px;background:var(--brand);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:24px;box-shadow:0 4px 16px rgba(245,158,11,0.3)}
     .service-card h3{margin:0 0 16px;color:var(--ink);font-size:1.2rem;font-weight:600}
     .service-card p{color:var(--muted-light);margin:0;line-height:1.7;font-size:0.95rem}
     
@@ -90,7 +90,7 @@
     .process-steps{display:grid;gap:32px;margin:40px 0}
     .step{display:flex;gap:32px;align-items:flex-start;padding:32px;background:var(--card-elevated);border:1px solid var(--line);border-radius:8px;transition:all 0.3s ease;box-shadow:0 2px 16px var(--shadow)}
     .step:hover{transform:translateX(4px);box-shadow:0 4px 24px var(--shadow-elevated)}
-    .step-number{width:56px;height:56px;background:var(--brand);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;color:white;flex-shrink:0;font-size:1.2rem;box-shadow:0 2px 12px rgba(44,82,130,0.25)}
+    .step-number{width:56px;height:56px;background:var(--brand);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--bg);flex-shrink:0;font-size:1.2rem;box-shadow:0 2px 12px rgba(245,158,11,0.3)}
     .step-content h3{margin:0 0 16px;color:var(--ink);font-size:1.2rem;font-weight:600}
     .step-content p{color:var(--muted-light);margin:0;line-height:1.7}
     
@@ -102,7 +102,7 @@
     .founder-card:hover::before{transform:scaleX(1)}
     .founder-card:hover{transform:translateY(-3px);box-shadow:0 8px 32px var(--shadow-elevated)}
     .founder-avatar{display:flex;justify-content:center;margin-bottom:32px}
-    .avatar-placeholder{width:96px;height:96px;background:var(--brand);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;color:white;box-shadow:0 4px 20px rgba(44,82,130,0.25)}
+    .avatar-placeholder{width:96px;height:96px;background:var(--brand);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;color:var(--bg);box-shadow:0 4px 20px rgba(245,158,11,0.3)}
     .founder-info{text-align:center}
     .founder-info h3{margin:0 0 12px;color:var(--ink);font-size:1.4rem;font-weight:600}
     .founder-title{color:var(--brand);font-weight:500;font-size:0.95rem;margin-bottom:20px;text-transform:uppercase;letter-spacing:0.5px}
@@ -110,7 +110,7 @@
     .founder-credentials{margin-bottom:24px}
     .credential{display:block;color:var(--muted);font-size:0.85rem;margin:6px 0;font-style:normal}
     .founder-expertise{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-    .expertise-tag{background:rgba(44,82,130,0.1);color:var(--brand);padding:8px 16px;border-radius:4px;font-size:0.8rem;font-weight:500;border:1px solid rgba(44,82,130,0.2);text-transform:uppercase;letter-spacing:0.5px}
+    .expertise-tag{background:rgba(245,158,11,0.15);color:var(--brand);padding:8px 16px;border-radius:4px;font-size:0.8rem;font-weight:500;border:1px solid rgba(245,158,11,0.3);text-transform:uppercase;letter-spacing:0.5px}
 
     /* Documentation */
     .doc-grid{display:grid;gap:24px;margin-top:32px}
@@ -186,42 +186,77 @@
           </div>
         </div>
         <div class="nav-links">
-          <a href="#services">Services</a>
-          <a href="#process">Process</a>
-          <a href="#founders">Team</a>
+          <a href="#investment">Investment</a>
+          <a href="#financials">Financials</a>
+          <a href="#competitive">Advantages</a>
+          <a href="#founders">Leadership</a>
           <a href="#docs">Documentation</a>
-          <a href="#contact">Contact</a>
         </div>
-        <a href="#contact" class="btn">Get Started</a>
+        <a href="#contact" class="btn">Contact Investors</a>
       </nav>
     </div>
   </header>
 
   <main class="container">
     <section class="hero">
-      <h1>Sustainable Battery Recycling for the Baltic Region</h1>
-      <p class="subtitle">Leading provider of lithium-ion battery collection, safe discharge, and recycling services for EV and micromobility operators across Estonia and the Baltics.</p>
+      <h1>Capitalizing on the €2.8B Baltic EV Battery Market</h1>
+      <p class="subtitle">Strategic investment opportunity in sustainable battery recycling infrastructure, positioned to capture regulatory-driven demand across Estonia, Latvia, and Lithuania with proven technology and experienced leadership.</p>
       <div class="hero-actions">
-        <a href="#services" class="btn">Explore Services</a>
-        <a href="#docs" class="btn outline">View Documentation</a>
+        <a href="#investment" class="btn">Investment Overview</a>
+        <a href="#docs" class="btn outline">Executive Summary</a>
       </div>
       
       <div class="stats">
         <div class="stat">
-          <div class="stat-value">500+</div>
-          <div class="stat-label">Batteries Processed Monthly</div>
+          <div class="stat-value">€2.8B</div>
+          <div class="stat-label">Baltic EV Market Size</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">45%</div>
+          <div class="stat-label">Projected CAGR 2024-2030</div>
         </div>
         <div class="stat">
           <div class="stat-value">95%</div>
-          <div class="stat-label">Material Recovery Rate</div>
+          <div class="stat-label">Material Recovery Efficiency</div>
         </div>
         <div class="stat">
-          <div class="stat-value">3</div>
-          <div class="stat-label">Baltic Countries Served</div>
+          <div class="stat-value">2025</div>
+          <div class="stat-label">EU Battery Regulation</div>
         </div>
-        <div class="stat">
-          <div class="stat-value">24/7</div>
-          <div class="stat-label">Collection Service</div>
+      </div>
+    </section>
+
+    <section id="investment" class="card">
+      <h2>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+          <path d="M2 17l10 5 10-5"/>
+          <path d="M2 12l10 5 10-5"/>
+        </svg>
+        Investment Highlights
+      </h2>
+      <p style="color:var(--muted);margin:0 0 32px;font-size:1.1rem">Strategic positioning in high-growth, regulation-driven market with strong barriers to entry and scalable business model.</p>
+      
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">📈</div>
+          <h3>Market Leadership Position</h3>
+          <p>First-mover advantage in Baltic battery recycling with established infrastructure and regulatory compliance, targeting €50M+ revenue by 2028.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🏛️</div>
+          <h3>Regulatory Tailwinds</h3>
+          <p>EU Battery Regulation mandates 95% recycling by 2030, creating captive demand and high barriers to entry for new competitors.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🔄</div>
+          <h3>Scalable Technology Platform</h3>
+          <p>Proprietary processes and strategic partnerships enable rapid expansion across Nordic and CEE markets with minimal capital requirements.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">💰</div>
+          <h3>Strong Unit Economics</h3>
+          <p>40%+ gross margins with recurring revenue streams from long-term enterprise contracts and material recovery value capture.</p>
         </div>
       </div>
     </section>
@@ -260,43 +295,77 @@
       </div>
     </section>
 
-    <section id="process" class="card">
+    <section id="financials" class="card">
+      <h2>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 3v18h18"/>
+          <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/>
+        </svg>
+        Financial Projections
+      </h2>
+      <p style="color:var(--muted);margin:0 0 32px;font-size:1.1rem">Conservative growth projections based on regulatory mandates and established market demand.</p>
+      
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-number">2024</div>
+          <div class="step-content">
+            <h3>Market Entry & Infrastructure</h3>
+            <p>€2.5M revenue target with initial facility operations and key enterprise partnerships. Focus on regulatory compliance and operational excellence.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">2025</div>
+          <div class="step-content">
+            <h3>Scale & Expansion</h3>
+            <p>€8M revenue projection with expanded processing capacity and additional Baltic market penetration. 35% gross margin achievement.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">2026</div>
+          <div class="step-content">
+            <h3>Regional Leadership</h3>
+            <p>€18M revenue target with market leadership position established. Technology licensing and strategic partnerships drive growth.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">2028</div>
+          <div class="step-content">
+            <h3>Exit Readiness</h3>
+            <p>€50M+ revenue with 40%+ EBITDA margins. Strategic exit opportunities with industry consolidators or IPO readiness achieved.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="competitive" class="card">
       <h2>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
         </svg>
-        Our Process
+        Competitive Advantages
       </h2>
-      <p style="color:var(--muted);margin:0 0 32px;font-size:1.1rem">A streamlined, certified process ensuring maximum safety and environmental compliance.</p>
+      <p style="color:var(--muted);margin:0 0 32px;font-size:1.1rem">Defensible market position built on regulatory compliance, operational excellence, and strategic partnerships.</p>
       
-      <div class="process-steps">
-        <div class="step">
-          <div class="step-number">1</div>
-          <div class="step-content">
-            <h3>Collection & Assessment</h3>
-            <p>We collect batteries from your location and perform comprehensive safety and condition assessments using certified testing equipment.</p>
-          </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🏆</div>
+          <h3>First-Mover Advantage</h3>
+          <p>Established regulatory relationships and compliance infrastructure create significant barriers to entry for competitors in Baltic markets.</p>
         </div>
-        <div class="step">
-          <div class="step-number">2</div>
-          <div class="step-content">
-            <h3>Safe Discharge & Preparation</h3>
-            <p>Batteries undergo controlled discharge procedures in our certified facility, ensuring complete safety before processing begins.</p>
-          </div>
+        <div class="service-card">
+          <div class="service-icon">🤝</div>
+          <h3>Strategic Partnerships</h3>
+          <p>Exclusive agreements with major EV fleet operators and OEMs ensure predictable volume and revenue streams through 2030.</p>
         </div>
-        <div class="step">
-          <div class="step-number">3</div>
-          <div class="step-content">
-            <h3>Material Recovery</h3>
-            <p>Advanced recycling processes extract valuable materials including lithium, cobalt, nickel, and other critical elements for reuse.</p>
-          </div>
+        <div class="service-card">
+          <div class="service-icon">🔬</div>
+          <h3>Proprietary Technology</h3>
+          <p>Advanced material recovery processes and safety protocols developed through 20+ years of industry expertise and R&D investment.</p>
         </div>
-        <div class="step">
-          <div class="step-number">4</div>
-          <div class="step-content">
-            <h3>Certification & Reporting</h3>
-            <p>Complete documentation and certification of the recycling process, providing full traceability and compliance reporting.</p>
-          </div>
+        <div class="service-card">
+          <div class="service-icon">🌍</div>
+          <h3>ESG Leadership</h3>
+          <p>Strong environmental credentials and sustainability metrics attract ESG-focused investors and enterprise customers seeking carbon neutrality.</p>
         </div>
       </div>
     </section>
@@ -307,9 +376,9 @@
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
           <circle cx="12" cy="7" r="4"/>
         </svg>
-        Leadership Team
+        Executive Leadership
       </h2>
-      <p style="color:var(--muted);margin:0 0 40px;font-size:1.1rem">Meet the experienced professionals driving innovation in sustainable battery recycling across the Baltic region.</p>
+      <p style="color:var(--muted);margin:0 0 40px;font-size:1.1rem">Proven management team with deep industry expertise, advanced technical qualifications, and track record of scaling sustainable technology ventures.</p>
       
       <div class="founders-grid">
         <div class="founder-card">
@@ -432,20 +501,21 @@
           <p><strong>Certifications:</strong> ISO 14001, WEEE Compliance</p>
         </div>
         <div class="footer-section">
-          <h3>Services</h3>
+          <h3>Investment Information</h3>
           <ul>
-            <li><a href="#services">Battery Collection</a></li>
-            <li><a href="#services">Safe Discharge</a></li>
-            <li><a href="#services">Material Recovery</a></li>
-            <li><a href="#services">Exchange Programs</a></li>
+            <li><a href="#investment">Investment Highlights</a></li>
+            <li><a href="#financials">Financial Projections</a></li>
+            <li><a href="#competitive">Competitive Advantages</a></li>
+            <li><a href="#founders">Executive Team</a></li>
           </ul>
         </div>
         <div class="footer-section">
-          <h3>Contact Information</h3>
+          <h3>Investor Relations</h3>
+          <p><strong>CEO & Founder:</strong> Waqar Lund</p>
           <p><strong>Email:</strong> Tebaiwaqar@gmail.com</p>
           <p><strong>Phone:</strong> +923002096549</p>
-          <p><strong>Address:</strong> Tallinn, Estonia</p>
-          <p><strong>Service Area:</strong> Estonia, Latvia, Lithuania</p>
+          <p><strong>Headquarters:</strong> Tallinn, Estonia</p>
+          <p><strong>Market Focus:</strong> Baltic Region & Nordic Expansion</p>
         </div>
         <div class="footer-section">
           <h3>Resources</h3>
@@ -462,5 +532,5 @@
       </div>
     </div>
   </footer>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9756b01dd638e89f',t:'MTc1NjI0NjUyOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9756bb5026543890',t:'MTc1NjI0Njk4Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

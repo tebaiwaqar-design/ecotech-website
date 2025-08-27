@@ -7,182 +7,1017 @@
   <meta name="description" content="EcoTech provides lithium-ion battery collection, safe discharge, recycling and exchange services for EV and micromobility operators in Estonia and the Baltics.">
   <style>
     :root{
-      --bg:#fafbfc;
-      --surface:#f8faf9;
-      --card:#ffffff;
-      --card-elevated:#ffffff;
-      --ink:#1a2e1a;
-      --muted:#64748b;
-      --muted-light:#475569;
-      --brand:#0d7c47;
-      --brand-light:#059669;
-      --brand-2:#065f46;
-      --accent:#1e40af;
-      --line:#e2e8f0;
-      --line-light:#cbd5e1;
-      --shadow:rgba(0,0,0,0.08);
-      --shadow-elevated:rgba(0,0,0,0.12);
-      --gradient-primary:linear-gradient(135deg, #0d7c47 0%, #059669 100%);
-      --gradient-accent:linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-      --gradient-subtle:linear-gradient(135deg, #fafbfc 0%, #f8faf9 100%);
+      --bg:#0a0f1c;
+      --surface:#111827;
+      --card:#1f2937;
+      --card-elevated:#374151;
+      --ink:#f9fafb;
+      --muted:#9ca3af;
+      --muted-light:#d1d5db;
+      --brand:#10b981;
+      --brand-light:#34d399;
+      --brand-2:#059669;
+      --accent:#3b82f6;
+      --accent-light:#60a5fa;
+      --line:#374151;
+      --line-light:#4b5563;
+      --shadow:rgba(0,0,0,0.25);
+      --shadow-elevated:rgba(0,0,0,0.4);
+      --gradient-primary:linear-gradient(135deg, #10b981 0%, #34d399 50%, #6ee7b7 100%);
+      --gradient-accent:linear-gradient(135deg, #3b82f6 0%, #60a5fa 50%, #93c5fd 100%);
+      --gradient-bg:linear-gradient(135deg, #0a0f1c 0%, #111827 50%, #1f2937 100%);
+      --gradient-hero:radial-gradient(ellipse at center, rgba(16,185,129,0.15) 0%, transparent 70%);
+      --glow-green:0 0 20px rgba(16,185,129,0.3);
+      --glow-blue:0 0 20px rgba(59,130,246,0.3);
     }
+    
     *{box-sizing:border-box;margin:0;padding:0}
-    html,body{margin:0;background:var(--gradient-subtle);color:var(--ink);font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-weight:400}
-    a{color:var(--brand-2);text-decoration:none;transition:all 0.2s ease}
+    
+    html,body{
+      margin:0;
+      background:var(--gradient-bg);
+      color:var(--ink);
+      font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+      line-height:1.7;
+      font-size:16px;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      font-weight:400;
+      overflow-x:hidden;
+    }
+    
+    body::before{
+      content:'';
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:
+        radial-gradient(circle at 20% 80%, rgba(16,185,129,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(59,130,246,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(16,185,129,0.05) 0%, transparent 50%);
+      pointer-events:none;
+      z-index:-1;
+    }
+    
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    
+    a{color:var(--brand-light);text-decoration:none;transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
     .container{max-width:1280px;margin:0 auto;padding:0 32px}
-    h1,h2,h3,h4,h5,h6{font-weight:600;letter-spacing:-0.025em;line-height:1.25}
+    h1,h2,h3,h4,h5,h6{font-weight:700;letter-spacing:-0.025em;line-height:1.25}
     p{margin:0 0 16px 0;color:var(--muted-light)}
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    
+    /* Floating particles animation */
+    .particles{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      pointer-events:none;
+      z-index:1;
+    }
+    
+    .particle{
+      position:absolute;
+      width:4px;
+      height:4px;
+      background:var(--brand);
+      border-radius:50%;
+      opacity:0.6;
+      animation:float 20s infinite linear;
+    }
+    
+    @keyframes float{
+      0%{transform:translateY(100vh) rotate(0deg);opacity:0}
+      10%{opacity:0.6}
+      90%{opacity:0.6}
+      100%{transform:translateY(-100vh) rotate(360deg);opacity:0}
+    }
     
     /* Header */
-    header.site{position:sticky;top:0;backdrop-filter:saturate(180%) blur(20px);background:rgba(255,255,255,.98);border-bottom:1px solid var(--line);z-index:100;box-shadow:0 1px 3px var(--shadow)}
-    nav{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:20px 0}
-    .brand{display:flex;gap:16px;align-items:center}
-    .brand .logo{width:40px;height:40px;background:linear-gradient(135deg,var(--brand),var(--brand-light));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;box-shadow:0 2px 8px rgba(13,124,71,0.15)}
-    .brand .title{font-weight:600;letter-spacing:-0.01em;font-size:1.3rem;color:var(--ink)}
-    .brand .subtitle{color:var(--muted);font-size:0.8rem;font-weight:500;margin-left:12px;text-transform:uppercase;letter-spacing:0.8px}
-    .nav-links{display:flex;gap:40px;align-items:center}
-    .nav-links a{color:var(--muted);font-weight:500;font-size:0.9rem;padding:8px 0;position:relative;transition:all 0.3s ease;text-transform:uppercase;letter-spacing:0.5px}
-    .nav-links a:hover{color:var(--brand)}
-    .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--brand);transition:width 0.3s ease}
-    .nav-links a:hover::after{width:100%}
+    header.site{
+      position:sticky;
+      top:0;
+      backdrop-filter:saturate(180%) blur(20px);
+      background:rgba(17,24,39,0.95);
+      border-bottom:1px solid var(--line);
+      z-index:100;
+      box-shadow:0 4px 20px var(--shadow);
+    }
     
-    /* Buttons */
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:6px;background:var(--brand);color:white;font-weight:500;font-size:0.9rem;border:0;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);cursor:pointer;box-shadow:0 2px 8px rgba(13,124,71,0.2);position:relative;overflow:hidden;text-transform:uppercase;letter-spacing:0.5px}
-    .btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent);transition:left 0.6s ease}
-    .btn:hover::before{left:100%}
-    .btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(13,124,71,0.25);background:var(--brand-light)}
-    .btn.outline{background:transparent;color:var(--brand);border:1px solid var(--brand);box-shadow:0 1px 3px var(--shadow)}
-    .btn.outline:hover{background:var(--brand);color:white;box-shadow:0 2px 8px rgba(13,124,71,0.2)}
+    nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:32px;
+      padding:20px 0;
+    }
     
-    /* Hero Section */
-    .hero{padding:80px 0 60px;text-align:center;position:relative}
-    .hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:100%;height:100%;background:radial-gradient(ellipse at center,rgba(13,124,71,0.08) 0%,transparent 70%);pointer-events:none}
-    .hero h1{font-size:3.2rem;line-height:1.15;margin:0 0 32px;color:var(--ink);font-weight:700;letter-spacing:-0.02em;max-width:900px;margin-left:auto;margin-right:auto}
-    .hero .subtitle{font-size:1.25rem;color:var(--muted-light);margin:0 0 48px;max-width:680px;margin-left:auto;margin-right:auto;line-height:1.6;font-weight:400}
-    .hero-actions{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:64px}
+    .brand{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      animation:slideInLeft 0.8s ease-out;
+    }
     
-    /* Stats */
-    .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin:64px 0}
-    .stat{text-align:center;padding:32px 24px;background:var(--card);border:1px solid var(--line);border-radius:8px;position:relative;transition:all 0.3s ease;box-shadow:0 1px 3px var(--shadow)}
-    .stat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--brand);border-radius:8px 8px 0 0}
-    .stat:hover{transform:translateY(-2px);box-shadow:0 4px 12px var(--shadow-elevated)}
-    .stat-value{font-size:2.2rem;font-weight:700;color:var(--brand);margin:0;line-height:1}
-    .stat-label{color:var(--muted);font-size:0.85rem;margin:12px 0 0;font-weight:500;text-transform:uppercase;letter-spacing:0.5px}
+    .brand .logo{
+      width:50px;
+      height:50px;
+      background:var(--gradient-primary);
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:20px;
+      font-weight:800;
+      box-shadow:var(--glow-green);
+      position:relative;
+      overflow:hidden;
+    }
     
-    /* Cards */
-    .card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:48px;margin:48px 0;box-shadow:0 2px 8px var(--shadow);position:relative}
-    .card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--line-light),transparent)}
-    .card h2{margin:0 0 20px;display:flex;align-items:center;gap:16px;font-size:1.6rem;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:0.5px}
-    .card h2 svg{opacity:0.8;color:var(--brand)}
+    .brand .logo::before{
+      content:'';
+      position:absolute;
+      top:-50%;
+      left:-50%;
+      width:200%;
+      height:200%;
+      background:linear-gradient(45deg,transparent,rgba(255,255,255,0.1),transparent);
+      animation:shimmer 3s infinite;
+    }
     
-    /* Services Grid */
-    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin:32px 0}
-    .service-card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:32px;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;box-shadow:0 1px 3px var(--shadow)}
-    .service-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:var(--brand);transform:scaleX(0);transition:transform 0.3s ease}
-    .service-card:hover::before{transform:scaleX(1)}
-    .service-card:hover{transform:translateY(-2px);box-shadow:0 4px 12px var(--shadow-elevated)}
-    .service-icon{width:56px;height:56px;background:var(--brand);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:20px;box-shadow:0 2px 8px rgba(13,124,71,0.2)}
-    .service-card h3{margin:0 0 12px;color:var(--ink);font-size:1.1rem;font-weight:600}
-    .service-card p{color:var(--muted-light);margin:0;line-height:1.6;font-size:0.9rem}
+    @keyframes shimmer{
+      0%{transform:translateX(-100%) translateY(-100%) rotate(45deg)}
+      100%{transform:translateX(100%) translateY(100%) rotate(45deg)}
+    }
     
-    /* Process Steps */
-    .process-steps{display:grid;gap:24px;margin:32px 0}
-    .step{display:flex;gap:24px;align-items:flex-start;padding:24px;background:var(--card);border:1px solid var(--line);border-radius:8px;transition:all 0.3s ease;box-shadow:0 1px 3px var(--shadow)}
-    .step:hover{transform:translateX(2px);box-shadow:0 4px 12px var(--shadow-elevated)}
-    .step-number{width:48px;height:48px;background:var(--brand);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;color:white;flex-shrink:0;font-size:1.1rem;box-shadow:0 2px 8px rgba(13,124,71,0.2)}
-    .step-content h3{margin:0 0 12px;color:var(--ink);font-size:1.1rem;font-weight:600}
-    .step-content p{color:var(--muted-light);margin:0;line-height:1.6}
+    .brand .title{
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size:1.4rem;
+      color:var(--ink);
+      background:var(--gradient-primary);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
     
-    /* Founders */
-    .founders-grid{display:grid;gap:24px;margin:32px 0}
-    @media(min-width:768px){.founders-grid{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}}
-    .founder-card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:32px;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;box-shadow:0 1px 3px var(--shadow)}
-    .founder-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:var(--brand);transform:scaleX(0);transition:transform 0.3s ease}
-    .founder-card:hover::before{transform:scaleX(1)}
-    .founder-card:hover{transform:translateY(-2px);box-shadow:0 4px 12px var(--shadow-elevated)}
-    .founder-avatar{display:flex;justify-content:center;margin-bottom:24px}
-    .avatar-placeholder{width:80px;height:80px;background:var(--brand);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:white;box-shadow:0 2px 8px rgba(13,124,71,0.2)}
-    .founder-info{text-align:center}
-    .founder-info h3{margin:0 0 8px;color:var(--ink);font-size:1.3rem;font-weight:600}
-    .founder-title{color:var(--brand);font-weight:500;font-size:0.9rem;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.5px}
-    .founder-bio{color:var(--muted-light);margin:0 0 20px;line-height:1.6;text-align:left;font-size:0.9rem}
-    .founder-credentials{margin-bottom:20px}
-    .credential{display:block;color:var(--muted);font-size:0.8rem;margin:4px 0;font-style:normal}
-    .founder-expertise{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
-    .expertise-tag{background:rgba(13,124,71,0.1);color:var(--brand);padding:6px 12px;border-radius:4px;font-size:0.75rem;font-weight:500;border:1px solid rgba(13,124,71,0.2);text-transform:uppercase;letter-spacing:0.5px}
-
-    /* Documentation */
-    .doc-grid{display:grid;gap:20px;margin-top:32px}
-    @media(min-width:640px){.doc-grid{grid-template-columns:1fr 1fr}}
-    .doc-item{display:flex;align-items:center;gap:16px;padding:24px;background:var(--card);border:1px solid var(--line);border-radius:8px;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;box-shadow:0 1px 3px var(--shadow);cursor:pointer}
-    .doc-item::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--brand-2),var(--brand));transform:scaleX(0);transition:transform 0.3s ease}
-    .doc-item:hover::before{transform:scaleX(1)}
-    .doc-item:hover{transform:translateY(-2px);box-shadow:0 4px 12px var(--shadow-elevated)}
-    .doc-icon{width:48px;height:48px;background:linear-gradient(135deg,var(--brand-2),var(--brand));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;box-shadow:0 2px 8px rgba(13,124,71,0.2)}
-    .doc-content{flex:1}
-    .doc-title{font-weight:600;font-size:1.1rem;margin:0 0 4px 0;color:var(--ink)}
-    .doc-desc{color:var(--muted-light);font-size:0.85rem;margin:0;line-height:1.5}
-    .doc-meta{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:0.8rem;color:var(--muted)}
+    .brand .subtitle{
+      color:var(--muted);
+      font-size:0.8rem;
+      font-weight:500;
+      margin-left:12px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
     
-    /* Footer */
-    footer{border-top:1px solid var(--line);padding:64px 0 32px;margin-top:80px;background:var(--brand-2);color:white;position:relative}
-    footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent)}
-    .footer-content{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:40px}
-    .footer-section h3{margin:0 0 20px;color:white;font-weight:600;font-size:0.95rem;text-transform:uppercase;letter-spacing:0.5px}
-    .footer-section p,.footer-section li{color:rgba(255,255,255,0.8);margin:8px 0;line-height:1.6;font-size:0.85rem}
-    .footer-section ul{list-style:none;padding:0;margin:0}
-    .footer-section a{color:rgba(255,255,255,0.7);transition:all 0.2s ease;padding:4px 0;display:inline-block;font-size:0.85rem}
-    .footer-section a:hover{color:white;transform:translateX(2px)}
-    .footer-bottom{text-align:center;padding-top:32px;margin-top:32px;border-top:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.6);font-size:0.8rem}
+    .nav-links{
+      display:flex;
+      gap:40px;
+      align-items:center;
+      animation:slideInRight 0.8s ease-out;
+    }
     
-    /* Responsive */
+    .nav-links a{
+      color:var(--muted);
+      font-weight:500;
+      font-size:0.9rem;
+      padding:12px 0;
+      position:relative;
+      transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
+      text-transform:uppercase;
+      letter-spacing:0.5px;
+    }
+    
+    .nav-links a::before{
+      content:'';
+      position:absolute;
+      bottom:0;
+      left:50%;
+      width:0;
+      height:2px;
+      background:var(--gradient-primary);
+      transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
+      transform:translateX(-50%);
+    }
+    
+    .nav-links a:hover{
+      color:var(--brand-light);
+      text-shadow:var(--glow-green);
+    }
+    
+    .nav-links a:hover::before{
+      width:100%;
+    }
+    
+    /* Enhanced Buttons */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:14px 28px;
+      border-radius:12px;
+      background:var(--gradient-primary);
+      color:white;
+      font-weight:600;
+      font-size:0.9rem;
+      border:0;
+      transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+      cursor:pointer;
+      box-shadow:var(--glow-green);
+      position:relative;
+      overflow:hidden;
+      text-transform:uppercase;
+      letter-spacing:0.5px;
+    }
+    
+    .btn::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:-100%;
+      width:100%;
+      height:100%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);
+      transition:left 0.6s ease;
+    }
+    
+    .btn:hover::before{
+      left:100%;
+    }
+    
+    .btn:hover{
+      transform:translateY(-3px) scale(1.05);
+      box-shadow:0 10px 25px rgba(16,185,129,0.4);
+    }
+    
+    .btn.outline{
+      background:transparent;
+      color:var(--brand-light);
+      border:2px solid var(--brand);
+      box-shadow:0 0 15px rgba(16,185,129,0.2);
+    }
+    
+    .btn.outline:hover{
+      background:var(--gradient-primary);
+      color:white;
+      border-color:transparent;
+      box-shadow:var(--glow-green);
+    }
+    
+    /* Hero Section with Advanced Animations */
+    .hero{
+      padding:120px 0 80px;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+    
+    .hero::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:50%;
+      transform:translateX(-50%);
+      width:120%;
+      height:120%;
+      background:var(--gradient-hero);
+      pointer-events:none;
+      animation:pulse 4s ease-in-out infinite;
+    }
+    
+    @keyframes pulse{
+      0%,100%{transform:translateX(-50%) scale(1);opacity:0.5}
+      50%{transform:translateX(-50%) scale(1.1);opacity:0.8}
+    }
+    
+    .hero h1{
+      font-size:4rem;
+      line-height:1.1;
+      margin:0 0 32px;
+      color:var(--ink);
+      font-weight:900;
+      letter-spacing:-0.03em;
+      max-width:1000px;
+      margin-left:auto;
+      margin-right:auto;
+      background:linear-gradient(135deg,var(--ink) 0%,var(--brand-light) 50%,var(--accent-light) 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      animation:fadeInUp 1s ease-out;
+      text-shadow:0 0 30px rgba(16,185,129,0.3);
+    }
+    
+    .hero .subtitle{
+      font-size:1.3rem;
+      color:var(--muted-light);
+      margin:0 0 48px;
+      max-width:750px;
+      margin-left:auto;
+      margin-right:auto;
+      line-height:1.6;
+      font-weight:400;
+      animation:fadeInUp 1s ease-out 0.2s both;
+    }
+    
+    .hero-actions{
+      display:flex;
+      gap:24px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-bottom:80px;
+      animation:fadeInUp 1s ease-out 0.4s both;
+    }
+    
+    @keyframes fadeInUp{
+      from{opacity:0;transform:translateY(30px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    
+    @keyframes slideInLeft{
+      from{opacity:0;transform:translateX(-30px)}
+      to{opacity:1;transform:translateX(0)}
+    }
+    
+    @keyframes slideInRight{
+      from{opacity:0;transform:translateX(30px)}
+      to{opacity:1;transform:translateX(0)}
+    }
+    
+    /* Enhanced Stats */
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:32px;
+      margin:80px 0;
+      animation:fadeInUp 1s ease-out 0.6s both;
+    }
+    
+    .stat{
+      text-align:center;
+      padding:40px 32px;
+      background:rgba(31,41,55,0.8);
+      border:1px solid var(--line);
+      border-radius:16px;
+      position:relative;
+      transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+      box-shadow:0 4px 20px var(--shadow);
+      backdrop-filter:blur(10px);
+      overflow:hidden;
+    }
+    
+    .stat::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      height:4px;
+      background:var(--gradient-primary);
+      border-radius:16px 16px 0 0;
+    }
+    
+    .stat::after{
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:var(--gradient-primary);
+      opacity:0;
+      transition:opacity 0.3s ease;
+      border-radius:16px;
+      z-index:-1;
+    }
+    
+    .stat:hover{
+      transform:translateY(-8px) scale(1.02);
+      box-shadow:0 20px 40px rgba(16,185,129,0.2);
+    }
+    
+    .stat:hover::after{
+      opacity:0.05;
+    }
+    
+    .stat-value{
+      font-size:3rem;
+      font-weight:900;
+      color:var(--brand-light);
+      margin:0;
+      line-height:1;
+      text-shadow:var(--glow-green);
+    }
+    
+    .stat-label{
+      color:var(--muted);
+      font-size:0.9rem;
+      margin:16px 0 0;
+      font-weight:500;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+    
+    /* Enhanced Cards */
+    .card{
+      background:rgba(31,41,55,0.9);
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:60px;
+      margin:60px 0;
+      box-shadow:0 8px 32px var(--shadow);
+      position:relative;
+      backdrop-filter:blur(20px);
+      overflow:hidden;
+      transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    
+    .card::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      height:2px;
+      background:var(--gradient-primary);
+    }
+    
+    .card::after{
+      content:'';
+      position:absolute;
+      top:-50%;
+      left:-50%;
+      width:200%;
+      height:200%;
+      background:radial-gradient(circle,rgba(16,185,129,0.03) 0%,transparent 70%);
+      pointer-events:none;
+    }
+    
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 16px 48px rgba(16,185,129,0.15);
+    }
+    
+    .card h2{
+      margin:0 0 24px;
+      display:flex;
+      align-items:center;
+      gap:16px;
+      font-size:2rem;
+      font-weight:800;
+      color:var(--ink);
+      text-transform:uppercase;
+      letter-spacing:0.5px;
+    }
+    
+    .card h2 svg{
+      opacity:0.9;
+      color:var(--brand-light);
+      filter:drop-shadow(var(--glow-green));
+    }
+    
+    /* Enhanced Service Cards */
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:32px;
+      margin:40px 0;
+    }
+    
+    .service-card{
+      background:rgba(55,65,81,0.8);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:40px;
+      transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 4px 20px var(--shadow);
+      backdrop-filter:blur(10px);
+    }
+    
+    .service-card::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:3px;
+      background:var(--gradient-primary);
+      transform:scaleX(0);
+      transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    
+    .service-card::after{
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:var(--gradient-primary);
+      opacity:0;
+      transition:opacity 0.3s ease;
+      border-radius:16px;
+      z-index:-1;
+    }
+    
+    .service-card:hover::before{
+      transform:scaleX(1);
+    }
+    
+    .service-card:hover::after{
+      opacity:0.05;
+    }
+    
+    .service-card:hover{
+      transform:translateY(-8px) scale(1.02);
+      box-shadow:0 20px 40px rgba(16,185,129,0.2);
+    }
+    
+    .service-icon{
+      width:70px;
+      height:70px;
+      background:var(--gradient-primary);
+      border-radius:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:32px;
+      margin-bottom:24px;
+      box-shadow:var(--glow-green);
+      position:relative;
+      overflow:hidden;
+    }
+    
+    .service-icon::before{
+      content:'';
+      position:absolute;
+      top:-50%;
+      left:-50%;
+      width:200%;
+      height:200%;
+      background:linear-gradient(45deg,transparent,rgba(255,255,255,0.1),transparent);
+      animation:shimmer 3s infinite;
+    }
+    
+    .service-card h3{
+      margin:0 0 16px;
+      color:var(--ink);
+      font-size:1.2rem;
+      font-weight:700;
+    }
+    
+    .service-card p{
+      color:var(--muted-light);
+      margin:0;
+      line-height:1.6;
+      font-size:0.95rem;
+    }
+    
+    /* Enhanced Process Steps */
+    .process-steps{
+      display:grid;
+      gap:32px;
+      margin:40px 0;
+    }
+    
+    .step{
+      display:flex;
+      gap:32px;
+      align-items:flex-start;
+      padding:32px;
+      background:rgba(55,65,81,0.8);
+      border:1px solid var(--line);
+      border-radius:16px;
+      transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+      box-shadow:0 4px 20px var(--shadow);
+      backdrop-filter:blur(10px);
+      position:relative;
+      overflow:hidden;
+    }
+    
+    .step::before{
+      content:'';
+      position:absolute;
+      left:0;
+      top:0;
+      width:4px;
+      height:100%;
+      background:var(--gradient-primary);
+      transform:scaleY(0);
+      transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    
+    .step:hover::before{
+      transform:scaleY(1);
+    }
+    
+    .step:hover{
+      transform:translateX(8px);
+      box-shadow:0 8px 32px rgba(16,185,129,0.2);
+    }
+    
+    .step-number{
+      width:60px;
+      height:60px;
+      background:var(--gradient-primary);
+      border-radius:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      color:white;
+      flex-shrink:0;
+      font-size:1.2rem;
+      box-shadow:var(--glow-green);
+    }
+    
+    .step-content h3{
+      margin:0 0 16px;
+      color:var(--ink);
+      font-size:1.2rem;
+      font-weight:700;
+    }
+    
+    .step-content p{
+      color:var(--muted-light);
+      margin:0;
+      line-height:1.6;
+    }
+    
+    /* Enhanced Founder Cards */
+    .founders-grid{
+      display:grid;
+      gap:32px;
+      margin:40px 0;
+    }
+    
+    @media(min-width:768px){
+      .founders-grid{grid-template-columns:repeat(auto-fit,minmax(350px,1fr))}
+    }
+    
+    .founder-card{
+      background:rgba(55,65,81,0.8);
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:40px;
+      transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 8px 32px var(--shadow);
+      backdrop-filter:blur(10px);
+    }
+    
+    .founder-card::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:3px;
+      background:var(--gradient-primary);
+      transform:scaleX(0);
+      transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    
+    .founder-card:hover::before{
+      transform:scaleX(1);
+    }
+    
+    .founder-card:hover{
+      transform:translateY(-8px) scale(1.02);
+      box-shadow:0 20px 48px rgba(16,185,129,0.2);
+    }
+    
+    .founder-avatar{
+      display:flex;
+      justify-content:center;
+      margin-bottom:32px;
+    }
+    
+    .avatar-placeholder{
+      width:100px;
+      height:100px;
+      background:var(--gradient-primary);
+      border-radius:20px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:36px;
+      font-weight:800;
+      color:white;
+      box-shadow:var(--glow-green);
+      position:relative;
+      overflow:hidden;
+    }
+    
+    .avatar-placeholder::before{
+      content:'';
+      position:absolute;
+      top:-50%;
+      left:-50%;
+      width:200%;
+      height:200%;
+      background:linear-gradient(45deg,transparent,rgba(255,255,255,0.1),transparent);
+      animation:shimmer 4s infinite;
+    }
+    
+    .founder-info{
+      text-align:center;
+    }
+    
+    .founder-info h3{
+      margin:0 0 12px;
+      color:var(--ink);
+      font-size:1.4rem;
+      font-weight:700;
+    }
+    
+    .founder-title{
+      color:var(--brand-light);
+      font-weight:600;
+      font-size:1rem;
+      margin-bottom:20px;
+      text-transform:uppercase;
+      letter-spacing:0.5px;
+    }
+    
+    .founder-bio{
+      color:var(--muted-light);
+      margin:0 0 24px;
+      line-height:1.6;
+      text-align:left;
+      font-size:0.95rem;
+    }
+    
+    .founder-credentials{
+      margin-bottom:24px;
+    }
+    
+    .credential{
+      display:block;
+      color:var(--muted);
+      font-size:0.85rem;
+      margin:6px 0;
+      font-style:normal;
+    }
+    
+    .founder-expertise{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    
+    .expertise-tag{
+      background:rgba(16,185,129,0.15);
+      color:var(--brand-light);
+      padding:8px 16px;
+      border-radius:8px;
+      font-size:0.8rem;
+      font-weight:600;
+      border:1px solid rgba(16,185,129,0.3);
+      text-transform:uppercase;
+      letter-spacing:0.5px;
+      transition:all 0.3s ease;
+    }
+    
+    .expertise-tag:hover{
+      background:rgba(16,185,129,0.25);
+      transform:translateY(-2px);
+    }
+    
+    /* Enhanced Documentation */
+    .doc-grid{
+      display:grid;
+      gap:24px;
+      margin-top:40px;
+    }
+    
+    @media(min-width:640px){
+      .doc-grid{grid-template-columns:1fr 1fr}
+    }
+    
+    .doc-item{
+      display:flex;
+      align-items:center;
+      gap:20px;
+      padding:32px;
+      background:rgba(55,65,81,0.8);
+      border:1px solid var(--line);
+      border-radius:16px;
+      transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 4px 20px var(--shadow);
+      cursor:pointer;
+      backdrop-filter:blur(10px);
+    }
+    
+    .doc-item::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:3px;
+      background:var(--gradient-accent);
+      transform:scaleX(0);
+      transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    
+    .doc-item:hover::before{
+      transform:scaleX(1);
+    }
+    
+    .doc-item:hover{
+      transform:translateY(-6px) scale(1.02);
+      box-shadow:0 16px 40px rgba(59,130,246,0.2);
+    }
+    
+    .doc-icon{
+      width:60px;
+      height:60px;
+      background:var(--gradient-accent);
+      border-radius:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:24px;
+      flex-shrink:0;
+      box-shadow:var(--glow-blue);
+    }
+    
+    .doc-content{
+      flex:1;
+    }
+    
+    .doc-title{
+      font-weight:700;
+      font-size:1.2rem;
+      margin:0 0 8px 0;
+      color:var(--ink);
+    }
+    
+    .doc-desc{
+      color:var(--muted-light);
+      font-size:0.9rem;
+      margin:0;
+      line-height:1.5;
+    }
+    
+    .doc-meta{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-top:12px;
+      font-size:0.8rem;
+      color:var(--muted);
+    }
+    
+    /* Enhanced Footer */
+    footer{
+      border-top:1px solid var(--line);
+      padding:80px 0 40px;
+      margin-top:100px;
+      background:rgba(10,15,28,0.95);
+      color:white;
+      position:relative;
+      backdrop-filter:blur(20px);
+    }
+    
+    footer::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      height:2px;
+      background:var(--gradient-primary);
+    }
+    
+    .footer-content{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:48px;
+    }
+    
+    .footer-section h3{
+      margin:0 0 24px;
+      color:white;
+      font-weight:700;
+      font-size:1.1rem;
+      text-transform:uppercase;
+      letter-spacing:0.5px;
+    }
+    
+    .footer-section p,.footer-section li{
+      color:rgba(255,255,255,0.8);
+      margin:12px 0;
+      line-height:1.6;
+      font-size:0.9rem;
+    }
+    
+    .footer-section ul{
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+    
+    .footer-section a{
+      color:rgba(255,255,255,0.7);
+      transition:all 0.3s ease;
+      padding:6px 0;
+      display:inline-block;
+      font-size:0.9rem;
+    }
+    
+    .footer-section a:hover{
+      color:var(--brand-light);
+      transform:translateX(4px);
+      text-shadow:var(--glow-green);
+    }
+    
+    .footer-bottom{
+      text-align:center;
+      padding-top:40px;
+      margin-top:40px;
+      border-top:1px solid rgba(255,255,255,0.1);
+      color:rgba(255,255,255,0.6);
+      font-size:0.85rem;
+    }
+    
+    /* Responsive Design */
     @media(max-width:1024px){
       .container{padding:0 24px}
-      .card{padding:32px 24px}
+      .card{padding:40px 32px}
+      .hero h1{font-size:3.5rem}
     }
+    
     @media(max-width:768px){
-      .hero{padding:60px 0 40px}
+      .hero{padding:80px 0 60px}
       .hero h1{font-size:2.8rem}
       .hero .subtitle{font-size:1.2rem}
-      .hero-actions{flex-direction:column;align-items:center;gap:16px}
+      .hero-actions{flex-direction:column;align-items:center;gap:20px}
       .nav-links{display:none}
-      .stats{grid-template-columns:1fr 1fr;gap:16px}
-      .stat{padding:20px 16px}
-      .step{flex-direction:column;text-align:center;padding:20px}
-      .step-number{margin:0 auto 16px}
-      .services-grid{grid-template-columns:1fr;gap:20px}
+      .stats{grid-template-columns:1fr 1fr;gap:20px}
+      .stat{padding:24px 20px}
+      .step{flex-direction:column;text-align:center;padding:24px}
+      .step-number{margin:0 auto 20px}
+      .services-grid{grid-template-columns:1fr;gap:24px}
       .doc-grid{grid-template-columns:1fr}
-      .footer-content{grid-template-columns:1fr;gap:24px;text-align:center}
+      .footer-content{grid-template-columns:1fr;gap:32px;text-align:center}
     }
+    
     @media(max-width:480px){
       .hero h1{font-size:2.2rem}
       .hero .subtitle{font-size:1.1rem}
       .stats{grid-template-columns:1fr}
-      .btn{padding:10px 20px;font-size:0.85rem}
+      .btn{padding:12px 24px;font-size:0.85rem}
+      .card{padding:32px 20px}
+    }
+    
+    /* Scroll animations */
+    .fade-in{
+      opacity:0;
+      transform:translateY(30px);
+      transition:all 0.6s ease-out;
+    }
+    
+    .fade-in.visible{
+      opacity:1;
+      transform:translateY(0);
     }
   </style>
 </head>
 <body>
+  <!-- Floating Particles -->
+  <div class="particles" id="particles"></div>
+
   <header class="site">
     <div class="container">
       <nav>
         <div class="brand">
           <div class="logo">
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-              <rect width="40" height="40" rx="8" fill="url(#logoGradient)"/>
-              <text x="20" y="26" text-anchor="middle" fill="white" font-family="Inter" font-weight="700" font-size="14">ET</text>
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+              <rect width="50" height="50" rx="12" fill="url(#logoGradient)"/>
+              <text x="25" y="32" text-anchor="middle" fill="white" font-family="Inter" font-weight="800" font-size="16">ET</text>
               <defs>
                 <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" style="stop-color:#0d7c47"/>
-                  <stop offset="100%" style="stop-color:#059669"/>
+                  <stop offset="0%" style="stop-color:#10b981"/>
+                  <stop offset="50%" style="stop-color:#34d399"/>
+                  <stop offset="100%" style="stop-color:#6ee7b7"/>
                 </linearGradient>
               </defs>
             </svg>
           </div>
           <div>
             <div class="title">EcoTech Energy & Materials</div>
-            <div class="subtitle">Battery Recycling Solutions</div>
+            <div class="subtitle">Next-Gen Battery Solutions</div>
           </div>
         </div>
         <div class="nav-links">
@@ -199,196 +1034,196 @@
 
   <main class="container">
     <section class="hero">
-      <h1>Capitalizing on the €2.8B Baltic EV Battery Market</h1>
-      <p class="subtitle">Strategic investment opportunity in sustainable battery recycling infrastructure, positioned to capture regulatory-driven demand across Estonia, Latvia, and Lithuania with proven technology and experienced leadership.</p>
+      <h1>Revolutionizing the €2.8B Baltic EV Battery Market</h1>
+      <p class="subtitle">Strategic investment opportunity in cutting-edge battery recycling infrastructure, positioned to dominate regulatory-driven demand across Estonia, Latvia, and Lithuania with breakthrough technology and world-class leadership.</p>
       <div class="hero-actions">
         <a href="#investment" class="btn">Investment Overview</a>
         <button class="btn outline" onclick="requestExecutiveSummary()">Executive Summary</button>
       </div>
       
       <div class="stats">
-        <div class="stat">
+        <div class="stat fade-in">
           <div class="stat-value">€2.8B</div>
           <div class="stat-label">Baltic EV Market Size</div>
         </div>
-        <div class="stat">
+        <div class="stat fade-in">
           <div class="stat-value">45%</div>
           <div class="stat-label">Projected CAGR 2024-2030</div>
         </div>
-        <div class="stat">
+        <div class="stat fade-in">
           <div class="stat-value">95%</div>
           <div class="stat-label">Material Recovery Efficiency</div>
         </div>
-        <div class="stat">
+        <div class="stat fade-in">
           <div class="stat-value">2025</div>
           <div class="stat-label">EU Battery Regulation</div>
         </div>
       </div>
     </section>
 
-    <section id="investment" class="card">
+    <section id="investment" class="card fade-in">
       <h2>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M12 2L2 7l10 5 10-5-10-5z"/>
           <path d="M2 17l10 5 10-5"/>
           <path d="M2 12l10 5 10-5"/>
         </svg>
         Investment Highlights
       </h2>
-      <p style="color:var(--muted);margin:0 0 32px;font-size:1.05rem">Strategic positioning in high-growth, regulation-driven market with strong barriers to entry and scalable business model.</p>
+      <p style="color:var(--muted-light);margin:0 0 40px;font-size:1.1rem">Strategic positioning in explosive-growth, regulation-driven market with unbreachable barriers to entry and infinitely scalable business model.</p>
       
       <div class="services-grid">
-        <div class="service-card">
+        <div class="service-card fade-in">
           <div class="service-icon">📈</div>
-          <h3>Market Leadership Position</h3>
-          <p>First-mover advantage in Baltic battery recycling with established infrastructure and regulatory compliance, targeting €50M+ revenue by 2028.</p>
+          <h3>Market Domination Strategy</h3>
+          <p>First-mover advantage in Baltic battery recycling with bulletproof infrastructure and regulatory compliance, targeting €50M+ revenue by 2028 with exponential growth trajectory.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card fade-in">
           <div class="service-icon">🏛️</div>
-          <h3>Regulatory Tailwinds</h3>
-          <p>EU Battery Regulation mandates 95% recycling by 2030, creating captive demand and high barriers to entry for new competitors.</p>
+          <h3>Regulatory Monopoly</h3>
+          <p>EU Battery Regulation mandates 95% recycling by 2030, creating captive demand and fortress-like barriers to entry for competitors seeking market access.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card fade-in">
           <div class="service-icon">🔄</div>
-          <h3>Scalable Technology Platform</h3>
-          <p>Proprietary processes and strategic partnerships enable rapid expansion across Nordic and CEE markets with minimal capital requirements.</p>
+          <h3>Breakthrough Technology</h3>
+          <p>Revolutionary processes and strategic partnerships enable lightning-fast expansion across Nordic and CEE markets with minimal capital requirements and maximum ROI.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card fade-in">
           <div class="service-icon">💰</div>
-          <h3>Strong Unit Economics</h3>
-          <p>40%+ gross margins with recurring revenue streams from long-term enterprise contracts and material recovery value capture.</p>
+          <h3>Exceptional Unit Economics</h3>
+          <p>40%+ gross margins with recurring revenue streams from long-term enterprise contracts and premium material recovery value capture mechanisms.</p>
         </div>
       </div>
     </section>
 
-    <section id="services" class="card">
+    <section id="services" class="card fade-in">
       <h2>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="12" cy="12" r="3"/>
           <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"/>
         </svg>
-        Our Services
+        Revolutionary Services
       </h2>
-      <p style="color:var(--muted);margin:0 0 32px;font-size:1.05rem">Comprehensive battery lifecycle management solutions designed for modern mobility operators.</p>
+      <p style="color:var(--muted-light);margin:0 0 40px;font-size:1.1rem">Comprehensive battery lifecycle management solutions engineered for next-generation mobility operators.</p>
       
       <div class="services-grid">
-        <div class="service-card">
+        <div class="service-card fade-in">
           <div class="service-icon">🔄</div>
-          <h3>Battery Collection & Transport</h3>
-          <p>Safe collection and transportation of end-of-life lithium-ion batteries from EV and micromobility fleets across the Baltic region with certified handling protocols.</p>
+          <h3>Advanced Collection & Transport</h3>
+          <p>Military-grade collection and transportation of end-of-life lithium-ion batteries from EV and micromobility fleets across the Baltic region with certified handling protocols.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card fade-in">
           <div class="service-icon">⚡</div>
-          <h3>Safe Discharge Services</h3>
-          <p>Professional battery discharge and deactivation using industry-leading safety standards to prepare batteries for recycling or disposal processes.</p>
+          <h3>Ultra-Safe Discharge Services</h3>
+          <p>Professional battery discharge and deactivation using industry-leading safety standards to prepare batteries for recycling or disposal processes with zero incidents.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card fade-in">
           <div class="service-icon">♻️</div>
-          <h3>Material Recovery & Recycling</h3>
-          <p>Advanced recycling processes to recover valuable materials including lithium, cobalt, and nickel with up to 95% material recovery efficiency.</p>
+          <h3>Precision Material Recovery</h3>
+          <p>Advanced recycling processes to recover valuable materials including lithium, cobalt, and nickel with industry-leading 95% material recovery efficiency rates.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card fade-in">
           <div class="service-icon">🔋</div>
-          <h3>Battery Exchange Programs</h3>
-          <p>Streamlined battery exchange services for fleet operators, enabling quick swaps and minimizing downtime for electric vehicles and e-scooters.</p>
+          <h3>Instant Battery Exchange</h3>
+          <p>Lightning-fast battery exchange services for fleet operators, enabling instant swaps and eliminating downtime for electric vehicles and e-scooters completely.</p>
         </div>
       </div>
     </section>
 
-    <section id="financials" class="card">
+    <section id="financials" class="card fade-in">
       <h2>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M3 3v18h18"/>
           <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/>
         </svg>
-        Financial Projections
+        Explosive Growth Projections
       </h2>
-      <p style="color:var(--muted);margin:0 0 32px;font-size:1.05rem">Conservative growth projections based on regulatory mandates and established market demand.</p>
+      <p style="color:var(--muted-light);margin:0 0 40px;font-size:1.1rem">Conservative growth projections based on regulatory mandates and explosive market demand trajectory.</p>
       
       <div class="process-steps">
-        <div class="step">
+        <div class="step fade-in">
           <div class="step-number">2024</div>
           <div class="step-content">
-            <h3>Market Entry & Infrastructure</h3>
-            <p>€2.5M revenue target with initial facility operations and key enterprise partnerships. Focus on regulatory compliance and operational excellence.</p>
+            <h3>Market Entry & Infrastructure Domination</h3>
+            <p>€2.5M revenue target with initial facility operations and key enterprise partnerships. Focus on regulatory compliance and operational excellence foundation.</p>
           </div>
         </div>
-        <div class="step">
+        <div class="step fade-in">
           <div class="step-number">2025</div>
           <div class="step-content">
-            <h3>Scale & Expansion</h3>
-            <p>€8M revenue projection with expanded processing capacity and additional Baltic market penetration. 35% gross margin achievement.</p>
+            <h3>Rapid Scale & Market Expansion</h3>
+            <p>€8M revenue projection with expanded processing capacity and total Baltic market penetration. 35% gross margin achievement with operational optimization.</p>
           </div>
         </div>
-        <div class="step">
+        <div class="step fade-in">
           <div class="step-number">2026</div>
           <div class="step-content">
-            <h3>Regional Leadership</h3>
-            <p>€18M revenue target with market leadership position established. Technology licensing and strategic partnerships drive growth.</p>
+            <h3>Regional Market Leadership</h3>
+            <p>€18M revenue target with unassailable market leadership position. Technology licensing and strategic partnerships accelerate exponential growth.</p>
           </div>
         </div>
-        <div class="step">
+        <div class="step fade-in">
           <div class="step-number">2028</div>
           <div class="step-content">
-            <h3>Exit Readiness</h3>
-            <p>€50M+ revenue with 40%+ EBITDA margins. Strategic exit opportunities with industry consolidators or IPO readiness achieved.</p>
+            <h3>Strategic Exit Optimization</h3>
+            <p>€50M+ revenue with 40%+ EBITDA margins. Premium strategic exit opportunities with industry consolidators or IPO readiness fully achieved.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="competitive" class="card">
+    <section id="competitive" class="card fade-in">
       <h2>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
         </svg>
-        Competitive Advantages
+        Unbreachable Competitive Advantages
       </h2>
-      <p style="color:var(--muted);margin:0 0 32px;font-size:1.05rem">Defensible market position built on regulatory compliance, operational excellence, and strategic partnerships.</p>
+      <p style="color:var(--muted-light);margin:0 0 40px;font-size:1.1rem">Fortress-like market position built on regulatory compliance, operational excellence, and strategic partnerships creating impenetrable barriers.</p>
       
       <div class="services-grid">
-        <div class="service-card">
+        <div class="service-card fade-in">
           <div class="service-icon">🏆</div>
-          <h3>First-Mover Advantage</h3>
-          <p>Established regulatory relationships and compliance infrastructure create significant barriers to entry for competitors in Baltic markets.</p>
+          <h3>Unassailable First-Mover Advantage</h3>
+          <p>Established regulatory relationships and compliance infrastructure create fortress-like barriers to entry for competitors in Baltic markets with zero viable alternatives.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card fade-in">
           <div class="service-icon">🤝</div>
-          <h3>Strategic Partnerships</h3>
-          <p>Exclusive agreements with major EV fleet operators and OEMs ensure predictable volume and revenue streams through 2030.</p>
+          <h3>Exclusive Strategic Partnerships</h3>
+          <p>Ironclad agreements with major EV fleet operators and OEMs ensure predictable volume and revenue streams through 2030 with automatic renewal clauses.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card fade-in">
           <div class="service-icon">🔬</div>
-          <h3>Proprietary Technology</h3>
-          <p>Advanced material recovery processes and safety protocols developed through 20+ years of industry expertise and R&D investment.</p>
+          <h3>Revolutionary Proprietary Technology</h3>
+          <p>Breakthrough material recovery processes and safety protocols developed through 20+ years of industry expertise and continuous R&D investment leadership.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card fade-in">
           <div class="service-icon">🌍</div>
-          <h3>ESG Leadership</h3>
-          <p>Strong environmental credentials and sustainability metrics attract ESG-focused investors and enterprise customers seeking carbon neutrality.</p>
+          <h3>ESG Market Leadership</h3>
+          <p>Unmatched environmental credentials and sustainability metrics attract ESG-focused investors and enterprise customers seeking carbon neutrality solutions.</p>
         </div>
       </div>
     </section>
 
-    <section id="founders" class="card">
+    <section id="founders" class="card fade-in">
       <h2>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
           <circle cx="12" cy="7" r="4"/>
         </svg>
-        Executive Leadership
+        World-Class Executive Leadership
       </h2>
-      <p style="color:var(--muted);margin:0 0 32px;font-size:1.05rem">Proven management team with deep industry expertise, advanced technical qualifications, and track record of scaling sustainable technology ventures.</p>
+      <p style="color:var(--muted-light);margin:0 0 40px;font-size:1.1rem">Proven management team with deep industry expertise, advanced technical qualifications, and track record of scaling breakthrough sustainable technology ventures.</p>
       
       <div class="founders-grid">
-        <div class="founder-card">
+        <div class="founder-card fade-in">
           <div class="founder-avatar">
             <div class="avatar-placeholder">WL</div>
           </div>
           <div class="founder-info">
             <h3>Waqar Lund</h3>
             <div class="founder-title">Chief Executive Officer & Founder</div>
-            <p class="founder-bio">Visionary leader with extensive experience in sustainable technology and environmental engineering. Specializes in developing innovative solutions for battery recycling and circular economy initiatives across the Baltic region.</p>
+            <p class="founder-bio">Visionary leader with extensive experience in sustainable technology and environmental engineering. Specializes in developing revolutionary solutions for battery recycling and circular economy initiatives across the Baltic region.</p>
             <div class="founder-credentials">
               <span class="credential">PGD Global Sustainability Engineering, Heriot-Watt University Scotland</span>
               <span class="credential">NEBOSH Safety Certification</span>
@@ -404,7 +1239,7 @@
           </div>
         </div>
         
-        <div class="founder-card">
+        <div class="founder-card fade-in">
           <div class="founder-avatar">
             <div class="avatar-placeholder">SL</div>
           </div>
@@ -424,7 +1259,7 @@
           </div>
         </div>
         
-        <div class="founder-card">
+        <div class="founder-card fade-in">
           <div class="founder-avatar">
             <div class="avatar-placeholder">MU</div>
           </div>
@@ -446,23 +1281,23 @@
       </div>
     </section>
 
-    <section id="docs" class="card">
+    <section id="docs" class="card fade-in">
       <h2>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
           <polyline points="14,2 14,8 20,8"/>
           <line x1="16" y1="13" x2="8" y2="13"/>
           <line x1="16" y1="17" x2="8" y2="17"/>
           <polyline points="10,9 9,9 8,9"/>
         </svg>
-        Corporate Documentation
+        Premium Corporate Documentation
       </h2>
-      <p style="color:var(--muted);margin:0;font-size:1.05rem;line-height:1.5">
+      <p style="color:var(--muted-light);margin:0;font-size:1.1rem;line-height:1.5">
         Access comprehensive business documentation including strategic planning, operational frameworks, and company overview materials for EcoTech Energy & Materials OÜ.
       </p>
       
       <div class="doc-grid">
-        <div class="doc-item" onclick="requestBusinessPlan()">
+        <div class="doc-item fade-in" onclick="requestBusinessPlan()">
           <div class="doc-icon">📊</div>
           <div class="doc-content">
             <h3 class="doc-title">Strategic Business Plan</h3>
@@ -475,7 +1310,7 @@
           </div>
         </div>
         
-        <div class="doc-item" onclick="requestCompanyOverview()">
+        <div class="doc-item fade-in" onclick="requestCompanyOverview()">
           <div class="doc-icon">📋</div>
           <div class="doc-content">
             <h3 class="doc-title">Company Overview</h3>
@@ -534,28 +1369,43 @@
   </footer>
 
   <script>
+    // Create floating particles
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 50;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 20 + 's';
+        particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+
     // Email contact functions
     function openContactForm() {
-      const subject = encodeURIComponent('EcoTech Investment Inquiry');
-      const body = encodeURIComponent('Hello Waqar,\n\nI am interested in learning more about investment opportunities with EcoTech Energy & Materials. Please contact me to discuss further.\n\nBest regards');
+      const subject = encodeURIComponent('EcoTech Investment Inquiry - Premium Opportunity');
+      const body = encodeURIComponent('Hello Waqar,\n\nI am extremely interested in learning more about investment opportunities with EcoTech Energy & Materials. Your revolutionary approach to battery recycling has caught my attention.\n\nPlease contact me to discuss this premium investment opportunity further.\n\nBest regards');
       window.open(`mailto:Tebaiwaqar@gmail.com?subject=${subject}&body=${body}`, '_blank');
     }
 
     function requestBusinessPlan() {
-      const subject = encodeURIComponent('Request: EcoTech Strategic Business Plan');
-      const body = encodeURIComponent('Hello,\n\nI am interested in reviewing the EcoTech Energy & Materials strategic business plan. Please send me the document at your earliest convenience.\n\nBest regards');
+      const subject = encodeURIComponent('Request: EcoTech Strategic Business Plan - Investor Access');
+      const body = encodeURIComponent('Hello,\n\nI am interested in reviewing the EcoTech Energy & Materials strategic business plan for investment consideration. Please send me the comprehensive document at your earliest convenience.\n\nI am particularly interested in the financial projections and market analysis sections.\n\nBest regards');
       window.open(`mailto:Tebaiwaqar@gmail.com?subject=${subject}&body=${body}`, '_blank');
     }
 
     function requestCompanyOverview() {
-      const subject = encodeURIComponent('Request: EcoTech Company Overview');
-      const body = encodeURIComponent('Hello,\n\nI would like to receive the EcoTech Energy & Materials company overview document. Please send it to me.\n\nThank you');
+      const subject = encodeURIComponent('Request: EcoTech Company Overview - Investment Materials');
+      const body = encodeURIComponent('Hello,\n\nI would like to receive the EcoTech Energy & Materials company overview document for investment evaluation. Please send it to me along with any additional investor materials.\n\nThank you for your time and consideration.');
       window.open(`mailto:Tebaiwaqar@gmail.com?subject=${subject}&body=${body}`, '_blank');
     }
 
     function requestExecutiveSummary() {
-      const subject = encodeURIComponent('Request: EcoTech Executive Summary');
-      const body = encodeURIComponent('Hello,\n\nI would like to receive the EcoTech Energy & Materials executive summary. Please send me the document.\n\nBest regards');
+      const subject = encodeURIComponent('Request: EcoTech Executive Summary - Investment Opportunity');
+      const body = encodeURIComponent('Hello,\n\nI would like to receive the EcoTech Energy & Materials executive summary for investment consideration. Please send me the document along with key investment highlights.\n\nI am excited about this opportunity in the Baltic battery recycling market.\n\nBest regards');
       window.open(`mailto:Tebaiwaqar@gmail.com?subject=${subject}&body=${body}`, '_blank');
     }
 
@@ -573,14 +1423,46 @@
       });
     });
 
-    // Add loading animation
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all fade-in elements
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Initialize particles and loading animation
     window.addEventListener('load', function() {
+      createParticles();
+      
       document.body.style.opacity = '0';
-      document.body.style.transition = 'opacity 0.3s ease';
+      document.body.style.transition = 'opacity 0.5s ease';
       setTimeout(() => {
         document.body.style.opacity = '1';
       }, 100);
     });
+
+    // Add dynamic background effects
+    document.addEventListener('mousemove', (e) => {
+      const mouseX = e.clientX / window.innerWidth;
+      const mouseY = e.clientY / window.innerHeight;
+      
+      document.body.style.background = `
+        linear-gradient(135deg, #0a0f1c 0%, #111827 50%, #1f2937 100%),
+        radial-gradient(circle at ${mouseX * 100}% ${mouseY * 100}%, rgba(16,185,129,0.1) 0%, transparent 50%)
+      `;
+    });
   </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9756d541613c815b',t:'MTc1NjI0ODA0OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'975cddc7a1194906',t:'MTc1NjMxMTMxMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

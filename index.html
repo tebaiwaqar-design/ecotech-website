@@ -7,43 +7,42 @@
   <meta name="description" content="EcoTech provides lithium-ion battery collection, safe discharge, recycling and exchange services for EV and micromobility operators in Estonia and the Baltics.">
   <style>
     :root{
-      --bg:#0a0f1c;
-      --surface:#111827;
-      --card:#1f2937;
-      --card-elevated:#374151;
-      --ink:#f9fafb;
-      --muted:#9ca3af;
-      --muted-light:#d1d5db;
-      --brand:#10b981;
-      --brand-light:#34d399;
-      --brand-2:#059669;
-      --accent:#3b82f6;
-      --accent-light:#60a5fa;
-      --line:#374151;
-      --line-light:#4b5563;
-      --shadow:rgba(0,0,0,0.25);
-      --shadow-elevated:rgba(0,0,0,0.4);
-      --gradient-primary:linear-gradient(135deg, #10b981 0%, #34d399 50%, #6ee7b7 100%);
-      --gradient-accent:linear-gradient(135deg, #3b82f6 0%, #60a5fa 50%, #93c5fd 100%);
-      --gradient-bg:linear-gradient(135deg, #0a0f1c 0%, #111827 50%, #1f2937 100%);
-      --gradient-hero:radial-gradient(ellipse at center, rgba(16,185,129,0.15) 0%, transparent 70%);
-      --glow-green:0 0 20px rgba(16,185,129,0.3);
-      --glow-blue:0 0 20px rgba(59,130,246,0.3);
+      --bg-primary:#0a0a0f;
+      --bg-secondary:#0f0f1a;
+      --bg-tertiary:#1a1a2e;
+      --surface:#16213e;
+      --surface-glass:rgba(22,33,62,0.4);
+      --card:#1e2749;
+      --card-glass:rgba(30,39,73,0.3);
+      --ink:#ffffff;
+      --ink-secondary:#e2e8f0;
+      --ink-muted:#94a3b8;
+      --brand:#00ff88;
+      --brand-secondary:#00d4ff;
+      --brand-tertiary:#ff6b6b;
+      --accent:#7c3aed;
+      --accent-secondary:#f59e0b;
+      --glow-primary:0 0 30px rgba(0,255,136,0.5);
+      --glow-secondary:0 0 30px rgba(0,212,255,0.5);
+      --glow-accent:0 0 30px rgba(124,58,237,0.5);
+      --gradient-primary:linear-gradient(135deg, #00ff88 0%, #00d4ff 50%, #7c3aed 100%);
+      --gradient-glass:linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+      --gradient-bg:radial-gradient(ellipse at top, #1a1a2e 0%, #0f0f1a 50%, #0a0a0f 100%);
+      --shadow-glass:0 8px 32px rgba(0,0,0,0.3);
+      --shadow-elevated:0 20px 60px rgba(0,0,0,0.4);
     }
     
     *{box-sizing:border-box;margin:0;padding:0}
     
-    html,body{
-      margin:0;
-      background:var(--gradient-bg);
+    html{scroll-behavior:smooth}
+    
+    body{
+      font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+      background:var(--bg-primary);
       color:var(--ink);
-      font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
-      line-height:1.7;
-      font-size:16px;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      font-weight:400;
+      line-height:1.6;
       overflow-x:hidden;
+      position:relative;
     }
     
     body::before{
@@ -53,23 +52,64 @@
       left:0;
       width:100%;
       height:100%;
+      background:var(--gradient-bg);
+      z-index:-2;
+    }
+    
+    body::after{
+      content:'';
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
       background:
-        radial-gradient(circle at 20% 80%, rgba(16,185,129,0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(59,130,246,0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(16,185,129,0.05) 0%, transparent 50%);
-      pointer-events:none;
+        radial-gradient(circle at 20% 20%, rgba(0,255,136,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0,212,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(124,58,237,0.05) 0%, transparent 50%);
       z-index:-1;
+      animation:backgroundShift 20s ease-in-out infinite;
+    }
+    
+    @keyframes backgroundShift{
+      0%,100%{opacity:0.5;transform:scale(1) rotate(0deg)}
+      33%{opacity:0.8;transform:scale(1.1) rotate(120deg)}
+      66%{opacity:0.6;transform:scale(0.9) rotate(240deg)}
     }
     
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
     
-    a{color:var(--brand-light);text-decoration:none;transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
-    .container{max-width:1280px;margin:0 auto;padding:0 32px}
-    h1,h2,h3,h4,h5,h6{font-weight:700;letter-spacing:-0.025em;line-height:1.25}
-    p{margin:0 0 16px 0;color:var(--muted-light)}
+    /* Glassmorphism utilities */
+    .glass{
+      background:var(--surface-glass);
+      backdrop-filter:blur(20px) saturate(180%);
+      border:1px solid rgba(255,255,255,0.1);
+      box-shadow:var(--shadow-glass);
+    }
     
-    /* Floating particles animation */
-    .particles{
+    .glass-card{
+      background:var(--card-glass);
+      backdrop-filter:blur(15px) saturate(160%);
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:var(--shadow-glass);
+    }
+    
+    /* 3D Transform utilities */
+    .transform-3d{
+      transform-style:preserve-3d;
+      perspective:1000px;
+    }
+    
+    .hover-3d{
+      transition:all 0.4s cubic-bezier(0.23,1,0.32,1);
+    }
+    
+    .hover-3d:hover{
+      transform:rotateX(5deg) rotateY(5deg) translateZ(20px);
+    }
+    
+    /* Floating particles */
+    .particles-container{
       position:fixed;
       top:0;
       left:0;
@@ -81,71 +121,99 @@
     
     .particle{
       position:absolute;
-      width:4px;
-      height:4px;
+      width:3px;
+      height:3px;
       background:var(--brand);
       border-radius:50%;
-      opacity:0.6;
-      animation:float 20s infinite linear;
+      opacity:0.7;
+      animation:floatParticle 15s infinite linear;
+      box-shadow:var(--glow-primary);
     }
     
-    @keyframes float{
-      0%{transform:translateY(100vh) rotate(0deg);opacity:0}
-      10%{opacity:0.6}
-      90%{opacity:0.6}
-      100%{transform:translateY(-100vh) rotate(360deg);opacity:0}
+    .particle:nth-child(2n){
+      background:var(--brand-secondary);
+      box-shadow:var(--glow-secondary);
+      animation-duration:18s;
+    }
+    
+    .particle:nth-child(3n){
+      background:var(--accent);
+      box-shadow:var(--glow-accent);
+      animation-duration:12s;
+    }
+    
+    @keyframes floatParticle{
+      0%{transform:translateY(100vh) translateX(0) rotate(0deg);opacity:0}
+      10%{opacity:0.7}
+      90%{opacity:0.7}
+      100%{transform:translateY(-100vh) translateX(100px) rotate(360deg);opacity:0}
     }
     
     /* Header */
-    header.site{
-      position:sticky;
+    header{
+      position:fixed;
       top:0;
-      backdrop-filter:saturate(180%) blur(20px);
-      background:rgba(17,24,39,0.95);
-      border-bottom:1px solid var(--line);
-      z-index:100;
-      box-shadow:0 4px 20px var(--shadow);
+      left:0;
+      right:0;
+      z-index:1000;
+      padding:20px 0;
+      transition:all 0.3s ease;
+    }
+    
+    header.scrolled{
+      background:var(--surface-glass);
+      backdrop-filter:blur(20px) saturate(180%);
+      border-bottom:1px solid rgba(255,255,255,0.1);
+      box-shadow:var(--shadow-glass);
     }
     
     nav{
+      max-width:1400px;
+      margin:0 auto;
+      padding:0 40px;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:32px;
-      padding:20px 0;
     }
     
-    .brand{
+    .logo-container{
       display:flex;
-      gap:16px;
       align-items:center;
-      animation:slideInLeft 0.8s ease-out;
+      gap:20px;
+      animation:slideInLeft 1s ease-out;
     }
     
-    .brand .logo{
-      width:50px;
-      height:50px;
+    .logo{
+      width:60px;
+      height:60px;
       background:var(--gradient-primary);
-      border-radius:12px;
+      border-radius:16px;
       display:flex;
       align-items:center;
       justify-content:center;
-      font-size:20px;
-      font-weight:800;
-      box-shadow:var(--glow-green);
+      font-size:24px;
+      font-weight:900;
+      color:white;
       position:relative;
       overflow:hidden;
+      box-shadow:var(--glow-primary);
+      transition:all 0.4s cubic-bezier(0.23,1,0.32,1);
     }
     
-    .brand .logo::before{
+    .logo::before{
       content:'';
       position:absolute;
       top:-50%;
       left:-50%;
       width:200%;
       height:200%;
-      background:linear-gradient(45deg,transparent,rgba(255,255,255,0.1),transparent);
+      background:linear-gradient(45deg,transparent,rgba(255,255,255,0.2),transparent);
       animation:shimmer 3s infinite;
+    }
+    
+    .logo:hover{
+      transform:scale(1.1) rotateY(15deg);
+      box-shadow:var(--glow-primary),0 10px 30px rgba(0,255,136,0.3);
     }
     
     @keyframes shimmer{
@@ -153,22 +221,25 @@
       100%{transform:translateX(100%) translateY(100%) rotate(45deg)}
     }
     
-    .brand .title{
+    .brand-text{
+      display:flex;
+      flex-direction:column;
+    }
+    
+    .brand-title{
+      font-size:1.5rem;
       font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:1.4rem;
-      color:var(--ink);
       background:var(--gradient-primary);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
       background-clip:text;
+      letter-spacing:-0.02em;
     }
     
-    .brand .subtitle{
-      color:var(--muted);
-      font-size:0.8rem;
+    .brand-subtitle{
+      font-size:0.85rem;
+      color:var(--ink-muted);
       font-weight:500;
-      margin-left:12px;
       text-transform:uppercase;
       letter-spacing:1px;
     }
@@ -176,22 +247,22 @@
     .nav-links{
       display:flex;
       gap:40px;
-      align-items:center;
-      animation:slideInRight 0.8s ease-out;
+      animation:slideInRight 1s ease-out;
     }
     
-    .nav-links a{
-      color:var(--muted);
+    .nav-link{
+      color:var(--ink-secondary);
+      text-decoration:none;
       font-weight:500;
-      font-size:0.9rem;
+      font-size:0.95rem;
       padding:12px 0;
       position:relative;
-      transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
+      transition:all 0.3s ease;
       text-transform:uppercase;
       letter-spacing:0.5px;
     }
     
-    .nav-links a::before{
+    .nav-link::before{
       content:'';
       position:absolute;
       bottom:0;
@@ -199,38 +270,39 @@
       width:0;
       height:2px;
       background:var(--gradient-primary);
-      transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
+      transition:all 0.3s cubic-bezier(0.23,1,0.32,1);
       transform:translateX(-50%);
     }
     
-    .nav-links a:hover{
-      color:var(--brand-light);
-      text-shadow:var(--glow-green);
+    .nav-link:hover{
+      color:var(--brand);
+      text-shadow:var(--glow-primary);
     }
     
-    .nav-links a:hover::before{
+    .nav-link:hover::before{
       width:100%;
     }
     
-    /* Enhanced Buttons */
+    /* Buttons */
     .btn{
       display:inline-flex;
       align-items:center;
-      gap:8px;
-      padding:14px 28px;
+      gap:12px;
+      padding:16px 32px;
       border-radius:12px;
       background:var(--gradient-primary);
       color:white;
+      text-decoration:none;
       font-weight:600;
-      font-size:0.9rem;
-      border:0;
-      transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+      font-size:0.95rem;
+      border:none;
       cursor:pointer;
-      box-shadow:var(--glow-green);
       position:relative;
       overflow:hidden;
+      transition:all 0.4s cubic-bezier(0.23,1,0.32,1);
       text-transform:uppercase;
       letter-spacing:0.5px;
+      box-shadow:var(--glow-primary);
     }
     
     .btn::before{
@@ -250,76 +322,60 @@
     
     .btn:hover{
       transform:translateY(-3px) scale(1.05);
-      box-shadow:0 10px 25px rgba(16,185,129,0.4);
+      box-shadow:var(--glow-primary),var(--shadow-elevated);
     }
     
-    .btn.outline{
+    .btn-outline{
       background:transparent;
-      color:var(--brand-light);
       border:2px solid var(--brand);
-      box-shadow:0 0 15px rgba(16,185,129,0.2);
+      color:var(--brand);
+      box-shadow:0 0 20px rgba(0,255,136,0.2);
     }
     
-    .btn.outline:hover{
+    .btn-outline:hover{
       background:var(--gradient-primary);
-      color:white;
       border-color:transparent;
-      box-shadow:var(--glow-green);
+      color:white;
     }
     
-    /* Hero Section with Advanced Animations */
+    /* Hero Section */
     .hero{
-      padding:120px 0 80px;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       text-align:center;
       position:relative;
-      overflow:hidden;
+      padding:120px 40px 80px;
     }
     
-    .hero::before{
-      content:'';
-      position:absolute;
-      top:0;
-      left:50%;
-      transform:translateX(-50%);
-      width:120%;
-      height:120%;
-      background:var(--gradient-hero);
-      pointer-events:none;
-      animation:pulse 4s ease-in-out infinite;
+    .hero-content{
+      max-width:1200px;
+      z-index:10;
     }
     
-    @keyframes pulse{
-      0%,100%{transform:translateX(-50%) scale(1);opacity:0.5}
-      50%{transform:translateX(-50%) scale(1.1);opacity:0.8}
-    }
-    
-    .hero h1{
-      font-size:4rem;
-      line-height:1.1;
-      margin:0 0 32px;
-      color:var(--ink);
+    .hero-title{
+      font-size:clamp(3rem,8vw,6rem);
       font-weight:900;
-      letter-spacing:-0.03em;
-      max-width:1000px;
-      margin-left:auto;
-      margin-right:auto;
-      background:linear-gradient(135deg,var(--ink) 0%,var(--brand-light) 50%,var(--accent-light) 100%);
+      line-height:1.1;
+      margin-bottom:32px;
+      background:linear-gradient(135deg,var(--ink) 0%,var(--brand) 30%,var(--brand-secondary) 60%,var(--accent) 100%);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
       background-clip:text;
+      letter-spacing:-0.03em;
       animation:fadeInUp 1s ease-out;
-      text-shadow:0 0 30px rgba(16,185,129,0.3);
+      text-shadow:0 0 40px rgba(0,255,136,0.3);
     }
     
-    .hero .subtitle{
-      font-size:1.3rem;
-      color:var(--muted-light);
-      margin:0 0 48px;
-      max-width:750px;
+    .hero-subtitle{
+      font-size:clamp(1.2rem,3vw,1.5rem);
+      color:var(--ink-secondary);
+      margin-bottom:48px;
+      max-width:800px;
       margin-left:auto;
       margin-right:auto;
       line-height:1.6;
-      font-weight:400;
       animation:fadeInUp 1s ease-out 0.2s both;
     }
     
@@ -333,106 +389,136 @@
     }
     
     @keyframes fadeInUp{
-      from{opacity:0;transform:translateY(30px)}
+      from{opacity:0;transform:translateY(40px)}
       to{opacity:1;transform:translateY(0)}
     }
     
     @keyframes slideInLeft{
-      from{opacity:0;transform:translateX(-30px)}
+      from{opacity:0;transform:translateX(-40px)}
       to{opacity:1;transform:translateX(0)}
     }
     
     @keyframes slideInRight{
-      from{opacity:0;transform:translateX(30px)}
+      from{opacity:0;transform:translateX(40px)}
       to{opacity:1;transform:translateX(0)}
     }
     
-    /* Enhanced Stats */
+    /* Stats */
     .stats{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
       gap:32px;
-      margin:80px 0;
+      max-width:1200px;
+      margin:0 auto;
       animation:fadeInUp 1s ease-out 0.6s both;
     }
     
     .stat{
-      text-align:center;
       padding:40px 32px;
-      background:rgba(31,41,55,0.8);
-      border:1px solid var(--line);
-      border-radius:16px;
+      border-radius:20px;
+      text-align:center;
       position:relative;
-      transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
-      box-shadow:0 4px 20px var(--shadow);
-      backdrop-filter:blur(10px);
-      overflow:hidden;
-    }
-    
-    .stat::before{
-      content:'';
-      position:absolute;
-      top:0;
-      left:0;
-      right:0;
-      height:4px;
-      background:var(--gradient-primary);
-      border-radius:16px 16px 0 0;
-    }
-    
-    .stat::after{
-      content:'';
-      position:absolute;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      background:var(--gradient-primary);
-      opacity:0;
-      transition:opacity 0.3s ease;
-      border-radius:16px;
-      z-index:-1;
+      transition:all 0.4s cubic-bezier(0.23,1,0.32,1);
+      cursor:pointer;
     }
     
     .stat:hover{
-      transform:translateY(-8px) scale(1.02);
-      box-shadow:0 20px 40px rgba(16,185,129,0.2);
-    }
-    
-    .stat:hover::after{
-      opacity:0.05;
+      transform:translateY(-10px) scale(1.02);
     }
     
     .stat-value{
-      font-size:3rem;
+      font-size:3.5rem;
       font-weight:900;
-      color:var(--brand-light);
-      margin:0;
+      background:var(--gradient-primary);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      margin-bottom:16px;
       line-height:1;
-      text-shadow:var(--glow-green);
     }
     
     .stat-label{
-      color:var(--muted);
-      font-size:0.9rem;
-      margin:16px 0 0;
+      color:var(--ink-muted);
+      font-size:0.95rem;
       font-weight:500;
       text-transform:uppercase;
       letter-spacing:1px;
     }
     
-    /* Enhanced Cards */
-    .card{
-      background:rgba(31,41,55,0.9);
-      border:1px solid var(--line);
-      border-radius:20px;
-      padding:60px;
-      margin:60px 0;
-      box-shadow:0 8px 32px var(--shadow);
+    /* Main content */
+    .main-content{
+      max-width:1400px;
+      margin:0 auto;
+      padding:0 40px;
+    }
+    
+    .section{
+      margin:120px 0;
       position:relative;
-      backdrop-filter:blur(20px);
+    }
+    
+    .section-card{
+      padding:80px 60px;
+      border-radius:24px;
+      position:relative;
+      transition:all 0.4s cubic-bezier(0.23,1,0.32,1);
+    }
+    
+    .section-card:hover{
+      transform:translateY(-8px);
+    }
+    
+    .section-title{
+      font-size:clamp(2rem,5vw,3rem);
+      font-weight:800;
+      margin-bottom:24px;
+      display:flex;
+      align-items:center;
+      gap:20px;
+      text-transform:uppercase;
+      letter-spacing:-0.02em;
+    }
+    
+    .section-title svg{
+      width:40px;
+      height:40px;
+      color:var(--brand);
+      filter:drop-shadow(var(--glow-primary));
+    }
+    
+    .section-subtitle{
+      font-size:1.2rem;
+      color:var(--ink-secondary);
+      margin-bottom:48px;
+      line-height:1.6;
+    }
+    
+    /* Grid layouts */
+    .grid{
+      display:grid;
+      gap:32px;
+      margin-top:48px;
+    }
+    
+    .grid-2{
+      grid-template-columns:repeat(auto-fit,minmax(400px,1fr));
+    }
+    
+    .grid-3{
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    }
+    
+    .grid-4{
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    }
+    
+    .card{
+      padding:40px;
+      border-radius:20px;
+      position:relative;
+      transition:all 0.4s cubic-bezier(0.23,1,0.32,1);
+      cursor:pointer;
       overflow:hidden;
-      transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
     }
     
     .card::before{
@@ -440,167 +526,73 @@
       position:absolute;
       top:0;
       left:0;
-      right:0;
-      height:2px;
-      background:var(--gradient-primary);
-    }
-    
-    .card::after{
-      content:'';
-      position:absolute;
-      top:-50%;
-      left:-50%;
-      width:200%;
-      height:200%;
-      background:radial-gradient(circle,rgba(16,185,129,0.03) 0%,transparent 70%);
-      pointer-events:none;
-    }
-    
-    .card:hover{
-      transform:translateY(-4px);
-      box-shadow:0 16px 48px rgba(16,185,129,0.15);
-    }
-    
-    .card h2{
-      margin:0 0 24px;
-      display:flex;
-      align-items:center;
-      gap:16px;
-      font-size:2rem;
-      font-weight:800;
-      color:var(--ink);
-      text-transform:uppercase;
-      letter-spacing:0.5px;
-    }
-    
-    .card h2 svg{
-      opacity:0.9;
-      color:var(--brand-light);
-      filter:drop-shadow(var(--glow-green));
-    }
-    
-    /* Enhanced Service Cards */
-    .services-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-      gap:32px;
-      margin:40px 0;
-    }
-    
-    .service-card{
-      background:rgba(55,65,81,0.8);
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:40px;
-      transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
-      position:relative;
-      overflow:hidden;
-      box-shadow:0 4px 20px var(--shadow);
-      backdrop-filter:blur(10px);
-    }
-    
-    .service-card::before{
-      content:'';
-      position:absolute;
-      top:0;
-      left:0;
       width:100%;
       height:3px;
       background:var(--gradient-primary);
       transform:scaleX(0);
-      transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);
+      transition:transform 0.4s cubic-bezier(0.23,1,0.32,1);
     }
     
-    .service-card::after{
-      content:'';
-      position:absolute;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      background:var(--gradient-primary);
-      opacity:0;
-      transition:opacity 0.3s ease;
-      border-radius:16px;
-      z-index:-1;
-    }
-    
-    .service-card:hover::before{
+    .card:hover::before{
       transform:scaleX(1);
     }
     
-    .service-card:hover::after{
-      opacity:0.05;
+    .card:hover{
+      transform:translateY(-8px) rotateX(2deg) rotateY(2deg);
     }
     
-    .service-card:hover{
-      transform:translateY(-8px) scale(1.02);
-      box-shadow:0 20px 40px rgba(16,185,129,0.2);
-    }
-    
-    .service-icon{
-      width:70px;
-      height:70px;
-      background:var(--gradient-primary);
-      border-radius:16px;
+    .card-icon{
+      width:80px;
+      height:80px;
+      border-radius:20px;
       display:flex;
       align-items:center;
       justify-content:center;
-      font-size:32px;
+      font-size:36px;
       margin-bottom:24px;
-      box-shadow:var(--glow-green);
+      background:var(--gradient-primary);
+      box-shadow:var(--glow-primary);
       position:relative;
       overflow:hidden;
     }
     
-    .service-icon::before{
+    .card-icon::before{
       content:'';
       position:absolute;
       top:-50%;
       left:-50%;
       width:200%;
       height:200%;
-      background:linear-gradient(45deg,transparent,rgba(255,255,255,0.1),transparent);
-      animation:shimmer 3s infinite;
+      background:linear-gradient(45deg,transparent,rgba(255,255,255,0.2),transparent);
+      animation:shimmer 4s infinite;
     }
     
-    .service-card h3{
-      margin:0 0 16px;
-      color:var(--ink);
-      font-size:1.2rem;
+    .card-title{
+      font-size:1.3rem;
       font-weight:700;
+      margin-bottom:16px;
+      color:var(--ink);
     }
     
-    .service-card p{
-      color:var(--muted-light);
-      margin:0;
+    .card-text{
+      color:var(--ink-secondary);
       line-height:1.6;
       font-size:0.95rem;
     }
     
-    /* Enhanced Process Steps */
-    .process-steps{
-      display:grid;
-      gap:32px;
-      margin:40px 0;
-    }
-    
-    .step{
+    /* Process steps */
+    .process-step{
       display:flex;
       gap:32px;
       align-items:flex-start;
-      padding:32px;
-      background:rgba(55,65,81,0.8);
-      border:1px solid var(--line);
-      border-radius:16px;
-      transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
-      box-shadow:0 4px 20px var(--shadow);
-      backdrop-filter:blur(10px);
+      padding:40px;
+      border-radius:20px;
+      margin-bottom:24px;
       position:relative;
-      overflow:hidden;
+      transition:all 0.4s cubic-bezier(0.23,1,0.32,1);
     }
     
-    .step::before{
+    .process-step::before{
       content:'';
       position:absolute;
       left:0;
@@ -608,165 +600,123 @@
       width:4px;
       height:100%;
       background:var(--gradient-primary);
+      border-radius:2px;
       transform:scaleY(0);
-      transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);
+      transition:transform 0.4s cubic-bezier(0.23,1,0.32,1);
     }
     
-    .step:hover::before{
+    .process-step:hover::before{
       transform:scaleY(1);
     }
     
-    .step:hover{
-      transform:translateX(8px);
-      box-shadow:0 8px 32px rgba(16,185,129,0.2);
+    .process-step:hover{
+      transform:translateX(12px);
     }
     
     .step-number{
-      width:60px;
-      height:60px;
+      width:80px;
+      height:80px;
+      border-radius:20px;
       background:var(--gradient-primary);
-      border-radius:16px;
       display:flex;
       align-items:center;
       justify-content:center;
+      font-size:1.5rem;
       font-weight:800;
       color:white;
       flex-shrink:0;
-      font-size:1.2rem;
-      box-shadow:var(--glow-green);
+      box-shadow:var(--glow-primary);
     }
     
     .step-content h3{
-      margin:0 0 16px;
-      color:var(--ink);
-      font-size:1.2rem;
+      font-size:1.3rem;
       font-weight:700;
+      margin-bottom:16px;
+      color:var(--ink);
     }
     
     .step-content p{
-      color:var(--muted-light);
-      margin:0;
+      color:var(--ink-secondary);
       line-height:1.6;
     }
     
-    /* Enhanced Founder Cards */
-    .founders-grid{
-      display:grid;
-      gap:32px;
-      margin:40px 0;
-    }
-    
-    @media(min-width:768px){
-      .founders-grid{grid-template-columns:repeat(auto-fit,minmax(350px,1fr))}
-    }
-    
+    /* Founder cards */
     .founder-card{
-      background:rgba(55,65,81,0.8);
-      border:1px solid var(--line);
-      border-radius:20px;
-      padding:40px;
-      transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+      padding:48px;
+      border-radius:24px;
+      text-align:center;
       position:relative;
-      overflow:hidden;
-      box-shadow:0 8px 32px var(--shadow);
-      backdrop-filter:blur(10px);
-    }
-    
-    .founder-card::before{
-      content:'';
-      position:absolute;
-      top:0;
-      left:0;
-      width:100%;
-      height:3px;
-      background:var(--gradient-primary);
-      transform:scaleX(0);
-      transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);
-    }
-    
-    .founder-card:hover::before{
-      transform:scaleX(1);
+      transition:all 0.4s cubic-bezier(0.23,1,0.32,1);
     }
     
     .founder-card:hover{
-      transform:translateY(-8px) scale(1.02);
-      box-shadow:0 20px 48px rgba(16,185,129,0.2);
+      transform:translateY(-12px) rotateX(5deg) rotateY(5deg);
     }
     
     .founder-avatar{
-      display:flex;
-      justify-content:center;
-      margin-bottom:32px;
-    }
-    
-    .avatar-placeholder{
-      width:100px;
-      height:100px;
+      width:120px;
+      height:120px;
+      border-radius:24px;
       background:var(--gradient-primary);
-      border-radius:20px;
       display:flex;
       align-items:center;
       justify-content:center;
-      font-size:36px;
-      font-weight:800;
+      font-size:48px;
+      font-weight:900;
       color:white;
-      box-shadow:var(--glow-green);
+      margin:0 auto 32px;
+      box-shadow:var(--glow-primary);
       position:relative;
       overflow:hidden;
     }
     
-    .avatar-placeholder::before{
+    .founder-avatar::before{
       content:'';
       position:absolute;
       top:-50%;
       left:-50%;
       width:200%;
       height:200%;
-      background:linear-gradient(45deg,transparent,rgba(255,255,255,0.1),transparent);
-      animation:shimmer 4s infinite;
+      background:linear-gradient(45deg,transparent,rgba(255,255,255,0.2),transparent);
+      animation:shimmer 5s infinite;
     }
     
-    .founder-info{
-      text-align:center;
-    }
-    
-    .founder-info h3{
-      margin:0 0 12px;
-      color:var(--ink);
-      font-size:1.4rem;
+    .founder-name{
+      font-size:1.5rem;
       font-weight:700;
+      margin-bottom:12px;
+      color:var(--ink);
     }
     
     .founder-title{
-      color:var(--brand-light);
+      color:var(--brand);
       font-weight:600;
       font-size:1rem;
-      margin-bottom:20px;
+      margin-bottom:24px;
       text-transform:uppercase;
       letter-spacing:0.5px;
     }
     
     .founder-bio{
-      color:var(--muted-light);
-      margin:0 0 24px;
+      color:var(--ink-secondary);
       line-height:1.6;
+      margin-bottom:24px;
       text-align:left;
-      font-size:0.95rem;
     }
     
     .founder-credentials{
       margin-bottom:24px;
+      text-align:left;
     }
     
     .credential{
       display:block;
-      color:var(--muted);
-      font-size:0.85rem;
-      margin:6px 0;
-      font-style:normal;
+      color:var(--ink-muted);
+      font-size:0.9rem;
+      margin:8px 0;
     }
     
-    .founder-expertise{
+    .expertise-tags{
       display:flex;
       gap:8px;
       flex-wrap:wrap;
@@ -774,48 +724,34 @@
     }
     
     .expertise-tag{
-      background:rgba(16,185,129,0.15);
-      color:var(--brand-light);
+      background:rgba(0,255,136,0.15);
+      color:var(--brand);
       padding:8px 16px;
       border-radius:8px;
       font-size:0.8rem;
       font-weight:600;
-      border:1px solid rgba(16,185,129,0.3);
+      border:1px solid rgba(0,255,136,0.3);
       text-transform:uppercase;
       letter-spacing:0.5px;
       transition:all 0.3s ease;
     }
     
     .expertise-tag:hover{
-      background:rgba(16,185,129,0.25);
+      background:rgba(0,255,136,0.25);
       transform:translateY(-2px);
     }
     
-    /* Enhanced Documentation */
-    .doc-grid{
-      display:grid;
-      gap:24px;
-      margin-top:40px;
-    }
-    
-    @media(min-width:640px){
-      .doc-grid{grid-template-columns:1fr 1fr}
-    }
-    
+    /* Documentation */
     .doc-item{
       display:flex;
       align-items:center;
-      gap:20px;
-      padding:32px;
-      background:rgba(55,65,81,0.8);
-      border:1px solid var(--line);
-      border-radius:16px;
-      transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+      gap:24px;
+      padding:40px;
+      border-radius:20px;
+      transition:all 0.4s cubic-bezier(0.23,1,0.32,1);
+      cursor:pointer;
       position:relative;
       overflow:hidden;
-      box-shadow:0 4px 20px var(--shadow);
-      cursor:pointer;
-      backdrop-filter:blur(10px);
     }
     
     .doc-item::before{
@@ -825,9 +761,9 @@
       left:0;
       width:100%;
       height:3px;
-      background:var(--gradient-accent);
+      background:linear-gradient(90deg,var(--brand-secondary),var(--accent));
       transform:scaleX(0);
-      transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);
+      transition:transform 0.4s cubic-bezier(0.23,1,0.32,1);
     }
     
     .doc-item:hover::before{
@@ -835,59 +771,48 @@
     }
     
     .doc-item:hover{
-      transform:translateY(-6px) scale(1.02);
-      box-shadow:0 16px 40px rgba(59,130,246,0.2);
+      transform:translateY(-8px) scale(1.02);
     }
     
     .doc-icon{
-      width:60px;
-      height:60px;
-      background:var(--gradient-accent);
-      border-radius:16px;
+      width:80px;
+      height:80px;
+      border-radius:20px;
+      background:linear-gradient(135deg,var(--brand-secondary),var(--accent));
       display:flex;
       align-items:center;
       justify-content:center;
-      font-size:24px;
+      font-size:32px;
       flex-shrink:0;
-      box-shadow:var(--glow-blue);
+      box-shadow:var(--glow-secondary);
     }
     
-    .doc-content{
-      flex:1;
-    }
-    
-    .doc-title{
+    .doc-content h3{
+      font-size:1.3rem;
       font-weight:700;
-      font-size:1.2rem;
-      margin:0 0 8px 0;
+      margin-bottom:12px;
       color:var(--ink);
     }
     
-    .doc-desc{
-      color:var(--muted-light);
-      font-size:0.9rem;
-      margin:0;
-      line-height:1.5;
+    .doc-content p{
+      color:var(--ink-secondary);
+      line-height:1.6;
+      margin-bottom:12px;
     }
     
     .doc-meta{
       display:flex;
-      align-items:center;
-      gap:8px;
-      margin-top:12px;
-      font-size:0.8rem;
-      color:var(--muted);
+      gap:12px;
+      font-size:0.85rem;
+      color:var(--ink-muted);
     }
     
-    /* Enhanced Footer */
+    /* Footer */
     footer{
-      border-top:1px solid var(--line);
-      padding:80px 0 40px;
-      margin-top:100px;
-      background:rgba(10,15,28,0.95);
-      color:white;
+      margin-top:120px;
+      padding:80px 40px 40px;
+      border-top:1px solid rgba(255,255,255,0.1);
       position:relative;
-      backdrop-filter:blur(20px);
     }
     
     footer::before{
@@ -901,45 +826,46 @@
     }
     
     .footer-content{
+      max-width:1400px;
+      margin:0 auto;
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
       gap:48px;
     }
     
     .footer-section h3{
-      margin:0 0 24px;
-      color:white;
+      font-size:1.2rem;
       font-weight:700;
-      font-size:1.1rem;
+      margin-bottom:24px;
+      color:var(--ink);
       text-transform:uppercase;
       letter-spacing:0.5px;
     }
     
-    .footer-section p,.footer-section li{
-      color:rgba(255,255,255,0.8);
-      margin:12px 0;
+    .footer-section p,
+    .footer-section li{
+      color:var(--ink-secondary);
       line-height:1.6;
-      font-size:0.9rem;
+      margin:12px 0;
     }
     
     .footer-section ul{
       list-style:none;
       padding:0;
-      margin:0;
     }
     
     .footer-section a{
-      color:rgba(255,255,255,0.7);
+      color:var(--ink-muted);
+      text-decoration:none;
       transition:all 0.3s ease;
-      padding:6px 0;
       display:inline-block;
-      font-size:0.9rem;
+      padding:4px 0;
     }
     
     .footer-section a:hover{
-      color:var(--brand-light);
+      color:var(--brand);
       transform:translateX(4px);
-      text-shadow:var(--glow-green);
+      text-shadow:var(--glow-primary);
     }
     
     .footer-bottom{
@@ -947,331 +873,320 @@
       padding-top:40px;
       margin-top:40px;
       border-top:1px solid rgba(255,255,255,0.1);
-      color:rgba(255,255,255,0.6);
-      font-size:0.85rem;
-    }
-    
-    /* Responsive Design */
-    @media(max-width:1024px){
-      .container{padding:0 24px}
-      .card{padding:40px 32px}
-      .hero h1{font-size:3.5rem}
-    }
-    
-    @media(max-width:768px){
-      .hero{padding:80px 0 60px}
-      .hero h1{font-size:2.8rem}
-      .hero .subtitle{font-size:1.2rem}
-      .hero-actions{flex-direction:column;align-items:center;gap:20px}
-      .nav-links{display:none}
-      .stats{grid-template-columns:1fr 1fr;gap:20px}
-      .stat{padding:24px 20px}
-      .step{flex-direction:column;text-align:center;padding:24px}
-      .step-number{margin:0 auto 20px}
-      .services-grid{grid-template-columns:1fr;gap:24px}
-      .doc-grid{grid-template-columns:1fr}
-      .footer-content{grid-template-columns:1fr;gap:32px;text-align:center}
-    }
-    
-    @media(max-width:480px){
-      .hero h1{font-size:2.2rem}
-      .hero .subtitle{font-size:1.1rem}
-      .stats{grid-template-columns:1fr}
-      .btn{padding:12px 24px;font-size:0.85rem}
-      .card{padding:32px 20px}
+      color:var(--ink-muted);
     }
     
     /* Scroll animations */
-    .fade-in{
+    .scroll-reveal{
       opacity:0;
-      transform:translateY(30px);
-      transition:all 0.6s ease-out;
+      transform:translateY(50px);
+      transition:all 0.8s cubic-bezier(0.23,1,0.32,1);
     }
     
-    .fade-in.visible{
+    .scroll-reveal.revealed{
       opacity:1;
       transform:translateY(0);
+    }
+    
+    /* Responsive */
+    @media(max-width:1024px){
+      .nav-links{display:none}
+      .section-card{padding:60px 40px}
+      .grid-2{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+      .grid-4{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+    }
+    
+    @media(max-width:768px){
+      nav{padding:0 20px}
+      .main-content{padding:0 20px}
+      footer{padding:60px 20px 40px}
+      .section-card{padding:40px 24px}
+      .card{padding:32px 24px}
+      .process-step{flex-direction:column;text-align:center;padding:32px 24px}
+      .step-number{margin-bottom:20px}
+      .stats{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+      .hero{padding:100px 20px 60px}
+    }
+    
+    @media(max-width:480px){
+      .hero-actions{flex-direction:column;align-items:center}
+      .stats{grid-template-columns:1fr}
+      .footer-content{grid-template-columns:1fr;text-align:center}
     }
   </style>
 </head>
 <body>
   <!-- Floating Particles -->
-  <div class="particles" id="particles"></div>
+  <div class="particles-container" id="particles"></div>
 
-  <header class="site">
-    <div class="container">
-      <nav>
-        <div class="brand">
-          <div class="logo">
-            <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
-              <rect width="50" height="50" rx="12" fill="url(#logoGradient)"/>
-              <text x="25" y="32" text-anchor="middle" fill="white" font-family="Inter" font-weight="800" font-size="16">ET</text>
-              <defs>
-                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" style="stop-color:#10b981"/>
-                  <stop offset="50%" style="stop-color:#34d399"/>
-                  <stop offset="100%" style="stop-color:#6ee7b7"/>
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
-          <div>
-            <div class="title">EcoTech Energy & Materials</div>
-            <div class="subtitle">Next-Gen Battery Solutions</div>
-          </div>
+  <!-- Header -->
+  <header id="header">
+    <nav>
+      <div class="logo-container">
+        <div class="logo">ET</div>
+        <div class="brand-text">
+          <div class="brand-title">EcoTech Energy & Materials</div>
+          <div class="brand-subtitle">Revolutionary Battery Solutions</div>
         </div>
-        <div class="nav-links">
-          <a href="#investment">Investment</a>
-          <a href="#financials">Financials</a>
-          <a href="#competitive">Advantages</a>
-          <a href="#founders">Leadership</a>
-          <a href="#docs">Documentation</a>
-        </div>
-        <button class="btn" onclick="openContactForm()">Get In Touch</button>
-      </nav>
-    </div>
+      </div>
+      <div class="nav-links">
+        <a href="#investment" class="nav-link">Investment</a>
+        <a href="#financials" class="nav-link">Financials</a>
+        <a href="#competitive" class="nav-link">Advantages</a>
+        <a href="#founders" class="nav-link">Leadership</a>
+        <a href="#docs" class="nav-link">Documentation</a>
+      </div>
+      <button class="btn" onclick="openContactForm()">Get In Touch</button>
+    </nav>
   </header>
 
-  <main class="container">
-    <section class="hero">
-      <h1>Revolutionizing the €2.8B Baltic EV Battery Market</h1>
-      <p class="subtitle">Strategic investment opportunity in cutting-edge battery recycling infrastructure, positioned to dominate regulatory-driven demand across Estonia, Latvia, and Lithuania with breakthrough technology and world-class leadership.</p>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Dominating the €2.8B Baltic EV Revolution</h1>
+      <p class="hero-subtitle">Strategic investment opportunity in next-generation battery recycling infrastructure, positioned to capture explosive regulatory-driven demand across Estonia, Latvia, and Lithuania with breakthrough technology and world-class leadership.</p>
       <div class="hero-actions">
         <a href="#investment" class="btn">Investment Overview</a>
-        <button class="btn outline" onclick="requestExecutiveSummary()">Executive Summary</button>
+        <button class="btn btn-outline" onclick="requestExecutiveSummary()">Executive Summary</button>
       </div>
       
       <div class="stats">
-        <div class="stat fade-in">
+        <div class="stat glass scroll-reveal">
           <div class="stat-value">€2.8B</div>
           <div class="stat-label">Baltic EV Market Size</div>
         </div>
-        <div class="stat fade-in">
+        <div class="stat glass scroll-reveal">
           <div class="stat-value">45%</div>
           <div class="stat-label">Projected CAGR 2024-2030</div>
         </div>
-        <div class="stat fade-in">
+        <div class="stat glass scroll-reveal">
           <div class="stat-value">95%</div>
           <div class="stat-label">Material Recovery Efficiency</div>
         </div>
-        <div class="stat fade-in">
+        <div class="stat glass scroll-reveal">
           <div class="stat-value">2025</div>
           <div class="stat-label">EU Battery Regulation</div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="investment" class="card fade-in">
-      <h2>
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-          <path d="M2 17l10 5 10-5"/>
-          <path d="M2 12l10 5 10-5"/>
-        </svg>
-        Investment Highlights
-      </h2>
-      <p style="color:var(--muted-light);margin:0 0 40px;font-size:1.1rem">Strategic positioning in explosive-growth, regulation-driven market with unbreachable barriers to entry and infinitely scalable business model.</p>
-      
-      <div class="services-grid">
-        <div class="service-card fade-in">
-          <div class="service-icon">📈</div>
-          <h3>Market Domination Strategy</h3>
-          <p>First-mover advantage in Baltic battery recycling with bulletproof infrastructure and regulatory compliance, targeting €50M+ revenue by 2028 with exponential growth trajectory.</p>
-        </div>
-        <div class="service-card fade-in">
-          <div class="service-icon">🏛️</div>
-          <h3>Regulatory Monopoly</h3>
-          <p>EU Battery Regulation mandates 95% recycling by 2030, creating captive demand and fortress-like barriers to entry for competitors seeking market access.</p>
-        </div>
-        <div class="service-card fade-in">
-          <div class="service-icon">🔄</div>
-          <h3>Breakthrough Technology</h3>
-          <p>Revolutionary processes and strategic partnerships enable lightning-fast expansion across Nordic and CEE markets with minimal capital requirements and maximum ROI.</p>
-        </div>
-        <div class="service-card fade-in">
-          <div class="service-icon">💰</div>
-          <h3>Exceptional Unit Economics</h3>
-          <p>40%+ gross margins with recurring revenue streams from long-term enterprise contracts and premium material recovery value capture mechanisms.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="services" class="card fade-in">
-      <h2>
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="3"/>
-          <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"/>
-        </svg>
-        Revolutionary Services
-      </h2>
-      <p style="color:var(--muted-light);margin:0 0 40px;font-size:1.1rem">Comprehensive battery lifecycle management solutions engineered for next-generation mobility operators.</p>
-      
-      <div class="services-grid">
-        <div class="service-card fade-in">
-          <div class="service-icon">🔄</div>
-          <h3>Advanced Collection & Transport</h3>
-          <p>Military-grade collection and transportation of end-of-life lithium-ion batteries from EV and micromobility fleets across the Baltic region with certified handling protocols.</p>
-        </div>
-        <div class="service-card fade-in">
-          <div class="service-icon">⚡</div>
-          <h3>Ultra-Safe Discharge Services</h3>
-          <p>Professional battery discharge and deactivation using industry-leading safety standards to prepare batteries for recycling or disposal processes with zero incidents.</p>
-        </div>
-        <div class="service-card fade-in">
-          <div class="service-icon">♻️</div>
-          <h3>Precision Material Recovery</h3>
-          <p>Advanced recycling processes to recover valuable materials including lithium, cobalt, and nickel with industry-leading 95% material recovery efficiency rates.</p>
-        </div>
-        <div class="service-card fade-in">
-          <div class="service-icon">🔋</div>
-          <h3>Instant Battery Exchange</h3>
-          <p>Lightning-fast battery exchange services for fleet operators, enabling instant swaps and eliminating downtime for electric vehicles and e-scooters completely.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="financials" class="card fade-in">
-      <h2>
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M3 3v18h18"/>
-          <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/>
-        </svg>
-        Explosive Growth Projections
-      </h2>
-      <p style="color:var(--muted-light);margin:0 0 40px;font-size:1.1rem">Conservative growth projections based on regulatory mandates and explosive market demand trajectory.</p>
-      
-      <div class="process-steps">
-        <div class="step fade-in">
-          <div class="step-number">2024</div>
-          <div class="step-content">
-            <h3>Market Entry & Infrastructure Domination</h3>
-            <p>€2.5M revenue target with initial facility operations and key enterprise partnerships. Focus on regulatory compliance and operational excellence foundation.</p>
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Investment Section -->
+    <section id="investment" class="section scroll-reveal">
+      <div class="section-card glass-card hover-3d">
+        <h2 class="section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg>
+          Investment Highlights
+        </h2>
+        <p class="section-subtitle">Strategic positioning in explosive-growth, regulation-driven market with unbreachable barriers to entry and infinitely scalable business model.</p>
+        
+        <div class="grid grid-4">
+          <div class="card glass-card hover-3d scroll-reveal">
+            <div class="card-icon">📈</div>
+            <h3 class="card-title">Market Domination Strategy</h3>
+            <p class="card-text">First-mover advantage in Baltic battery recycling with bulletproof infrastructure and regulatory compliance, targeting €50M+ revenue by 2028.</p>
           </div>
-        </div>
-        <div class="step fade-in">
-          <div class="step-number">2025</div>
-          <div class="step-content">
-            <h3>Rapid Scale & Market Expansion</h3>
-            <p>€8M revenue projection with expanded processing capacity and total Baltic market penetration. 35% gross margin achievement with operational optimization.</p>
+          <div class="card glass-card hover-3d scroll-reveal">
+            <div class="card-icon">🏛️</div>
+            <h3 class="card-title">Regulatory Monopoly</h3>
+            <p class="card-text">EU Battery Regulation mandates 95% recycling by 2030, creating captive demand and fortress-like barriers to entry.</p>
           </div>
-        </div>
-        <div class="step fade-in">
-          <div class="step-number">2026</div>
-          <div class="step-content">
-            <h3>Regional Market Leadership</h3>
-            <p>€18M revenue target with unassailable market leadership position. Technology licensing and strategic partnerships accelerate exponential growth.</p>
+          <div class="card glass-card hover-3d scroll-reveal">
+            <div class="card-icon">🔄</div>
+            <h3 class="card-title">Breakthrough Technology</h3>
+            <p class="card-text">Revolutionary processes enable lightning-fast expansion across Nordic and CEE markets with minimal capital requirements.</p>
           </div>
-        </div>
-        <div class="step fade-in">
-          <div class="step-number">2028</div>
-          <div class="step-content">
-            <h3>Strategic Exit Optimization</h3>
-            <p>€50M+ revenue with 40%+ EBITDA margins. Premium strategic exit opportunities with industry consolidators or IPO readiness fully achieved.</p>
+          <div class="card glass-card hover-3d scroll-reveal">
+            <div class="card-icon">💰</div>
+            <h3 class="card-title">Exceptional Unit Economics</h3>
+            <p class="card-text">40%+ gross margins with recurring revenue streams from long-term enterprise contracts and premium material recovery.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="competitive" class="card fade-in">
-      <h2>
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-        </svg>
-        Unbreachable Competitive Advantages
-      </h2>
-      <p style="color:var(--muted-light);margin:0 0 40px;font-size:1.1rem">Fortress-like market position built on regulatory compliance, operational excellence, and strategic partnerships creating impenetrable barriers.</p>
-      
-      <div class="services-grid">
-        <div class="service-card fade-in">
-          <div class="service-icon">🏆</div>
-          <h3>Unassailable First-Mover Advantage</h3>
-          <p>Established regulatory relationships and compliance infrastructure create fortress-like barriers to entry for competitors in Baltic markets with zero viable alternatives.</p>
-        </div>
-        <div class="service-card fade-in">
-          <div class="service-icon">🤝</div>
-          <h3>Exclusive Strategic Partnerships</h3>
-          <p>Ironclad agreements with major EV fleet operators and OEMs ensure predictable volume and revenue streams through 2030 with automatic renewal clauses.</p>
-        </div>
-        <div class="service-card fade-in">
-          <div class="service-icon">🔬</div>
-          <h3>Revolutionary Proprietary Technology</h3>
-          <p>Breakthrough material recovery processes and safety protocols developed through 20+ years of industry expertise and continuous R&D investment leadership.</p>
-        </div>
-        <div class="service-card fade-in">
-          <div class="service-icon">🌍</div>
-          <h3>ESG Market Leadership</h3>
-          <p>Unmatched environmental credentials and sustainability metrics attract ESG-focused investors and enterprise customers seeking carbon neutrality solutions.</p>
+    <!-- Services Section -->
+    <section id="services" class="section scroll-reveal">
+      <div class="section-card glass-card hover-3d">
+        <h2 class="section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"/>
+          </svg>
+          Revolutionary Services
+        </h2>
+        <p class="section-subtitle">Comprehensive battery lifecycle management solutions engineered for next-generation mobility operators.</p>
+        
+        <div class="grid grid-4">
+          <div class="card glass-card hover-3d scroll-reveal">
+            <div class="card-icon">🔄</div>
+            <h3 class="card-title">Advanced Collection & Transport</h3>
+            <p class="card-text">Military-grade collection and transportation of end-of-life lithium-ion batteries with certified handling protocols.</p>
+          </div>
+          <div class="card glass-card hover-3d scroll-reveal">
+            <div class="card-icon">⚡</div>
+            <h3 class="card-title">Ultra-Safe Discharge Services</h3>
+            <p class="card-text">Professional battery discharge using industry-leading safety standards with zero incident track record.</p>
+          </div>
+          <div class="card glass-card hover-3d scroll-reveal">
+            <div class="card-icon">♻️</div>
+            <h3 class="card-title">Precision Material Recovery</h3>
+            <p class="card-text">Advanced recycling processes recovering lithium, cobalt, and nickel with industry-leading 95% efficiency.</p>
+          </div>
+          <div class="card glass-card hover-3d scroll-reveal">
+            <div class="card-icon">🔋</div>
+            <h3 class="card-title">Instant Battery Exchange</h3>
+            <p class="card-text">Lightning-fast battery exchange services eliminating downtime for electric vehicles and e-scooters.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="founders" class="card fade-in">
-      <h2>
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-          <circle cx="12" cy="7" r="4"/>
-        </svg>
-        World-Class Executive Leadership
-      </h2>
-      <p style="color:var(--muted-light);margin:0 0 40px;font-size:1.1rem">Proven management team with deep industry expertise, advanced technical qualifications, and track record of scaling breakthrough sustainable technology ventures.</p>
-      
-      <div class="founders-grid">
-        <div class="founder-card fade-in">
-          <div class="founder-avatar">
-            <div class="avatar-placeholder">WL</div>
+    <!-- Financials Section -->
+    <section id="financials" class="section scroll-reveal">
+      <div class="section-card glass-card hover-3d">
+        <h2 class="section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 3v18h18"/>
+            <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/>
+          </svg>
+          Explosive Growth Projections
+        </h2>
+        <p class="section-subtitle">Conservative growth projections based on regulatory mandates and explosive market demand trajectory.</p>
+        
+        <div class="grid grid-1">
+          <div class="process-step glass-card scroll-reveal">
+            <div class="step-number">2024</div>
+            <div class="step-content">
+              <h3>Market Entry & Infrastructure Domination</h3>
+              <p>€2.5M revenue target with initial facility operations and key enterprise partnerships. Focus on regulatory compliance and operational excellence.</p>
+            </div>
           </div>
-          <div class="founder-info">
-            <h3>Waqar Lund</h3>
+          <div class="process-step glass-card scroll-reveal">
+            <div class="step-number">2025</div>
+            <div class="step-content">
+              <h3>Rapid Scale & Market Expansion</h3>
+              <p>€8M revenue projection with expanded processing capacity and total Baltic market penetration. 35% gross margin achievement.</p>
+            </div>
+          </div>
+          <div class="process-step glass-card scroll-reveal">
+            <div class="step-number">2026</div>
+            <div class="step-content">
+              <h3>Regional Market Leadership</h3>
+              <p>€18M revenue target with unassailable market leadership position. Technology licensing accelerates exponential growth.</p>
+            </div>
+          </div>
+          <div class="process-step glass-card scroll-reveal">
+            <div class="step-number">2028</div>
+            <div class="step-content">
+              <h3>Strategic Exit Optimization</h3>
+              <p>€50M+ revenue with 40%+ EBITDA margins. Premium strategic exit opportunities or IPO readiness fully achieved.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Competitive Advantages -->
+    <section id="competitive" class="section scroll-reveal">
+      <div class="section-card glass-card hover-3d">
+        <h2 class="section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+          Unbreachable Competitive Advantages
+        </h2>
+        <p class="section-subtitle">Fortress-like market position built on regulatory compliance, operational excellence, and strategic partnerships.</p>
+        
+        <div class="grid grid-4">
+          <div class="card glass-card hover-3d scroll-reveal">
+            <div class="card-icon">🏆</div>
+            <h3 class="card-title">Unassailable First-Mover Advantage</h3>
+            <p class="card-text">Established regulatory relationships create fortress-like barriers to entry for competitors in Baltic markets.</p>
+          </div>
+          <div class="card glass-card hover-3d scroll-reveal">
+            <div class="card-icon">🤝</div>
+            <h3 class="card-title">Exclusive Strategic Partnerships</h3>
+            <p class="card-text">Ironclad agreements with major EV fleet operators ensure predictable revenue streams through 2030.</p>
+          </div>
+          <div class="card glass-card hover-3d scroll-reveal">
+            <div class="card-icon">🔬</div>
+            <h3 class="card-title">Revolutionary Proprietary Technology</h3>
+            <p class="card-text">Breakthrough material recovery processes developed through 20+ years of industry expertise and R&D investment.</p>
+          </div>
+          <div class="card glass-card hover-3d scroll-reveal">
+            <div class="card-icon">🌍</div>
+            <h3 class="card-title">ESG Market Leadership</h3>
+            <p class="card-text">Unmatched environmental credentials attract ESG-focused investors seeking carbon neutrality solutions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Founders Section -->
+    <section id="founders" class="section scroll-reveal">
+      <div class="section-card glass-card hover-3d">
+        <h2 class="section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          World-Class Executive Leadership
+        </h2>
+        <p class="section-subtitle">Proven management team with deep industry expertise and track record of scaling breakthrough sustainable technology ventures.</p>
+        
+        <div class="grid grid-3">
+          <div class="founder-card glass-card hover-3d scroll-reveal">
+            <div class="founder-avatar">WL</div>
+            <h3 class="founder-name">Waqar Lund</h3>
             <div class="founder-title">Chief Executive Officer & Founder</div>
-            <p class="founder-bio">Visionary leader with extensive experience in sustainable technology and environmental engineering. Specializes in developing revolutionary solutions for battery recycling and circular economy initiatives across the Baltic region.</p>
+            <p class="founder-bio">Visionary leader with extensive experience in sustainable technology and environmental engineering. Specializes in developing revolutionary solutions for battery recycling and circular economy initiatives.</p>
             <div class="founder-credentials">
               <span class="credential">PGD Global Sustainability Engineering, Heriot-Watt University Scotland</span>
               <span class="credential">NEBOSH Safety Certification</span>
               <span class="credential">OSHA 30 Certification</span>
-              <span class="credential">Expert in Sustainable Technology Solutions</span>
             </div>
-            <div class="founder-expertise">
+            <div class="expertise-tags">
               <span class="expertise-tag">Sustainability Engineering</span>
               <span class="expertise-tag">Safety Management</span>
               <span class="expertise-tag">Leadership</span>
               <span class="expertise-tag">Innovation</span>
             </div>
           </div>
-        </div>
-        
-        <div class="founder-card fade-in">
-          <div class="founder-avatar">
-            <div class="avatar-placeholder">SL</div>
-          </div>
-          <div class="founder-info">
-            <h3>Muhammad Saleem Lund</h3>
+          
+          <div class="founder-card glass-card hover-3d scroll-reveal">
+            <div class="founder-avatar">SL</div>
+            <h3 class="founder-name">Muhammad Saleem Lund</h3>
             <div class="founder-title">Co-Founder & Technical Director</div>
-            <p class="founder-bio">Industry veteran with over 20 years of specialized experience in battery recycling technologies. Deep expertise in lithium-ion battery processing, material recovery, and sustainable recycling methodologies.</p>
+            <p class="founder-bio">Industry veteran with over 20 years of specialized experience in battery recycling technologies. Deep expertise in lithium-ion battery processing and material recovery.</p>
             <div class="founder-credentials">
               <span class="credential">20+ Years Battery Recycling Experience</span>
               <span class="credential">Technical Expert in Material Recovery</span>
             </div>
-            <div class="founder-expertise">
+            <div class="expertise-tags">
               <span class="expertise-tag">Battery Recycling</span>
               <span class="expertise-tag">Technical Operations</span>
               <span class="expertise-tag">Material Recovery</span>
             </div>
           </div>
-        </div>
-        
-        <div class="founder-card fade-in">
-          <div class="founder-avatar">
-            <div class="avatar-placeholder">MU</div>
-          </div>
-          <div class="founder-info">
-            <h3>Muhammad Umer</h3>
+          
+          <div class="founder-card glass-card hover-3d scroll-reveal">
+            <div class="founder-avatar">MU</div>
+            <h3 class="founder-name">Muhammad Umer</h3>
             <div class="founder-title">Chief Operating Officer</div>
-            <p class="founder-bio">Strategic operations expert with proven track record in project management and operational excellence. Leads day-to-day operations and strategic project implementation across all EcoTech facilities.</p>
+            <p class="founder-bio">Strategic operations expert with proven track record in project management and operational excellence. Leads day-to-day operations and strategic project implementation.</p>
             <div class="founder-credentials">
               <span class="credential">PGD Strategic Project Management, Heriot-Watt University Scotland</span>
               <span class="credential">Operations & Strategic Planning Expert</span>
             </div>
-            <div class="founder-expertise">
+            <div class="expertise-tags">
               <span class="expertise-tag">Project Management</span>
               <span class="expertise-tag">Operations</span>
               <span class="expertise-tag">Strategic Planning</span>
@@ -1281,135 +1196,156 @@
       </div>
     </section>
 
-    <section id="docs" class="card fade-in">
-      <h2>
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-          <polyline points="14,2 14,8 20,8"/>
-          <line x1="16" y1="13" x2="8" y2="13"/>
-          <line x1="16" y1="17" x2="8" y2="17"/>
-          <polyline points="10,9 9,9 8,9"/>
-        </svg>
-        Premium Corporate Documentation
-      </h2>
-      <p style="color:var(--muted-light);margin:0;font-size:1.1rem;line-height:1.5">
-        Access comprehensive business documentation including strategic planning, operational frameworks, and company overview materials for EcoTech Energy & Materials OÜ.
-      </p>
-      
-      <div class="doc-grid">
-        <div class="doc-item fade-in" onclick="requestBusinessPlan()">
-          <div class="doc-icon">📊</div>
-          <div class="doc-content">
-            <h3 class="doc-title">Strategic Business Plan</h3>
-            <p class="doc-desc">Comprehensive business strategy, market analysis, financial projections, and operational roadmap for sustainable battery recycling operations.</p>
-            <div class="doc-meta">
-              <span>Contact for Access</span>
-              <span>•</span>
-              <span>Executive Summary Included</span>
+    <!-- Documentation Section -->
+    <section id="docs" class="section scroll-reveal">
+      <div class="section-card glass-card hover-3d">
+        <h2 class="section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14,2 14,8 20,8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+          Premium Corporate Documentation
+        </h2>
+        <p class="section-subtitle">Access comprehensive business documentation including strategic planning, operational frameworks, and company overview materials.</p>
+        
+        <div class="grid grid-2">
+          <div class="doc-item glass-card hover-3d scroll-reveal" onclick="requestBusinessPlan()">
+            <div class="doc-icon">📊</div>
+            <div class="doc-content">
+              <h3>Strategic Business Plan</h3>
+              <p>Comprehensive business strategy, market analysis, financial projections, and operational roadmap for sustainable battery recycling operations.</p>
+              <div class="doc-meta">
+                <span>Contact for Access</span>
+                <span>•</span>
+                <span>Executive Summary Included</span>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="doc-item fade-in" onclick="requestCompanyOverview()">
-          <div class="doc-icon">📋</div>
-          <div class="doc-content">
-            <h3 class="doc-title">Company Overview</h3>
-            <p class="doc-desc">Concise executive summary highlighting key services, market positioning, and value proposition in the Baltic battery recycling sector.</p>
-            <div class="doc-meta">
-              <span>Contact for Access</span>
-              <span>•</span>
-              <span>Quick Reference</span>
+          
+          <div class="doc-item glass-card hover-3d scroll-reveal" onclick="requestCompanyOverview()">
+            <div class="doc-icon">📋</div>
+            <div class="doc-content">
+              <h3>Company Overview</h3>
+              <p>Concise executive summary highlighting key services, market positioning, and value proposition in the Baltic battery recycling sector.</p>
+              <div class="doc-meta">
+                <span>Contact for Access</span>
+                <span>•</span>
+                <span>Quick Reference</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-  </main>
+  </div>
 
-  <footer id="contact">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h3>EcoTech Energy & Materials OÜ</h3>
-          <p>Leading sustainable battery recycling solutions across Estonia and the Baltic region.</p>
-          <p><strong>Registration:</strong> Estonian Company Registry</p>
-          <p><strong>Certifications:</strong> ISO 14001, WEEE Compliance</p>
-        </div>
-        <div class="footer-section">
-          <h3>Investment Information</h3>
-          <ul>
-            <li><a href="#investment">Investment Highlights</a></li>
-            <li><a href="#financials">Financial Projections</a></li>
-            <li><a href="#competitive">Competitive Advantages</a></li>
-            <li><a href="#founders">Executive Team</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h3>Investor Relations</h3>
-          <p><strong>CEO & Founder:</strong> Waqar Lund</p>
-          <p><strong>Email:</strong> Tebaiwaqar@gmail.com</p>
-          <p><strong>Phone:</strong> +923002096549</p>
-          <p><strong>Headquarters:</strong> Tallinn, Estonia</p>
-          <p><strong>Market Focus:</strong> Baltic Region & Nordic Expansion</p>
-        </div>
-        <div class="footer-section">
-          <h3>Resources</h3>
-          <ul>
-            <li><a href="#docs">Business Plan</a></li>
-            <li><a href="#docs">Company Overview</a></li>
-            <li><a href="#process">Our Process</a></li>
-            <li><a href="#services">Service Areas</a></li>
-          </ul>
-        </div>
+  <!-- Footer -->
+  <footer class="glass">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>EcoTech Energy & Materials OÜ</h3>
+        <p>Leading sustainable battery recycling solutions across Estonia and the Baltic region.</p>
+        <p><strong>Registration:</strong> Estonian Company Registry</p>
+        <p><strong>Certifications:</strong> ISO 14001, WEEE Compliance</p>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2024 EcoTech Energy & Materials OÜ. All rights reserved. | Sustainable battery recycling for a cleaner future.</p>
+      <div class="footer-section">
+        <h3>Investment Information</h3>
+        <ul>
+          <li><a href="#investment">Investment Highlights</a></li>
+          <li><a href="#financials">Financial Projections</a></li>
+          <li><a href="#competitive">Competitive Advantages</a></li>
+          <li><a href="#founders">Executive Team</a></li>
+        </ul>
       </div>
+      <div class="footer-section">
+        <h3>Investor Relations</h3>
+        <p><strong>CEO & Founder:</strong> Waqar Lund</p>
+        <p><strong>Email:</strong> Tebaiwaqar@gmail.com</p>
+        <p><strong>Phone:</strong> +923002096549</p>
+        <p><strong>Headquarters:</strong> Tallinn, Estonia</p>
+      </div>
+      <div class="footer-section">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="#docs">Business Plan</a></li>
+          <li><a href="#docs">Company Overview</a></li>
+          <li><a href="#services">Service Areas</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 EcoTech Energy & Materials OÜ. All rights reserved. | Sustainable battery recycling for a cleaner future.</p>
     </div>
   </footer>
 
   <script>
     // Create floating particles
     function createParticles() {
-      const particlesContainer = document.getElementById('particles');
-      const particleCount = 50;
+      const container = document.getElementById('particles');
+      const particleCount = 60;
       
       for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
         particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 20 + 's';
-        particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
-        particlesContainer.appendChild(particle);
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.animationDuration = (Math.random() * 8 + 12) + 's';
+        container.appendChild(particle);
       }
     }
 
-    // Email contact functions
+    // Header scroll effect
+    function handleScroll() {
+      const header = document.getElementById('header');
+      if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }
+
+    // Scroll reveal animation
+    function revealOnScroll() {
+      const reveals = document.querySelectorAll('.scroll-reveal');
+      
+      reveals.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < window.innerHeight - elementVisible) {
+          element.classList.add('revealed');
+        }
+      });
+    }
+
+    // Email functions
     function openContactForm() {
-      const subject = encodeURIComponent('EcoTech Investment Inquiry - Premium Opportunity');
-      const body = encodeURIComponent('Hello Waqar,\n\nI am extremely interested in learning more about investment opportunities with EcoTech Energy & Materials. Your revolutionary approach to battery recycling has caught my attention.\n\nPlease contact me to discuss this premium investment opportunity further.\n\nBest regards');
+      const subject = encodeURIComponent('EcoTech Investment Inquiry - Revolutionary Opportunity');
+      const body = encodeURIComponent('Hello Waqar,\n\nI am extremely interested in learning more about investment opportunities with EcoTech Energy & Materials. Your revolutionary approach to battery recycling has captured my attention.\n\nPlease contact me to discuss this premium investment opportunity.\n\nBest regards');
       window.open(`mailto:Tebaiwaqar@gmail.com?subject=${subject}&body=${body}`, '_blank');
     }
 
     function requestBusinessPlan() {
       const subject = encodeURIComponent('Request: EcoTech Strategic Business Plan - Investor Access');
-      const body = encodeURIComponent('Hello,\n\nI am interested in reviewing the EcoTech Energy & Materials strategic business plan for investment consideration. Please send me the comprehensive document at your earliest convenience.\n\nI am particularly interested in the financial projections and market analysis sections.\n\nBest regards');
+      const body = encodeURIComponent('Hello,\n\nI am interested in reviewing the EcoTech Energy & Materials strategic business plan for investment consideration. Please send me the comprehensive document.\n\nI am particularly interested in the financial projections and market analysis.\n\nBest regards');
       window.open(`mailto:Tebaiwaqar@gmail.com?subject=${subject}&body=${body}`, '_blank');
     }
 
     function requestCompanyOverview() {
       const subject = encodeURIComponent('Request: EcoTech Company Overview - Investment Materials');
-      const body = encodeURIComponent('Hello,\n\nI would like to receive the EcoTech Energy & Materials company overview document for investment evaluation. Please send it to me along with any additional investor materials.\n\nThank you for your time and consideration.');
+      const body = encodeURIComponent('Hello,\n\nI would like to receive the EcoTech Energy & Materials company overview document for investment evaluation.\n\nThank you for your consideration.');
       window.open(`mailto:Tebaiwaqar@gmail.com?subject=${subject}&body=${body}`, '_blank');
     }
 
     function requestExecutiveSummary() {
       const subject = encodeURIComponent('Request: EcoTech Executive Summary - Investment Opportunity');
-      const body = encodeURIComponent('Hello,\n\nI would like to receive the EcoTech Energy & Materials executive summary for investment consideration. Please send me the document along with key investment highlights.\n\nI am excited about this opportunity in the Baltic battery recycling market.\n\nBest regards');
+      const body = encodeURIComponent('Hello,\n\nI would like to receive the EcoTech Energy & Materials executive summary for investment consideration.\n\nI am excited about this opportunity in the Baltic battery recycling market.\n\nBest regards');
       window.open(`mailto:Tebaiwaqar@gmail.com?subject=${subject}&body=${body}`, '_blank');
     }
 
-    // Smooth scrolling for navigation links
+    // Smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -1423,46 +1359,32 @@
       });
     });
 
-    // Intersection Observer for fade-in animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-
-    // Observe all fade-in elements
-    document.querySelectorAll('.fade-in').forEach(el => {
-      observer.observe(el);
-    });
-
-    // Initialize particles and loading animation
+    // Initialize everything
     window.addEventListener('load', function() {
       createParticles();
+      revealOnScroll();
       
+      // Fade in body
       document.body.style.opacity = '0';
-      document.body.style.transition = 'opacity 0.5s ease';
+      document.body.style.transition = 'opacity 0.8s ease';
       setTimeout(() => {
         document.body.style.opacity = '1';
       }, 100);
     });
 
-    // Add dynamic background effects
+    window.addEventListener('scroll', function() {
+      handleScroll();
+      revealOnScroll();
+    });
+
+    // Mouse tracking effect
     document.addEventListener('mousemove', (e) => {
       const mouseX = e.clientX / window.innerWidth;
       const mouseY = e.clientY / window.innerHeight;
       
-      document.body.style.background = `
-        linear-gradient(135deg, #0a0f1c 0%, #111827 50%, #1f2937 100%),
-        radial-gradient(circle at ${mouseX * 100}% ${mouseY * 100}%, rgba(16,185,129,0.1) 0%, transparent 50%)
-      `;
+      document.body.style.setProperty('--mouse-x', mouseX);
+      document.body.style.setProperty('--mouse-y', mouseY);
     });
   </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'975cddc7a1194906',t:'MTc1NjMxMTMxMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'975ce338079d4906',t:'MTc1NjMxMTUzNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

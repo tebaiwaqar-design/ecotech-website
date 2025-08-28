@@ -8,94 +8,145 @@
 </head>
 <body class="bg-white">
     <!-- Navigation -->
-    <nav class="bg-white shadow-lg border-b border-gray-100 sticky top-0 z-50 backdrop-blur-sm bg-white/95">
-        <div class="container mx-auto px-6 py-5">
+    <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50 backdrop-blur-sm bg-white/98">
+        <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-gradient-to-br from-green-600 to-green-700 rounded-xl flex items-center justify-center shadow-lg">
-                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-blue-900 to-blue-800 rounded-lg flex items-center justify-center">
+                        <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M15.67 4H14V2c0-1.1-.9-2-2-2s-2 .9-2 2v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4zM11 20v-5.5H9L13 7v5.5h2L11 20z"/>
                         </svg>
                     </div>
-                    <span class="text-2xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">BatteryPass</span>
+                    <div>
+                        <div class="text-2xl font-bold text-gray-900">BatteryPass</div>
+                        <div class="text-xs text-gray-500 font-medium">Digital Battery Intelligence</div>
+                    </div>
                 </div>
-                <div class="hidden md:flex space-x-10">
-                    <a href="#home" class="text-gray-600 hover:text-green-600 transition-all duration-300 font-medium relative group">
+                <div class="hidden lg:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-blue-900 transition-colors font-medium">
                         Home
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-600 transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="#services" class="text-gray-600 hover:text-green-600 transition-all duration-300 font-medium relative group">
+                    <a href="#services" class="text-gray-700 hover:text-blue-900 transition-colors font-medium">
                         Solutions
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-600 transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="#portal" class="text-gray-600 hover:text-green-600 transition-all duration-300 font-medium relative group">
+                    <a href="#portal" class="text-gray-700 hover:text-blue-900 transition-colors font-medium">
                         Portal
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-600 transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="#about" class="text-gray-600 hover:text-green-600 transition-all duration-300 font-medium relative group">
-                        About
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-600 transition-all duration-300 group-hover:w-full"></span>
+                    <a href="#compliance" class="text-gray-700 hover:text-blue-900 transition-colors font-medium">
+                        Compliance
                     </a>
-                    <a href="#contact" class="text-gray-600 hover:text-green-600 transition-all duration-300 font-medium relative group">
+                    <a href="#about" class="text-gray-700 hover:text-blue-900 transition-colors font-medium">
+                        Company
+                    </a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-900 transition-colors font-medium">
                         Contact
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-600 transition-all duration-300 group-hover:w-full"></span>
                     </a>
                 </div>
-                <button class="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-                    Get Started
-                </button>
+                <div class="flex items-center space-x-4">
+                    <button class="text-gray-700 hover:text-blue-900 font-medium">
+                        Login
+                    </button>
+                    <button class="bg-blue-900 hover:bg-blue-800 text-white px-6 py-2.5 rounded-lg font-medium transition-colors">
+                        Request Demo
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative bg-gradient-to-br from-slate-50 via-white to-green-50 py-24 overflow-hidden">
-        <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
+    <section id="home" class="relative bg-gradient-to-br from-gray-50 via-white to-blue-50 py-20 overflow-hidden">
         <div class="container mx-auto px-6 relative">
-            <div class="max-w-5xl mx-auto text-center">
-                <div class="mb-8">
-                    <span class="inline-block px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-semibold mb-6">
-                        🌱 EU Battery Regulation Compliant
-                    </span>
-                </div>
-                <h1 class="text-6xl md:text-7xl font-bold mb-8 leading-tight">
-                    <span class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 bg-clip-text text-transparent">Digital Battery</span>
-                    <br>
-                    <span class="bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent">Passport Solutions</span>
-                </h1>
-                <p class="text-xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
-                    Enterprise-grade battery lifecycle tracking and compliance management. 
-                    Ensure complete transparency, sustainability, and regulatory compliance with our blockchain-secured digital passport technology.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-                    <button onclick="scrollToSection('services')" class="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-10 py-4 rounded-xl text-lg font-semibold transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
-                        Explore Solutions
-                        <svg class="inline-block ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
-                    </button>
-                    <button onclick="scrollToSection('portal')" class="border-2 border-gray-300 text-gray-700 hover:border-green-600 hover:text-green-600 px-10 py-4 rounded-xl text-lg font-semibold transition-all duration-300 hover:shadow-lg">
-                        Try Portal Demo
-                    </button>
-                </div>
-                
-                <!-- Trust Indicators -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-green-600 mb-1">500K+</div>
-                        <div class="text-sm text-gray-600 font-medium">Batteries Tracked</div>
+            <div class="max-w-6xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="mb-6">
+                            <span class="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-900 rounded-lg text-sm font-semibold">
+                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                EU Battery Regulation 2023/1542 Compliant
+                            </span>
+                        </div>
+                        <h1 class="text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900">
+                            Enterprise Battery
+                            <span class="text-blue-900">Digital Passport</span>
+                            Platform
+                        </h1>
+                        <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                            Comprehensive battery lifecycle management and regulatory compliance platform. 
+                            Ensure full traceability, sustainability reporting, and regulatory adherence across your entire battery value chain.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 mb-12">
+                            <button onclick="scrollToSection('contact')" class="bg-blue-900 hover:bg-blue-800 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors">
+                                Request Enterprise Demo
+                            </button>
+                            <button onclick="scrollToSection('portal')" class="border-2 border-gray-300 text-gray-700 hover:border-blue-900 hover:text-blue-900 px-8 py-4 rounded-lg text-lg font-semibold transition-colors">
+                                View Live Portal
+                            </button>
+                        </div>
+                        
+                        <!-- Trust Indicators -->
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-gray-900">500K+</div>
+                                    <div class="text-sm text-gray-600">Batteries Tracked</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-gray-900">ISO 27001</div>
+                                    <div class="text-sm text-gray-600">Certified Security</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-green-600 mb-1">50+</div>
-                        <div class="text-sm text-gray-600 font-medium">Countries</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-green-600 mb-1">99.9%</div>
-                        <div class="text-sm text-gray-600 font-medium">Uptime SLA</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-green-600 mb-1">ISO 27001</div>
-                        <div class="text-sm text-gray-600 font-medium">Certified</div>
+                    
+                    <div class="lg:pl-8">
+                        <div class="bg-white rounded-2xl shadow-xl border border-gray-200 p-8">
+                            <div class="text-center mb-6">
+                                <div class="w-16 h-16 bg-blue-900 rounded-xl flex items-center justify-center mx-auto mb-4">
+                                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Regulatory Compliance Dashboard</h3>
+                                <p class="text-gray-600">Real-time compliance monitoring and reporting</p>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                                    <span class="text-sm font-medium text-gray-700">EU Battery Regulation</span>
+                                    <span class="text-green-600 font-semibold">✓ Compliant</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                                    <span class="text-sm font-medium text-gray-700">CBAM Reporting</span>
+                                    <span class="text-green-600 font-semibold">✓ Active</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+                                    <span class="text-sm font-medium text-gray-700">ESG Metrics</span>
+                                    <span class="text-blue-600 font-semibold">📊 Tracking</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6 pt-6 border-t border-gray-200">
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-blue-900 mb-1">99.9%</div>
+                                    <div class="text-sm text-gray-600">Platform Uptime SLA</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -103,51 +154,51 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-24 bg-white">
+    <section id="services" class="py-20 bg-white">
         <div class="container mx-auto px-6">
-            <div class="text-center mb-20">
-                <span class="inline-block px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-semibold mb-4">
+            <div class="text-center mb-16">
+                <span class="inline-block px-4 py-2 bg-blue-100 text-blue-900 rounded-lg text-sm font-semibold mb-4">
                     Enterprise Solutions
                 </span>
-                <h2 class="text-5xl font-bold text-gray-900 mb-6">Comprehensive Battery Intelligence</h2>
+                <h2 class="text-4xl font-bold text-gray-900 mb-6">Comprehensive Battery Lifecycle Management</h2>
                 <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
                     End-to-end digital passport solutions designed for enterprise-scale battery management, 
                     regulatory compliance, and sustainability optimization across the entire value chain.
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-                <div class="group bg-white border border-gray-200 rounded-2xl p-8 hover:shadow-2xl hover:border-green-200 transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                <div class="bg-white border border-gray-200 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+                    <div class="w-14 h-14 bg-blue-900 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Lifecycle Intelligence</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Lifecycle Intelligence</h3>
                     <p class="text-gray-600 mb-6 leading-relaxed">
                         Real-time monitoring and predictive analytics across the complete battery lifecycle, 
                         from raw material sourcing to end-of-life recycling with full audit trails.
                     </p>
-                    <ul class="text-gray-600 space-y-3">
+                    <ul class="text-gray-600 space-y-3 text-sm">
                         <li class="flex items-center">
-                            <div class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-3">
-                                <svg class="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <div class="w-4 h-4 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                <svg class="w-2.5 h-2.5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                                 </svg>
                             </div>
                             Manufacturing provenance & quality data
                         </li>
                         <li class="flex items-center">
-                            <div class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-3">
-                                <svg class="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <div class="w-4 h-4 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                <svg class="w-2.5 h-2.5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                                 </svg>
                             </div>
                             Real-time performance analytics
                         </li>
                         <li class="flex items-center">
-                            <div class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-3">
-                                <svg class="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <div class="w-4 h-4 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                <svg class="w-2.5 h-2.5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                                 </svg>
                             </div>
@@ -156,37 +207,37 @@
                     </ul>
                 </div>
 
-                <div class="group bg-white border border-gray-200 rounded-2xl p-8 hover:shadow-2xl hover:border-blue-200 transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="bg-white border border-gray-200 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+                    <div class="w-14 h-14 bg-green-700 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Regulatory Compliance</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Regulatory Compliance</h3>
                     <p class="text-gray-600 mb-6 leading-relaxed">
                         Automated compliance management for EU Battery Regulation, CBAM, and global standards 
                         with real-time monitoring and automated reporting capabilities.
                     </p>
-                    <ul class="text-gray-600 space-y-3">
+                    <ul class="text-gray-600 space-y-3 text-sm">
                         <li class="flex items-center">
-                            <div class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-3">
-                                <svg class="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <div class="w-4 h-4 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                                <svg class="w-2.5 h-2.5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                                 </svg>
                             </div>
                             EU Battery Regulation (2023/1542)
                         </li>
                         <li class="flex items-center">
-                            <div class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-3">
-                                <svg class="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <div class="w-4 h-4 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                                <svg class="w-2.5 h-2.5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                                 </svg>
                             </div>
                             Carbon Border Adjustment Mechanism
                         </li>
                         <li class="flex items-center">
-                            <div class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-3">
-                                <svg class="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <div class="w-4 h-4 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                                <svg class="w-2.5 h-2.5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                                 </svg>
                             </div>
@@ -195,37 +246,37 @@
                     </ul>
                 </div>
 
-                <div class="group bg-white border border-gray-200 rounded-2xl p-8 hover:shadow-2xl hover:border-purple-200 transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                <div class="bg-white border border-gray-200 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+                    <div class="w-14 h-14 bg-indigo-600 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">ESG & Sustainability</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">ESG & Sustainability</h3>
                     <p class="text-gray-600 mb-6 leading-relaxed">
                         Advanced ESG reporting and circular economy optimization with AI-powered insights 
                         for sustainable battery value chain management and impact measurement.
                     </p>
-                    <ul class="text-gray-600 space-y-3">
+                    <ul class="text-gray-600 space-y-3 text-sm">
                         <li class="flex items-center">
-                            <div class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-3">
-                                <svg class="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <div class="w-4 h-4 bg-indigo-100 rounded-full flex items-center justify-center mr-3">
+                                <svg class="w-2.5 h-2.5 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                                 </svg>
                             </div>
                             Circular economy optimization
                         </li>
                         <li class="flex items-center">
-                            <div class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-3">
-                                <svg class="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <div class="w-4 h-4 bg-indigo-100 rounded-full flex items-center justify-center mr-3">
+                                <svg class="w-2.5 h-2.5 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                                 </svg>
                             </div>
                             Critical material recovery
                         </li>
                         <li class="flex items-center">
-                            <div class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-3">
-                                <svg class="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <div class="w-4 h-4 bg-indigo-100 rounded-full flex items-center justify-center mr-3">
+                                <svg class="w-2.5 h-2.5 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                                 </svg>
                             </div>
@@ -237,8 +288,148 @@
         </div>
     </section>
 
+    <!-- Compliance Section -->
+    <section id="compliance" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <span class="inline-block px-4 py-2 bg-green-100 text-green-800 rounded-lg text-sm font-semibold mb-4">
+                        Regulatory Excellence
+                    </span>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">EU Battery Regulation Compliance</h2>
+                    <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                        Stay ahead of regulatory requirements with our comprehensive compliance management platform, 
+                        designed specifically for the EU Battery Regulation 2023/1542 and related sustainability frameworks.
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Automated Compliance Monitoring</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center mt-1">
+                                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-2">Digital Battery Passport</h4>
+                                    <p class="text-gray-600">Comprehensive digital documentation meeting all EU requirements for battery identification, composition, and lifecycle data.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mt-1">
+                                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-2">Carbon Footprint Tracking</h4>
+                                    <p class="text-gray-600">Automated calculation and reporting of carbon footprint throughout the battery lifecycle, including CBAM compliance.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center mt-1">
+                                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-2">Due Diligence Reporting</h4>
+                                    <p class="text-gray-600">Comprehensive supply chain due diligence documentation for responsible sourcing of critical raw materials.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+                        <h4 class="text-lg font-bold text-gray-900 mb-6">Compliance Dashboard</h4>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-4 bg-green-50 rounded-lg border border-green-200">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                    <span class="font-medium text-gray-900">Battery Passport</span>
+                                </div>
+                                <span class="text-green-600 font-semibold">100% Compliant</span>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-green-50 rounded-lg border border-green-200">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                    <span class="font-medium text-gray-900">Carbon Footprint</span>
+                                </div>
+                                <span class="text-green-600 font-semibold">Verified</span>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-green-50 rounded-lg border border-green-200">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                    <span class="font-medium text-gray-900">Due Diligence</span>
+                                </div>
+                                <span class="text-green-600 font-semibold">Complete</span>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
+                                    <span class="font-medium text-gray-900">Performance Monitoring</span>
+                                </div>
+                                <span class="text-blue-600 font-semibold">Active</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 pt-6 border-t border-gray-200">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-gray-900 mb-1">2025</div>
+                                <div class="text-sm text-gray-600">Ready for Full Implementation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Regulatory Timeline -->
+                <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+                    <h3 class="text-xl font-bold text-gray-900 mb-8 text-center">EU Battery Regulation Timeline</h3>
+                    <div class="relative">
+                        <div class="absolute left-1/2 transform -translate-x-0.5 h-full w-0.5 bg-gray-300"></div>
+                        <div class="space-y-8">
+                            <div class="flex items-center">
+                                <div class="flex-1 text-right pr-8">
+                                    <div class="font-semibold text-gray-900">February 2024</div>
+                                    <div class="text-sm text-gray-600">Due diligence obligations begin</div>
+                                </div>
+                                <div class="w-4 h-4 bg-green-500 rounded-full border-4 border-white shadow-lg relative z-10"></div>
+                                <div class="flex-1 pl-8">
+                                    <div class="text-sm text-gray-600">Supply chain transparency requirements</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex-1 text-right pr-8">
+                                    <div class="text-sm text-gray-600">Carbon footprint declarations mandatory</div>
+                                </div>
+                                <div class="w-4 h-4 bg-blue-500 rounded-full border-4 border-white shadow-lg relative z-10"></div>
+                                <div class="flex-1 pl-8">
+                                    <div class="font-semibold text-gray-900">August 2025</div>
+                                    <div class="text-sm text-gray-600">Carbon footprint requirements</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex-1 text-right pr-8">
+                                    <div class="font-semibold text-gray-900">February 2027</div>
+                                    <div class="text-sm text-gray-600">Digital battery passports mandatory</div>
+                                </div>
+                                <div class="w-4 h-4 bg-indigo-500 rounded-full border-4 border-white shadow-lg relative z-10"></div>
+                                <div class="flex-1 pl-8">
+                                    <div class="text-sm text-gray-600">Full digital passport implementation</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-50">
+    <section id="about" class="py-20 bg-white">
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-12">
@@ -311,20 +502,39 @@
     </section>
 
     <!-- Battery Portal Section -->
-    <section id="portal" class="py-24 bg-gradient-to-br from-slate-50 via-blue-50 to-green-50">
+    <section id="portal" class="py-20 bg-gray-50">
         <div class="container mx-auto px-6">
             <div class="max-w-6xl mx-auto text-center">
-                <span class="inline-block px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold mb-4">
-                    🔍 Live Data Portal
+                <span class="inline-block px-4 py-2 bg-blue-100 text-blue-900 rounded-lg text-sm font-semibold mb-4">
+                    Live Data Portal
                 </span>
-                <h2 class="text-5xl font-bold text-gray-900 mb-6">Battery Intelligence Dashboard</h2>
+                <h2 class="text-4xl font-bold text-gray-900 mb-6">Battery Intelligence Dashboard</h2>
                 <p class="text-xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
                     Access comprehensive battery data, health analytics, and carbon footprint information 
                     through our secure, blockchain-verified digital passport system.
                 </p>
                 
                 <div class="bg-white rounded-2xl shadow-2xl border border-gray-100 p-10 mb-12">
-                    <div class="max-w-2xl mx-auto mb-10">
+                    <!-- Input Method Tabs -->
+                    <div class="flex justify-center mb-8">
+                        <div class="bg-gray-100 rounded-xl p-1 flex">
+                            <button id="manualTab" onclick="switchInputMethod('manual')" class="px-6 py-3 rounded-lg font-semibold transition-all duration-300 bg-white text-green-600 shadow-sm">
+                                <svg class="inline-block w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                                </svg>
+                                Manual Entry
+                            </button>
+                            <button id="qrTab" onclick="switchInputMethod('qr')" class="px-6 py-3 rounded-lg font-semibold transition-all duration-300 text-gray-600 hover:text-green-600">
+                                <svg class="inline-block w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                                </svg>
+                                QR Code Scan
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Manual Entry Section -->
+                    <div id="manualEntry" class="max-w-2xl mx-auto mb-10">
                         <label for="batteryNumber" class="block text-left font-semibold text-gray-800 mb-3 text-lg">Battery Passport ID</label>
                         <div class="flex gap-4">
                             <div class="flex-1 relative">
@@ -350,6 +560,78 @@
                         <p class="text-sm text-gray-500 mt-3">
                             Try sample IDs: <span class="font-mono bg-gray-100 px-2 py-1 rounded">BP-2024-001234</span> or <span class="font-mono bg-gray-100 px-2 py-1 rounded">TEST-123</span>
                         </p>
+                    </div>
+
+                    <!-- QR Code Scanner Section -->
+                    <div id="qrScanner" class="max-w-2xl mx-auto mb-10 hidden">
+                        <div class="text-center">
+                            <h3 class="font-semibold text-gray-800 mb-6 text-lg">Scan Battery QR Code</h3>
+                            
+                            <!-- QR Scanner Interface -->
+                            <div class="bg-gray-50 rounded-xl p-8 mb-6">
+                                <div id="qrScannerActive" class="hidden">
+                                    <div class="relative bg-black rounded-lg overflow-hidden mb-4" style="aspect-ratio: 1;">
+                                        <div class="absolute inset-0 flex items-center justify-center">
+                                            <div class="w-64 h-64 border-4 border-green-500 rounded-lg relative">
+                                                <div class="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-green-500"></div>
+                                                <div class="absolute top-0 right-0 w-8 h-8 border-t-4 border-r-4 border-green-500"></div>
+                                                <div class="absolute bottom-0 left-0 w-8 h-8 border-b-4 border-l-4 border-green-500"></div>
+                                                <div class="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-green-500"></div>
+                                                <div class="absolute inset-0 flex items-center justify-center">
+                                                    <div class="w-full h-1 bg-green-500 opacity-75 animate-pulse"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="absolute bottom-4 left-0 right-0 text-center">
+                                            <p class="text-white text-sm">Position QR code within the frame</p>
+                                        </div>
+                                    </div>
+                                    <button onclick="stopQRScanner()" class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                                        Stop Scanner
+                                    </button>
+                                </div>
+                                
+                                <div id="qrScannerInactive">
+                                    <div class="text-6xl mb-4">📱</div>
+                                    <h4 class="text-xl font-semibold text-gray-800 mb-3">QR Code Scanner</h4>
+                                    <p class="text-gray-600 mb-6">
+                                        Scan the QR code on your battery label for instant access to its digital passport data.
+                                    </p>
+                                    <button onclick="startQRScanner()" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                                        <svg class="inline-block w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                                        </svg>
+                                        Start Camera
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Sample QR Codes for Demo -->
+                            <div class="bg-blue-50 rounded-lg p-6">
+                                <h4 class="font-semibold text-gray-800 mb-4">Demo QR Codes</h4>
+                                <p class="text-sm text-gray-600 mb-4">Try scanning these sample QR codes with your phone camera:</p>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-white p-4 rounded-lg border">
+                                        <div class="w-24 h-24 mx-auto mb-2 bg-black flex items-center justify-center text-white text-xs font-mono">
+                                            QR CODE<br/>BP-2024<br/>-001234
+                                        </div>
+                                        <p class="text-xs text-gray-600">Battery BP-2024-001234</p>
+                                        <button onclick="simulateQRScan('BP-2024-001234')" class="text-blue-600 hover:text-blue-800 text-xs mt-1">
+                                            Simulate Scan
+                                        </button>
+                                    </div>
+                                    <div class="bg-white p-4 rounded-lg border">
+                                        <div class="w-24 h-24 mx-auto mb-2 bg-black flex items-center justify-center text-white text-xs font-mono">
+                                            QR CODE<br/>TEST<br/>-123
+                                        </div>
+                                        <p class="text-xs text-gray-600">Battery TEST-123</p>
+                                        <button onclick="simulateQRScan('TEST-123')" class="text-blue-600 hover:text-blue-800 text-xs mt-1">
+                                            Simulate Scan
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     
                     <div id="batteryData" class="hidden">
@@ -492,33 +774,33 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-24 bg-gradient-to-br from-gray-50 to-white">
+    <section id="contact" class="py-20 bg-white">
         <div class="container mx-auto px-6">
             <div class="max-w-5xl mx-auto text-center">
-                <span class="inline-block px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-semibold mb-4">
-                    🚀 Get Started Today
+                <span class="inline-block px-4 py-2 bg-blue-100 text-blue-900 rounded-lg text-sm font-semibold mb-4">
+                    Enterprise Solutions
                 </span>
-                <h2 class="text-5xl font-bold text-gray-900 mb-6">Ready to Transform Your Battery Management?</h2>
+                <h2 class="text-4xl font-bold text-gray-900 mb-6">Ready to Transform Your Battery Management?</h2>
                 <p class="text-xl text-gray-600 mb-16 max-w-3xl mx-auto leading-relaxed">
                     Join leading enterprises in implementing next-generation battery passport solutions. 
                     Schedule a personalized consultation with our experts.
                 </p>
                 
-                <div class="bg-gradient-to-br from-green-600 via-green-700 to-blue-700 rounded-3xl p-12 text-white shadow-2xl">
+                <div class="bg-gradient-to-br from-blue-900 to-indigo-900 rounded-2xl p-12 text-white shadow-xl">
                     <div class="max-w-3xl mx-auto">
-                        <h3 class="text-3xl font-bold mb-6">Enterprise Solutions Consultation</h3>
-                        <p class="text-lg mb-10 text-green-50">
+                        <h3 class="text-2xl font-bold mb-6">Enterprise Solutions Consultation</h3>
+                        <p class="text-lg mb-10 text-blue-100">
                             Discover how BatteryPass can streamline your compliance, reduce costs, and enhance sustainability reporting across your entire battery value chain.
                         </p>
                         
                         <div class="flex flex-col sm:flex-row gap-6 justify-center mb-12">
-                            <button onclick="showContactForm()" class="bg-white text-green-700 px-10 py-4 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                            <button onclick="showContactForm()" class="bg-white text-blue-900 px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors">
                                 <svg class="inline-block w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 0V6a2 2 0 012-2h4a2 2 0 012 2v1m-6 0h8m-8 0H6a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V9a2 2 0 00-2-2h-2"></path>
                                 </svg>
                                 Schedule Demo
                             </button>
-                            <button onclick="showContactInfo()" class="border-2 border-white text-white px-10 py-4 rounded-xl font-semibold hover:bg-white hover:text-green-700 transition-all duration-300">
+                            <button onclick="showContactInfo()" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition-colors">
                                 <svg class="inline-block w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                                 </svg>
@@ -527,36 +809,36 @@
                         </div>
                         
                         <div id="contactInfo" class="hidden">
-                            <div class="bg-white bg-opacity-15 backdrop-blur-sm rounded-2xl p-8 border border-white border-opacity-20">
-                                <h4 class="text-xl font-semibold mb-6">Enterprise Contact Information</h4>
+                            <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-8 border border-white border-opacity-20">
+                                <h4 class="text-lg font-semibold mb-6">Enterprise Contact Information</h4>
                                 <div class="grid md:grid-cols-3 gap-6">
                                     <div class="text-center">
-                                        <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mx-auto mb-3">
-                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <div class="w-10 h-10 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mx-auto mb-3">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                                             </svg>
                                         </div>
                                         <div class="font-semibold mb-1">Email</div>
-                                        <div class="text-green-100">tebaiwaqar@gmail.com</div>
+                                        <div class="text-blue-100">enterprise@batterypass.com</div>
                                     </div>
                                     <div class="text-center">
-                                        <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mx-auto mb-3">
-                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <div class="w-10 h-10 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mx-auto mb-3">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                                             </svg>
                                         </div>
                                         <div class="font-semibold mb-1">Phone</div>
-                                        <div class="text-green-100">+447718852146</div>
+                                        <div class="text-blue-100">+44 20 7946 0958</div>
                                     </div>
                                     <div class="text-center">
-                                        <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mx-auto mb-3">
-                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <div class="w-10 h-10 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mx-auto mb-3">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                             </svg>
                                         </div>
                                         <div class="font-semibold mb-1">Office</div>
-                                        <div class="text-green-100">123 Green Tech Ave<br>Innovation City, IC 12345</div>
+                                        <div class="text-blue-100">London, United Kingdom<br>Brussels, Belgium</div>
                                     </div>
                                 </div>
                             </div>
@@ -830,6 +1112,96 @@
                 searchBattery();
             }
         });
+
+        // QR Scanner Functions
+        function switchInputMethod(method) {
+            const manualTab = document.getElementById('manualTab');
+            const qrTab = document.getElementById('qrTab');
+            const manualEntry = document.getElementById('manualEntry');
+            const qrScanner = document.getElementById('qrScanner');
+            
+            if (method === 'manual') {
+                // Update tab styles
+                manualTab.className = 'px-6 py-3 rounded-lg font-semibold transition-all duration-300 bg-white text-green-600 shadow-sm';
+                qrTab.className = 'px-6 py-3 rounded-lg font-semibold transition-all duration-300 text-gray-600 hover:text-green-600';
+                
+                // Show/hide sections
+                manualEntry.classList.remove('hidden');
+                qrScanner.classList.add('hidden');
+                
+                // Stop QR scanner if active
+                stopQRScanner();
+            } else {
+                // Update tab styles
+                qrTab.className = 'px-6 py-3 rounded-lg font-semibold transition-all duration-300 bg-white text-blue-600 shadow-sm';
+                manualTab.className = 'px-6 py-3 rounded-lg font-semibold transition-all duration-300 text-gray-600 hover:text-green-600';
+                
+                // Show/hide sections
+                qrScanner.classList.remove('hidden');
+                manualEntry.classList.add('hidden');
+            }
+        }
+
+        function startQRScanner() {
+            const qrScannerActive = document.getElementById('qrScannerActive');
+            const qrScannerInactive = document.getElementById('qrScannerInactive');
+            
+            qrScannerInactive.classList.add('hidden');
+            qrScannerActive.classList.remove('hidden');
+            
+            // Simulate camera activation
+            setTimeout(() => {
+                alert('Camera access would be requested here.\n\nIn a real implementation, this would:\n• Request camera permissions\n• Start video stream\n• Use a QR code library to detect codes\n• Automatically search when QR code is detected\n\nFor now, try the "Simulate Scan" buttons below!');
+            }, 500);
+        }
+
+        function stopQRScanner() {
+            const qrScannerActive = document.getElementById('qrScannerActive');
+            const qrScannerInactive = document.getElementById('qrScannerInactive');
+            
+            qrScannerActive.classList.add('hidden');
+            qrScannerInactive.classList.remove('hidden');
+        }
+
+        function simulateQRScan(batteryId) {
+            // Fill the input field and trigger search
+            document.getElementById('batteryNumber').value = batteryId;
+            
+            // Switch to manual tab to show the filled input
+            switchInputMethod('manual');
+            
+            // Simulate scanning animation
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300';
+            notification.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span>QR Code Scanned: ${batteryId}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Animate notification
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+            }, 100);
+            
+            // Auto-search after a brief delay
+            setTimeout(() => {
+                searchBattery();
+                
+                // Remove notification
+                setTimeout(() => {
+                    notification.classList.add('translate-x-full');
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 300);
+                }, 2000);
+            }, 1000);
+        }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9765f937a36492f0',t:'MTc1NjQwNjgwOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9766081a15b592f0',t:'MTc1NjQwNzQxOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

@@ -437,6 +437,17 @@
         </div>
     </section>
 
+    <!-- Hidden form for Netlify Forms detection -->
+    <form name="demo-request" netlify hidden>
+        <input type="text" name="name" />
+        <input type="email" name="email" />
+        <input type="text" name="company" />
+        <textarea name="message"></textarea>
+        <input type="text" name="to-email" />
+        <input type="text" name="subject" />
+        <textarea name="full-message"></textarea>
+    </form>
+
     <!-- Demo Request Section -->
     <section id="contact" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -778,7 +789,12 @@ This request was submitted on ${new Date().toLocaleString()}
                 });
 
                 if (response.success) {
-                    // Show success message
+                    // Show success message with method-specific text
+                    const successText = response.method === 'mailto' || response.method === 'mailto_fallback' 
+                        ? 'Demo request prepared! Your email client should open with the request ready to send.'
+                        : 'We\'ll contact you within 24 hours to schedule your personalized demo.';
+                    
+                    document.querySelector('#successMessage p').textContent = successText;
                     successMessage.classList.remove('hidden');
                     e.target.reset();
                     
@@ -803,72 +819,45 @@ This request was submitted on ${new Date().toLocaleString()}
             }
         });
 
-        // Real email sending function using Formspree
+        // Reliable email sending function with multiple fallbacks
         async function sendDemoRequest(emailData) {
             try {
-                // Send notification to you (the founder)
-                const founderResponse = await fetch('https://formspree.io/f/xpwagdqr', {
+                // Primary method: Direct form submission to Netlify Forms
+                const response = await fetch('/', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
+                        'Content-Type': 'application/x-www-form-urlencoded',
                     },
-                    body: JSON.stringify({
-                        _to: 'tebaiwaqar@gmail.com',
-                        _subject: `🚀 New Demo Request from ${emailData.company}`,
-                        _replyto: emailData.from_email,
-                        name: emailData.from_name,
-                        email: emailData.from_email,
-                        company: emailData.company,
-                        message: emailData.message,
-                        notification_type: 'founder_notification'
+                    body: new URLSearchParams({
+                        'form-name': 'demo-request',
+                        'name': emailData.from_name,
+                        'email': emailData.from_email,
+                        'company': emailData.company,
+                        'message': emailData.message,
+                        'to-email': 'tebaiwaqar@gmail.com',
+                        'subject': `🚀 New Demo Request from ${emailData.company}`,
+                        'full-message': `
+NEW DEMO REQUEST - TechSolutions Pro
+
+📋 CONTACT DETAILS:
+Name: ${emailData.from_name}
+Email: ${emailData.from_email}
+Company: ${emailData.company}
+Submitted: ${new Date().toLocaleString()}
+
+📝 MESSAGE:
+${emailData.message}
+
+🔔 ACTION REQUIRED:
+Please contact ${emailData.from_name} at ${emailData.from_email} within 24 hours to schedule their demo.
+
+---
+Auto-generated from TechSolutions Pro website
+                        `
                     })
                 });
 
-                // Send confirmation to the customer
-                const customerResponse = await fetch('https://formspree.io/f/xpwagdqr', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        _to: emailData.from_email,
-                        _subject: `Demo Request Confirmed - TechSolutions Pro`,
-                        _replyto: 'tebaiwaqar@gmail.com',
-                        customer_name: emailData.from_name,
-                        customer_email: emailData.from_email,
-                        company: emailData.company,
-                        confirmation_message: `Hi ${emailData.from_name.split(' ')[0]},
-
-Thank you for requesting a demo of TechSolutions Pro! 
-
-✅ Your request has been received and confirmed.
-
-📋 Request Details:
-• Contact: ${emailData.from_name}
-• Company: ${emailData.company}
-• Email: ${emailData.from_email}
-• Submitted: ${new Date().toLocaleString()}
-
-🎯 What happens next:
-• Our team will review your specific needs within 2 hours
-• You'll receive a calendar invite within 24 hours to schedule your personalized demo
-• The demo will be tailored to your business requirements
-• We'll provide custom recommendations and ROI analysis
-
-📞 Need immediate assistance?
-Contact our founder directly:
-• Email: tebaiwaqar@gmail.com  
-• Phone: +447718852146
-
-We're excited to show you how TechSolutions Pro can transform your business operations!
-
-Best regards,
-The TechSolutions Pro Team`,
-                        notification_type: 'customer_confirmation'
-                    })
-                });
-
-                if (founderResponse.ok) {
+                if (response.ok || response.status === 200) {
                     // Create a downloadable summary for the customer
                     const summary = `TechSolutions Pro - Demo Request Confirmation
 
@@ -918,11 +907,56 @@ Keep this file for your records.`;
                     
                     return { success: true };
                 } else {
-                    throw new Error('Failed to send demo request');
+                    // Fallback method: Use mailto link as backup
+                    const mailtoLink = `mailto:tebaiwaqar@gmail.com?subject=${encodeURIComponent(`🚀 Demo Request from ${emailData.company}`)}&body=${encodeURIComponent(`
+NEW DEMO REQUEST
+
+Name: ${emailData.from_name}
+Email: ${emailData.from_email}  
+Company: ${emailData.company}
+Date: ${new Date().toLocaleString()}
+
+Message:
+${emailData.message}
+
+Please reply to ${emailData.from_email} to schedule the demo.
+                    `)}`;
+                    
+                    // Open mailto link
+                    window.open(mailtoLink);
+                    
+                    return { success: true, method: 'mailto' };
                 }
             } catch (error) {
-                console.error('Email sending error:', error);
-                return { success: false, error: error.message };
+                console.error('Primary email method failed, trying backup...', error);
+                
+                // Final fallback: Create mailto link and show instructions
+                try {
+                    const mailtoLink = `mailto:tebaiwaqar@gmail.com?subject=${encodeURIComponent(`🚀 Demo Request from ${emailData.company}`)}&body=${encodeURIComponent(`
+NEW DEMO REQUEST
+
+Name: ${emailData.from_name}
+Email: ${emailData.from_email}  
+Company: ${emailData.company}
+Date: ${new Date().toLocaleString()}
+
+Message:
+${emailData.message}
+
+Please reply to schedule the demo.
+                    `)}`;
+                    
+                    // Open mailto link
+                    window.open(mailtoLink);
+                    
+                    return { success: true, method: 'mailto_fallback' };
+                } catch (mailtoError) {
+                    console.error('All email methods failed:', mailtoError);
+                    return { 
+                        success: false, 
+                        error: 'Unable to send automatically. Please email tebaiwaqar@gmail.com directly with your demo request.' 
+                    };
+                }
             }
         }
 
@@ -963,5 +997,5 @@ Keep this file for your records.`;
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97668fe1443092f0',t:'MTc1NjQxMjk3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'976698f6268992f0',t:'MTc1NjQxMzM1MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

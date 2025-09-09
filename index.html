@@ -151,6 +151,10 @@
                             <i data-lucide="bar-chart-3" class="mr-3 h-5 w-5"></i>
                             Reports
                         </button>
+                        <button onclick="switchTab('audit')" id="nav-audit" class="nav-btn group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900 w-full text-left">
+                            <i data-lucide="search" class="mr-3 h-5 w-5"></i>
+                            Audit
+                        </button>
                     </nav>
                 </div>
                 
@@ -183,7 +187,7 @@
                                 </div>
                             </div>
                             <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-600">Active Batteries</p>
+                                <p class="text-sm font-medium text-gray-600" data-translate="activeBatteries">Active Batteries</p>
                                 <p class="text-2xl font-bold text-gray-900">2,847</p>
                                 <p class="text-sm text-green-600">+12% this month</p>
                             </div>
@@ -198,7 +202,7 @@
                                 </div>
                             </div>
                             <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-600">Issued Passports</p>
+                                <p class="text-sm font-medium text-gray-600" data-translate="issuedPassports">Issued Passports</p>
                                 <p class="text-2xl font-bold text-gray-900">2,654</p>
                                 <p class="text-sm text-green-600">+8% from last month</p>
                             </div>
@@ -213,7 +217,7 @@
                                 </div>
                             </div>
                             <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-600">Needs Attention</p>
+                                <p class="text-sm font-medium text-gray-600" data-translate="needsAttention">Needs Attention</p>
                                 <p class="text-2xl font-bold text-gray-900">23</p>
                                 <p class="text-sm text-yellow-600">Compliance issues</p>
                             </div>
@@ -228,7 +232,7 @@
                                 </div>
                             </div>
                             <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-600">Recycled</p>
+                                <p class="text-sm font-medium text-gray-600" data-translate="recycled">Recycled</p>
                                 <p class="text-2xl font-bold text-gray-900">1,234</p>
                                 <p class="text-sm text-green-600">94% efficiency</p>
                             </div>
@@ -240,7 +244,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
                     <div class="bg-white rounded-lg shadow-sm border">
                         <div class="p-6 border-b border-gray-200">
-                            <h3 class="text-lg font-semibold text-gray-900">Recent Activity</h3>
+                            <h3 class="text-lg font-semibold text-gray-900" data-translate="recentActivity">Recent Activity</h3>
                         </div>
                         <div class="p-6">
                             <div class="space-y-4">
@@ -286,7 +290,7 @@
 
                     <div class="bg-white rounded-lg shadow-sm border">
                         <div class="p-6 border-b border-gray-200">
-                            <h3 class="text-lg font-semibold text-gray-900">EU Compliance Status</h3>
+                            <h3 class="text-lg font-semibold text-gray-900" data-translate="complianceStatus">EU Compliance Status</h3>
                         </div>
                         <div class="p-6">
                             <div class="space-y-4">
@@ -329,7 +333,7 @@
                         <div class="h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                             <i data-lucide="plus" class="h-6 w-6 text-green-600"></i>
                         </div>
-                        <h3 class="font-semibold text-gray-900 mb-2">Register Battery</h3>
+                        <h3 class="font-semibold text-gray-900 mb-2" data-translate="registerBattery">Register Battery</h3>
                         <p class="text-sm text-gray-600 mb-4">Add a new battery to the system</p>
                         <button onclick="openBatteryModal()" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
                             Start
@@ -340,9 +344,9 @@
                         <div class="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                             <i data-lucide="file-text" class="h-6 w-6 text-blue-600"></i>
                         </div>
-                        <h3 class="font-semibold text-gray-900 mb-2">Generate Passport</h3>
+                        <h3 class="font-semibold text-gray-900 mb-2" data-translate="generatePassport">Generate Passport</h3>
                         <p class="text-sm text-gray-600 mb-4">Create a battery passport</p>
-                        <button onclick="switchTab('passports')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                        <button onclick="switchTab('passports')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors" data-translate="generate">
                             Generate
                         </button>
                     </div>
@@ -351,7 +355,7 @@
                         <div class="h-12 w-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                             <i data-lucide="bar-chart-3" class="h-6 w-6 text-purple-600"></i>
                         </div>
-                        <h3 class="font-semibold text-gray-900 mb-2">View Reports</h3>
+                        <h3 class="font-semibold text-gray-900 mb-2" data-translate="viewReports">View Reports</h3>
                         <p class="text-sm text-gray-600 mb-4">Analyze data and trends</p>
                         <button onclick="switchTab('reports')" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors">
                             View
@@ -369,7 +373,7 @@
                     </div>
                     <button onclick="openBatteryModal()" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center">
                         <i data-lucide="plus" class="w-4 h-4 mr-2"></i>
-                        New Battery
+                        <span data-translate="newBattery">New Battery</span>
                     </button>
                 </div>
 
@@ -377,19 +381,19 @@
                 <div class="bg-white rounded-lg shadow-sm border p-4 mb-6">
                     <div class="flex flex-wrap gap-4">
                         <select class="border rounded-md px-3 py-2 text-sm">
-                            <option>All Types</option>
-                            <option>Lithium-ion</option>
-                            <option>Nickel Metal Hydride</option>
-                            <option>Lead Acid</option>
+                            <option data-translate="allTypes">All Types</option>
+                            <option data-translate="lithiumIon">Lithium-ion</option>
+                            <option data-translate="nickelMetalHydride">Nickel Metal Hydride</option>
+                            <option data-translate="leadAcid">Lead Acid</option>
                         </select>
                         <select class="border rounded-md px-3 py-2 text-sm">
-                            <option>All Status</option>
-                            <option>Active</option>
-                            <option>In Use</option>
-                            <option>Recycling</option>
+                            <option data-translate="allStatus">All Status</option>
+                            <option data-translate="active">Active</option>
+                            <option data-translate="inUse">In Use</option>
+                            <option data-translate="recycling">Recycling</option>
                         </select>
-                        <input type="text" placeholder="Search by ID..." class="border rounded-md px-3 py-2 text-sm flex-1 min-w-0">
-                        <button onclick="showNotification('Filters applied', 'success')" class="bg-green-600 text-white px-4 py-2 rounded-md text-sm hover:bg-green-700 transition-colors">
+                        <input type="text" placeholder="Search by ID..." class="border rounded-md px-3 py-2 text-sm flex-1 min-w-0" data-translate="searchPlaceholder">
+                        <button onclick="showNotification('Filters applied', 'success')" class="bg-green-600 text-white px-4 py-2 rounded-md text-sm hover:bg-green-700 transition-colors" data-translate="filter">
                             Filter
                         </button>
                     </div>
@@ -408,7 +412,7 @@
                                     <p class="text-sm text-gray-500">LT-BAT-2024-001847</p>
                                 </div>
                             </div>
-                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Active</span>
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full" data-translate="active">Active</span>
                         </div>
                         <div class="space-y-2 mb-4">
                             <div class="flex justify-between text-sm">
@@ -449,7 +453,7 @@
                                     <p class="text-sm text-gray-500">LT-BAT-2024-001846</p>
                                 </div>
                             </div>
-                            <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">In Use</span>
+                            <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full" data-translate="inUse">In Use</span>
                         </div>
                         <div class="space-y-2 mb-4">
                             <div class="flex justify-between text-sm">
@@ -490,7 +494,7 @@
                                     <p class="text-sm text-gray-500">LT-BAT-2024-001845</p>
                                 </div>
                             </div>
-                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Recycling</span>
+                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full" data-translate="recycling">Recycling</span>
                         </div>
                         <div class="space-y-2 mb-4">
                             <div class="flex justify-between text-sm">
@@ -526,12 +530,12 @@
             <div id="passports-content" class="tab-content p-6">
                 <div class="mb-6 flex justify-between items-center">
                     <div>
-                        <h1 class="text-2xl font-bold text-gray-900">Baterijų pasai</h1>
-                        <p class="text-gray-600">Generuoti ir valdyti baterijų paso dokumentus.</p>
+                        <h1 class="text-2xl font-bold text-gray-900">Battery Passports</h1>
+                        <p class="text-gray-600">Generate and manage battery passport documents.</p>
                     </div>
                     <button onclick="openPassportModal()" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center">
                         <i data-lucide="file-plus" class="w-4 h-4 mr-2"></i>
-                        Generuoti pasą
+                        <span data-translate="generatePassport">Generate Passport</span>
                     </button>
                 </div>
 
@@ -545,20 +549,20 @@
                                         <i data-lucide="file-text" class="h-6 w-6 text-green-600"></i>
                                     </div>
                                     <div>
-                                        <h3 class="font-semibold text-gray-900">Tesla Model S Baterijos pasas</h3>
-                                        <p class="text-sm text-gray-500">LT-BAT-2024-001847 • Sukurta: 2024-01-15</p>
+                                        <h3 class="font-semibold text-gray-900">Tesla Model S Battery Passport</h3>
+                                        <p class="text-sm text-gray-500">LT-BAT-2024-001847 • Created: 2024-01-15</p>
                                         <div class="flex items-center space-x-4 mt-1">
-                                            <span class="text-xs text-gray-500">100 kWh • Ličio jonų • Panasonic</span>
+                                            <span class="text-xs text-gray-500">100 kWh • Lithium-ion • Panasonic</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="flex items-center space-x-3">
-                                    <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Galioja</span>
-                                    <button onclick="showNotification('Atsisiunčiamas PDF...', 'success')" class="text-green-600 hover:text-green-700 text-sm font-medium">
-                                        Atsisiųsti
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full" data-translate="valid">Valid</span>
+                                    <button onclick="showNotification('Downloading PDF...', 'success')" class="text-green-600 hover:text-green-700 text-sm font-medium" data-translate="download">
+                                        Download
                                     </button>
-                                    <button onclick="showNotification('Atidaromas QR kodas...', 'info')" class="text-blue-600 hover:text-blue-700 text-sm font-medium">
-                                        QR kodas
+                                    <button onclick="showNotification('Opening QR code...', 'info')" class="text-blue-600 hover:text-blue-700 text-sm font-medium" data-translate="qrCode">
+                                        QR Code
                                     </button>
                                 </div>
                             </div>
@@ -569,20 +573,20 @@
                                         <i data-lucide="file-text" class="h-6 w-6 text-blue-600"></i>
                                     </div>
                                     <div>
-                                        <h3 class="font-semibold text-gray-900">BMW i3 Baterijos pasas</h3>
-                                        <p class="text-sm text-gray-500">LT-BAT-2024-001846 • Sukurta: 2024-01-14</p>
+                                        <h3 class="font-semibold text-gray-900">BMW i3 Battery Passport</h3>
+                                        <p class="text-sm text-gray-500">LT-BAT-2024-001846 • Created: 2024-01-14</p>
                                         <div class="flex items-center space-x-4 mt-1">
-                                            <span class="text-xs text-gray-500">42.2 kWh • Ličio jonų • Samsung SDI</span>
+                                            <span class="text-xs text-gray-500">42.2 kWh • Lithium-ion • Samsung SDI</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="flex items-center space-x-3">
-                                    <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Galioja</span>
-                                    <button onclick="showNotification('Atsisiunčiamas PDF...', 'success')" class="text-green-600 hover:text-green-700 text-sm font-medium">
-                                        Atsisiųsti
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full" data-translate="valid">Valid</span>
+                                    <button onclick="showNotification('Downloading PDF...', 'success')" class="text-green-600 hover:text-green-700 text-sm font-medium" data-translate="download">
+                                        Download
                                     </button>
-                                    <button onclick="showNotification('Atidaromas QR kodas...', 'info')" class="text-blue-600 hover:text-blue-700 text-sm font-medium">
-                                        QR kodas
+                                    <button onclick="showNotification('Opening QR code...', 'info')" class="text-blue-600 hover:text-blue-700 text-sm font-medium" data-translate="qrCode">
+                                        QR Code
                                     </button>
                                 </div>
                             </div>
@@ -593,20 +597,20 @@
                                         <i data-lucide="file-text" class="h-6 w-6 text-purple-600"></i>
                                     </div>
                                     <div>
-                                        <h3 class="font-semibold text-gray-900">Nissan Leaf Baterijos pasas</h3>
-                                        <p class="text-sm text-gray-500">LT-BAT-2024-001845 • Sukurta: 2024-01-13</p>
+                                        <h3 class="font-semibold text-gray-900">Nissan Leaf Battery Passport</h3>
+                                        <p class="text-sm text-gray-500">LT-BAT-2024-001845 • Created: 2024-01-13</p>
                                         <div class="flex items-center space-x-4 mt-1">
-                                            <span class="text-xs text-gray-500">40 kWh • Ličio jonų • AESC</span>
+                                            <span class="text-xs text-gray-500">40 kWh • Lithium-ion • AESC</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="flex items-center space-x-3">
-                                    <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Atnaujinamas</span>
-                                    <button onclick="showNotification('Atsisiunčiamas PDF...', 'success')" class="text-green-600 hover:text-green-700 text-sm font-medium">
-                                        Atsisiųsti
+                                    <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full" data-translate="updating">Updating</span>
+                                    <button onclick="showNotification('Downloading PDF...', 'success')" class="text-green-600 hover:text-green-700 text-sm font-medium">
+                                        Download
                                     </button>
-                                    <button onclick="showNotification('Atidaromas QR kodas...', 'info')" class="text-blue-600 hover:text-blue-700 text-sm font-medium">
-                                        QR kodas
+                                    <button onclick="showNotification('Opening QR code...', 'info')" class="text-blue-600 hover:text-blue-700 text-sm font-medium">
+                                        QR Code
                                     </button>
                                 </div>
                             </div>
@@ -618,8 +622,8 @@
             <!-- Compliance Tab -->
             <div id="compliance-content" class="tab-content p-6">
                 <div class="mb-6">
-                    <h1 class="text-2xl font-bold text-gray-900">ES atitikties valdymas</h1>
-                    <p class="text-gray-600">Stebėti ir užtikrinti atitiktį Europos Sąjungos reglamentams.</p>
+                    <h1 class="text-2xl font-bold text-gray-900">EU Compliance Management</h1>
+                    <p class="text-gray-600">Monitor and ensure compliance with European Union regulations.</p>
                 </div>
 
                 <!-- Compliance Overview -->
@@ -744,8 +748,8 @@
             <!-- Sustainability Tab -->
             <div id="sustainability-content" class="tab-content p-6">
                 <div class="mb-6">
-                    <h1 class="text-2xl font-bold text-gray-900">Tvarumo rodikliai</h1>
-                    <p class="text-gray-600">Stebėti aplinkosaugos poveikį ir tvarumo tikslus.</p>
+                    <h1 class="text-2xl font-bold text-gray-900">Sustainability Metrics</h1>
+                    <p class="text-gray-600">Monitor environmental impact and sustainability goals.</p>
                 </div>
 
                 <!-- Sustainability Metrics -->
@@ -875,8 +879,8 @@
             <!-- Recycling Tab -->
             <div id="recycling-content" class="tab-content p-6">
                 <div class="mb-6">
-                    <h1 class="text-2xl font-bold text-gray-900">Perdirbimo valdymas</h1>
-                    <p class="text-gray-600">Stebėti baterijų perdirbimo procesus ir efektyvumą.</p>
+                    <h1 class="text-2xl font-bold text-gray-900">Recycling Management</h1>
+                    <p class="text-gray-600">Monitor battery recycling processes and efficiency.</p>
                 </div>
 
                 <!-- Recycling Stats -->
@@ -1025,11 +1029,206 @@
                 </div>
             </div>
 
+            <!-- Audit Tab -->
+            <div id="audit-content" class="tab-content p-6">
+                <div class="mb-6">
+                    <h1 class="text-2xl font-bold text-gray-900">System Audit</h1>
+                    <p class="text-gray-600">Track all system activities and maintain audit trails for compliance.</p>
+                </div>
+
+                <!-- Audit Overview -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white rounded-lg shadow-sm border p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <div class="h-10 w-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <i data-lucide="activity" class="h-5 w-5 text-blue-600"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">Total Activities</p>
+                                <p class="text-2xl font-bold text-gray-900">15,847</p>
+                                <p class="text-sm text-green-600">+234 today</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-sm border p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <div class="h-10 w-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                    <i data-lucide="user-check" class="h-5 w-5 text-green-600"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">User Actions</p>
+                                <p class="text-2xl font-bold text-gray-900">12,456</p>
+                                <p class="text-sm text-blue-600">187 today</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-sm border p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <div class="h-10 w-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                    <i data-lucide="alert-triangle" class="h-5 w-5 text-yellow-600"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">Security Events</p>
+                                <p class="text-2xl font-bold text-gray-900">23</p>
+                                <p class="text-sm text-yellow-600">3 this week</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-sm border p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <div class="h-10 w-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                                    <i data-lucide="database" class="h-5 w-5 text-purple-600"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">Data Changes</p>
+                                <p class="text-2xl font-bold text-gray-900">3,391</p>
+                                <p class="text-sm text-green-600">47 today</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Audit Filters -->
+                <div class="bg-white rounded-lg shadow-sm border p-4 mb-6">
+                    <div class="flex flex-wrap gap-4">
+                        <select class="border rounded-md px-3 py-2 text-sm">
+                            <option>All Activities</option>
+                            <option>User Actions</option>
+                            <option>System Events</option>
+                            <option>Data Changes</option>
+                            <option>Security Events</option>
+                        </select>
+                        <select class="border rounded-md px-3 py-2 text-sm">
+                            <option>All Users</option>
+                            <option>Waqar Lund</option>
+                            <option>Mohammad Saleem Lund</option>
+                            <option>Muhammad Umer</option>
+                            <option>System</option>
+                        </select>
+                        <input type="date" class="border rounded-md px-3 py-2 text-sm">
+                        <input type="date" class="border rounded-md px-3 py-2 text-sm">
+                        <input type="text" placeholder="Search activities..." class="border rounded-md px-3 py-2 text-sm flex-1 min-w-0">
+                        <button onclick="showNotification('Audit filters applied', 'success')" class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition-colors">
+                            Search
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Audit Log -->
+                <div class="bg-white rounded-lg shadow-sm border">
+                    <div class="p-6 border-b border-gray-200">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-gray-900">Audit Trail</h3>
+                            <button onclick="showNotification('Exporting audit log...', 'info')" class="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center">
+                                <i data-lucide="download" class="w-4 h-4 mr-1"></i>
+                                Export
+                            </button>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Timestamp</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Resource</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">IP Address</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-01-15 14:32:15</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Waqar Lund</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Battery Registration</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">LT-BAT-2024-001847</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Success</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">192.168.1.100</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-01-15 14:28:42</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Mohammad Saleem Lund</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Passport Generation</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">LT-BAT-2024-001846</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Success</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">192.168.1.101</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-01-15 14:15:33</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Muhammad Umer</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Compliance Check</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">BMW i3 Battery</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Warning</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">192.168.1.102</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-01-15 13:45:18</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">System</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Automated Backup</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Database</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Success</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">127.0.0.1</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-01-15 13:22:07</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Waqar Lund</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">User Login</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Authentication</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Success</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">192.168.1.100</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-01-15 12:58:44</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">System</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Security Scan</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">All Systems</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full">Alert</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">127.0.0.1</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="px-6 py-3 border-t border-gray-200">
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm text-gray-700">Showing 1-6 of 15,847 results</p>
+                            <div class="flex space-x-2">
+                                <button class="px-3 py-1 border rounded text-sm hover:bg-gray-50">Previous</button>
+                                <button class="px-3 py-1 border rounded text-sm hover:bg-gray-50">Next</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Reports Tab -->
             <div id="reports-content" class="tab-content p-6">
                 <div class="mb-6">
-                    <h1 class="text-2xl font-bold text-gray-900">Ataskaitos ir analitika</h1>
-                    <p class="text-gray-600">Išsamūs duomenų analizės ir atitikties raportai.</p>
+                    <h1 class="text-2xl font-bold text-gray-900">Reports & Analytics</h1>
+                    <p class="text-gray-600">Comprehensive data analysis and compliance reports.</p>
                 </div>
 
                 <!-- Report Categories -->
@@ -1265,6 +1464,7 @@
                 sustainability: 'Sustainability',
                 recycling: 'Recycling',
                 reports: 'Reports',
+                audit: 'Audit',
                 newBattery: 'New Battery',
                 
                 // Dashboard
@@ -1322,6 +1522,10 @@
                 reportsSubtitle: 'Comprehensive data analysis and compliance reports.',
                 generate: 'Generate',
                 
+                // Audit
+                auditTitle: 'System Audit',
+                auditSubtitle: 'Track all system activities and maintain audit trails for compliance.',
+                
                 // Modals
                 registerNewBattery: 'Register New Battery',
                 manufacturer: 'Manufacturer',
@@ -1370,6 +1574,7 @@
                 sustainability: 'Tvarumas',
                 recycling: 'Perdirbimas',
                 reports: 'Ataskaitos',
+                audit: 'Auditas',
                 newBattery: 'Nauja baterija',
                 
                 // Dashboard
@@ -1426,6 +1631,10 @@
                 reportsTitle: 'Ataskaitos ir analitika',
                 reportsSubtitle: 'Išsamūs duomenų analizės ir atitikties raportai.',
                 generate: 'Generuoti',
+                
+                // Audit
+                auditTitle: 'Sistemos auditas',
+                auditSubtitle: 'Sekti visą sistemos veiklą ir palaikyti audito pėdsakus atitikčiai.',
                 
                 // Modals
                 registerNewBattery: 'Registruoti naują bateriją',
@@ -1487,6 +1696,7 @@
             document.querySelector('#nav-sustainability').innerHTML = `<i data-lucide="leaf" class="mr-3 h-5 w-5"></i>${t.sustainability}`;
             document.querySelector('#nav-recycling').innerHTML = `<i data-lucide="recycle" class="mr-3 h-5 w-5"></i>${t.recycling}`;
             document.querySelector('#nav-reports').innerHTML = `<i data-lucide="bar-chart-3" class="mr-3 h-5 w-5"></i>${t.reports}`;
+            document.querySelector('#nav-audit').innerHTML = `<i data-lucide="search" class="mr-3 h-5 w-5"></i>${t.audit}`;
             
             // Update sidebar button
             document.querySelector('#sidebarNewBattery').innerHTML = `<i data-lucide="plus" class="w-4 h-4 mr-2"></i>${t.newBattery}`;
@@ -1499,9 +1709,105 @@
             updateTabContent('sustainability', t.sustainabilityTitle, t.sustainabilitySubtitle);
             updateTabContent('recycling', t.recyclingTitle, t.recyclingSubtitle);
             updateTabContent('reports', t.reportsTitle, t.reportsSubtitle);
+            updateTabContent('audit', t.auditTitle, t.auditSubtitle);
+            
+            // Update all content throughout the platform
+            updateAllContent();
             
             // Re-initialize icons after content update
             lucide.createIcons();
+        }
+
+        function updateAllContent() {
+            const t = translations[currentLanguage];
+            
+            // Update dashboard stats
+            updateElementText('[data-translate="activeBatteries"]', t.activeBatteries);
+            updateElementText('[data-translate="issuedPassports"]', t.issuedPassports);
+            updateElementText('[data-translate="needsAttention"]', t.needsAttention);
+            updateElementText('[data-translate="recycled"]', t.recycled);
+            updateElementText('[data-translate="recentActivity"]', t.recentActivity);
+            updateElementText('[data-translate="complianceStatus"]', t.complianceStatus);
+            
+            // Update buttons
+            updateElementText('[data-translate="registerBattery"]', t.registerBattery);
+            updateElementText('[data-translate="generatePassport"]', t.generatePassport);
+            updateElementText('[data-translate="viewReports"]', t.viewReports);
+            updateElementText('[data-translate="newBattery"]', t.newBattery);
+            updateElementText('[data-translate="filter"]', t.filter);
+            updateElementText('[data-translate="generate"]', t.generate);
+            updateElementText('[data-translate="download"]', t.download);
+            updateElementText('[data-translate="qrCode"]', t.qrCode);
+            
+            // Update form labels and placeholders
+            updateElementText('[data-translate="manufacturer"]', t.manufacturer);
+            updateElementText('[data-translate="model"]', t.model);
+            updateElementText('[data-translate="batteryType"]', t.batteryType);
+            updateElementText('[data-translate="capacity"]', t.capacity);
+            updateElementText('[data-translate="manufacturingDate"]', t.manufacturingDate);
+            updateElementText('[data-translate="serialNumber"]', t.serialNumber);
+            updateElementText('[data-translate="additionalInfo"]', t.additionalInfo);
+            updateElementText('[data-translate="registerBatteryBtn"]', t.registerBatteryBtn);
+            updateElementText('[data-translate="cancel"]', t.cancel);
+            
+            // Update status labels
+            updateElementText('[data-translate="active"]', t.active);
+            updateElementText('[data-translate="inUse"]', t.inUse);
+            updateElementText('[data-translate="recycling"]', t.recycling);
+            updateElementText('[data-translate="valid"]', t.valid);
+            updateElementText('[data-translate="updating"]', t.updating);
+            
+            // Update select options
+            updateSelectOptions('[data-translate="allTypes"]', t.allTypes);
+            updateSelectOptions('[data-translate="allStatus"]', t.allStatus);
+            updateSelectOptions('[data-translate="lithiumIon"]', t.lithiumIon);
+            updateSelectOptions('[data-translate="nickelMetalHydride"]', t.nickelMetalHydride);
+            updateSelectOptions('[data-translate="leadAcid"]', t.leadAcid);
+            updateSelectOptions('[data-translate="other"]', t.other);
+            
+            // Update placeholders
+            updatePlaceholder('[data-translate="searchPlaceholder"]', t.searchPlaceholder);
+            
+            // Update modal titles
+            updateElementText('[data-translate="registerNewBattery"]', t.registerNewBattery);
+            updateElementText('[data-translate="generatePassportModal"]', t.generatePassportBtn);
+            
+            // Update sustainability metrics
+            updateElementText('[data-translate="carbonFootprint"]', t.carbonFootprint);
+            updateElementText('[data-translate="recyclingEfficiency"]', t.recyclingEfficiency);
+            updateElementText('[data-translate="renewableEnergy"]', t.renewableEnergy);
+            
+            // Update recycling content
+            updateElementText('[data-translate="recycledThisMonth"]', t.recycledThisMonth);
+            updateElementText('[data-translate="efficiency"]', t.efficiency);
+            updateElementText('[data-translate="averageTime"]', t.averageTime);
+            updateElementText('[data-translate="awaitingPickup"]', t.awaitingPickup);
+            
+            // Update compliance content
+            updateElementText('[data-translate="batteryRegulation"]', t.batteryRegulation);
+            updateElementText('[data-translate="requiresAttention"]', t.requiresAttention);
+            updateElementText('[data-translate="regulatoryUpdates"]', t.regulatoryUpdates);
+        }
+
+        function updateElementText(selector, text) {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(element => {
+                if (element) element.textContent = text;
+            });
+        }
+
+        function updateSelectOptions(selector, text) {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(element => {
+                if (element) element.textContent = text;
+            });
+        }
+
+        function updatePlaceholder(selector, text) {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(element => {
+                if (element) element.placeholder = text;
+            });
         }
 
         function updateTabContent(tabName, title, subtitle) {
@@ -1624,5 +1930,5 @@
             }, 1000);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97c95826576803e8',t:'MTc1NzQ0ODc4Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97c96aa9d56503e8',t:'MTc1NzQ0OTU0NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

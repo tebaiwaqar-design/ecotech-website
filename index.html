@@ -77,15 +77,24 @@
                     <div class="relative">
                         <button onclick="toggleUserMenu()" class="flex items-center space-x-2 text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-green-500">
                             <div class="h-8 w-8 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center">
-                                <span class="text-white font-medium text-sm">ER</span>
+                                <span class="text-white font-medium text-sm">WL</span>
                             </div>
-                            <span class="text-gray-700 font-medium">EcoRetrofit Admin</span>
+                            <span class="text-gray-700 font-medium">Waqar Lund</span>
                             <i data-lucide="chevron-down" class="w-4 h-4 text-gray-500"></i>
                         </button>
-                        <div id="userMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Paskyros nustatymai</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Atsiskaitymas</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Atsijungti</a>
+                        <div id="userMenu" class="hidden absolute right-0 mt-2 w-64 bg-white rounded-md shadow-lg py-1 z-50">
+                            <div class="px-4 py-2 border-b border-gray-100">
+                                <p class="text-sm font-medium text-gray-900">Waqar Lund</p>
+                                <p class="text-xs text-gray-500">Founder & CEO</p>
+                            </div>
+                            <div class="px-4 py-2 border-b border-gray-100">
+                                <p class="text-xs text-gray-600 font-medium">Leadership Team:</p>
+                                <p class="text-xs text-gray-500">Mohammad Saleem Lund - Co-Founder</p>
+                                <p class="text-xs text-gray-500">Muhammad Umer - Co-Founder</p>
+                            </div>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Account Settings</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Billing</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign Out</a>
                         </div>
                     </div>
                 </div>
@@ -101,31 +110,31 @@
                     <nav class="flex-1 px-2 pb-4 space-y-1">
                         <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-btn group flex items-center px-2 py-2 text-sm font-medium rounded-md bg-green-100 text-green-700 w-full text-left">
                             <i data-lucide="layout-dashboard" class="mr-3 h-5 w-5"></i>
-                            Valdymo skydas
+                            Dashboard
                         </button>
                         <button onclick="switchTab('batteries')" id="nav-batteries" class="nav-btn group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900 w-full text-left">
                             <i data-lucide="battery" class="mr-3 h-5 w-5"></i>
-                            Baterijos
+                            Batteries
                         </button>
                         <button onclick="switchTab('passports')" id="nav-passports" class="nav-btn group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900 w-full text-left">
                             <i data-lucide="file-text" class="mr-3 h-5 w-5"></i>
-                            Pasai
+                            Passports
                         </button>
                         <button onclick="switchTab('compliance')" id="nav-compliance" class="nav-btn group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900 w-full text-left">
                             <i data-lucide="shield-check" class="mr-3 h-5 w-5"></i>
-                            Atitiktis
+                            Compliance
                         </button>
                         <button onclick="switchTab('sustainability')" id="nav-sustainability" class="nav-btn group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900 w-full text-left">
                             <i data-lucide="leaf" class="mr-3 h-5 w-5"></i>
-                            Tvarumas
+                            Sustainability
                         </button>
                         <button onclick="switchTab('recycling')" id="nav-recycling" class="nav-btn group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900 w-full text-left">
                             <i data-lucide="recycle" class="mr-3 h-5 w-5"></i>
-                            Perdirbimas
+                            Recycling
                         </button>
                         <button onclick="switchTab('reports')" id="nav-reports" class="nav-btn group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900 w-full text-left">
                             <i data-lucide="bar-chart-3" class="mr-3 h-5 w-5"></i>
-                            Ataskaitos
+                            Reports
                         </button>
                     </nav>
                 </div>
@@ -134,7 +143,7 @@
                 <div class="flex-shrink-0 p-4">
                     <button onclick="openBatteryModal()" class="w-full gradient-bg text-white py-2 px-4 rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center">
                         <i data-lucide="plus" class="w-4 h-4 mr-2"></i>
-                        Nauja baterija
+                        New Battery
                     </button>
                 </div>
             </div>
@@ -145,8 +154,8 @@
             <!-- Dashboard Tab -->
             <div id="dashboard-content" class="tab-content active p-6">
                 <div class="mb-6">
-                    <h1 class="text-2xl font-bold text-gray-900">Valdymo skydas</h1>
-                    <p class="text-gray-600">Baterijų paso sistemos apžvalga ir pagrindiniai rodikliai.</p>
+                    <h1 class="text-2xl font-bold text-gray-900">Dashboard</h1>
+                    <p class="text-gray-600">Battery passport system overview and key metrics.</p>
                 </div>
 
                 <!-- Stats Grid -->
@@ -159,9 +168,9 @@
                                 </div>
                             </div>
                             <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-600">Aktyvios baterijos</p>
+                                <p class="text-sm font-medium text-gray-600">Active Batteries</p>
                                 <p class="text-2xl font-bold text-gray-900">2,847</p>
-                                <p class="text-sm text-green-600">+12% šį mėnesį</p>
+                                <p class="text-sm text-green-600">+12% this month</p>
                             </div>
                         </div>
                     </div>
@@ -174,9 +183,9 @@
                                 </div>
                             </div>
                             <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-600">Išduoti pasai</p>
+                                <p class="text-sm font-medium text-gray-600">Issued Passports</p>
                                 <p class="text-2xl font-bold text-gray-900">2,654</p>
-                                <p class="text-sm text-green-600">+8% nuo praėjusio mėnesio</p>
+                                <p class="text-sm text-green-600">+8% from last month</p>
                             </div>
                         </div>
                     </div>
@@ -189,9 +198,9 @@
                                 </div>
                             </div>
                             <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-600">Reikia dėmesio</p>
+                                <p class="text-sm font-medium text-gray-600">Needs Attention</p>
                                 <p class="text-2xl font-bold text-gray-900">23</p>
-                                <p class="text-sm text-yellow-600">Atitikties problemos</p>
+                                <p class="text-sm text-yellow-600">Compliance issues</p>
                             </div>
                         </div>
                     </div>
@@ -204,9 +213,9 @@
                                 </div>
                             </div>
                             <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-600">Perdirbta</p>
+                                <p class="text-sm font-medium text-gray-600">Recycled</p>
                                 <p class="text-2xl font-bold text-gray-900">1,234</p>
-                                <p class="text-sm text-green-600">94% efektyvumas</p>
+                                <p class="text-sm text-green-600">94% efficiency</p>
                             </div>
                         </div>
                     </div>
@@ -216,7 +225,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
                     <div class="bg-white rounded-lg shadow-sm border">
                         <div class="p-6 border-b border-gray-200">
-                            <h3 class="text-lg font-semibold text-gray-900">Naujausia veikla</h3>
+                            <h3 class="text-lg font-semibold text-gray-900">Recent Activity</h3>
                         </div>
                         <div class="p-6">
                             <div class="space-y-4">
@@ -225,8 +234,8 @@
                                         <i data-lucide="plus" class="h-4 w-4 text-green-600"></i>
                                     </div>
                                     <div class="flex-1">
-                                        <p class="text-sm font-medium text-gray-900">Nauja baterija užregistruota</p>
-                                        <p class="text-sm text-gray-500">LT-BAT-2024-001847 • prieš 2 min</p>
+                                        <p class="text-sm font-medium text-gray-900">New battery registered</p>
+                                        <p class="text-sm text-gray-500">LT-BAT-2024-001847 • 2 minutes ago</p>
                                     </div>
                                 </div>
                                 <div class="flex items-center space-x-3">
@@ -234,8 +243,8 @@
                                         <i data-lucide="file-text" class="h-4 w-4 text-blue-600"></i>
                                     </div>
                                     <div class="flex-1">
-                                        <p class="text-sm font-medium text-gray-900">Pasas išduotas</p>
-                                        <p class="text-sm text-gray-500">Tesla Model S baterija • prieš 15 min</p>
+                                        <p class="text-sm font-medium text-gray-900">Passport issued</p>
+                                        <p class="text-sm text-gray-500">Tesla Model S battery • 15 minutes ago</p>
                                     </div>
                                 </div>
                                 <div class="flex items-center space-x-3">
@@ -243,8 +252,8 @@
                                         <i data-lucide="alert-triangle" class="h-4 w-4 text-yellow-600"></i>
                                     </div>
                                     <div class="flex-1">
-                                        <p class="text-sm font-medium text-gray-900">Atitikties įspėjimas</p>
-                                        <p class="text-sm text-gray-500">BMW i3 baterija • prieš 1 val</p>
+                                        <p class="text-sm font-medium text-gray-900">Compliance warning</p>
+                                        <p class="text-sm text-gray-500">BMW i3 battery • 1 hour ago</p>
                                     </div>
                                 </div>
                                 <div class="flex items-center space-x-3">
@@ -252,8 +261,8 @@
                                         <i data-lucide="recycle" class="h-4 w-4 text-purple-600"></i>
                                     </div>
                                     <div class="flex-1">
-                                        <p class="text-sm font-medium text-gray-900">Perdirbimas pradėtas</p>
-                                        <p class="text-sm text-gray-500">Nissan Leaf baterija • prieš 3 val</p>
+                                        <p class="text-sm font-medium text-gray-900">Recycling started</p>
+                                        <p class="text-sm text-gray-500">Nissan Leaf battery • 3 hours ago</p>
                                     </div>
                                 </div>
                             </div>
@@ -262,37 +271,37 @@
 
                     <div class="bg-white rounded-lg shadow-sm border">
                         <div class="p-6 border-b border-gray-200">
-                            <h3 class="text-lg font-semibold text-gray-900">ES atitikties būsena</h3>
+                            <h3 class="text-lg font-semibold text-gray-900">EU Compliance Status</h3>
                         </div>
                         <div class="p-6">
                             <div class="space-y-4">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center space-x-3">
                                         <span class="status-indicator status-active"></span>
-                                        <span class="text-sm text-gray-700">Baterijų reglamentas (EU) 2023/1542</span>
+                                        <span class="text-sm text-gray-700">Battery Regulation (EU) 2023/1542</span>
                                     </div>
-                                    <span class="text-sm font-medium text-green-600">Atitinka</span>
+                                    <span class="text-sm font-medium text-green-600">Compliant</span>
                                 </div>
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center space-x-3">
                                         <span class="status-indicator status-active"></span>
-                                        <span class="text-sm text-gray-700">REACH reglamentas</span>
+                                        <span class="text-sm text-gray-700">REACH Regulation</span>
                                     </div>
-                                    <span class="text-sm font-medium text-green-600">Atitinka</span>
+                                    <span class="text-sm font-medium text-green-600">Compliant</span>
                                 </div>
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center space-x-3">
                                         <span class="status-indicator status-warning"></span>
-                                        <span class="text-sm text-gray-700">RoHS direktyva</span>
+                                        <span class="text-sm text-gray-700">RoHS Directive</span>
                                     </div>
-                                    <span class="text-sm font-medium text-yellow-600">Peržiūrima</span>
+                                    <span class="text-sm font-medium text-yellow-600">Under Review</span>
                                 </div>
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center space-x-3">
                                         <span class="status-indicator status-active"></span>
-                                        <span class="text-sm text-gray-700">WEEE direktyva</span>
+                                        <span class="text-sm text-gray-700">WEEE Directive</span>
                                     </div>
-                                    <span class="text-sm font-medium text-green-600">Atitinka</span>
+                                    <span class="text-sm font-medium text-green-600">Compliant</span>
                                 </div>
                             </div>
                         </div>
@@ -305,10 +314,10 @@
                         <div class="h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                             <i data-lucide="plus" class="h-6 w-6 text-green-600"></i>
                         </div>
-                        <h3 class="font-semibold text-gray-900 mb-2">Registruoti bateriją</h3>
-                        <p class="text-sm text-gray-600 mb-4">Pridėti naują bateriją į sistemą</p>
+                        <h3 class="font-semibold text-gray-900 mb-2">Register Battery</h3>
+                        <p class="text-sm text-gray-600 mb-4">Add a new battery to the system</p>
                         <button onclick="openBatteryModal()" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
-                            Pradėti
+                            Start
                         </button>
                     </div>
 
@@ -316,10 +325,10 @@
                         <div class="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                             <i data-lucide="file-text" class="h-6 w-6 text-blue-600"></i>
                         </div>
-                        <h3 class="font-semibold text-gray-900 mb-2">Generuoti pasą</h3>
-                        <p class="text-sm text-gray-600 mb-4">Sukurti baterijos pasą</p>
+                        <h3 class="font-semibold text-gray-900 mb-2">Generate Passport</h3>
+                        <p class="text-sm text-gray-600 mb-4">Create a battery passport</p>
                         <button onclick="switchTab('passports')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                            Generuoti
+                            Generate
                         </button>
                     </div>
 
@@ -327,10 +336,10 @@
                         <div class="h-12 w-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                             <i data-lucide="bar-chart-3" class="h-6 w-6 text-purple-600"></i>
                         </div>
-                        <h3 class="font-semibold text-gray-900 mb-2">Peržiūrėti ataskaitas</h3>
-                        <p class="text-sm text-gray-600 mb-4">Analizuoti duomenis ir tendencijas</p>
+                        <h3 class="font-semibold text-gray-900 mb-2">View Reports</h3>
+                        <p class="text-sm text-gray-600 mb-4">Analyze data and trends</p>
                         <button onclick="switchTab('reports')" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors">
-                            Peržiūrėti
+                            View
                         </button>
                     </div>
                 </div>
@@ -340,12 +349,12 @@
             <div id="batteries-content" class="tab-content p-6">
                 <div class="mb-6 flex justify-between items-center">
                     <div>
-                        <h1 class="text-2xl font-bold text-gray-900">Baterijos</h1>
-                        <p class="text-gray-600">Valdyti visas registruotas baterijas sistemoje.</p>
+                        <h1 class="text-2xl font-bold text-gray-900">Batteries</h1>
+                        <p class="text-gray-600">Manage all registered batteries in the system.</p>
                     </div>
                     <button onclick="openBatteryModal()" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center">
                         <i data-lucide="plus" class="w-4 h-4 mr-2"></i>
-                        Nauja baterija
+                        New Battery
                     </button>
                 </div>
 
@@ -353,20 +362,20 @@
                 <div class="bg-white rounded-lg shadow-sm border p-4 mb-6">
                     <div class="flex flex-wrap gap-4">
                         <select class="border rounded-md px-3 py-2 text-sm">
-                            <option>Visi tipai</option>
-                            <option>Ličio jonų</option>
-                            <option>Nikelio metalų hidridas</option>
-                            <option>Švino rūgštis</option>
+                            <option>All Types</option>
+                            <option>Lithium-ion</option>
+                            <option>Nickel Metal Hydride</option>
+                            <option>Lead Acid</option>
                         </select>
                         <select class="border rounded-md px-3 py-2 text-sm">
-                            <option>Visos būsenos</option>
-                            <option>Aktyvi</option>
-                            <option>Naudojama</option>
-                            <option>Perdirbama</option>
+                            <option>All Status</option>
+                            <option>Active</option>
+                            <option>In Use</option>
+                            <option>Recycling</option>
                         </select>
-                        <input type="text" placeholder="Ieškoti pagal ID..." class="border rounded-md px-3 py-2 text-sm flex-1 min-w-0">
-                        <button onclick="showNotification('Filtrai pritaikyti', 'success')" class="bg-green-600 text-white px-4 py-2 rounded-md text-sm hover:bg-green-700 transition-colors">
-                            Filtruoti
+                        <input type="text" placeholder="Search by ID..." class="border rounded-md px-3 py-2 text-sm flex-1 min-w-0">
+                        <button onclick="showNotification('Filters applied', 'success')" class="bg-green-600 text-white px-4 py-2 rounded-md text-sm hover:bg-green-700 transition-colors">
+                            Filter
                         </button>
                     </div>
                 </div>
@@ -384,32 +393,32 @@
                                     <p class="text-sm text-gray-500">LT-BAT-2024-001847</p>
                                 </div>
                             </div>
-                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Aktyvi</span>
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Active</span>
                         </div>
                         <div class="space-y-2 mb-4">
                             <div class="flex justify-between text-sm">
-                                <span class="text-gray-600">Tipas:</span>
-                                <span class="text-gray-900">Ličio jonų</span>
+                                <span class="text-gray-600">Type:</span>
+                                <span class="text-gray-900">Lithium-ion</span>
                             </div>
                             <div class="flex justify-between text-sm">
-                                <span class="text-gray-600">Talpa:</span>
+                                <span class="text-gray-600">Capacity:</span>
                                 <span class="text-gray-900">100 kWh</span>
                             </div>
                             <div class="flex justify-between text-sm">
-                                <span class="text-gray-600">Gamintojas:</span>
+                                <span class="text-gray-600">Manufacturer:</span>
                                 <span class="text-gray-900">Panasonic</span>
                             </div>
                             <div class="flex justify-between text-sm">
-                                <span class="text-gray-600">Registruota:</span>
+                                <span class="text-gray-600">Registered:</span>
                                 <span class="text-gray-900">2024-01-15</span>
                             </div>
                         </div>
                         <div class="flex space-x-2">
-                            <button onclick="showNotification('Atidaromas baterijos profilis...', 'info')" class="flex-1 bg-green-600 text-white py-2 px-3 rounded text-sm hover:bg-green-700 transition-colors">
-                                Peržiūrėti
+                            <button onclick="showNotification('Opening battery profile...', 'info')" class="flex-1 bg-green-600 text-white py-2 px-3 rounded text-sm hover:bg-green-700 transition-colors">
+                                View
                             </button>
-                            <button onclick="showNotification('Generuojamas pasas...', 'success')" class="flex-1 border border-gray-300 text-gray-700 py-2 px-3 rounded text-sm hover:bg-gray-50 transition-colors">
-                                Pasas
+                            <button onclick="showNotification('Generating passport...', 'success')" class="flex-1 border border-gray-300 text-gray-700 py-2 px-3 rounded text-sm hover:bg-gray-50 transition-colors">
+                                Passport
                             </button>
                         </div>
                     </div>
@@ -425,32 +434,32 @@
                                     <p class="text-sm text-gray-500">LT-BAT-2024-001846</p>
                                 </div>
                             </div>
-                            <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Naudojama</span>
+                            <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">In Use</span>
                         </div>
                         <div class="space-y-2 mb-4">
                             <div class="flex justify-between text-sm">
-                                <span class="text-gray-600">Tipas:</span>
-                                <span class="text-gray-900">Ličio jonų</span>
+                                <span class="text-gray-600">Type:</span>
+                                <span class="text-gray-900">Lithium-ion</span>
                             </div>
                             <div class="flex justify-between text-sm">
-                                <span class="text-gray-600">Talpa:</span>
+                                <span class="text-gray-600">Capacity:</span>
                                 <span class="text-gray-900">42.2 kWh</span>
                             </div>
                             <div class="flex justify-between text-sm">
-                                <span class="text-gray-600">Gamintojas:</span>
+                                <span class="text-gray-600">Manufacturer:</span>
                                 <span class="text-gray-900">Samsung SDI</span>
                             </div>
                             <div class="flex justify-between text-sm">
-                                <span class="text-gray-600">Registruota:</span>
+                                <span class="text-gray-600">Registered:</span>
                                 <span class="text-gray-900">2024-01-14</span>
                             </div>
                         </div>
                         <div class="flex space-x-2">
-                            <button onclick="showNotification('Atidaromas baterijos profilis...', 'info')" class="flex-1 bg-green-600 text-white py-2 px-3 rounded text-sm hover:bg-green-700 transition-colors">
-                                Peržiūrėti
+                            <button onclick="showNotification('Opening battery profile...', 'info')" class="flex-1 bg-green-600 text-white py-2 px-3 rounded text-sm hover:bg-green-700 transition-colors">
+                                View
                             </button>
-                            <button onclick="showNotification('Generuojamas pasas...', 'success')" class="flex-1 border border-gray-300 text-gray-700 py-2 px-3 rounded text-sm hover:bg-gray-50 transition-colors">
-                                Pasas
+                            <button onclick="showNotification('Generating passport...', 'success')" class="flex-1 border border-gray-300 text-gray-700 py-2 px-3 rounded text-sm hover:bg-gray-50 transition-colors">
+                                Passport
                             </button>
                         </div>
                     </div>
@@ -466,32 +475,32 @@
                                     <p class="text-sm text-gray-500">LT-BAT-2024-001845</p>
                                 </div>
                             </div>
-                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Perdirbama</span>
+                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Recycling</span>
                         </div>
                         <div class="space-y-2 mb-4">
                             <div class="flex justify-between text-sm">
-                                <span class="text-gray-600">Tipas:</span>
-                                <span class="text-gray-900">Ličio jonų</span>
+                                <span class="text-gray-600">Type:</span>
+                                <span class="text-gray-900">Lithium-ion</span>
                             </div>
                             <div class="flex justify-between text-sm">
-                                <span class="text-gray-600">Talpa:</span>
+                                <span class="text-gray-600">Capacity:</span>
                                 <span class="text-gray-900">40 kWh</span>
                             </div>
                             <div class="flex justify-between text-sm">
-                                <span class="text-gray-600">Gamintojas:</span>
+                                <span class="text-gray-600">Manufacturer:</span>
                                 <span class="text-gray-900">AESC</span>
                             </div>
                             <div class="flex justify-between text-sm">
-                                <span class="text-gray-600">Registruota:</span>
+                                <span class="text-gray-600">Registered:</span>
                                 <span class="text-gray-900">2024-01-13</span>
                             </div>
                         </div>
                         <div class="flex space-x-2">
-                            <button onclick="showNotification('Atidaromas baterijos profilis...', 'info')" class="flex-1 bg-green-600 text-white py-2 px-3 rounded text-sm hover:bg-green-700 transition-colors">
-                                Peržiūrėti
+                            <button onclick="showNotification('Opening battery profile...', 'info')" class="flex-1 bg-green-600 text-white py-2 px-3 rounded text-sm hover:bg-green-700 transition-colors">
+                                View
                             </button>
-                            <button onclick="showNotification('Perdirbimo ataskaita...', 'info')" class="flex-1 border border-gray-300 text-gray-700 py-2 px-3 rounded text-sm hover:bg-gray-50 transition-colors">
-                                Perdirbimas
+                            <button onclick="showNotification('Recycling report...', 'info')" class="flex-1 border border-gray-300 text-gray-700 py-2 px-3 rounded text-sm hover:bg-gray-50 transition-colors">
+                                Recycling
                             </button>
                         </div>
                     </div>
@@ -1317,9 +1326,9 @@
         // Initialize with welcome message
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
-                showNotification('Sveiki atvykę į EcoRetrofit baterijų paso sistemą!', 'success');
+                showNotification('Welcome to EcoRetrofit Battery Passport System!', 'success');
             }, 1000);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97c9452b37f8fce4',t:'MTc1NzQ0ODAwOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97c950f0b02003e8',t:'MTc1NzQ0ODQ5Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

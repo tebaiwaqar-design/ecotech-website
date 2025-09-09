@@ -1,920 +1,459 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Battery Pass - Enterprise Battery Compliance Platform</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary': '#1e40af',
-                        'secondary': '#64748b',
-                        'accent': '#0f172a'
-                    },
-                    fontFamily: {
-                        'sans': ['Inter', 'system-ui', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body class="bg-white font-sans">
-    <!-- Navigation -->
-    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0 flex items-center">
-                        <div class="w-8 h-8 bg-primary rounded flex items-center justify-center mr-3">
-                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M15.67 4H14V2c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4.33C3.6 4 3 4.6 3 5.33v15.33C3 21.4 3.6 22 4.33 22h11.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z"/>
-                            </svg>
-                        </div>
-                        <span class="text-xl font-semibold text-gray-900">Battery Pass</span>
-                    </div>
-                </div>
-                
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#platform" class="text-gray-600 hover:text-primary px-3 py-2 text-sm font-medium transition-colors">Platform</a>
-                        <a href="#solutions" class="text-gray-600 hover:text-primary px-3 py-2 text-sm font-medium transition-colors">Solutions</a>
-                        <a href="#compliance" class="text-gray-600 hover:text-primary px-3 py-2 text-sm font-medium transition-colors">Compliance</a>
-                        <a href="#resources" class="text-gray-600 hover:text-primary px-3 py-2 text-sm font-medium transition-colors">Resources</a>
-                        <a href="#contact" class="text-gray-600 hover:text-primary px-3 py-2 text-sm font-medium transition-colors">Contact</a>
-                    </div>
-                </div>
-                
-                <div class="flex items-center space-x-4">
-                    <button onclick="scrollToDemo()" class="bg-primary hover:bg-blue-700 text-white px-6 py-2 rounded text-sm font-medium transition-colors">
-                        Request Demo
-                    </button>
-                </div>
-            </div>
-        </div>
-    </nav>
+import React, { useMemo, useState } from "react";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar } from "recharts";
 
-    <!-- Hero Section -->
-    <section class="bg-gradient-to-b from-gray-50 to-white py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-4xl mx-auto">
-                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                    Enterprise Battery Compliance
-                    <span class="text-primary block">Made Simple</span>
-                </h1>
-                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-                    Comprehensive digital battery passport platform ensuring full EU Battery Regulation compliance for manufacturers, importers, and distributors across the battery value chain.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                    <button onclick="scrollToDemo()" class="bg-primary hover:bg-blue-700 text-white px-8 py-3 rounded font-medium text-lg transition-colors">
-                        Schedule Consultation
-                    </button>
-                    <button onclick="viewCompliance()" class="border border-gray-300 text-gray-700 hover:border-primary hover:text-primary px-8 py-3 rounded font-medium text-lg transition-colors">
-                        View Compliance Guide
-                    </button>
-                </div>
-                
-                <div class="grid md:grid-cols-3 gap-8 max-w-3xl mx-auto text-center">
-                    <div class="border-l-4 border-primary pl-6">
-                        <div class="text-2xl font-bold text-gray-900">2027</div>
-                        <div class="text-sm text-gray-600">EU Regulation Deadline</div>
-                    </div>
-                    <div class="border-l-4 border-primary pl-6">
-                        <div class="text-2xl font-bold text-gray-900">47+</div>
-                        <div class="text-sm text-gray-600">Required Data Points</div>
-                    </div>
-                    <div class="border-l-4 border-primary pl-6">
-                        <div class="text-2xl font-bold text-gray-900">2kWh</div>
-                        <div class="text-sm text-gray-600">Minimum Battery Size</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+// Minimal, no-shadcn / no-tailwind version.
+// Dependencies: react, react-dom, recharts
+// Run (Vite quick start):
+//   npm create vite@latest eco-demo -- --template react
+//   cd eco-demo && npm i recharts && npm i
+//   replace App.jsx with this file's default export usage (see bottom)
+//   npm run dev
 
-    <!-- Platform Overview -->
-    <section id="platform" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Comprehensive Compliance Platform</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    End-to-end solution for EU Battery Regulation compliance with automated passport generation, lifecycle tracking, and regulatory reporting.
-                </p>
+export default function EcoRetrofitDemo() {
+  const [activeTab, setActiveTab] = useState("audit");
+
+  // Audit form state
+  const [audit, setAudit] = useState({
+    buildingType: "Single",
+    floorArea: "",
+    yearBuilt: "",
+    heating: "",
+    annualKwh: "",
+    notes: "",
+  });
+
+  const [apvaStatus, setApvaStatus] = useState("Draft");
+  const [apvaPdfReady, setApvaPdfReady] = useState(false);
+
+  const demoProjects = [
+    { id: 1, addr: "125 Oak St.", stage: "Intake", pct: 18 },
+    { id: 2, addr: "789 Birch Ave.", stage: "Audit", pct: 42 },
+    { id: 3, addr: "790 Dack Ave.", stage: "Proposal", pct: 58 },
+    { id: 4, addr: "123 Oak St.", stage: "Install", pct: 76 },
+    { id: 5, addr: "781 5th Ave.", stage: "QC", pct: 88 },
+    { id: 6, addr: "117 9th Ave.", stage: "Rebate", pct: 100 },
+  ];
+  const stages = ["Intake", "Audit", "Proposal", "Install", "QC", "Rebate"];
+
+  const kpiData = [
+    { month: "Jan", savings: 12, approvals: 2 },
+    { month: "Feb", savings: 15, approvals: 3 },
+    { month: "Mar", savings: 18, approvals: 4 },
+    { month: "Apr", savings: 22, approvals: 5 },
+    { month: "May", savings: 27, approvals: 6 },
+    { month: "Jun", savings: 31, approvals: 7 },
+  ];
+
+  const mix = [
+    { name: "Solar", value: 40 },
+    { name: "Heat Pumps", value: 32 },
+    { name: "Insulation", value: 18 },
+    { name: "Batteries", value: 10 },
+  ];
+
+  const filteredByStage = useMemo(
+    () => stages.map((s) => ({ stage: s, items: demoProjects.filter((p) => p.stage === s) })),
+    []
+  );
+
+  const generateApva = () => {
+    setApvaStatus("Submitted");
+    setApvaPdfReady(false);
+    setTimeout(() => {
+      setApvaStatus("Approved");
+      setApvaPdfReady(true);
+    }, 800);
+  };
+
+  const styles = getStyles();
+
+  return (
+    <div style={styles.page}>
+      {/* Header */}
+      <div style={styles.header}>
+        <div style={styles.logo}>ER</div>
+        <div>
+          <div style={styles.title}>EcoRetrofit24 • MVP Prototype</div>
+          <div style={styles.sub}>APVA automation • Retrofit workflow • KPI reporting</div>
+        </div>
+        <div style={{ marginLeft: "auto", display: "flex", gap: 8 }}>
+          <button style={styles.btnOutline}>Settings</button>
+          <button style={styles.btnPrimary}>Request Demo</button>
+        </div>
+      </div>
+
+      {/* Tabs */}
+      <div style={styles.tabBar}>
+        {[
+          { id: "audit", label: "Audit Form" },
+          { id: "apva", label: "APVA Generator" },
+          { id: "projects", label: "Projects" },
+          { id: "reporting", label: "Reporting" },
+        ].map((t) => (
+          <button
+            key={t.id}
+            onClick={() => setActiveTab(t.id)}
+            style={{
+              ...styles.tab,
+              ...(activeTab === t.id ? styles.tabActive : null),
+            }}
+          >
+            {t.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Content */}
+      {activeTab === "audit" && (
+        <div style={styles.grid3}>
+          <Section title="Building Details" action={<Pill>Draft</Pill>}>
+            <div style={styles.grid2}>
+              <Field label="Building Type">
+                <select
+                  value={audit.buildingType}
+                  onChange={(e) => setAudit({ ...audit, buildingType: e.target.value })}
+                  style={styles.input}
+                >
+                  <option>Single</option>
+                  <option>Multi-apartment</option>
+                  <option>Commercial</option>
+                </select>
+              </Field>
+              <Field label="Floor Area (m²)">
+                <input
+                  placeholder="e.g., 1,250"
+                  value={audit.floorArea}
+                  onChange={(e) => setAudit({ ...audit, floorArea: e.target.value })}
+                  style={styles.input}
+                />
+              </Field>
+              <Field label="Year of Construction">
+                <input
+                  placeholder="e.g., 1998"
+                  value={audit.yearBuilt}
+                  onChange={(e) => setAudit({ ...audit, yearBuilt: e.target.value })}
+                  style={styles.input}
+                />
+              </Field>
+              <Field label="Heating System">
+                <input
+                  placeholder="District / Gas / Electric"
+                  value={audit.heating}
+                  onChange={(e) => setAudit({ ...audit, heating: e.target.value })}
+                  style={styles.input}
+                />
+              </Field>
+              <Field label="Annual Energy Usage (kWh)">
+                <input
+                  placeholder="e.g., 185,000"
+                  value={audit.annualKwh}
+                  onChange={(e) => setAudit({ ...audit, annualKwh: e.target.value })}
+                  style={styles.input}
+                />
+              </Field>
+              <Field label="Notes / Observations" full>
+                <textarea
+                  rows={4}
+                  placeholder="Thermal bridges, roof condition, window glazing, etc."
+                  value={audit.notes}
+                  onChange={(e) => setAudit({ ...audit, notes: e.target.value })}
+                  style={{ ...styles.input, resize: "vertical", height: 96 }}
+                />
+              </Field>
             </div>
-            
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div style={{ marginTop: 12, display: "flex", gap: 8 }}>
+              <button style={styles.btnPrimary} onClick={() => setActiveTab("apva")}>
+                Generate APVA PDF
+              </button>
+              <button style={styles.btnOutline}>Save Draft</button>
+            </div>
+          </Section>
+
+          <Section title="Quick Estimator">
+            <EstimatorCard audit={audit} />
+          </Section>
+
+          <Section title="Document Checklist">
+            <ul style={styles.list}>
+              <li>Ownership proof</li>
+              <li>Energy audit baseline</li>
+              <li>Contractor quotes</li>
+              <li>Payback & savings model</li>
+            </ul>
+            <div style={{ marginTop: 8, fontSize: 13 }}>
+              <span style={styles.badge}>APVA</span> Grant coverage up to 85%
+            </div>
+          </Section>
+        </div>
+      )}
+
+      {activeTab === "apva" && (
+        <Section title="APVA Application Status" action={<Pill>{apvaStatus}</Pill>}>
+          <div style={styles.gridApva}>
+            <div>
+              <div style={styles.stepsRow}>
+                <Step done={apvaStatus !== "Draft"} label="Draft" />
+                <div style={styles.stepLine} />
+                <Step done={apvaStatus !== "Draft"} label="Submitted" />
+                <div style={styles.stepLine} />
+                <Step done={apvaStatus === "Approved"} label="Approved" />
+              </div>
+              <div style={styles.box}>
+                <p style={styles.muted}>Generate APVA-compliant PDF using the audit fields. This mock simulates server-side generation.</p>
+                <div style={{ marginTop: 12, display: "flex", gap: 8 }}>
+                  <button style={styles.btnPrimary} onClick={generateApva}>Generate PDF</button>
+                  <button style={styles.btnOutline} disabled={!apvaPdfReady}>Download PDF</button>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div style={{ ...styles.box, background: "#ecfdf5" }}>
+                <p style={{ margin: 0, fontSize: 14 }}><b>Tip:</b> Attach contractor quotes and HOA mandate to improve approval chances.</p>
+              </div>
+              <div style={{ marginTop: 12 }}>
+                <div style={{ fontSize: 13, marginBottom: 6 }}>APVA Checklist</div>
+                <ul style={styles.list}>
+                  <li>Applicant & Property details</li>
+                  <li>Baseline energy audit</li>
+                  <li>Measures & expected savings</li>
+                  <li>Budget & financing plan</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </Section>
+      )}
+
+      {activeTab === "projects" && (
+        <Section title="Project Pipeline (Kanban)">
+          <div style={styles.kanban}>
+            {stages.map((stage) => (
+              <div key={stage} style={styles.kanbanCol}>
+                <div style={styles.kanbanColHead}>
+                  <div style={{ fontWeight: 600 }}>{stage}</div>
+                  <div style={styles.badgeLight}>{demoProjects.filter((p) => p.stage === stage).length}</div>
+                </div>
                 <div>
-                    <div class="space-y-8">
-                        <div class="flex items-start">
-                            <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-6 flex-shrink-0">
-                                <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Automated Passport Generation</h3>
-                                <p class="text-gray-600">Generate compliant digital battery passports with QR codes, blockchain verification, and secure data storage meeting all EU regulatory requirements.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-6 flex-shrink-0">
-                                <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Carbon Footprint Assessment</h3>
-                                <p class="text-gray-600">Comprehensive LCA calculations with cradle-to-gate CO₂ tracking, recycled content verification, and environmental impact reporting.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-6 flex-shrink-0">
-                                <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Regulatory Compliance Monitoring</h3>
-                                <p class="text-gray-600">Real-time compliance status tracking with automated alerts, regulatory updates, and audit-ready documentation generation.</p>
-                            </div>
-                        </div>
+                  {demoProjects.filter((p) => p.stage === stage).map((p) => (
+                    <div key={p.id} style={styles.cardSm}>
+                      <div style={{ fontSize: 14, fontWeight: 600 }}>{p.addr}</div>
+                      <Progress value={p.pct} />
+                      <div style={styles.miniText}>{p.pct}% complete</div>
+                      <div style={{ display: "flex", gap: 6, marginTop: 8 }}>
+                        <button style={styles.btnTinyOutline}>View</button>
+                        <button style={styles.btnTinyPrimary}>Advance</button>
+                      </div>
                     </div>
+                  ))}
                 </div>
-                
-                <div class="bg-gray-50 rounded-2xl p-8">
-                    <div class="bg-white rounded-xl p-6 shadow-sm">
-                        <div class="flex items-center justify-between mb-6">
-                            <h4 class="font-semibold text-gray-900">Battery Passport Dashboard</h4>
-                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Active</span>
-                        </div>
-                        
-                        <div class="space-y-4">
-                            <div class="flex justify-between items-center py-3 border-b border-gray-100">
-                                <span class="text-gray-600">Regulation Status</span>
-                                <span class="font-semibold text-green-600">Active</span>
-                            </div>
-                            <div class="flex justify-between items-center py-3 border-b border-gray-100">
-                                <span class="text-gray-600">Deadline</span>
-                                <span class="font-semibold text-gray-900">Feb 2027</span>
-                            </div>
-                            <div class="flex justify-between items-center py-3 border-b border-gray-100">
-                                <span class="text-gray-600">Required Fields</span>
-                                <span class="font-semibold text-gray-900">47+ Points</span>
-                            </div>
-                            <div class="flex justify-between items-center py-3">
-                                <span class="text-gray-600">Platform Status</span>
-                                <span class="font-semibold text-green-600">Ready</span>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-6 pt-6 border-t border-gray-100">
-                            <div class="flex items-center text-sm text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                </svg>
-                                All systems operational
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              </div>
+            ))}
+          </div>
+        </Section>
+      )}
+
+      {activeTab === "reporting" && (
+        <div style={styles.grid3}>          
+          <Section title="Energy Savings Trend">
+            <div style={{ height: 260 }}>
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={kpiData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="month" />
+                  <YAxis />
+                  <Tooltip />
+                  <Line type="monotone" dataKey="savings" stroke="#059669" strokeWidth={2} dot={false} />
+                </LineChart>
+              </ResponsiveContainer>
             </div>
+          </Section>
+
+          <Section title="Project Mix (YTD)">
+            <div style={{ height: 260 }}>
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie dataKey="value" data={mix} innerRadius={45} outerRadius={80} paddingAngle={3}>
+                    {mix.map((_, i) => (
+                      <Cell key={i} fill={["#10b981", "#34d399", "#6ee7b7", "#a7f3d0"][i % 4]} />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          </Section>
+
+          <Section title="Approvals (YTD)">
+            <div style={{ height: 260 }}>
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={kpiData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="month" />
+                  <YAxis />
+                  <Tooltip />
+                  <Bar dataKey="approvals" fill="#10b981" radius={[6, 6, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </Section>
         </div>
-    </section>
+      )}
 
-    <!-- Solutions Section -->
-    <section id="solutions" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Industry Solutions</h2>
-                <p class="text-xl text-gray-600">Tailored compliance solutions for every segment of the battery value chain</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white rounded-xl p-8 shadow-sm border border-gray-200">
-                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Battery Manufacturers</h3>
-                    <p class="text-gray-600 mb-6">Complete passport generation for cell producers and pack assemblers with supply chain integration and quality management.</p>
-                    <ul class="text-sm text-gray-600 space-y-2">
-                        <li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-600 rounded-full mr-3"></span>Manufacturing data integration</li>
-                        <li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-600 rounded-full mr-3"></span>Quality control tracking</li>
-                        <li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-600 rounded-full mr-3"></span>Supply chain verification</li>
-                    </ul>
-                </div>
-                
-                <div class="bg-white rounded-xl p-8 shadow-sm border border-gray-200">
-                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Automotive OEMs</h3>
-                    <p class="text-gray-600 mb-6">Integrated compliance for electric vehicle manufacturers with fleet management and end-of-life tracking capabilities.</p>
-                    <ul class="text-sm text-gray-600 space-y-2">
-                        <li class="flex items-center"><span class="w-1.5 h-1.5 bg-green-600 rounded-full mr-3"></span>Vehicle integration tracking</li>
-                        <li class="flex items-center"><span class="w-1.5 h-1.5 bg-green-600 rounded-full mr-3"></span>Fleet management tools</li>
-                        <li class="flex items-center"><span class="w-1.5 h-1.5 bg-green-600 rounded-full mr-3"></span>Warranty management</li>
-                    </ul>
-                </div>
-                
-                <div class="bg-white rounded-xl p-8 shadow-sm border border-gray-200">
-                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Energy Storage Systems</h3>
-                    <p class="text-gray-600 mb-6">Specialized solutions for grid-scale and commercial energy storage with performance monitoring and maintenance tracking.</p>
-                    <ul class="text-sm text-gray-600 space-y-2">
-                        <li class="flex items-center"><span class="w-1.5 h-1.5 bg-purple-600 rounded-full mr-3"></span>Performance analytics</li>
-                        <li class="flex items-center"><span class="w-1.5 h-1.5 bg-purple-600 rounded-full mr-3"></span>Maintenance scheduling</li>
-                        <li class="flex items-center"><span class="w-1.5 h-1.5 bg-purple-600 rounded-full mr-3"></span>Grid integration data</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+      {/* Footer */}
+      <div style={styles.footer}>© {new Date().getFullYear()} EcoRetrofit UAB · Prototype UI for demonstrations. No backend or personal data processed.</div>
+    </div>
+  );
+}
 
-    <!-- Compliance Section -->
-    <section id="compliance" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">EU Battery Regulation Compliance</h2>
-                <p class="text-xl text-gray-600">Comprehensive coverage of all regulatory requirements</p>
-            </div>
-            
-            <div class="grid lg:grid-cols-2 gap-16">
-                <div>
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-8">Key Compliance Areas</h3>
-                    <div class="space-y-6">
-                        <div class="border-l-4 border-primary pl-6">
-                            <h4 class="font-semibold text-gray-900 mb-2">Digital Battery Passports</h4>
-                            <p class="text-gray-600">Mandatory for batteries >2kWh from February 2027. Comprehensive data collection including manufacturing, materials, and performance metrics.</p>
-                        </div>
-                        
-                        <div class="border-l-4 border-primary pl-6">
-                            <h4 class="font-semibold text-gray-900 mb-2">Carbon Footprint Declaration</h4>
-                            <p class="text-gray-600">Cradle-to-gate lifecycle assessment with detailed CO₂ calculations, recycled content verification, and environmental impact reporting.</p>
-                        </div>
-                        
-                        <div class="border-l-4 border-primary pl-6">
-                            <h4 class="font-semibold text-gray-900 mb-2">Supply Chain Due Diligence</h4>
-                            <p class="text-gray-600">Comprehensive tracking of raw materials, manufacturing processes, and supply chain transparency requirements.</p>
-                        </div>
-                        
-                        <div class="border-l-4 border-primary pl-6">
-                            <h4 class="font-semibold text-gray-900 mb-2">End-of-Life Management</h4>
-                            <p class="text-gray-600">Complete lifecycle tracking from production through recycling with waste management and recovery rate documentation.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-gray-50 rounded-2xl p-8">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-6">Compliance Timeline</h3>
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <div class="w-4 h-4 bg-green-500 rounded-full mt-1 mr-4 flex-shrink-0"></div>
-                            <div>
-                                <div class="font-medium text-gray-900">August 2023</div>
-                                <div class="text-sm text-gray-600">EU Battery Regulation entered into force</div>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-4 h-4 bg-yellow-500 rounded-full mt-1 mr-4 flex-shrink-0"></div>
-                            <div>
-                                <div class="font-medium text-gray-900">February 2025</div>
-                                <div class="text-sm text-gray-600">Carbon footprint declarations mandatory</div>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-4 h-4 bg-blue-500 rounded-full mt-1 mr-4 flex-shrink-0"></div>
-                            <div>
-                                <div class="font-medium text-gray-900">February 2027</div>
-                                <div class="text-sm text-gray-600">Digital battery passports mandatory</div>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-4 h-4 bg-purple-500 rounded-full mt-1 mr-4 flex-shrink-0"></div>
-                            <div>
-                                <div class="font-medium text-gray-900">February 2030</div>
-                                <div class="text-sm text-gray-600">Recycled content requirements in effect</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-8 p-4 bg-blue-50 rounded-lg">
-                        <div class="flex items-center text-blue-800">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="font-medium">Start preparing now to ensure compliance readiness</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+// --- UI primitives (no external UI lib) ---
+function Section({ title, action, children }) {
+  const s = getStyles();
+  return (
+    <div style={s.section}>
+      <div style={s.sectionHead}>
+        <div style={{ fontSize: 18, fontWeight: 600 }}>{title}</div>
+        {action}
+      </div>
+      <div>{children}</div>
+    </div>
+  );
+}
 
-    <!-- Enterprise Features -->
-    <section class="py-20 bg-accent text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">Enterprise-Grade Security & Integration</h2>
-                <p class="text-xl text-gray-300">Built for large-scale operations with enterprise security and integration capabilities</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
-                    <div class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4">SOC 2 Type II Certified</h3>
-                    <p class="text-gray-300">Enterprise-grade security with comprehensive audit controls and data protection measures.</p>
-                </div>
-                
-                <div class="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
-                    <div class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.82,11.69,4.82,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4">API-First Architecture</h3>
-                    <p class="text-gray-300">Seamless integration with ERP, MES, PLM, and supply chain management systems via REST APIs.</p>
-                </div>
-                
-                <div class="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
-                    <div class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4">EU Data Residency</h3>
-                    <p class="text-gray-300">All data stored in EU data centers with full GDPR compliance and data sovereignty guarantees.</p>
-                </div>
-                
-                <div class="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
-                    <div class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 3H5c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4">Advanced Analytics</h3>
-                    <p class="text-gray-300">Comprehensive reporting and analytics with customizable dashboards and automated insights.</p>
-                </div>
-                
-                <div class="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
-                    <div class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4">24/7 Monitoring</h3>
-                    <p class="text-gray-300">Continuous system monitoring with proactive alerting and dedicated technical support.</p>
-                </div>
-                
-                <div class="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
-                    <div class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4">Role-Based Access</h3>
-                    <p class="text-gray-300">Granular permission controls with multi-factor authentication and audit logging.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+function Pill({ children }) {
+  const s = getStyles();
+  return <span style={s.pill}>{children}</span>;
+}
 
-    <!-- Resources Section -->
-    <section id="resources" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Resources & Documentation</h2>
-                <p class="text-xl text-gray-600">Comprehensive guides and resources for battery regulation compliance</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white rounded-xl p-8 shadow-sm border border-gray-200">
-                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 3H5c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Compliance Guide</h3>
-                    <p class="text-gray-600 mb-6">Complete guide to EU Battery Regulation requirements and implementation strategies.</p>
-                    <button onclick="downloadGuide()" class="text-primary font-medium hover:text-blue-700 transition-colors">
-                        Download PDF →
-                    </button>
-                </div>
-                
-                <div class="bg-white rounded-xl p-8 shadow-sm border border-gray-200">
-                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">API Documentation</h3>
-                    <p class="text-gray-600 mb-6">Technical documentation for system integration and API implementation.</p>
-                    <button onclick="viewDocs()" class="text-primary font-medium hover:text-blue-700 transition-colors">
-                        View Documentation →
-                    </button>
-                </div>
-                
-                <div class="bg-white rounded-xl p-8 shadow-sm border border-gray-200">
-                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Best Practices</h3>
-                    <p class="text-gray-600 mb-6">Industry best practices and implementation recommendations from compliance experts.</p>
-                    <button onclick="viewBestPractices()" class="text-primary font-medium hover:text-blue-700 transition-colors">
-                        Learn More →
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
+function Field({ label, full, children }) {
+  const s = getStyles();
+  return (
+    <div style={{ gridColumn: full ? "1 / -1" : undefined }}>
+      <div style={s.label}>{label}</div>
+      {children}
+    </div>
+  );
+}
 
-    <!-- Demo Section -->
-    <section id="demo" class="py-20 bg-primary">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-bold text-white mb-8">Schedule Your Consultation</h2>
-            <p class="text-xl text-blue-100 mb-12 max-w-3xl mx-auto">
-                Speak with our compliance experts to understand how Battery Pass can streamline your EU Battery Regulation compliance.
-            </p>
-            
-            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-10 shadow-2xl">
-                <form onsubmit="submitDemo(event)" class="max-w-2xl mx-auto">
-                    <div class="grid md:grid-cols-2 gap-6 mb-6">
-                        <div>
-                            <label class="block text-sm font-medium text-white mb-2 text-left">First Name *</label>
-                            <input type="text" required class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-white mb-2 text-left">Last Name *</label>
-                            <input type="text" required class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent">
-                        </div>
-                    </div>
-                    
-                    <div class="grid md:grid-cols-2 gap-6 mb-6">
-                        <div>
-                            <label class="block text-sm font-medium text-white mb-2 text-left">Business Email *</label>
-                            <input type="email" required class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-white mb-2 text-left">Company Name *</label>
-                            <input type="text" required class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent">
-                        </div>
-                    </div>
-                    
-                    <div class="grid md:grid-cols-2 gap-6 mb-6">
-                        <div>
-                            <label class="block text-sm font-medium text-white mb-2 text-left">Phone Number</label>
-                            <input type="tel" class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-white mb-2 text-left">Industry *</label>
-                            <select required class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded text-white focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent">
-                                <option value="" class="text-gray-900">Select your industry</option>
-                                <option value="battery-manufacturer" class="text-gray-900">Battery Manufacturer</option>
-                                <option value="automotive-oem" class="text-gray-900">Automotive OEM</option>
-                                <option value="energy-storage" class="text-gray-900">Energy Storage</option>
-                                <option value="recycling" class="text-gray-900">Recycling & Recovery</option>
-                                <option value="importer" class="text-gray-900">Importer/Distributor</option>
-                                <option value="other" class="text-gray-900">Other</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-8">
-                        <label class="block text-sm font-medium text-white mb-2 text-left">Compliance Requirements</label>
-                        <textarea rows="4" placeholder="Describe your current compliance challenges and requirements..." class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="w-full bg-white text-primary py-4 rounded font-semibold text-lg hover:bg-gray-100 transition-colors">
-                        Schedule Consultation
-                    </button>
-                    
-                    <p class="text-sm text-blue-100 mt-6">
-                        🔒 Secure consultation • 📞 Expert guidance • ⚡ Implementation support
-                    </p>
-                </form>
-            </div>
-        </div>
-    </section>
+function Progress({ value }) {
+  const s = getStyles();
+  return (
+    <div style={s.progressOuter}>
+      <div style={{ ...s.progressInner, width: `${value}%` }} />
+    </div>
+  );
+}
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Contact Our Experts</h2>
-                <p class="text-xl text-gray-600">Get in touch with our compliance specialists</p>
-            </div>
-            
-            <div class="grid lg:grid-cols-2 gap-16">
-                <div>
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-8">Get in Touch</h3>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-6">
-                                <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Email</h4>
-                                <p class="text-gray-600">hello@batterypass.eu</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-6">
-                                <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Phone</h4>
-                                <p class="text-gray-600">+372 5XXX XXXX</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-6">
-                                <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Location</h4>
-                                <p class="text-gray-600">Estonia, European Union</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-6">
-                                <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Founder & CEO</h4>
-                                <p class="text-gray-600">Waqar Lund</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-gray-50 rounded-2xl p-8">
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-8">Send a Message</h3>
-                    <form onsubmit="submitContact(event)" class="space-y-6">
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Name *</label>
-                                <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
-                                <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Subject *</label>
-                            <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Message *</label>
-                            <textarea rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="w-full bg-primary text-white py-4 rounded font-semibold hover:bg-blue-700 transition-colors">
-                            Send Message
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+// --- Styles ---
+function getStyles() {
+  return {
+    page: { fontFamily: "Inter, system-ui, Arial", background: "#fafafa", color: "#111", minHeight: "100vh" },
+    header: { display: "flex", alignItems: "center", gap: 12, padding: "12px 16px", borderBottom: "1px solid #e5e7eb", background: "#fff", position: "sticky", top: 0, zIndex: 10 },
+    logo: { height: 36, width: 36, borderRadius: 12, background: "#059669", color: "#fff", display: "grid", placeItems: "center", fontWeight: 700 },
+    title: { fontSize: 18, fontWeight: 600 },
+    sub: { fontSize: 12, color: "#6b7280" },
 
-    <!-- Footer -->
-    <footer class="bg-accent text-white py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div>
-                    <div class="flex items-center mb-6">
-                        <div class="w-8 h-8 bg-primary rounded flex items-center justify-center mr-3">
-                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M15.67 4H14V2c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4.33C3.6 4 3 4.6 3 5.33v15.33C3 21.4 3.6 22 4.33 22h11.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z"/>
-                            </svg>
-                        </div>
-                        <span class="text-xl font-semibold">Battery Pass</span>
-                    </div>
-                    <p class="text-gray-400 mb-6">Enterprise battery compliance platform for EU Battery Regulation requirements.</p>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Platform</h3>
-                    <ul class="space-y-3 text-gray-400">
-                        <li><a href="#platform" class="hover:text-white transition-colors">Features</a></li>
-                        <li><a href="#solutions" class="hover:text-white transition-colors">Solutions</a></li>
-                        <li><a href="#compliance" class="hover:text-white transition-colors">Compliance</a></li>
-                        <li><a href="#resources" class="hover:text-white transition-colors">Resources</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Company</h3>
-                    <ul class="space-y-3 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors">About</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Security</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
-                        <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Legal</h3>
-                    <ul class="space-y-3 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Data Processing</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">GDPR Compliance</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 Battery Pass. All rights reserved. • EU Battery Regulation Compliance Platform • SOC 2 Type II Certified</p>
-            </div>
-        </div>
-    </footer>
+    tabBar: { display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 8, padding: 16 },
+    tab: { padding: "10px 12px", border: "1px solid #e5e7eb", background: "#fff", borderRadius: 12, cursor: "pointer" },
+    tabActive: { background: "#059669", color: "#fff", borderColor: "#059669" },
 
-    <script>
-        // Smooth scrolling functionality
-        function scrollToSection(sectionId) {
-            const element = document.getElementById(sectionId);
-            if (element) {
-                element.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        }
+    grid3: { display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 12, padding: "0 16px 16px" },
+    grid2: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 },
 
-        function scrollToDemo() {
-            scrollToSection('demo');
-        }
+    section: { background: "#fff", border: "1px solid #e5e7eb", borderRadius: 16, padding: 16, boxShadow: "0 1px 2px rgba(0,0,0,0.03)" },
+    sectionHead: { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 },
+    label: { fontSize: 12, color: "#6b7280", marginBottom: 6 },
 
-        // View compliance guide
-        function viewCompliance() {
-            const modal = document.createElement('div');
-            modal.className = 'fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4';
-            modal.onclick = function(e) {
-                if (e.target === modal) {
-                    modal.remove();
-                }
-            };
-            
-            modal.innerHTML = `
-                <div class="bg-white rounded-2xl p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-                    <div class="flex justify-between items-center mb-8">
-                        <h3 class="text-3xl font-bold text-gray-900">EU Battery Regulation Compliance Guide</h3>
-                        <button onclick="this.closest('.fixed').remove()" class="text-gray-400 hover:text-gray-600 text-2xl">
-                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-                            </svg>
-                        </button>
-                    </div>
-                    
-                    <div class="space-y-8">
-                        <div class="bg-primary rounded-2xl p-8 text-white">
-                            <h4 class="font-bold text-xl mb-4">📋 Key Requirements Overview</h4>
-                            <div class="grid grid-cols-2 gap-6">
-                                <div>
-                                    <div class="text-2xl font-bold mb-2">February 2027</div>
-                                    <div class="text-sm">Digital passports mandatory for batteries >2kWh</div>
-                                </div>
-                                <div>
-                                    <div class="text-2xl font-bold mb-2">47 Data Points</div>
-                                    <div class="text-sm">Required information fields per passport</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="grid md:grid-cols-2 gap-8">
-                            <div class="bg-gray-50 rounded-xl p-6">
-                                <h4 class="font-bold text-lg text-gray-900 mb-4">📊 Carbon Footprint Requirements</h4>
-                                <ul class="text-sm text-gray-600 space-y-2">
-                                    <li>• Cradle-to-gate LCA assessment</li>
-                                    <li>• CO₂ equivalent calculations</li>
-                                    <li>• Manufacturing process data</li>
-                                    <li>• Transportation impact</li>
-                                    <li>• Raw material sourcing</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="bg-gray-50 rounded-xl p-6">
-                                <h4 class="font-bold text-lg text-gray-900 mb-4">🔗 Supply Chain Tracking</h4>
-                                <ul class="text-sm text-gray-600 space-y-2">
-                                    <li>• Raw material origins</li>
-                                    <li>• Manufacturing locations</li>
-                                    <li>• Due diligence documentation</li>
-                                    <li>• Recycled content verification</li>
-                                    <li>• Quality certifications</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-accent rounded-2xl p-8 text-white">
-                            <h4 class="font-bold text-xl mb-4">🚀 Implementation Roadmap</h4>
-                            <div class="space-y-4">
-                                <div class="flex items-center">
-                                    <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center mr-4 text-sm font-bold">1</div>
-                                    <div>
-                                        <div class="font-medium">Data Collection & Mapping</div>
-                                        <div class="text-sm text-gray-300">Identify and collect all required data points</div>
-                                    </div>
-                                </div>
-                                <div class="flex items-center">
-                                    <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center mr-4 text-sm font-bold">2</div>
-                                    <div>
-                                        <div class="font-medium">System Integration</div>
-                                        <div class="text-sm text-gray-300">Connect existing systems and workflows</div>
-                                    </div>
-                                </div>
-                                <div class="flex items-center">
-                                    <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center mr-4 text-sm font-bold">3</div>
-                                    <div>
-                                        <div class="font-medium">Passport Generation</div>
-                                        <div class="text-sm text-gray-300">Automated creation and validation</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="text-center pt-6">
-                            <button onclick="scrollToDemo(); this.closest('.fixed').remove();" class="bg-primary hover:bg-blue-700 text-white px-8 py-4 rounded font-semibold text-lg transition-colors">
-                                Schedule Expert Consultation
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            document.body.appendChild(modal);
-        }
+    input: { width: "100%", border: "1px solid #e5e7eb", borderRadius: 10, padding: "10px 12px", fontSize: 14, outline: "none" },
 
-        // Resource functions
-        function downloadGuide() {
-            // Create a simple PDF-like experience
-            const newWindow = window.open('', '_blank');
-            newWindow.document.write(`
-                <html>
-                    <head><title>EU Battery Regulation Compliance Guide</title></head>
-                    <body style="font-family: Arial, sans-serif; padding: 40px; max-width: 800px; margin: 0 auto;">
-                        <h1>EU Battery Regulation Compliance Guide</h1>
-                        <p><strong>Coming Soon:</strong> Comprehensive guide will be available for download.</p>
-                        <p>For immediate assistance, please contact us at hello@batterypass.eu</p>
-                        <button onclick="window.close()" style="background: #1e40af; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Close</button>
-                    </body>
-                </html>
-            `);
-        }
+    btnPrimary: { background: "#059669", color: "#fff", border: "1px solid #059669", borderRadius: 999, padding: "10px 14px", cursor: "pointer", fontWeight: 600 },
+    btnOutline: { background: "#fff", color: "#059669", border: "1px solid #059669", borderRadius: 999, padding: "10px 14px", cursor: "pointer", fontWeight: 600 },
 
-        function viewDocs() {
-            window.open('https://docs.batterypass.eu', '_blank');
-        }
+    badge: { display: "inline-block", padding: "2px 8px", background: "#059669", color: "#fff", borderRadius: 999, marginRight: 6, fontSize: 12, fontWeight: 600 },
+    badgeLight: { display: "inline-block", padding: "2px 8px", background: "#f3f4f6", color: "#111", borderRadius: 999, fontSize: 12, fontWeight: 600 },
 
-        function viewBestPractices() {
-            const newWindow = window.open('', '_blank');
-            newWindow.document.write(`
-                <html>
-                    <head><title>Battery Compliance Best Practices</title></head>
-                    <body style="font-family: Arial, sans-serif; padding: 40px; max-width: 800px; margin: 0 auto;">
-                        <h1>Battery Compliance Best Practices</h1>
-                        <p><strong>Documentation in Development:</strong> Comprehensive best practices guide coming soon.</p>
-                        <p>Contact our experts at hello@batterypass.eu for personalized guidance.</p>
-                        <button onclick="window.close()" style="background: #1e40af; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Close</button>
-                    </body>
-                </html>
-            `);
-        }
+    list: { fontSize: 14, color: "#374151", paddingLeft: 18 },
+    muted: { fontSize: 13, color: "#6b7280", margin: 0 },
 
-        // Form submissions
-        function submitDemo(event) {
-            event.preventDefault();
-            
-            const form = event.target;
-            const submitButton = form.querySelector('button[type="submit"]');
-            
-            submitButton.disabled = true;
-            submitButton.innerHTML = 'Processing Request...';
-            
-            // Simulate processing
-            setTimeout(() => {
-                const successDiv = document.createElement('div');
-                successDiv.className = 'bg-white/20 border border-white/30 text-white px-6 py-4 rounded-xl mb-6';
-                successDiv.innerHTML = `
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        <div>
-                            <strong>Consultation Request Submitted</strong>
-                            <p class="text-sm mt-1">Our compliance experts will contact you within 24 hours to schedule your consultation.</p>
-                        </div>
-                    </div>
-                `;
-                
-                form.parentNode.insertBefore(successDiv, form);
-                form.reset();
-                
-                setTimeout(() => {
-                    successDiv.remove();
-                    submitButton.disabled = false;
-                    submitButton.innerHTML = 'Schedule Consultation';
-                }, 8000);
-                
-            }, 2000);
-        }
+    gridApva: { display: "grid", gridTemplateColumns: "2fr 1fr", gap: 16 },
+    stepsRow: { display: "flex", alignItems: "center", gap: 8, marginBottom: 12 },
+    stepLine: { flex: 1, height: 1, background: "#d1fae5" },
+    box: { border: "1px solid #e5e7eb", borderRadius: 12, padding: 12, background: "#fff" },
 
-        function submitContact(event) {
-            event.preventDefault();
-            
-            const form = event.target;
-            const submitButton = form.querySelector('button[type="submit"]');
-            
-            submitButton.disabled = true;
-            submitButton.innerHTML = 'Sending Message...';
-            
-            // Simulate processing
-            setTimeout(() => {
-                const successDiv = document.createElement('div');
-                successDiv.className = 'bg-green-100 border border-green-400 text-green-700 px-6 py-4 rounded-xl mb-6';
-                successDiv.innerHTML = `
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        <div>
-                            <strong>Message Sent Successfully</strong>
-                            <p class="text-sm mt-1">Your message has been sent to our team. We'll respond promptly.</p>
-                        </div>
-                    </div>
-                `;
-                
-                form.parentNode.insertBefore(successDiv, form);
-                form.reset();
-                
-                setTimeout(() => {
-                    successDiv.remove();
-                    submitButton.disabled = false;
-                    submitButton.innerHTML = 'Send Message';
-                }, 8000);
-                
-            }, 2000);
-        }
+    kanban: { display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 12 },
+    kanbanCol: { border: "1px solid #e5e7eb", borderRadius: 16, padding: 12, background: "#fff" },
+    kanbanColHead: { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 },
+    cardSm: { border: "1px solid #e5e7eb", borderRadius: 12, padding: 12, background: "#fff", marginBottom: 8, boxShadow: "0 1px 2px rgba(0,0,0,0.03)" },
+    miniText: { marginTop: 6, fontSize: 12, color: "#6b7280" },
 
-        // Navigation functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const links = document.querySelectorAll('a[href^="#"]');
-            
-            links.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    scrollToSection(targetId);
-                });
-            });
-        });
+    progressOuter: { width: "100%", height: 8, background: "#f3f4f6", borderRadius: 999, overflow: "hidden", marginTop: 8 },
+    progressInner: { height: "100%", background: "#10b981" },
 
-        // Navigation scroll effect
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.classList.add('shadow-lg');
-            } else {
-                nav.classList.remove('shadow-lg');
-            }
-        });
-    </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97673b1ed31d92f0',t:'MTc1NjQxOTk5My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
-</html>
+    footer: { padding: 16, fontSize: 12, color: "#6b7280" },
+  };
+}
+
+function Step({ done, label }) {
+  const s = getStyles();
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 6, color: done ? "#065f46" : "#9ca3af" }}>
+      <div
+        style={{
+          height: 24,
+          width: 24,
+          borderRadius: 999,
+          display: "grid",
+          placeItems: "center",
+          border: `1px solid ${done ? "#059669" : "#e5e7eb"}`,
+          background: done ? "#059669" : "#fff",
+          color: done ? "#fff" : "#6b7280",
+          fontSize: 12,
+          fontWeight: 700,
+        }}
+      >
+        {done ? "✓" : label[0]}
+      </div>
+      <span style={{ fontSize: 14 }}>{label}</span>
+    </div>
+  );
+}
+
+function EstimatorCard({ audit }) {
+  const area = Number((audit.floorArea || "0").replace(/[^0-9.]/g, ""));
+  const base = Math.max(10000, Math.min(200000, area * 90));
+  const savingsPct = area ? Math.min(45, 10 + Math.round(area / 300)) : 25;
+  const paybackMonths = Math.max(12, 84 - Math.round(savingsPct));
+
+  const s = getStyles();
+  return (
+    <div>
+      <div style={s.muted}>Quick, non-binding estimate based on inputs.</div>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginTop: 8 }}>
+        <Metric label="Est. Ticket" value={`€${base.toLocaleString()}`} />
+        <Metric label="Savings" value={`${savingsPct}%`} />
+        <Metric label="Payback" value={`${paybackMonths} mo`} />
+        <Metric label="Grant (up to)" value={`€${Math.round(base * 0.85).toLocaleString()}`} />
+      </div>
+    </div>
+  );
+}
+
+function Metric({ label, value }) {
+  const s = getStyles();
+  return (
+    <div style={{ border: "1px solid #e5e7eb", borderRadius: 12, padding: 12, background: "#fff" }}>
+      <div style={{ fontSize: 12, color: "#6b7280" }}>{label}</div>
+      <div style={{ fontSize: 18, fontWeight: 600 }}>{value}</div>
+    </div>
+  );
+}
+
+// USAGE (Vite):
+// In main.jsx:
+//   import React from 'react'
+//   import ReactDOM from 'react-dom/client'
+//   import EcoRetrofitDemo from './EcoRetrofitDemo.jsx'
+//   ReactDOM.createRoot(document.getElementById('root')).render(
+//     <React.StrictMode>
+//       <EcoRetrofitDemo />
+//     </React.StrictMode>,
+//   )

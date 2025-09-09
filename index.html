@@ -68,10 +68,25 @@
                         <i data-lucide="map-pin" class="w-4 h-4"></i>
                         <span>Vilnius, Lithuania</span>
                     </div>
-                    <button onclick="showNotification('Pagalba bus greitai!', 'info')" class="text-gray-500 hover:text-gray-700">
+                    <div class="relative">
+                        <button onclick="toggleLanguageMenu()" class="flex items-center space-x-1 text-sm text-gray-600 hover:text-gray-700 px-2 py-1 rounded-md hover:bg-gray-100">
+                            <i data-lucide="globe" class="w-4 h-4"></i>
+                            <span id="currentLang">EN</span>
+                            <i data-lucide="chevron-down" class="w-3 h-3"></i>
+                        </button>
+                        <div id="languageMenu" class="hidden absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg py-1 z-50 border">
+                            <button onclick="switchLanguage('en')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                🇺🇸 English
+                            </button>
+                            <button onclick="switchLanguage('lt')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                🇱🇹 Lietuvių
+                            </button>
+                        </div>
+                    </div>
+                    <button onclick="showNotification(translations[currentLanguage].helpMessage, 'info')" class="text-gray-500 hover:text-gray-700">
                         <i data-lucide="help-circle" class="w-5 h-5"></i>
                     </button>
-                    <button onclick="showNotification('Pranešimų nėra', 'info')" class="text-gray-500 hover:text-gray-700">
+                    <button onclick="showNotification(translations[currentLanguage].noNotifications, 'info')" class="text-gray-500 hover:text-gray-700">
                         <i data-lucide="bell" class="w-5 h-5"></i>
                     </button>
                     <div class="relative">
@@ -141,7 +156,7 @@
                 
                 <!-- Quick Actions -->
                 <div class="flex-shrink-0 p-4">
-                    <button onclick="openBatteryModal()" class="w-full gradient-bg text-white py-2 px-4 rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center">
+                    <button onclick="openBatteryModal()" class="w-full gradient-bg text-white py-2 px-4 rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center" id="sidebarNewBattery">
                         <i data-lucide="plus" class="w-4 h-4 mr-2"></i>
                         New Battery
                     </button>
@@ -1233,6 +1248,285 @@
         // Initialize Lucide icons
         lucide.createIcons();
 
+        // Language system
+        let currentLanguage = 'en';
+        
+        const translations = {
+            en: {
+                // Header
+                helpMessage: 'Help is coming soon!',
+                noNotifications: 'No notifications',
+                
+                // Navigation
+                dashboard: 'Dashboard',
+                batteries: 'Batteries',
+                passports: 'Passports',
+                compliance: 'Compliance',
+                sustainability: 'Sustainability',
+                recycling: 'Recycling',
+                reports: 'Reports',
+                newBattery: 'New Battery',
+                
+                // Dashboard
+                dashboardTitle: 'Dashboard',
+                dashboardSubtitle: 'Battery passport system overview and key metrics.',
+                activeBatteries: 'Active Batteries',
+                issuedPassports: 'Issued Passports',
+                needsAttention: 'Needs Attention',
+                recycled: 'Recycled',
+                recentActivity: 'Recent Activity',
+                complianceStatus: 'EU Compliance Status',
+                registerBattery: 'Register Battery',
+                generatePassport: 'Generate Passport',
+                viewReports: 'View Reports',
+                
+                // Batteries
+                batteriesTitle: 'Batteries',
+                batteriesSubtitle: 'Manage all registered batteries in the system.',
+                allTypes: 'All Types',
+                allStatus: 'All Status',
+                searchPlaceholder: 'Search by ID...',
+                filter: 'Filter',
+                
+                // Passports
+                passportsTitle: 'Battery Passports',
+                passportsSubtitle: 'Generate and manage battery passport documents.',
+                generatePassportBtn: 'Generate Passport',
+                download: 'Download',
+                qrCode: 'QR Code',
+                
+                // Compliance
+                complianceTitle: 'EU Compliance Management',
+                complianceSubtitle: 'Monitor and ensure compliance with European Union regulations.',
+                batteryRegulation: 'Battery Regulation',
+                requiresAttention: 'Requires Attention',
+                regulatoryUpdates: 'Regulatory Updates',
+                
+                // Sustainability
+                sustainabilityTitle: 'Sustainability Metrics',
+                sustainabilitySubtitle: 'Monitor environmental impact and sustainability goals.',
+                carbonFootprint: 'Carbon Footprint',
+                recyclingEfficiency: 'Recycling Efficiency',
+                renewableEnergy: 'Renewable Energy',
+                
+                // Recycling
+                recyclingTitle: 'Recycling Management',
+                recyclingSubtitle: 'Monitor battery recycling processes and efficiency.',
+                recycledThisMonth: 'Recycled This Month',
+                efficiency: 'Efficiency',
+                averageTime: 'Average Time',
+                awaitingPickup: 'Awaiting Pickup',
+                
+                // Reports
+                reportsTitle: 'Reports & Analytics',
+                reportsSubtitle: 'Comprehensive data analysis and compliance reports.',
+                generate: 'Generate',
+                
+                // Modals
+                registerNewBattery: 'Register New Battery',
+                manufacturer: 'Manufacturer',
+                model: 'Model',
+                batteryType: 'Battery Type',
+                capacity: 'Capacity (kWh)',
+                manufacturingDate: 'Manufacturing Date',
+                serialNumber: 'Serial Number',
+                additionalInfo: 'Additional Information',
+                registerBatteryBtn: 'Register Battery',
+                cancel: 'Cancel',
+                
+                // Status
+                active: 'Active',
+                inUse: 'In Use',
+                recycling: 'Recycling',
+                valid: 'Valid',
+                updating: 'Updating',
+                waiting: 'Waiting',
+                transporting: 'Transporting',
+                inProcess: 'In Process',
+                completed: 'Completed',
+                
+                // Success messages
+                batteryRegistered: 'Battery successfully registered!',
+                passportGenerated: 'Passport successfully generated!',
+                reportGenerating: 'Generating report...',
+                filterApplied: 'Filters applied',
+                
+                // Battery types
+                lithiumIon: 'Lithium-ion',
+                nickelMetalHydride: 'Nickel Metal Hydride',
+                leadAcid: 'Lead Acid',
+                other: 'Other'
+            },
+            lt: {
+                // Header
+                helpMessage: 'Pagalba bus greitai!',
+                noNotifications: 'Pranešimų nėra',
+                
+                // Navigation
+                dashboard: 'Pagrindinis',
+                batteries: 'Baterijos',
+                passports: 'Pasai',
+                compliance: 'Atitiktis',
+                sustainability: 'Tvarumas',
+                recycling: 'Perdirbimas',
+                reports: 'Ataskaitos',
+                newBattery: 'Nauja baterija',
+                
+                // Dashboard
+                dashboardTitle: 'Pagrindinis',
+                dashboardSubtitle: 'Baterijų paso sistemos apžvalga ir pagrindiniai rodikliai.',
+                activeBatteries: 'Aktyvios baterijos',
+                issuedPassports: 'Išduoti pasai',
+                needsAttention: 'Reikia dėmesio',
+                recycled: 'Perdirbta',
+                recentActivity: 'Paskutinė veikla',
+                complianceStatus: 'ES atitikties būsena',
+                registerBattery: 'Registruoti bateriją',
+                generatePassport: 'Generuoti pasą',
+                viewReports: 'Žiūrėti ataskaitas',
+                
+                // Batteries
+                batteriesTitle: 'Baterijos',
+                batteriesSubtitle: 'Valdyti visas sistemoje registruotas baterijas.',
+                allTypes: 'Visi tipai',
+                allStatus: 'Visos būsenos',
+                searchPlaceholder: 'Ieškoti pagal ID...',
+                filter: 'Filtruoti',
+                
+                // Passports
+                passportsTitle: 'Baterijų pasai',
+                passportsSubtitle: 'Generuoti ir valdyti baterijų paso dokumentus.',
+                generatePassportBtn: 'Generuoti pasą',
+                download: 'Atsisiųsti',
+                qrCode: 'QR kodas',
+                
+                // Compliance
+                complianceTitle: 'ES atitikties valdymas',
+                complianceSubtitle: 'Stebėti ir užtikrinti atitiktį Europos Sąjungos reglamentams.',
+                batteryRegulation: 'Baterijų reglamentas',
+                requiresAttention: 'Reikalauja dėmesio',
+                regulatoryUpdates: 'Reguliavimo naujienės',
+                
+                // Sustainability
+                sustainabilityTitle: 'Tvarumo rodikliai',
+                sustainabilitySubtitle: 'Stebėti aplinkosaugos poveikį ir tvarumo tikslus.',
+                carbonFootprint: 'Anglies pėdsakas',
+                recyclingEfficiency: 'Perdirbimo efektyvumas',
+                renewableEnergy: 'Atsinaujinanti energija',
+                
+                // Recycling
+                recyclingTitle: 'Perdirbimo valdymas',
+                recyclingSubtitle: 'Stebėti baterijų perdirbimo procesus ir efektyvumą.',
+                recycledThisMonth: 'Perdirbta šį mėnesį',
+                efficiency: 'Efektyvumas',
+                averageTime: 'Vidutinis laikas',
+                awaitingPickup: 'Laukia paėmimo',
+                
+                // Reports
+                reportsTitle: 'Ataskaitos ir analitika',
+                reportsSubtitle: 'Išsamūs duomenų analizės ir atitikties raportai.',
+                generate: 'Generuoti',
+                
+                // Modals
+                registerNewBattery: 'Registruoti naują bateriją',
+                manufacturer: 'Gamintojas',
+                model: 'Modelis',
+                batteryType: 'Baterijos tipas',
+                capacity: 'Talpa (kWh)',
+                manufacturingDate: 'Gamybos data',
+                serialNumber: 'Serijos numeris',
+                additionalInfo: 'Papildoma informacija',
+                registerBatteryBtn: 'Registruoti bateriją',
+                cancel: 'Atšaukti',
+                
+                // Status
+                active: 'Aktyvi',
+                inUse: 'Naudojama',
+                recycling: 'Perdirbama',
+                valid: 'Galioja',
+                updating: 'Atnaujinama',
+                waiting: 'Laukia',
+                transporting: 'Transportuojama',
+                inProcess: 'Procese',
+                completed: 'Užbaigta',
+                
+                // Success messages
+                batteryRegistered: 'Baterija sėkmingai registruota!',
+                passportGenerated: 'Pasas sėkmingai sugeneruotas!',
+                reportGenerating: 'Generuojama ataskaita...',
+                filterApplied: 'Filtrai pritaikyti',
+                
+                // Battery types
+                lithiumIon: 'Ličio jonų',
+                nickelMetalHydride: 'Nikelio metalų hidridas',
+                leadAcid: 'Švino rūgštis',
+                other: 'Kita'
+            }
+        };
+
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            document.getElementById('currentLang').textContent = lang.toUpperCase();
+            document.getElementById('languageMenu').classList.add('hidden');
+            updatePageContent();
+            showNotification(lang === 'en' ? 'Language switched to English' : 'Kalba pakeista į lietuvių', 'success');
+        }
+
+        function toggleLanguageMenu() {
+            document.getElementById('languageMenu').classList.toggle('hidden');
+        }
+
+        function updatePageContent() {
+            const t = translations[currentLanguage];
+            
+            // Update navigation
+            document.querySelector('#nav-dashboard').innerHTML = `<i data-lucide="layout-dashboard" class="mr-3 h-5 w-5"></i>${t.dashboard}`;
+            document.querySelector('#nav-batteries').innerHTML = `<i data-lucide="battery" class="mr-3 h-5 w-5"></i>${t.batteries}`;
+            document.querySelector('#nav-passports').innerHTML = `<i data-lucide="file-text" class="mr-3 h-5 w-5"></i>${t.passports}`;
+            document.querySelector('#nav-compliance').innerHTML = `<i data-lucide="shield-check" class="mr-3 h-5 w-5"></i>${t.compliance}`;
+            document.querySelector('#nav-sustainability').innerHTML = `<i data-lucide="leaf" class="mr-3 h-5 w-5"></i>${t.sustainability}`;
+            document.querySelector('#nav-recycling').innerHTML = `<i data-lucide="recycle" class="mr-3 h-5 w-5"></i>${t.recycling}`;
+            document.querySelector('#nav-reports').innerHTML = `<i data-lucide="bar-chart-3" class="mr-3 h-5 w-5"></i>${t.reports}`;
+            
+            // Update sidebar button
+            document.querySelector('#sidebarNewBattery').innerHTML = `<i data-lucide="plus" class="w-4 h-4 mr-2"></i>${t.newBattery}`;
+            
+            // Update main content titles and subtitles
+            updateTabContent('dashboard', t.dashboardTitle, t.dashboardSubtitle);
+            updateTabContent('batteries', t.batteriesTitle, t.batteriesSubtitle);
+            updateTabContent('passports', t.passportsTitle, t.passportsSubtitle);
+            updateTabContent('compliance', t.complianceTitle, t.complianceSubtitle);
+            updateTabContent('sustainability', t.sustainabilityTitle, t.sustainabilitySubtitle);
+            updateTabContent('recycling', t.recyclingTitle, t.recyclingSubtitle);
+            updateTabContent('reports', t.reportsTitle, t.reportsSubtitle);
+            
+            // Re-initialize icons after content update
+            lucide.createIcons();
+        }
+
+        function updateTabContent(tabName, title, subtitle) {
+            const content = document.querySelector(`#${tabName}-content`);
+            if (content) {
+                const titleElement = content.querySelector('h1');
+                const subtitleElement = content.querySelector('p');
+                if (titleElement) titleElement.textContent = title;
+                if (subtitleElement) subtitleElement.textContent = subtitle;
+            }
+        }
+
+        function toggleLanguageMenu() {
+            document.getElementById('languageMenu').classList.toggle('hidden');
+        }
+
+        // Close language menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('languageMenu');
+            const button = event.target.closest('button');
+            if (!button || !button.onclick || button.onclick.toString().indexOf('toggleLanguageMenu') === -1) {
+                if (menu) menu.classList.add('hidden');
+            }
+        });
+
         // Tab switching
         function switchTab(tabName) {
             // Hide all tab contents
@@ -1330,5 +1624,5 @@
             }, 1000);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97c950f0b02003e8',t:'MTc1NzQ0ODQ5Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97c95826576803e8',t:'MTc1NzQ0ODc4Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

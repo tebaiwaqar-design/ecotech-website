@@ -16,9 +16,9 @@
         }
         
         body {
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #fafafa;
-            color: #111;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
             line-height: 1.5;
         }
         
@@ -31,148 +31,183 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 12px 16px;
-            border-bottom: 1px solid #e5e7eb;
+            padding: 16px;
+            border-bottom: 1px solid #e2e8f0;
             background: #fff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 10;
         }
         
         .logo {
-            height: 36px;
-            width: 36px;
-            border-radius: 12px;
-            background: #059669;
+            height: 40px;
+            width: 40px;
+            border-radius: 10px;
+            background: #0d9488;
             color: #fff;
             display: grid;
             place-items: center;
             font-weight: 700;
+            font-size: 18px;
         }
         
         .title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 600;
+            color: #0f766e;
         }
         
         .sub {
-            font-size: 12px;
-            color: #6b7280;
+            font-size: 13px;
+            color: #64748b;
         }
         
         .btn-primary {
-            background: #059669;
+            background: #0d9488;
             color: #fff;
-            border: 1px solid #059669;
-            border-radius: 999px;
-            padding: 10px 14px;
+            border: 1px solid #0d9488;
+            border-radius: 8px;
+            padding: 10px 16px;
             cursor: pointer;
             font-weight: 600;
             transition: all 0.2s;
+            font-size: 14px;
         }
         
         .btn-primary:hover {
-            background: #047857;
-            border-color: #047857;
+            background: #0f766e;
+            border-color: #0f766e;
         }
         
         .btn-outline {
             background: #fff;
-            color: #059669;
-            border: 1px solid #059669;
-            border-radius: 999px;
-            padding: 10px 14px;
+            color: #0d9488;
+            border: 1px solid #0d9488;
+            border-radius: 8px;
+            padding: 10px 16px;
             cursor: pointer;
             font-weight: 600;
             transition: all 0.2s;
+            font-size: 14px;
         }
         
         .btn-outline:hover {
-            background: #ecfdf5;
+            background: #f0fdfa;
         }
         
         /* Tab Styles */
         .tab-bar {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            display: flex;
             gap: 8px;
             padding: 16px;
+            background: #f1f5f9;
+            border-bottom: 1px solid #e2e8f0;
         }
         
         .tab {
-            padding: 10px 12px;
-            border: 1px solid #e5e7eb;
+            padding: 10px 16px;
+            border: 1px solid #cbd5e1;
             background: #fff;
-            border-radius: 12px;
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.2s;
+            font-size: 14px;
+            font-weight: 500;
         }
         
         .tab:hover {
-            background: #f9fafb;
+            background: #f8fafc;
+            border-color: #94a3b8;
         }
         
         .tab-active {
-            background: #059669;
+            background: #0d9488;
             color: #fff;
-            border-color: #059669;
+            border-color: #0d9488;
         }
         
         /* Content Styles */
+        .content {
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
         .grid-3 {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr;
-            gap: 12px;
-            padding: 0 16px 16px;
+            gap: 16px;
         }
         
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            gap: 12px;
         }
         
         .section {
             background: #fff;
-            border: 1px solid #e5e7eb;
-            border-radius: 16px;
-            padding: 16px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            height: fit-content;
         }
         
         .section-head {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0f766e;
         }
         
         .label {
-            font-size: 12px;
-            color: #6b7280;
+            font-size: 13px;
+            color: #64748b;
             margin-bottom: 6px;
+            font-weight: 500;
         }
         
         .input {
             width: 100%;
-            border: 1px solid #e5e7eb;
-            border-radius: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
             padding: 10px 12px;
             font-size: 14px;
             outline: none;
             transition: border-color 0.2s;
+            font-family: inherit;
         }
         
         .input:focus {
-            border-color: #059669;
+            border-color: #0d9488;
+            box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
+        }
+        
+        select.input {
+            background: #fff;
+        }
+        
+        textarea.input {
+            min-height: 100px;
+            resize: vertical;
         }
         
         .badge {
             display: inline-block;
-            padding: 2px 8px;
-            background: #059669;
+            padding: 4px 10px;
+            background: #0d9488;
             color: #fff;
-            border-radius: 999px;
+            border-radius: 20px;
             margin-right: 6px;
             font-size: 12px;
             font-weight: 600;
@@ -180,54 +215,55 @@
         
         .badge-light {
             display: inline-block;
-            padding: 2px 8px;
-            background: #f3f4f6;
-            color: #111;
-            border-radius: 999px;
+            padding: 4px 10px;
+            background: #f1f5f9;
+            color: #475569;
+            border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
         }
         
         .list {
             font-size: 14px;
-            color: #374151;
-            padding-left: 18px;
+            color: #475569;
+            padding-left: 20px;
             line-height: 1.6;
         }
         
         .list li {
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
         
         .muted {
             font-size: 13px;
-            color: #6b7280;
+            color: #64748b;
             margin: 0;
+            line-height: 1.5;
         }
         
         .grid-apva {
             display: grid;
             grid-template-columns: 2fr 1fr;
-            gap: 16px;
+            gap: 20px;
         }
         
         .steps-row {
             display: flex;
             align-items: center;
             gap: 8px;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
         
         .step-line {
             flex: 1;
-            height: 1px;
-            background: #d1fae5;
+            height: 2px;
+            background: #cbd5e1;
         }
         
         .box {
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 16px;
             background: #fff;
         }
         
@@ -235,70 +271,91 @@
         .kanban {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            gap: 12px;
+            gap: 16px;
             overflow-x: auto;
+            padding: 8px 0;
         }
         
         .kanban-col {
-            border: 1px solid #e5e7eb;
-            border-radius: 16px;
-            padding: 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 16px;
             background: #fff;
-            min-width: 200px;
+            min-width: 220px;
         }
         
         .kanban-col-head {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .col-title {
+            font-weight: 600;
+            color: #334155;
         }
         
         .card-sm {
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 14px;
             background: #fff;
-            margin-bottom: 8px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+            margin-bottom: 12px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+        }
+        
+        .card-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 10px;
         }
         
         .mini-text {
-            margin-top: 6px;
+            margin-top: 8px;
             font-size: 12px;
-            color: #6b7280;
+            color: #64748b;
         }
         
         /* Progress Bar */
         .progress-outer {
             width: 100%;
             height: 8px;
-            background: #f3f4f6;
-            border-radius: 999px;
+            background: #f1f5f9;
+            border-radius: 10px;
             overflow: hidden;
-            margin-top: 8px;
+            margin: 10px 0;
         }
         
         .progress-inner {
             height: 100%;
-            background: #10b981;
+            background: #0d9488;
             transition: width 0.3s;
+            border-radius: 10px;
         }
         
         /* Footer */
         .footer {
-            padding: 16px;
-            font-size: 12px;
-            color: #6b7280;
+            padding: 20px;
+            font-size: 13px;
+            color: #64748b;
             text-align: center;
-            border-top: 1px solid #e5e7eb;
-            margin-top: 16px;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 30px;
+            background: #f8fafc;
         }
         
         /* Responsive Design */
         @media (max-width: 1200px) {
             .grid-3 {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .grid-3 .section:nth-child(3) {
+                grid-column: 1 / -1;
             }
             
             .kanban {
@@ -306,16 +363,12 @@
             }
         }
         
-        @media (max-width: 768px) {
-            .tab-bar {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .grid-2 {
+        @media (max-width: 900px) {
+            .grid-3 {
                 grid-template-columns: 1fr;
             }
             
-            .kanban {
+            .grid-2 {
                 grid-template-columns: 1fr;
             }
             
@@ -323,16 +376,99 @@
                 grid-template-columns: 1fr;
             }
             
+            .kanban {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .tab-bar {
+                flex-wrap: wrap;
+            }
+        }
+        
+        @media (max-width: 600px) {
             .header {
                 flex-direction: column;
                 text-align: center;
-                gap: 8px;
+                gap: 10px;
             }
             
             .header > div:last-child {
                 margin-left: 0;
-                margin-top: 8px;
+                margin-top: 10px;
             }
+            
+            .kanban {
+                grid-template-columns: 1fr;
+            }
+            
+            .content {
+                padding: 16px;
+            }
+        }
+        
+        /* Chart container */
+        .chart-container {
+            height: 260px;
+            margin-top: 10px;
+        }
+        
+        /* Button group */
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+        }
+        
+        /* Metric cards */
+        .metric-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 12px;
+        }
+        
+        .metric-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 14px;
+            background: #fff;
+        }
+        
+        .metric-label {
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 6px;
+        }
+        
+        .metric-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f766e;
+        }
+        
+        /* Success message */
+        .success-box {
+            background: #f0fdfa;
+            border: 1px solid #99f6e4;
+            border-radius: 10px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+        
+        /* Debug info */
+        .debug-info {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 20px 0;
+            font-size: 13px;
+            color: #dc2626;
+        }
+        
+        .debug-title {
+            font-weight: 700;
+            margin-bottom: 8px;
         }
     </style>
 </head>
@@ -340,9 +476,39 @@
     <div id="root"></div>
 
     <script type="text/babel">
+        // Debug information - this will help identify issues
+        console.log("Script loaded successfully");
+        console.log("React version:", React.version);
+        console.log("Recharts available:", typeof Recharts !== "undefined");
+        
+        // If Recharts is not available, we'll create a fallback
+        if (typeof Recharts === 'undefined') {
+            console.error("Recharts library failed to load. Using fallback UI.");
+        }
+
         const { useState, useMemo } = React;
-        const Recharts = window.Recharts;
-        const { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar } = Recharts;
+        
+        // Safely get Recharts components with fallback
+        const getRechartsComponents = () => {
+            if (typeof Recharts === 'undefined') return null;
+            
+            return {
+                LineChart: Recharts.LineChart,
+                Line: Recharts.Line,
+                XAxis: Recharts.XAxis,
+                YAxis: Recharts.YAxis,
+                CartesianGrid: Recharts.CartesianGrid,
+                Tooltip: Recharts.Tooltip,
+                ResponsiveContainer: Recharts.ResponsiveContainer,
+                PieChart: Recharts.PieChart,
+                Pie: Recharts.Pie,
+                Cell: Recharts.Cell,
+                BarChart: Recharts.BarChart,
+                Bar: Recharts.Bar
+            };
+        };
+        
+        const RechartsComponents = getRechartsComponents();
 
         function EcoRetrofitDemo() {
             const [activeTab, setActiveTab] = useState("audit");
@@ -401,7 +567,7 @@
             };
 
             return (
-                <div style={{minHeight: '100vh', background: '#fafafa'}}>
+                <div>
                     {/* Header */}
                     <div className="header">
                         <div className="logo">ER</div>
@@ -409,7 +575,7 @@
                             <div className="title">EcoRetrofit24 • MVP Prototype</div>
                             <div className="sub">APVA automation • Retrofit workflow • KPI reporting</div>
                         </div>
-                        <div style={{ marginLeft: "auto", display: "flex", gap: 8 }}>
+                        <div style={{ marginLeft: "auto", display: "flex", gap: 10 }}>
                             <button className="btn-outline">Settings</button>
                             <button className="btn-primary">Request Demo</button>
                         </div>
@@ -433,202 +599,236 @@
                         ))}
                     </div>
 
+                    {/* Debug info - remove in production */}
+                    <div className="debug-info">
+                        <div className="debug-title">Debug Information</div>
+                        <div>Active Tab: {activeTab}</div>
+                        <div>Recharts Loaded: {typeof Recharts !== 'undefined' ? 'Yes' : 'No'}</div>
+                        <div>React Version: {React.version}</div>
+                    </div>
+
                     {/* Content */}
-                    {activeTab === "audit" && (
-                        <div className="grid-3">
-                            <Section title="Building Details" action={<Pill>Draft</Pill>}>
-                                <div className="grid-2">
-                                    <Field label="Building Type">
-                                        <select
-                                            value={audit.buildingType}
-                                            onChange={(e) => setAudit({ ...audit, buildingType: e.target.value })}
-                                            className="input"
-                                        >
-                                            <option>Single</option>
-                                            <option>Multi-apartment</option>
-                                            <option>Commercial</option>
-                                        </select>
-                                    </Field>
-                                    <Field label="Floor Area (m²)">
-                                        <input
-                                            placeholder="e.g., 1,250"
-                                            value={audit.floorArea}
-                                            onChange={(e) => setAudit({ ...audit, floorArea: e.target.value })}
-                                            className="input"
-                                        />
-                                    </Field>
-                                    <Field label="Year of Construction">
-                                        <input
-                                            placeholder="e.g., 1998"
-                                            value={audit.yearBuilt}
-                                            onChange={(e) => setAudit({ ...audit, yearBuilt: e.target.value })}
-                                            className="input"
-                                        />
-                                    </Field>
-                                    <Field label="Heating System">
-                                        <input
-                                            placeholder="District / Gas / Electric"
-                                            value={audit.heating}
-                                            onChange={(e) => setAudit({ ...audit, heating: e.target.value })}
-                                            className="input"
-                                        />
-                                    </Field>
-                                    <Field label="Annual Energy Usage (kWh)">
-                                        <input
-                                            placeholder="e.g., 185,000"
-                                            value={audit.annualKwh}
-                                            onChange={(e) => setAudit({ ...audit, annualKwh: e.target.value })}
-                                            className="input"
-                                        />
-                                    </Field>
-                                    <Field label="Notes / Observations" full>
-                                        <textarea
-                                            rows={4}
-                                            placeholder="Thermal bridges, roof condition, window glazing, etc."
-                                            value={audit.notes}
-                                            onChange={(e) => setAudit({ ...audit, notes: e.target.value })}
-                                            className="input"
-                                            style={{resize: "vertical", height: 96}}
-                                        />
-                                    </Field>
-                                </div>
-                                <div style={{ marginTop: 12, display: "flex", gap: 8 }}>
-                                    <button className="btn-primary" onClick={() => setActiveTab("apva")}>
-                                        Generate APVA PDF
-                                    </button>
-                                    <button className="btn-outline">Save Draft</button>
-                                </div>
-                            </Section>
+                    <div className="content">
+                        {activeTab === "audit" && (
+                            <div className="grid-3">
+                                <Section title="Building Details" action={<Pill>Draft</Pill>}>
+                                    <div className="grid-2">
+                                        <Field label="Building Type">
+                                            <select
+                                                value={audit.buildingType}
+                                                onChange={(e) => setAudit({ ...audit, buildingType: e.target.value })}
+                                                className="input"
+                                            >
+                                                <option>Single</option>
+                                                <option>Multi-apartment</option>
+                                                <option>Commercial</option>
+                                            </select>
+                                        </Field>
+                                        <Field label="Floor Area (m²)">
+                                            <input
+                                                placeholder="e.g., 1,250"
+                                                value={audit.floorArea}
+                                                onChange={(e) => setAudit({ ...audit, floorArea: e.target.value })}
+                                                className="input"
+                                            />
+                                        </Field>
+                                        <Field label="Year of Construction">
+                                            <input
+                                                placeholder="e.g., 1998"
+                                                value={audit.yearBuilt}
+                                                onChange={(e) => setAudit({ ...audit, yearBuilt: e.target.value })}
+                                                className="input"
+                                            />
+                                        </Field>
+                                        <Field label="Heating System">
+                                            <input
+                                                placeholder="District / Gas / Electric"
+                                                value={audit.heating}
+                                                onChange={(e) => setAudit({ ...audit, heating: e.target.value })}
+                                                className="input"
+                                            />
+                                        </Field>
+                                        <Field label="Annual Energy Usage (kWh)">
+                                            <input
+                                                placeholder="e.g., 185,000"
+                                                value={audit.annualKwh}
+                                                onChange={(e) => setAudit({ ...audit, annualKwh: e.target.value })}
+                                                className="input"
+                                            />
+                                        </Field>
+                                        <Field label="Notes / Observations" full>
+                                            <textarea
+                                                rows={4}
+                                                placeholder="Thermal bridges, roof condition, window glazing, etc."
+                                                value={audit.notes}
+                                                onChange={(e) => setAudit({ ...audit, notes: e.target.value })}
+                                                className="input"
+                                            />
+                                        </Field>
+                                    </div>
+                                    <div className="btn-group">
+                                        <button className="btn-primary" onClick={() => setActiveTab("apva")}>
+                                            Generate APVA PDF
+                                        </button>
+                                        <button className="btn-outline">Save Draft</button>
+                                    </div>
+                                </Section>
 
-                            <Section title="Quick Estimator">
-                                <EstimatorCard audit={audit} />
-                            </Section>
+                                <Section title="Quick Estimator">
+                                    <EstimatorCard audit={audit} />
+                                </Section>
 
-                            <Section title="Document Checklist">
-                                <ul className="list">
-                                    <li>Ownership proof</li>
-                                    <li>Energy audit baseline</li>
-                                    <li>Contractor quotes</li>
-                                    <li>Payback & savings model</li>
-                                </ul>
-                                <div style={{ marginTop: 8, fontSize: 13 }}>
-                                    <span className="badge">APVA</span> Grant coverage up to 85%
-                                </div>
-                            </Section>
-                        </div>
-                    )}
-
-                    {activeTab === "apva" && (
-                        <Section title="APVA Application Status" action={<Pill>{apvaStatus}</Pill>}>
-                            <div className="grid-apva">
-                                <div>
-                                    <div className="steps-row">
-                                        <Step done={apvaStatus !== "Draft"} label="Draft" />
-                                        <div className="step-line" />
-                                        <Step done={apvaStatus !== "Draft"} label="Submitted" />
-                                        <div className="step-line" />
-                                        <Step done={apvaStatus === "Approved"} label="Approved" />
+                                <Section title="Document Checklist">
+                                    <ul className="list">
+                                        <li>Ownership proof</li>
+                                        <li>Energy audit baseline</li>
+                                        <li>Contractor quotes</li>
+                                        <li>Payback & savings model</li>
+                                    </ul>
+                                    <div style={{ marginTop: 12, fontSize: 14 }}>
+                                        <span className="badge">APVA</span> Grant coverage up to 85%
                                     </div>
-                                    <div className="box">
-                                        <p className="muted">Generate APVA-compliant PDF using the audit fields. This mock simulates server-side generation.</p>
-                                        <div style={{ marginTop: 12, display: "flex", gap: 8 }}>
-                                            <button className="btn-primary" onClick={generateApva}>Generate PDF</button>
-                                            <button className="btn-outline" disabled={!apvaPdfReady}>Download PDF</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="box" style={{background: "#ecfdf5"}}>
-                                        <p style={{ margin: 0, fontSize: 14 }}><b>Tip:</b> Attach contractor quotes and HOA mandate to improve approval chances.</p>
-                                    </div>
-                                    <div style={{ marginTop: 12 }}>
-                                        <div style={{ fontSize: 13, marginBottom: 6 }}>APVA Checklist</div>
-                                        <ul className="list">
-                                            <li>Applicant & Property details</li>
-                                            <li>Baseline energy audit</li>
-                                            <li>Measures & expected savings</li>
-                                            <li>Budget & financing plan</li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                </Section>
                             </div>
-                        </Section>
-                    )}
+                        )}
 
-                    {activeTab === "projects" && (
-                        <Section title="Project Pipeline (Kanban)">
-                            <div className="kanban">
-                                {stages.map((stage) => (
-                                    <div key={stage} className="kanban-col">
-                                        <div className="kanban-col-head">
-                                            <div style={{ fontWeight: 600 }}>{stage}</div>
-                                            <div className="badge-light">{demoProjects.filter((p) => p.stage === stage).length}</div>
+                        {activeTab === "apva" && (
+                            <Section title="APVA Application Status" action={<Pill>{apvaStatus}</Pill>}>
+                                <div className="grid-apva">
+                                    <div>
+                                        <div className="steps-row">
+                                            <Step done={apvaStatus !== "Draft"} label="Draft" />
+                                            <div className="step-line" />
+                                            <Step done={apvaStatus !== "Draft"} label="Submitted" />
+                                            <div className="step-line" />
+                                            <Step done={apvaStatus === "Approved"} label="Approved" />
                                         </div>
-                                        <div>
-                                            {demoProjects.filter((p) => p.stage === stage).map((p) => (
-                                                <div key={p.id} className="card-sm">
-                                                    <div style={{ fontSize: 14, fontWeight: 600 }}>{p.addr}</div>
-                                                    <Progress value={p.pct} />
-                                                    <div className="mini-text">{p.pct}% complete</div>
-                                                    <div style={{ display: "flex", gap: 6, marginTop: 8 }}>
-                                                        <button className="btn-outline" style={{padding: '4px 8px', fontSize: '12px'}}>View</button>
-                                                        <button className="btn-primary" style={{padding: '4px 8px', fontSize: '12px'}}>Advance</button>
+                                        <div className="box">
+                                            <p className="muted">Generate APVA-compliant PDF using the audit fields. This mock simulates server-side generation.</p>
+                                            <div className="btn-group">
+                                                <button className="btn-primary" onClick={generateApva}>Generate PDF</button>
+                                                <button className="btn-outline" disabled={!apvaPdfReady}>Download PDF</button>
+                                            </div>
+                                        </div>
+                                        {apvaPdfReady && (
+                                            <div className="success-box">
+                                                <p style={{ margin: 0, color: '#0d9488', fontWeight: '500' }}>
+                                                    ✓ APVA application approved! PDF is ready for download.
+                                                </p>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div>
+                                        <div className="box" style={{background: "#f0fdfa", borderColor: "#99f6e4"}}>
+                                            <p style={{ margin: 0, fontSize: 14 }}><b>Tip:</b> Attach contractor quotes and HOA mandate to improve approval chances.</p>
+                                        </div>
+                                        <div style={{ marginTop: 16 }}>
+                                            <div style={{ fontSize: 14, marginBottom: 8, fontWeight: '600' }}>APVA Checklist</div>
+                                            <ul className="list">
+                                                <li>Applicant & Property details</li>
+                                                <li>Baseline energy audit</li>
+                                                <li>Measures & expected savings</li>
+                                                <li>Budget & financing plan</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Section>
+                        )}
+
+                        {activeTab === "projects" && (
+                            <Section title="Project Pipeline (Kanban)">
+                                <div className="kanban">
+                                    {stages.map((stage) => (
+                                        <div key={stage} className="kanban-col">
+                                            <div className="kanban-col-head">
+                                                <div className="col-title">{stage}</div>
+                                                <div className="badge-light">{demoProjects.filter((p) => p.stage === stage).length}</div>
+                                            </div>
+                                            <div>
+                                                {demoProjects.filter((p) => p.stage === stage).map((p) => (
+                                                    <div key={p.id} className="card-sm">
+                                                        <div className="card-title">{p.addr}</div>
+                                                        <Progress value={p.pct} />
+                                                        <div className="mini-text">{p.pct}% complete</div>
+                                                        <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
+                                                            <button className="btn-outline" style={{padding: '6px 12px', fontSize: '12px'}}>View</button>
+                                                            <button className="btn-primary" style={{padding: '6px 12px', fontSize: '12px'}}>Advance</button>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </Section>
-                    )}
-
-                    {activeTab === "reporting" && (
-                        <div className="grid-3">          
-                            <Section title="Energy Savings Trend">
-                                <div style={{ height: 260 }}>
-                                    <ResponsiveContainer width="100%" height="100%">
-                                        <LineChart data={kpiData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-                                            <CartesianGrid strokeDasharray="3 3" />
-                                            <XAxis dataKey="month" />
-                                            <YAxis />
-                                            <Tooltip />
-                                            <Line type="monotone" dataKey="savings" stroke="#059669" strokeWidth={2} dot={false} />
-                                        </LineChart>
-                                    </ResponsiveContainer>
-                                </div>
-                            </Section>
-
-                            <Section title="Project Mix (YTD)">
-                                <div style={{ height: 260 }}>
-                                    <ResponsiveContainer width="100%" height="100%">
-                                        <PieChart>
-                                            <Pie dataKey="value" data={mix} innerRadius={45} outerRadius={80} paddingAngle={3}>
-                                                {mix.map((_, i) => (
-                                                    <Cell key={i} fill={["#10b981", "#34d399", "#6ee7b7", "#a7f3d0"][i % 4]} />
                                                 ))}
-                                            </Pie>
-                                            <Tooltip />
-                                        </PieChart>
-                                    </ResponsiveContainer>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
                             </Section>
+                        )}
 
-                            <Section title="Approvals (YTD)">
-                                <div style={{ height: 260 }}>
-                                    <ResponsiveContainer width="100%" height="100%">
-                                        <BarChart data={kpiData}>
-                                            <CartesianGrid strokeDasharray="3 3" />
-                                            <XAxis dataKey="month" />
-                                            <YAxis />
-                                            <Tooltip />
-                                            <Bar dataKey="approvals" fill="#10b981" radius={[6, 6, 0, 0]} />
-                                        </BarChart>
-                                    </ResponsiveContainer>
-                                </div>
-                            </Section>
-                        </div>
-                    )}
+                        {activeTab === "reporting" && (
+                            <div className="grid-3">          
+                                <Section title="Energy Savings Trend">
+                                    {RechartsComponents ? (
+                                        <div className="chart-container">
+                                            <RechartsComponents.ResponsiveContainer width="100%" height="100%">
+                                                <RechartsComponents.LineChart data={kpiData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+                                                    <RechartsComponents.CartesianGrid strokeDasharray="3 3" />
+                                                    <RechartsComponents.XAxis dataKey="month" />
+                                                    <RechartsComponents.YAxis />
+                                                    <RechartsComponents.Tooltip />
+                                                    <RechartsComponents.Line type="monotone" dataKey="savings" stroke="#0d9488" strokeWidth={2} dot={false} />
+                                                </RechartsComponents.LineChart>
+                                            </RechartsComponents.ResponsiveContainer>
+                                        </div>
+                                    ) : (
+                                        <div style={{ padding: '20px', textAlign: 'center', color: '#64748b' }}>
+                                            Chart library not loaded. Check console for errors.
+                                        </div>
+                                    )}
+                                </Section>
+
+                                <Section title="Project Mix (YTD)">
+                                    {RechartsComponents ? (
+                                        <div className="chart-container">
+                                            <RechartsComponents.ResponsiveContainer width="100%" height="100%">
+                                                <RechartsComponents.PieChart>
+                                                    <RechartsComponents.Pie dataKey="value" data={mix} innerRadius={45} outerRadius={80} paddingAngle={3}>
+                                                        {mix.map((_, i) => (
+                                                            <RechartsComponents.Cell key={i} fill={["#0d9488", "#14b8a6", "#0d9488", "#14b8a6"][i % 4]} />
+                                                        ))}
+                                                    </RechartsComponents.Pie>
+                                                    <RechartsComponents.Tooltip />
+                                                </RechartsComponents.PieChart>
+                                            </RechartsComponents.ResponsiveContainer>
+                                        </div>
+                                    ) : (
+                                        <div style={{ padding: '20px', textAlign: 'center', color: '#64748b' }}>
+                                            Chart library not loaded. Check console for errors.
+                                        </div>
+                                    )}
+                                </Section>
+
+                                <Section title="Approvals (YTD)">
+                                    {RechartsComponents ? (
+                                        <div className="chart-container">
+                                            <RechartsComponents.ResponsiveContainer width="100%" height="100%">
+                                                <RechartsComponents.BarChart data={kpiData}>
+                                                    <RechartsComponents.CartesianGrid strokeDasharray="3 3" />
+                                                    <RechartsComponents.XAxis dataKey="month" />
+                                                    <RechartsComponents.YAxis />
+                                                    <RechartsComponents.Tooltip />
+                                                    <RechartsComponents.Bar dataKey="approvals" fill="#0d9488" radius={[6, 6, 0, 0]} />
+                                                </RechartsComponents.BarChart>
+                                            </RechartsComponents.ResponsiveContainer>
+                                        </div>
+                                    ) : (
+                                        <div style={{ padding: '20px', textAlign: 'center', color: '#64748b' }}>
+                                            Chart library not loaded. Check console for errors.
+                                        </div>
+                                    )}
+                                </Section>
+                            </div>
+                        )}
+                    </div>
 
                     {/* Footer */}
                     <div className="footer">© {new Date().getFullYear()} EcoRetrofit UAB · Prototype UI for demonstrations. No backend or personal data processed.</div>
@@ -636,12 +836,12 @@
             );
         }
 
-        // --- UI primitives (no external UI lib) ---
+        // --- UI Components ---
         function Section({ title, action, children }) {
             return (
                 <div className="section">
                     <div className="section-head">
-                        <div style={{ fontSize: 18, fontWeight: 600 }}>{title}</div>
+                        <div className="section-title">{title}</div>
                         {action}
                     </div>
                     <div>{children}</div>
@@ -677,12 +877,12 @@
                         style={{
                             height: 24,
                             width: 24,
-                            borderRadius: 999,
+                            borderRadius: "50%",
                             display: "grid",
                             placeItems: "center",
-                            border: `1px solid ${done ? "#059669" : "#e5e7eb"}`,
-                            background: done ? "#059669" : "#fff",
-                            color: done ? "#fff" : "#6b7280",
+                            border: `1px solid ${done ? "#0d9488" : "#cbd5e1"}`,
+                            background: done ? "#0d9488" : "#fff",
+                            color: done ? "#fff" : "#64748b",
                             fontSize: 12,
                             fontWeight: 700,
                         }}
@@ -703,7 +903,7 @@
             return (
                 <div>
                     <div className="muted">Quick, non-binding estimate based on inputs.</div>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginTop: 8 }}>
+                    <div className="metric-grid">
                         <Metric label="Est. Ticket" value={`€${base.toLocaleString()}`} />
                         <Metric label="Savings" value={`${savingsPct}%`} />
                         <Metric label="Payback" value={`${paybackMonths} mo`} />
@@ -715,16 +915,21 @@
 
         function Metric({ label, value }) {
             return (
-                <div style={{ border: "1px solid #e5e7eb", borderRadius: 12, padding: 12, background: "#fff" }}>
-                    <div style={{ fontSize: 12, color: "#6b7280" }}>{label}</div>
-                    <div style={{ fontSize: 18, fontWeight: 600 }}>{value}</div>
+                <div className="metric-card">
+                    <div className="metric-label">{label}</div>
+                    <div className="metric-value">{value}</div>
                 </div>
             );
         }
 
         // Render the app
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<EcoRetrofitDemo />);
+        const rootElement = document.getElementById('root');
+        if (rootElement) {
+            const root = ReactDOM.createRoot(rootElement);
+            root.render(<EcoRetrofitDemo />);
+        } else {
+            console.error("Root element not found");
+        }
     </script>
 </body>
 </html>

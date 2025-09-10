@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>EcoRetrofit24 • Advanced MVP Prototype</title>
   <meta name="description" content="EcoRetrofit24 – APVA automation, retrofit workflow, KPI reporting, and AI insights (prototype)." />
+
+  <!-- Link preview / PWA polish -->
+  <meta property="og:title" content="EcoRetrofit24 – APVA & Retrofit MVP" />
+  <meta property="og:description" content="Audit → Estimator → APVA PDF → Kanban → Reporting → AI insights." />
+  <meta property="og:image" content="logo.png" />
+  <meta name="theme-color" content="#0d9488" />
+
   <style>
     /* ===== Base ===== */
     *{box-sizing:border-box;margin:0;padding:0}
@@ -13,7 +20,7 @@
 
     /* ===== Header ===== */
     .header{display:flex;align-items:center;gap:12px;padding:16px;border-bottom:1px solid #e2e8f0;background:#fff;position:sticky;top:0;z-index:10}
-    .logo{height:40px;width:40px;border-radius:10px;background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;display:grid;place-items:center;font-weight:700;font-size:18px}
+    .logo-fallback{height:40px;width:40px;border-radius:10px;background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;display:grid;place-items:center;font-weight:700;font-size:18px}
     .title{font-size:20px;font-weight:600;color:#0f766e}
     .sub{font-size:13px;color:#64748b}
     .btn{border-radius:8px;padding:10px 16px;cursor:pointer;font-weight:600;transition:all .2s;font-size:14px}
@@ -82,6 +89,7 @@
     @media (max-width:900px){.grid-3{grid-template-columns:1fr}.grid-2{grid-template-columns:1fr}.grid-apva{grid-template-columns:1fr}.kanban{grid-template-columns:repeat(2,1fr)}}
     @media (max-width:600px){.header{flex-direction:column;text-align:center;gap:10px}.content{padding:16px}.kanban{grid-template-columns:1fr}}
   </style>
+
   <!-- React + ReactDOM + Recharts + jsPDF (UMD) -->
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -188,8 +196,15 @@
       }, []);
       useEffect(() => { window.location.hash = activeTab; }, [activeTab]);
 
-      // audit form state + autosave
-      const [audit, setAudit] = useState({ buildingType:'Single', floorArea:'', yearBuilt:'', heating:'', annualKwh:'', notes:'' });
+      // audit form state + autosave (pre-filled so estimator/AI show data)
+      const [audit, setAudit] = useState({
+        buildingType:'Single',
+        floorArea:'1,250',
+        yearBuilt:'1998',
+        heating:'Gas',
+        annualKwh:'185,000',
+        notes:'Double-glazed windows, minor roof thermal bridge.'
+      });
       const [errors, setErrors] = useState({});
       useEffect(() => { const s = localStorage.getItem('eco_audit'); if (s) setAudit(JSON.parse(s)); }, []);
       useEffect(() => { localStorage.setItem('eco_audit', JSON.stringify(audit)); }, [audit]);
@@ -282,19 +297,20 @@
         <div>
           {/* Header */}
           <div className="header">
-            <div className="logo">ER</div>
+            <!-- Replace with your logo file at /logo.png -->
+            <img src="logo.png" alt="EcoRetrofit logo" style={{height:40,width:'auto',borderRadius:8}} onError={(e)=>{ e.currentTarget.replaceWith(Object.assign(document.createElement('div'),{className:'logo-fallback',textContent:'ER'})); }} />
             <div>
               <div className="title">EcoRetrofit24 • MVP Prototype</div>
               <div className="sub">APVA automation • Retrofit workflow • KPI reporting • Prototype • Sample data</div>
             </div>
             <div style={{ marginLeft:'auto', display:'flex', gap:10 }}>
-              <button className="btn-outline">Settings</button>
-              <button className="btn-ai">AI Assistant</button>
+              <button className="btn-outline" aria-label="Open settings">Settings</button>
+              <button className="btn-ai" aria-label="Open AI assistant">AI Assistant</button>
             </div>
           </div>
 
           {/* Tabs */}
-          <div className="tab-bar">
+          <div className="tab-bar" role="tablist" aria-label="Main sections">
             {[
               { id:'audit', label:'Audit Form' },
               { id:'apva', label:'APVA Generator' },
@@ -302,7 +318,13 @@
               { id:'reporting', label:'Reporting' },
               { id:'ai', label:'AI Insights' },
             ].map(t => (
-              <button key={t.id} onClick={()=>setActiveTab(t.id)} className={activeTab===t.id ? `tab tab-active ${t.id==='ai'?'ai-tab':''}` : 'tab'}>
+              <button
+                key={t.id}
+                role="tab"
+                aria-selected={activeTab===t.id}
+                onClick={()=>setActiveTab(t.id)}
+                className={activeTab===t.id ? `tab tab-active ${t.id==='ai'?'ai-tab':''}` : 'tab'}
+              >
                 {t.label}
               </button>
             ))}
@@ -315,34 +337,40 @@
                 <Section title="Building Details" action={<span className='pill'>Draft</span>}>
                   <div className="grid-2">
                     <Field label="Building Type">
-                      <select value={audit.buildingType} onChange={e=>setAudit({...audit,buildingType:e.target.value})} className="input">
+                      <select aria-label="Building type" value={audit.buildingType} onChange={e=>setAudit({...audit,buildingType:e.target.value})} className="input">
                         <option>Single</option>
                         <option>Multi-apartment</option>
                         <option>Commercial</option>
                       </select>
                     </Field>
                     <Field label="Floor Area (m²)">
-                      <input className="input" placeholder="e.g., 1,250" value={audit.floorArea} onChange={e=>setAudit({...audit,floorArea:e.target.value})} />
+                      <input aria-label="Floor area in square meters" className="input" placeholder="e.g., 1,250" value={audit.floorArea} onChange={e=>setAudit({...audit,floorArea:e.target.value})} />
                       {errors.floorArea && <div className='err'>{errors.floorArea}</div>}
                     </Field>
                     <Field label="Year of Construction">
-                      <input className="input" placeholder="e.g., 1998" value={audit.yearBuilt} onChange={e=>setAudit({...audit,yearBuilt:e.target.value})} />
+                      <input aria-label="Year built" className="input" placeholder="e.g., 1998" value={audit.yearBuilt} onChange={e=>setAudit({...audit,yearBuilt:e.target.value})} />
                       {errors.yearBuilt && <div className='err'>{errors.yearBuilt}</div>}
                     </Field>
                     <Field label="Heating System">
-                      <input className="input" placeholder="District / Gas / Electric" value={audit.heating} onChange={e=>setAudit({...audit,heating:e.target.value})} />
+                      <input aria-label="Heating type" className="input" placeholder="District / Gas / Electric" value={audit.heating} onChange={e=>setAudit({...audit,heating:e.target.value})} />
                     </Field>
                     <Field label="Annual Energy Usage (kWh)">
-                      <input className="input" placeholder="e.g., 185,000" value={audit.annualKwh} onChange={e=>setAudit({...audit,annualKwh:e.target.value})} />
+                      <input aria-label="Annual energy in kWh" className="input" placeholder="e.g., 185,000" value={audit.annualKwh} onChange={e=>setAudit({...audit,annualKwh:e.target.value})} />
                       {errors.annualKwh && <div className='err'>{errors.annualKwh}</div>}
                     </Field>
                     <Field label="Notes / Observations" full>
-                      <textarea className="input" rows="4" placeholder="Thermal bridges, roof condition, window glazing, etc." value={audit.notes} onChange={e=>setAudit({...audit,notes:e.target.value})}></textarea>
+                      <textarea aria-label="Notes" className="input" rows="4" placeholder="Thermal bridges, roof condition, window glazing, etc." value={audit.notes} onChange={e=>setAudit({...audit,notes:e.target.value})}></textarea>
                     </Field>
                   </div>
                   <div className="btn-group">
-                    <button className="btn-primary" onClick={()=>setActiveTab('apva')}>Generate APVA PDF</button>
-                    <button className="btn-outline" onClick={()=>alert('Saved locally')}>Save Draft</button>
+                    <button
+                      className="btn-primary"
+                      aria-label="Generate APVA PDF"
+                      onClick={()=>{ setActiveTab('apva'); setTimeout(generateApva, 0); }}
+                    >
+                      Generate APVA PDF
+                    </button>
+                    <button className="btn-outline" aria-label="Save draft" onClick={()=>alert('Saved locally')}>Save Draft</button>
                   </div>
                 </Section>
 
@@ -375,11 +403,11 @@
                     <div className="box">
                       <p className="muted">Generate APVA-compliant PDF using the audit fields. This mock simulates server-side generation.</p>
                       <div className="btn-group">
-                        <button className="btn-primary" onClick={generateApva}>Generate PDF</button>
+                        <button className="btn-primary" aria-label="Generate PDF" onClick={generateApva}>Generate PDF</button>
                         {apvaPdfReady ? (
-                          <a className="btn-outline" href={apvaUrl} download="APVA-Application.pdf">Download PDF</a>
+                          <a className="btn-outline" aria-label="Download PDF" href={apvaUrl} download="APVA-Application.pdf">Download PDF</a>
                         ) : (
-                          <button className="btn-outline" disabled>Download PDF</button>
+                          <button className="btn-outline" aria-label="Download PDF disabled" disabled>Download PDF</button>
                         )}
                       </div>
                     </div>
@@ -411,7 +439,7 @@
                   {stages.map(stage => (
                     <div key={stage} className="kanban-col">
                       <div className="kanban-col-head">
-                        <div className="col-title">{stage}</div>
+                        <div className="col-title" style={{ fontWeight:600 }}>{stage}</div>
                         <div className="badge-light">{filtered.filter(p=>p.stage===stage).length}</div>
                       </div>
                       <div>
@@ -421,8 +449,8 @@
                             <Progress value={p.pct} />
                             <div className="mini-text">{p.pct}% complete</div>
                             <div style={{ display:'flex', gap:8, marginTop:12 }}>
-                              <button className="btn-outline" style={{ padding:'6px 12px', fontSize:12 }}>View</button>
-                              <button className="btn-primary" style={{ padding:'6px 12px', fontSize:12 }}>Advance</button>
+                              <button className="btn-outline" aria-label={`View ${p.addr}`} style={{ padding:'6px 12px', fontSize:12 }}>View</button>
+                              <button className="btn-primary" aria-label={`Advance ${p.addr}`} style={{ padding:'6px 12px', fontSize:12 }}>Advance</button>
                             </div>
                           </div>
                         ))}
@@ -559,8 +587,7 @@
       );
     }
 
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(<App/>);
+    ReactDOM.render(<App/>, document.getElementById('root'));
   </script>
 
   <style>

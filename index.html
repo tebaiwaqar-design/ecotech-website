@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>EcoRetrofit24 Portal • Professional Energy Retrofit Management</title>
-  <meta name="description" content="Complete energy retrofit management platform with APVA automation, project tracking, client portal, and AI insights." />
+  <title>EcoRetrofit24 Professional • Enterprise Energy Management Platform</title>
+  <meta name="description" content="Professional enterprise-grade energy retrofit management platform with automated APVA processing, advanced analytics, client portal, and AI-powered insights." />
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script src="https://unpkg.com/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     /* ===== Professional Base Styles ===== */
     * { 
@@ -20,11 +20,15 @@
     
     body { 
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-      background: #fafbfc;
-      color: #2c3e50;
-      line-height: 1.5;
+      background: linear-gradient(135deg, #fafbfc 0%, #f4f6f8 50%, #e8eef2 100%);
+      color: #0f172a;
+      line-height: 1.65;
       font-size: 14px;
       font-weight: 400;
+      letter-spacing: -0.015em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
     }
     
     #root { 
@@ -35,12 +39,15 @@
 
     /* ===== Professional Header ===== */
     .header {
-      background: #ffffff;
-      border-bottom: 1px solid #e1e8ed;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      background: linear-gradient(135deg, #ffffff 0%, #fefefe 50%, #fdfdfd 100%);
+      border-bottom: 1px solid #e1e7ef;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08), 0 2px 8px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.02);
       position: sticky;
       top: 0;
       z-index: 1000;
+      backdrop-filter: blur(12px) saturate(180%);
+      border-top: 3px solid transparent;
+      border-image: linear-gradient(90deg, #1e40af, #3b82f6, #06b6d4) 1;
     }
 
     .header-top {
@@ -59,16 +66,31 @@
     }
 
     .logo {
-      width: 40px;
-      height: 40px;
-      background: #1a365d;
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%);
       color: white;
-      border-radius: 6px;
+      border-radius: 12px;
       display: grid;
       place-items: center;
-      font-weight: 600;
-      font-size: 16px;
-      letter-spacing: -0.5px;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.8px;
+      box-shadow: 0 8px 32px rgba(15, 23, 42, 0.3), 0 4px 16px rgba(15, 23, 42, 0.2), 0 2px 8px rgba(15, 23, 42, 0.1);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .logo::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+      pointer-events: none;
     }
 
     .brand {
@@ -77,17 +99,26 @@
     }
 
     .brand-title {
-      font-size: 20px;
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
       font-weight: 600;
-      color: #1a365d;
-      letter-spacing: -0.3px;
-      margin-bottom: -2px;
+      color: #0f172a;
+      letter-spacing: -0.6px;
+      margin-bottom: -3px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 2px 4px rgba(15, 23, 42, 0.1);
     }
 
     .brand-sub {
-      font-size: 12px;
-      color: #718096;
-      font-weight: 400;
+      font-size: 11px;
+      color: #475569;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      opacity: 0.8;
     }
 
     .header-actions {
@@ -164,8 +195,20 @@
 
     /* ===== Professional Navigation ===== */
     .nav-container {
-      background: #f8fafc;
-      border-bottom: 1px solid #e2e8f0;
+      background: linear-gradient(135deg, #fafbfc 0%, #f1f5f9 50%, #e2e8f0 100%);
+      border-bottom: 1px solid #cbd5e1;
+      position: relative;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .nav-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, rgba(15, 23, 42, 0.15) 25%, rgba(30, 64, 175, 0.2) 50%, rgba(15, 23, 42, 0.15) 75%, transparent 100%);
     }
 
     .nav-tabs {
@@ -177,27 +220,44 @@
     }
 
     .nav-tab {
-      padding: 16px 24px;
+      padding: 18px 28px;
       cursor: pointer;
-      transition: all 0.15s ease;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       font-weight: 500;
       font-size: 13px;
       white-space: nowrap;
-      border-bottom: 2px solid transparent;
-      color: #4a5568;
+      border-bottom: 3px solid transparent;
+      color: #475569;
       position: relative;
+      letter-spacing: 0.025em;
     }
 
     .nav-tab:hover {
-      color: #2d3748;
-      background: rgba(26, 54, 93, 0.04);
+      color: #1e293b;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.03) 0%, rgba(30, 64, 175, 0.02) 100%);
+      transform: translateY(-1px);
     }
 
     .nav-tab.active {
-      color: #1a365d;
-      border-bottom-color: #1a365d;
-      background: white;
+      color: #0f172a;
+      border-bottom-color: #1e40af;
+      background: linear-gradient(135deg, #ffffff 0%, #fefefe 50%, #fdfdfd 100%);
       font-weight: 600;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.12), 0 2px 8px rgba(15, 23, 42, 0.08);
+      position: relative;
+      transform: translateY(-2px);
+    }
+
+    .nav-tab.active::before {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%);
+      border-radius: 2px 2px 0 0;
+      box-shadow: 0 2px 8px rgba(30, 64, 175, 0.4);
     }
 
     .nav-tab.ai-tab {
@@ -224,17 +284,25 @@
     }
 
     .page-title {
-      font-size: 24px;
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
       font-weight: 600;
-      color: #1a202c;
-      margin-bottom: 4px;
-      letter-spacing: -0.3px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+      letter-spacing: -0.6px;
+      line-height: 1.15;
+      text-shadow: 0 2px 4px rgba(15, 23, 42, 0.1);
     }
 
     .page-subtitle {
-      font-size: 14px;
-      color: #718096;
+      font-size: 15px;
+      color: #64748b;
       font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: 0.01em;
     }
 
     .grid-1 { display: grid; grid-template-columns: 1fr; gap: 24px; }
@@ -244,36 +312,63 @@
 
     /* ===== Professional Cards ===== */
     .card {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
+      background: linear-gradient(135deg, #ffffff 0%, #fefefe 50%, #fdfdfd 100%);
+      border: 1px solid #e1e7ef;
+      border-radius: 16px;
       overflow: hidden;
-      transition: all 0.15s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.02);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, rgba(15, 23, 42, 0.08) 25%, rgba(30, 64, 175, 0.12) 50%, rgba(15, 23, 42, 0.08) 75%, transparent 100%);
     }
 
     .card:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      border-color: #cbd5e0;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12), 0 8px 16px rgba(15, 23, 42, 0.08), 0 4px 8px rgba(15, 23, 42, 0.04);
+      border-color: #c7d2fe;
+      transform: translateY(-4px) scale(1.01);
     }
 
     .card-header {
-      padding: 20px 24px;
+      padding: 28px 32px;
       border-bottom: 1px solid #f1f5f9;
-      background: #fafbfc;
+      background: linear-gradient(135deg, #fafbfc 0%, #f8fafc 50%, #f6f8fa 100%);
+      position: relative;
+      box-shadow: inset 0 -1px 0 rgba(15, 23, 42, 0.05);
+    }
+
+    .card-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 32px;
+      right: 32px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(15, 23, 42, 0.1) 25%, rgba(30, 64, 175, 0.15) 50%, rgba(15, 23, 42, 0.1) 75%, transparent 100%);
     }
 
     .card-title {
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 600;
-      color: #1a202c;
-      margin-bottom: 2px;
-      letter-spacing: -0.2px;
+      color: #0f172a;
+      margin-bottom: 3px;
+      letter-spacing: -0.25px;
+      line-height: 1.3;
     }
 
     .card-subtitle {
       font-size: 13px;
-      color: #718096;
+      color: #64748b;
       font-weight: 400;
+      line-height: 1.4;
     }
 
     .card-body {
@@ -303,14 +398,35 @@
     }
 
     .btn-primary {
-      background: #1a365d;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #1e40af 100%);
       color: white;
-      border-color: #1a365d;
+      border: none;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.3), 0 4px 12px rgba(30, 64, 175, 0.2), 0 2px 6px rgba(15, 23, 42, 0.15);
+      position: relative;
+      overflow: hidden;
+      font-weight: 600;
+      letter-spacing: 0.025em;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+      transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .btn-primary:hover {
-      background: #2c5282;
-      border-color: #2c5282;
+      background: linear-gradient(135deg, #1e293b 0%, #334155 25%, #475569 50%, #3b82f6 100%);
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.4), 0 6px 16px rgba(30, 64, 175, 0.3), 0 3px 8px rgba(15, 23, 42, 0.2);
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    .btn-primary:hover::before {
+      left: 100%;
     }
 
     .btn-secondary {
@@ -434,33 +550,54 @@
     }
 
     .metric-card {
-      background: white;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 20px;
+      background: linear-gradient(135deg, #ffffff 0%, #fefefe 50%, #fdfdfd 100%);
+      border: 1px solid #e1e7ef;
+      border-radius: 16px;
+      padding: 28px;
       text-align: center;
-      transition: all 0.15s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.02);
+    }
+
+    .metric-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #0f172a 0%, #1e40af 25%, #3b82f6 50%, #06b6d4 75%, #0f172a 100%);
+      box-shadow: 0 2px 8px rgba(30, 64, 175, 0.3);
     }
 
     .metric-card:hover {
-      border-color: #cbd5e0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      border-color: #c7d2fe;
+      box-shadow: 0 16px 32px rgba(15, 23, 42, 0.12), 0 8px 16px rgba(30, 64, 175, 0.08), 0 4px 8px rgba(15, 23, 42, 0.04);
+      transform: translateY(-4px) scale(1.02);
     }
 
     .metric-value {
-      font-size: 28px;
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
       font-weight: 700;
-      color: #1a365d;
-      margin-bottom: 4px;
-      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #1e40af 50%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+      letter-spacing: -0.8px;
+      line-height: 1.1;
+      text-shadow: 0 2px 4px rgba(15, 23, 42, 0.1);
     }
 
     .metric-label {
-      font-size: 13px;
-      color: #718096;
-      font-weight: 500;
+      font-size: 12px;
+      color: #64748b;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
     }
 
     .metric-change {
@@ -779,12 +916,44 @@
 
     /* ===== Professional Animations ===== */
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { 
+        opacity: 0; 
+        transform: translateY(20px) scale(0.98); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+      }
+    }
+
+    @keyframes slideInFromLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -200px 0; }
+      100% { background-position: calc(200px + 100%) 0; }
     }
 
     .fade-in {
-      animation: fadeIn 0.3s ease-out;
+      animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .slide-in {
+      animation: slideInFromLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .shimmer {
+      background: linear-gradient(90deg, #f0f0f0 0px, #e0e0e0 40px, #f0f0f0 80px);
+      background-size: 200px;
+      animation: shimmer 1.5s infinite;
     }
 
     /* ===== Professional Utilities ===== */
@@ -1275,7 +1444,7 @@
                 <div className="logo">E</div>
                 <div className="brand">
                   <div className="brand-title">EcoRetrofit24</div>
-                  <div className="brand-sub">Professional Energy Retrofit Portal</div>
+                  <div className="brand-sub">Professional Energy Solutions</div>
                 </div>
               </div>
               
@@ -2399,5 +2568,5 @@
 
     ReactDOM.render(<App />, document.getElementById('root'));
   </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97d9f903531f97a4',t:'MTc1NzYyMzE0OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97da0630964897a4',t:'MTc1NzYyMzY4OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

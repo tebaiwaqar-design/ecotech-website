@@ -178,11 +178,41 @@
     .section-head h2 { font-stretch: 112%; font-weight: 800; font-size: clamp(30px, 3.6vw, 46px); line-height: 1.04; letter-spacing: -.022em; max-width: 14ch; }
     .section-head p { color: var(--ink-2); font-size: 17px; max-width: 32em; }
 
-    .measures { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 44px 40px; }
-    .measure { border-top: 1.5px solid var(--ink); padding-top: 22px; }
-    .measure svg { width: 30px; height: 30px; stroke: var(--ink); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-    .measure h3 { margin-top: 16px; font-size: 20px; font-weight: 700; letter-spacing: -.01em; line-height: 1.25; }
+    .measures { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px 32px; }
+    .measure h3 { margin-top: 18px; font-size: 20px; font-weight: 700; letter-spacing: -.01em; line-height: 1.25; }
     .measure p { margin-top: 6px; color: var(--ink-2); font-size: 15.5px; max-width: 30em; }
+
+    /* Video */
+    .section-reel { padding-top: 0; }
+    .reel { position: relative; aspect-ratio: 16 / 9; background: var(--ink); border-radius: 6px; overflow: hidden; }
+    .clip { position: relative; aspect-ratio: 16 / 9; background: #DCE3E0; border-radius: 4px; overflow: hidden; }
+    .reel video, .clip video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .vid-toggle {
+      position: absolute; left: 16px; bottom: 16px; z-index: 2;
+      display: inline-flex; align-items: center; gap: 8px;
+      height: 40px; padding: 0 16px 0 13px;
+      border: 0; border-radius: 999px;
+      background: rgba(18, 48, 42, .8); color: #fff;
+      cursor: pointer; font-size: 14px; font-weight: 600;
+    }
+    .vid-toggle:hover { background: var(--ink); }
+    .vid-toggle svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
+    .clip .vid-toggle { left: auto; right: 10px; bottom: 10px; width: 34px; height: 34px; padding: 0; justify-content: center; }
+    .clip .vid-toggle svg { width: 12px; height: 12px; }
+
+    .chapters { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; margin-top: 18px; }
+    .chapter {
+      display: block; width: 100%; padding: 0 0 4px; border: 0; background: none;
+      text-align: left; cursor: pointer; color: var(--muted);
+    }
+    .chapter:hover { color: var(--ink-2); }
+    .chapter[aria-current="step"] { color: var(--ink); }
+    .chapter-track { height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; }
+    .chapter-fill { height: 100%; background: var(--ink); transform-origin: left center; transform: scaleX(var(--p, 0)); }
+    .chapter-label { display: flex; gap: 10px; margin-top: 10px; font-size: 15px; font-weight: 600; line-height: 1.3; }
+    .chapter-label b { font-stretch: 122%; font-weight: 800; }
+    .reel-credit { margin-top: 20px; font-size: 13.5px; color: var(--muted); }
+    .reel-credit a { color: inherit; text-underline-offset: 3px; }
 
     /* Project timeline */
     .gantt { border-top: 1.5px solid var(--ink); }
@@ -234,9 +264,14 @@
     .footer-inner { display: flex; flex-wrap: wrap; gap: 12px 32px; justify-content: space-between; align-items: center; }
     .footer-brand { display: flex; align-items: center; gap: 10px; color: var(--ink); font-weight: 650; }
     .footer a { color: var(--ink); text-underline-offset: 3px; }
+    .footer-credit { margin-top: 18px; font-size: 13px; }
+    .footer-credit a { color: inherit; }
 
     /* ---------- Inner pages ---------- */
     .page-head { padding-top: clamp(40px, 6vw, 72px); padding-bottom: clamp(28px, 4vw, 44px); }
+    .page-head-media { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px 56px; align-items: end; }
+    .head-fig { margin: 0; }
+    .head-fig figcaption { margin-top: 10px; font-size: 14px; color: var(--muted); }
     .page-head h1 { font-stretch: 112%; font-weight: 800; font-size: clamp(36px, 4.8vw, 58px); line-height: 1; letter-spacing: -.026em; }
     .page-head p { margin-top: 14px; font-size: 18px; color: var(--ink-2); max-width: 36em; }
     .page-body { padding-bottom: clamp(56px, 8vw, 104px); }
@@ -382,8 +417,13 @@
       .panel-aside { position: static; }
       .apva-hero { grid-template-columns: 1fr; }
     }
+    @media (min-width: 861px) {
+      .reel { aspect-ratio: 2.2 / 1; }
+    }
     @media (max-width: 860px) {
       .hero-grid { grid-template-columns: 1fr; }
+      .page-head-media { grid-template-columns: 1fr; }
+      .chapters { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 20px; }
       .section-head { grid-template-columns: 1fr; margin-bottom: 36px; }
       .measures { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .g-row { grid-template-columns: 1fr; }
@@ -1258,18 +1298,151 @@
       );
     }
 
-    const ICONS = {
-      solar: <><path d="M3 15l3-9h12l3 9z" /><path d="M4.5 10.5h15" /><path d="M10 6l-1 9" /><path d="M14 6l1 9" /><path d="M12 15v4" /><path d="M8 19h8" /></>,
-      heatPump: <><rect x="3" y="5" width="18" height="13" rx="1.5" /><circle cx="10" cy="11.5" r="4" /><path d="M10 7.5v8" /><path d="M6 11.5h8" /><path d="M17.5 8.5v6" /><path d="M6 18v2" /><path d="M18 18v2" /></>,
-      insulation: <><path d="M3 5h18" /><path d="M3 19h18" /><path d="M3 12c1.5-3 3-3 4.5 0s3 3 4.5 0 3-3 4.5 0 3 3 4.5 0" /></>,
-      windows: <><rect x="5" y="3" width="14" height="18" rx="1" /><path d="M12 3v18" /><path d="M5 12h14" /></>,
-      led: <><path d="M9 18h6" /><path d="M10 21h4" /><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z" /></>,
-      controls: <><circle cx="12" cy="12" r="8" /><path d="M12 12l4-3" /><path d="M12 4v2" /><path d="M20 12h-2" /><path d="M4 12h2" /></>
+    /* ---------- Video ---------- */
+
+    // Stock footage streamed from Pexels (free for commercial use, credited in the footer)
+    const PX = 'https://videos.pexels.com/video-files/';
+    const PI = 'https://images.pexels.com/videos/';
+    const POSTER_L = '?auto=compress&cs=tinysrgb&w=1440';
+    const POSTER_M = '?auto=compress&cs=tinysrgb&w=750';
+
+    const REEL = [
+      { label: 'Lifting panels onto the roof', src: PX + '8853491/8853491-hd_1280_720_24fps.mp4', poster: PI + '8853491/adult-alternative-appoint-architecture-8853491.jpeg' + POSTER_L },
+      { label: 'Fixing panels to the rails', src: PX + '8853490/8853490-hd_1280_720_24fps.mp4', poster: PI + '8853490/adult-appoint-building-construction-8853490.jpeg' + POSTER_L },
+      { label: 'Securing the array', src: PX + '8853529/8853529-hd_1280_720_24fps.mp4', poster: PI + '8853529/adult-appoint-architecture-builder-8853529.jpeg' + POSTER_L },
+      { label: 'The finished roof', src: PX + '9790190/9790190-hd_1280_720_30fps.mp4', poster: PI + '9790190/4-k-aerial-shot-alternative-alternative-energy-9790190.jpeg' + POSTER_L }
+    ];
+
+    const CLIPS = {
+      solar: { src: PX + '8853485/8853485-sd_960_540_24fps.mp4', poster: PI + '8853485/action-adult-airplane-appoint-8853485.jpeg' + POSTER_M },
+      heatPump: { src: PX + '35999366/15264817_960_540_60fps.mp4', poster: PI + '35999366/pexels-photo-35999366.jpeg' + POSTER_M },
+      insulation: { src: PX + '31466248/13416696_960_540_25fps.mp4', poster: PI + '31466248/builder-construction-nailgun-31466248.jpeg' + POSTER_M },
+      windows: { src: PX + '32078278/13674011_960_540_60fps.mp4', poster: PI + '32078278/air-sealing-window-airtight-window-close-closing-double-pane-window-closing-glass-window-32078278.jpeg' + POSTER_M },
+      led: { src: PX + '5391403/5391403-sd_960_540_30fps.mp4', poster: PI + '5391403/pexels-photo-5391403.jpeg' + POSTER_M },
+      controls: { src: PX + '39857556/17001946_960_540_24fps.mp4', poster: PI + '39857556/action-adjusting-appliance-closeup-39857556.jpeg' + POSTER_M },
+      audit: { src: PX + '29296279/12633832_1280_720_24fps.mp4', poster: PI + '29296279/inspection-29296279.jpeg' + POSTER_L }
     };
+
+    const canAutoplay = () =>
+      !prefersReducedMotion() && !(navigator.connection && navigator.connection.saveData);
+
+    function useInView(ref, threshold) {
+      const [inView, setInView] = useState(false);
+      useEffect(() => {
+        const el = ref.current;
+        if (!el || !('IntersectionObserver' in window)) { setInView(true); return; }
+        const io = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { threshold });
+        io.observe(el);
+        return () => io.disconnect();
+      }, []);
+      return inView;
+    }
+
+    function startVideo(v) {
+      if (!v) return;
+      v.muted = true;
+      const p = v.play();
+      if (p && p.catch) p.catch(() => {});
+    }
+
+    const PlayIcon = () => <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2v12l10-6z" /></svg>;
+    const PauseIcon = () => <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 2h3.5v12H3zM9.5 2H13v12H9.5z" /></svg>;
+
+    // A short muted loop that plays only while it is on screen
+    function LoopVideo({ clip, label }) {
+      const box = useRef(null);
+      const vid = useRef(null);
+      const inView = useInView(box, 0.35);
+      const [wantPlay, setWantPlay] = useState(canAutoplay);
+      const [playing, setPlaying] = useState(false);
+
+      useEffect(() => {
+        if (inView && wantPlay) startVideo(vid.current);
+        else if (vid.current) vid.current.pause();
+      }, [inView, wantPlay]);
+
+      const toggle = () => {
+        if (playing) { setWantPlay(false); vid.current.pause(); }
+        else { setWantPlay(true); startVideo(vid.current); }
+      };
+
+      return (
+        <div className="clip" ref={box}>
+          <video ref={vid} src={clip.src} poster={clip.poster} muted loop playsInline preload="none" aria-hidden="true"
+            onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} />
+          <button type="button" className="vid-toggle" onClick={toggle} aria-label={`${playing ? 'Pause' : 'Play'} ${label} video`}>
+            {playing ? <PauseIcon /> : <PlayIcon />}
+          </button>
+        </div>
+      );
+    }
+
+    // The install film: four clips played in order, with a chapter bar under each
+    function InstallReel() {
+      const box = useRef(null);
+      const vid = useRef(null);
+      const fills = useRef([]);
+      const inView = useInView(box, 0.4);
+      const [idx, setIdx] = useState(0);
+      const [wantPlay, setWantPlay] = useState(canAutoplay);
+      const [playing, setPlaying] = useState(false);
+
+      useEffect(() => {
+        if (inView && wantPlay) startVideo(vid.current);
+        else if (vid.current) vid.current.pause();
+      }, [inView, wantPlay, idx]);
+
+      useEffect(() => {
+        const paint = () => {
+          const v = vid.current;
+          const now = v && v.duration ? Math.min(1, v.currentTime / v.duration) : 0;
+          fills.current.forEach((el, i) => {
+            if (el) el.style.setProperty('--p', i < idx ? 1 : i > idx ? 0 : now);
+          });
+        };
+        paint();
+        if (!playing) return;
+        let raf;
+        const loop = () => { paint(); raf = requestAnimationFrame(loop); };
+        raf = requestAnimationFrame(loop);
+        return () => cancelAnimationFrame(raf);
+      }, [idx, playing]);
+
+      const toggle = () => {
+        if (playing) { setWantPlay(false); vid.current.pause(); }
+        else { setWantPlay(true); startVideo(vid.current); }
+      };
+      const jump = (i) => { setWantPlay(true); setIdx(i); };
+
+      return (
+        <div ref={box}>
+          <div className="reel">
+            <video ref={vid} src={REEL[idx].src} poster={REEL[idx].poster} muted playsInline preload="metadata"
+              aria-label="Stock footage of a rooftop solar installation"
+              onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}
+              onEnded={() => setIdx(i => (i + 1) % REEL.length)} />
+            <button type="button" className="vid-toggle" onClick={toggle}>
+              {playing ? <PauseIcon /> : <PlayIcon />}{playing ? 'Pause' : 'Play'}
+            </button>
+          </div>
+          <ol className="chapters">
+            {REEL.map((c, i) => (
+              <li key={c.label}>
+                <button type="button" className="chapter" aria-current={i === idx ? 'step' : undefined} onClick={() => jump(i)}>
+                  <div className="chapter-track"><div className="chapter-fill" ref={el => (fills.current[i] = el)}></div></div>
+                  <div className="chapter-label"><b>{i + 1}</b><span>{c.label}</span></div>
+                </button>
+              </li>
+            ))}
+          </ol>
+          <p className="reel-credit">Stock footage from <a href="https://www.pexels.com/@los-muertos-crew/" target="_blank" rel="noopener">Los Muertos Crew</a> and <a href="https://www.pexels.com/@kindelmedia/" target="_blank" rel="noopener">Kindel Media</a> on Pexels, used for illustration.</p>
+        </div>
+      );
+    }
 
     const MEASURES = [
       { icon: 'solar', title: 'Solar PV', text: 'Tier 1 monocrystalline panels with string inverters, sized to the building.' },
-      { icon: 'heatPump', title: 'Heat pumps', text: 'A+++ air-to-water units that replace gas or oil heating.' },
+      { icon: 'heatPump', title: 'Heat pumps', text: 'A+++ air-to-water units that replace gas or oil boilers and heat through your radiators.' },
       { icon: 'insulation', title: 'Insulation', text: 'Wall and roof insulation laid as one continuous layer to cut thermal bridging.' },
       { icon: 'windows', title: 'Windows and doors', text: 'Triple glazing with low-E coating and argon fill, U-value of 1.0 or better.' },
       { icon: 'led', title: 'LED lighting', text: 'A full LED retrofit with daylight and occupancy sensors.' },
@@ -1304,6 +1477,16 @@
             </div>
           </section>
 
+          <section className="section section-reel">
+            <div className="wrap">
+              <div className="section-head">
+                <h2>Watch a rooftop install</h2>
+                <p>A commercial solar job from start to finish: panels lifted onto the roof, fixed to the rails, secured, and the finished array from above.</p>
+              </div>
+              <InstallReel />
+            </div>
+          </section>
+
           <section className="section section-surface">
             <div className="wrap">
               <div className="section-head">
@@ -1313,7 +1496,7 @@
               <div className="measures">
                 {MEASURES.map(m => (
                   <div className="measure" key={m.title}>
-                    <svg viewBox="0 0 24 24" aria-hidden="true">{ICONS[m.icon]}</svg>
+                    <LoopVideo clip={CLIPS[m.icon]} label={m.title} />
                     <h3>{m.title}</h3>
                     <p>{m.text}</p>
                   </div>
@@ -1389,7 +1572,16 @@
     function AuditPage({ go }) {
       return (
         <>
-          <PageHead title="Energy audit">A full assessment of how your building uses energy, and a plan for what to change first.</PageHead>
+          <div className="wrap page-head page-head-media">
+            <div>
+              <h1>Energy audit</h1>
+              <p>A full assessment of how your building uses energy, and a plan for what to change first.</p>
+            </div>
+            <figure className="head-fig">
+              <LoopVideo clip={CLIPS.audit} label="Thermal imaging" />
+              <figcaption>A thermal camera shows where heat escapes through walls and windows.</figcaption>
+            </figure>
+          </div>
           <div className="wrap page-body">
             <div className="stages">
               {STAGES.map((st, i) => (
@@ -1509,7 +1701,7 @@
       const [menuOpen, setMenuOpen] = useState(false);
 
       useEffect(() => {
-        const onHash = () => setView(viewFromHash());
+        const onHash = () => { setView(viewFromHash()); window.scrollTo(0, 0); };
         window.addEventListener('hashchange', onHash);
         return () => window.removeEventListener('hashchange', onHash);
       }, []);
@@ -1578,6 +1770,9 @@
               <div>Founded by Waqar Lund, CEO</div>
               <a href="mailto:tebaiwaqar@gmail.com">tebaiwaqar@gmail.com</a>
               <div>© {new Date().getFullYear()} EcoRetrofit24</div>
+            </div>
+            <div className="wrap footer-credit">
+              Stock video from <a href="https://www.pexels.com" target="_blank" rel="noopener">Pexels</a> by Los Muertos Crew, Kindel Media, UrbanGrid, Daniel Coetsee, Rec Everywhere, Gustavo Fring, Jakub Bukowski and Frank Schrader.
             </div>
           </footer>
         </>

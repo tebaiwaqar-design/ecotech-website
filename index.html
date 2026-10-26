@@ -3,742 +3,419 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>EcoRetrofit24 Professional • Energy Management Platform</title>
-  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <title>EcoRetrofit24 | Energy retrofits for commercial buildings</title>
+  <meta name="description" content="EcoRetrofit24 audits commercial buildings, plans energy upgrades and prepares the funding paperwork." />
+  <meta name="theme-color" content="#12302A" />
+  <link rel="icon" href="favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
   <script src="https://unpkg.com/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --paper: #F2F5F3;
+      --surface: #FFFFFF;
+      --ink: #12302A;
+      --ink-2: #3D514B;
+      --muted: #667772;
+      --line: #D2DBD7;
+      --line-strong: #AEBDB7;
+      --green: #0B7A4B;
+      --green-soft: #E3F1E9;
+      --amber-soft: #FBF1D6;
+      --on-ink: #C4D3CD;
+
+      /* Building Energy Rating band colours */
+      --ber-a: #00965A;
+      --ber-b: #4CAF4A;
+      --ber-c: #B8D333;
+      --ber-d: #FFE200;
+      --ber-e: #FDB813;
+      --ber-f: #F26B21;
+      --ber-g: #E2262B;
+
+      --maxw: 1180px;
+      --gutter: clamp(16px, 4vw, 40px);
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    
-    body { 
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-      background: linear-gradient(135deg, #fafbfc 0%, #f4f6f8 50%, #e8eef2 100%);
-      color: #0f172a;
-      line-height: 1.65;
-      font-size: 14px;
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--ink);
+      background: var(--paper);
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
-    
-    .container {
-      min-height: 100vh;
-    }
+    button, input, select, textarea { font: inherit; color: inherit; }
+    a { color: inherit; }
+    #root { min-height: 100vh; display: flex; flex-direction: column; }
+    main { flex: 1 0 auto; }
+    :focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
 
-    /* Header Styles */
-    .header {
-      background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
-      color: white;
-      padding: 0;
-      box-shadow: 0 4px 20px rgba(26, 54, 93, 0.15);
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      height: 48px; padding: 0 22px;
+      border-radius: 4px; border: 1.5px solid transparent;
+      font-weight: 650; font-size: 15px; line-height: 1;
+      cursor: pointer; text-decoration: none; white-space: nowrap;
+      transition: background-color .15s ease, color .15s ease, border-color .15s ease;
     }
+    .btn-ink { background: var(--ink); color: #fff; }
+    .btn-ink:hover { background: var(--green); }
+    .btn-line { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+    .btn-line:hover { border-color: var(--ink); }
+    .btn-light { background: #fff; color: var(--ink); }
+    .btn-light:hover { background: var(--green-soft); }
+    .btn-sm { height: 40px; padding: 0 16px; font-size: 14px; }
+    .btn:disabled { opacity: .7; cursor: progress; }
+    .text-link { background: none; border: 0; padding: 0; cursor: pointer; color: var(--green); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 
-    .header-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 40px;
-      max-width: 1400px;
-      margin: 0 auto;
+    /* ---------- Header ---------- */
+    .topbar {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(242, 245, 243, .94);
+      -webkit-backdrop-filter: saturate(1.4) blur(8px);
+      backdrop-filter: saturate(1.4) blur(8px);
+      border-bottom: 1px solid var(--line);
     }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 16px;
+    .topbar-inner { display: flex; align-items: center; gap: 24px; height: 68px; }
+    .brand { display: flex; align-items: center; gap: 10px; background: none; border: 0; cursor: pointer; padding: 4px 0; }
+    .brand-name { font-stretch: 120%; font-weight: 800; font-size: 19px; letter-spacing: -.01em; }
+    .nav { display: flex; gap: 2px; margin-left: auto; }
+    .nav-link {
+      position: relative;
+      background: none; border: 0; cursor: pointer;
+      padding: 8px 12px; border-radius: 4px;
+      font-size: 15px; font-weight: 500; color: var(--ink-2);
     }
-
-    .logo-icon {
-      width: 48px;
-      height: 48px;
-      background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
+    .nav-link:hover { color: var(--ink); background: rgba(18, 48, 42, .06); }
+    .nav-link[aria-current="page"] { color: var(--ink); font-weight: 650; }
+    .nav .nav-link[aria-current="page"]::after {
+      content: ""; position: absolute; left: 12px; right: 12px; bottom: -14px;
+      height: 3px; background: var(--ink);
     }
-
-    .logo-text h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 28px;
-      font-weight: 700;
-      margin: 0;
-      letter-spacing: -0.5px;
+    .menu-btn {
+      display: none; align-items: center; gap: 8px;
+      height: 40px; padding: 0 14px;
+      border: 1.5px solid var(--line-strong); border-radius: 4px;
+      background: transparent; cursor: pointer;
+      font-weight: 600; font-size: 14px;
     }
+    .menu-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
+    .mobile-nav { display: grid; border-top: 1px solid var(--line); background: var(--paper); padding: 4px var(--gutter) 16px; }
+    .mobile-nav .nav-link { text-align: left; padding: 14px 2px; font-size: 17px; border-bottom: 1px solid var(--line); border-radius: 0; }
+    .mobile-nav .nav-link:hover { background: none; }
+    .mobile-nav .nav-link[aria-current="page"] { color: var(--green); }
 
-    .logo-text p {
-      font-size: 12px;
-      opacity: 0.8;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin: 0;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .nav-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 20px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      border-radius: 8px;
-      font-weight: 500;
-      font-size: 14px;
-      white-space: nowrap;
-    }
-
-    .nav-item:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    .nav-item.active {
-      background: rgba(255, 255, 255, 0.15);
-      font-weight: 600;
-    }
-
-    .nav-icon {
-      font-size: 16px;
-    }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .user-profile {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 8px 16px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 25px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .user-profile:hover {
-      background: rgba(255, 255, 255, 0.15);
-    }
-
-    .user-avatar {
-      width: 32px;
-      height: 32px;
-      background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .user-info {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .user-name {
-      font-size: 13px;
-      font-weight: 600;
-      line-height: 1;
-    }
-
-    .user-role {
-      font-size: 11px;
-      opacity: 0.8;
-      line-height: 1;
-    }
-
-    .main-content {
-      margin-top: 80px;
-      padding: 40px;
-      max-width: 1400px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* Mobile Navigation */
-    .mobile-nav-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 24px;
-      cursor: pointer;
-      padding: 8px;
-    }
-
-    .mobile-nav {
-      display: none;
-      position: fixed;
-      top: 80px;
-      left: 0;
-      right: 0;
-      background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
-      box-shadow: 0 4px 20px rgba(26, 54, 93, 0.15);
-      z-index: 999;
-      padding: 20px;
-    }
-
-    .mobile-nav.active {
-      display: block;
-    }
-
-    .mobile-nav .nav-item {
-      width: 100%;
-      justify-content: flex-start;
-      margin-bottom: 8px;
-      padding: 16px 20px;
-    }
-
-    .section {
-      display: none;
-      animation: fadeIn 0.3s ease-in-out;
-    }
-
-    .section.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .section-header {
-      margin-bottom: 32px;
-      text-align: center;
-    }
-
-    .section-header h2 {
-      font-size: 32px;
-      font-weight: 700;
-      color: #1a202c;
-      margin-bottom: 8px;
-    }
-
-    .section-header p {
-      font-size: 16px;
-      color: #718096;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .dashboard-grid {
+    /* ---------- Home: hero ---------- */
+    .hero { padding: clamp(48px, 8vw, 96px) 0 clamp(56px, 8vw, 104px); }
+    .hero-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
-      margin-bottom: 40px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 8px 32px rgba(15, 23, 42, 0.08);
-      border: 1px solid #e1e7ef;
-      transition: all 0.2s ease;
-    }
-
-    .card:hover {
-      box-shadow: 0 12px 40px rgba(15, 23, 42, 0.12);
-      transform: translateY(-2px);
-    }
-
-    .card-header {
-      display: flex;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+      gap: clamp(40px, 6vw, 88px);
       align-items: center;
-      gap: 12px;
-      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-stretch: 112%; font-weight: 800;
+      font-size: clamp(44px, 6.4vw, 82px);
+      line-height: .98; letter-spacing: -.028em;
+      max-width: 10ch;
+    }
+    .hero-lede { margin-top: 26px; font-size: clamp(17px, 1.6vw, 20px); line-height: 1.5; color: var(--ink-2); max-width: 31em; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 34px; }
+
+    /* The rating ladder */
+    .ladder-fig { margin: 0; }
+    .ladder-end { font-size: 13px; font-weight: 600; color: var(--muted); }
+    .ladder-end-top { margin-bottom: 10px; }
+    .ladder-end-bottom { margin-top: 10px; }
+    .ladder { position: relative; display: grid; gap: 8px; }
+    .ladder-row { height: 42px; display: flex; align-items: center; }
+    .ber {
+      height: 42px; width: var(--w);
+      display: flex; align-items: center; padding-left: 14px;
+      background: var(--c); color: var(--t);
+      font-stretch: 122%; font-weight: 800; font-size: 20px;
+      clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 0 100%);
+      animation: band-in .5s cubic-bezier(.2, .7, .2, 1) both;
+      animation-delay: calc(var(--i) * 55ms);
+    }
+    .marker {
+      position: absolute; right: 0; top: 0;
+      height: 42px; width: 132px;
+      display: flex; align-items: center; gap: 10px;
+      padding: 0 14px 0 28px;
+      clip-path: polygon(16px 0, 100% 0, 100% 100%, 16px 100%, 0 50%);
+    }
+    .marker small { font-size: 13px; font-weight: 500; }
+    .marker strong { margin-left: auto; font-stretch: 122%; font-weight: 800; font-size: 20px; font-variant-numeric: tabular-nums; }
+    .marker-now { top: 150px; background: #DCE3E0; color: var(--ink); animation: band-in .5s ease both .2s; }
+    .marker-target { background: var(--ink); color: #fff; animation: climb 1.5s cubic-bezier(.22, .8, .24, 1) .6s both; }
+    .ladder-caption { margin-top: 20px; font-size: 14px; color: var(--muted); max-width: 34em; }
+
+    @keyframes band-in { from { opacity: 0; transform: translateX(-14px); } to { opacity: 1; transform: none; } }
+    @keyframes climb {
+      0% { transform: translateY(150px); opacity: 0; }
+      18% { transform: translateY(150px); opacity: 1; }
+      100% { transform: none; opacity: 1; }
     }
 
-    .card-icon {
-      font-size: 24px;
-      width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 100%);
-      border-radius: 12px;
+    /* ---------- Home: sections ---------- */
+    .section { padding: clamp(56px, 8vw, 104px) 0; }
+    .section-surface { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .section-head {
+      display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 16px 56px; align-items: end; margin-bottom: 48px;
     }
+    .section-head h2 { font-stretch: 112%; font-weight: 800; font-size: clamp(30px, 3.6vw, 46px); line-height: 1.04; letter-spacing: -.022em; max-width: 14ch; }
+    .section-head p { color: var(--ink-2); font-size: 17px; max-width: 32em; }
 
-    .card-title {
-      font-size: 18px;
-      font-weight: 600;
-      color: #1a202c;
+    .measures { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 44px 40px; }
+    .measure { border-top: 1.5px solid var(--ink); padding-top: 22px; }
+    .measure svg { width: 30px; height: 30px; stroke: var(--ink); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .measure h3 { margin-top: 16px; font-size: 20px; font-weight: 700; letter-spacing: -.01em; line-height: 1.25; }
+    .measure p { margin-top: 6px; color: var(--ink-2); font-size: 15.5px; max-width: 30em; }
+
+    /* Project timeline */
+    .gantt { border-top: 1.5px solid var(--ink); }
+    .g-row {
+      display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: 12px 40px; align-items: center;
+      padding: 24px 0; border-bottom: 1px solid var(--line);
     }
-
-    .card-value {
-      font-size: 32px;
-      font-weight: 800;
-      color: #1a365d;
-      margin-bottom: 8px;
+    .g-title { display: flex; align-items: baseline; gap: 12px; }
+    .g-num { font-stretch: 122%; font-weight: 800; font-size: 16px; color: var(--muted); min-width: 14px; }
+    .g-title h3 { font-size: 19px; font-weight: 700; line-height: 1.25; }
+    .g-text p { margin: 6px 0 0 26px; color: var(--ink-2); font-size: 15.5px; max-width: 34em; }
+    .g-chart { padding-bottom: 26px; }
+    .g-track {
+      position: relative; height: 22px;
+      background-image: linear-gradient(to right, var(--line) 1px, transparent 1px);
+      background-size: 20% 100%;
+      border-right: 1px solid var(--line);
     }
-
-    .card-subtitle {
-      font-size: 14px;
-      color: #718096;
+    .g-bar {
+      position: absolute; top: 0; bottom: 0;
+      left: calc(var(--s) / 20 * 100%);
+      width: calc(var(--d) / 20 * 100%);
+      background: var(--ink); border-radius: 3px;
     }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 24px;
+    .g-weeks {
+      position: absolute; top: 30px; left: 0;
+      white-space: nowrap; font-size: 14px; font-weight: 650; color: var(--ink);
+      font-variant-numeric: tabular-nums;
     }
+    .g-axis { padding: 14px 0 0; border-bottom: 0; }
+    .g-scale { position: relative; height: 18px; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+    .g-scale span { position: absolute; top: 0; transform: translateX(-50%); white-space: nowrap; }
+    .g-scale span:first-child { transform: none; }
+    .g-scale span:last-child { transform: translateX(-100%); }
 
-    .project-card {
-      background: white;
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 8px 32px rgba(15, 23, 42, 0.08);
-      border: 1px solid #e1e7ef;
+    /* Call to action band */
+    .cta { background: var(--ink); color: #fff; }
+    .cta-inner {
+      display: grid; grid-template-columns: minmax(0, 1fr) auto;
+      gap: 28px 48px; align-items: center;
+      padding: clamp(48px, 7vw, 84px) var(--gutter);
     }
+    .cta h2 { font-stretch: 112%; font-weight: 800; font-size: clamp(28px, 3.4vw, 44px); line-height: 1.04; letter-spacing: -.022em; max-width: 16ch; }
+    .cta p { margin-top: 14px; color: var(--on-ink); font-size: 17px; max-width: 34em; }
 
-    .project-header {
-      display: flex;
-      justify-content: between;
-      align-items: flex-start;
-      margin-bottom: 16px;
+    /* Footer */
+    .footer { border-top: 1px solid var(--line); padding: 32px 0 40px; font-size: 14px; color: var(--muted); }
+    .footer-inner { display: flex; flex-wrap: wrap; gap: 12px 32px; justify-content: space-between; align-items: center; }
+    .footer-brand { display: flex; align-items: center; gap: 10px; color: var(--ink); font-weight: 650; }
+    .footer a { color: var(--ink); text-underline-offset: 3px; }
+
+    /* ---------- Inner pages ---------- */
+    .page-head { padding-top: clamp(40px, 6vw, 72px); padding-bottom: clamp(28px, 4vw, 44px); }
+    .page-head h1 { font-stretch: 112%; font-weight: 800; font-size: clamp(36px, 4.8vw, 58px); line-height: 1; letter-spacing: -.026em; }
+    .page-head p { margin-top: 14px; font-size: 18px; color: var(--ink-2); max-width: 36em; }
+    .page-body { padding-bottom: clamp(56px, 8vw, 104px); }
+
+    .fig-value { display: block; font-stretch: 115%; font-weight: 800; font-size: 34px; line-height: 1; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+    .fig-label { display: block; margin-top: 8px; font-size: 14px; color: var(--muted); }
+
+    /* Energy audit */
+    .stages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1.5px solid var(--ink); }
+    .stage { padding: 28px 28px 36px; border-left: 1px solid var(--line); }
+    .stage:first-child { padding-left: 0; border-left: 0; }
+    .stage-num { font-stretch: 122%; font-weight: 800; font-size: 16px; color: var(--muted); }
+    .stage h2 { margin-top: 10px; font-size: 24px; font-weight: 750; letter-spacing: -.012em; line-height: 1.2; }
+    .stage p { margin-top: 8px; color: var(--ink-2); max-width: 28em; }
+    .figs { display: flex; flex-wrap: wrap; gap: 20px 40px; margin-top: 30px; }
+    .audit-cta { margin-top: 48px; display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: center; }
+    .audit-cta p { color: var(--ink-2); }
+
+    /* Projects */
+    .projects { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+    .project { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 24px; display: flex; flex-direction: column; gap: 22px; }
+    .status { align-self: flex-start; font-size: 13px; font-weight: 650; padding: 4px 10px; border-radius: 999px; }
+    .status-active { background: var(--green-soft); color: #075A37; }
+    .status-planning { background: var(--amber-soft); color: #6E4C00; }
+    .status-completed { background: var(--ink); color: #fff; }
+    .project h2 { font-size: 21px; font-weight: 750; letter-spacing: -.01em; line-height: 1.2; }
+    .project-loc { margin-top: 3px; color: var(--muted); font-size: 15px; }
+    .project-figs { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; margin-top: auto; }
+    .project-figs .fig-value { font-size: 28px; }
+    .progress { height: 6px; background: #E2E9E5; border-radius: 3px; overflow: hidden; }
+    .progress span { display: block; height: 100%; background: var(--green); border-radius: 3px; }
+
+    /* Dashboard */
+    .kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 40px; }
+    .kpi { border-top: 1px solid var(--line); padding: 24px 0 36px; }
+    .kpi:nth-child(-n+3) { border-top: 1.5px solid var(--ink); }
+    .kpi-label { font-size: 15px; font-weight: 550; color: var(--ink-2); }
+    .kpi-value { margin-top: 14px; font-stretch: 115%; font-weight: 800; font-size: clamp(38px, 4.4vw, 54px); line-height: 1; letter-spacing: -.024em; font-variant-numeric: tabular-nums; }
+    .kpi-note { margin-top: 12px; font-size: 14px; color: var(--muted); }
+
+    /* Client portal */
+    .tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .tile { border: 1.5px dashed var(--line-strong); border-radius: 6px; padding: 26px; }
+    .tile-tag { display: inline-block; font-size: 13px; font-weight: 600; color: var(--muted); }
+    .tile h2 { margin-top: 10px; font-size: 22px; font-weight: 750; letter-spacing: -.01em; }
+    .tile p { margin-top: 6px; color: var(--ink-2); max-width: 30em; }
+
+    /* ---------- APVA generator ---------- */
+    .apva-hero {
+      margin-top: clamp(24px, 4vw, 40px);
+      background: var(--ink); color: #fff; border-radius: 8px;
+      padding: clamp(28px, 5vw, 52px);
+      display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: 32px 48px; align-items: end;
     }
+    .apva-hero h1 { font-stretch: 112%; font-weight: 800; font-size: clamp(32px, 4.2vw, 52px); line-height: 1.02; letter-spacing: -.025em; max-width: 13ch; }
+    .apva-hero p { margin-top: 14px; color: var(--on-ink); font-size: 17px; max-width: 30em; }
+    .apva-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+    .apva-stat { border-top: 1px solid rgba(255, 255, 255, .25); padding-top: 14px; display: flex; flex-direction: column-reverse; }
+    .apva-stat dd { font-weight: 800; font-size: clamp(24px, 2.5vw, 32px); line-height: 1; font-variant-numeric: tabular-nums; }
+    .apva-stat dt { margin-top: 8px; font-size: 13px; color: #A9BDB5; }
 
-    .project-title {
-      font-size: 18px;
-      font-weight: 600;
-      color: #1a202c;
-      margin-bottom: 4px;
+    .apva-layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 24px; margin-top: 24px; align-items: start; }
+    .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: clamp(20px, 3vw, 34px); }
+    .panel-aside { position: sticky; top: 92px; }
+    .panel-head { margin-bottom: 32px; }
+    .panel-head h2 { font-size: 24px; font-weight: 750; letter-spacing: -.012em; }
+    .panel-head p { margin-top: 4px; color: var(--ink-2); }
+
+    .fieldset { margin-bottom: 36px; }
+    .fieldset-title {
+      display: flex; gap: 12px; align-items: baseline;
+      font-size: 18px; font-weight: 750;
+      padding-bottom: 12px; margin-bottom: 20px; border-bottom: 1px solid var(--line);
     }
-
-    .project-location {
-      font-size: 14px;
-      color: #718096;
-    }
-
-    .project-status {
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .status-active {
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    .status-planning {
-      background: #fef3c7;
-      color: #92400e;
-    }
-
-    .status-completed {
-      background: #dbeafe;
-      color: #1e40af;
-    }
-
-    .project-metrics {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 16px;
-    }
-
-    .metric {
-      text-align: center;
-    }
-
-    .metric-value {
-      display: block;
-      font-size: 20px;
-      font-weight: 700;
-      color: #1a365d;
-    }
-
-    .metric-label {
-      font-size: 12px;
-      color: #718096;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .audit-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
-    }
-
-    .audit-card {
-      background: white;
-      border-radius: 16px;
-      padding: 32px;
-      box-shadow: 0 8px 32px rgba(15, 23, 42, 0.08);
-      border: 1px solid #e1e7ef;
-      text-align: center;
-    }
-
-    .audit-icon {
-      font-size: 48px;
-      margin-bottom: 16px;
-    }
-
-    .audit-card h3 {
-      font-size: 20px;
-      font-weight: 600;
-      color: #1a202c;
-      margin-bottom: 8px;
-    }
-
-    .audit-card p {
-      color: #718096;
-      margin-bottom: 20px;
-    }
-
-    .audit-metrics {
-      display: flex;
-      justify-content: space-around;
-      gap: 16px;
-    }
-
-    /* APVA Generator Styles */
-    .apva-container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .apva-header {
-      text-align: center;
-      margin-bottom: 40px;
-      padding: 40px;
-      background: #0f172a;
-      color: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    }
-
-    .apva-header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 36px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      letter-spacing: -0.5px;
-    }
-
-    .apva-header p {
-      font-size: 16px;
-      opacity: 0.9;
-      margin-bottom: 16px;
-    }
-
-    .stats {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      margin-top: 24px;
-    }
-
-    .stat {
-      text-align: center;
-    }
-
-    .stat-value {
-      font-size: 24px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .stat-label {
-      font-size: 12px;
-      opacity: 0.8;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .form-container {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 32px;
-      margin-bottom: 40px;
-    }
-
-    .form-section {
-      margin-bottom: 32px;
-    }
-
-    .form-section-title {
-      font-size: 16px;
-      font-weight: 600;
-      color: #1a202c;
-      margin-bottom: 16px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid #e2e8f0;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    .form-group.full-width {
-      grid-column: 1 / -1;
-    }
-
-    .label {
-      display: block;
-      font-size: 13px;
-      font-weight: 500;
-      color: #2d3748;
-      margin-bottom: 6px;
-    }
-
+    .fieldset-title span { font-stretch: 122%; font-weight: 800; color: var(--muted); }
+    .fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 20px; }
+    .field { display: flex; flex-direction: column; gap: 7px; }
+    .field-full { grid-column: 1 / -1; }
+    .field-label { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--ink-2); }
     .input {
-      width: 100%;
-      padding: 12px 16px;
-      border: 2px solid #e2e8f0;
-      border-radius: 8px;
-      font-size: 14px;
-      transition: all 0.2s ease;
-      font-family: inherit;
-      background: white;
+      width: 100%; height: 48px; padding: 0 14px;
+      border: 1.5px solid var(--line); border-radius: 4px; background: #fff;
+      font-size: 15px;
+      transition: border-color .15s ease, box-shadow .15s ease;
     }
-
-    .input:focus {
-      outline: none;
-      border-color: #1a365d;
-      box-shadow: 0 0 0 3px rgba(26, 54, 93, 0.1);
-    }
-
-    .textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
-
-    .select {
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-      background-position: right 12px center;
-      background-repeat: no-repeat;
-      background-size: 16px;
+    .input::placeholder { color: #93A29D; }
+    .input:hover { border-color: var(--line-strong); }
+    .input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px rgba(11, 122, 75, .16); }
+    textarea.input { height: auto; min-height: 112px; padding: 12px 14px; resize: vertical; line-height: 1.5; }
+    select.input {
+      appearance: none; -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%233D514B' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.6' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+      background-position: right 12px center; background-repeat: no-repeat; background-size: 16px;
       padding-right: 40px;
     }
-
-    .checkbox-group {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 8px;
+    .ber-tag {
+      display: inline-flex; align-items: center; height: 22px; padding: 0 14px 0 8px;
+      background: var(--c); color: var(--t);
+      font-stretch: 122%; font-weight: 800; font-size: 13px;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 0 100%);
     }
-
-    .checkbox-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px;
-      border: 1px solid #e2e8f0;
-      border-radius: 6px;
-      transition: all 0.2s ease;
+    .hint { font-size: 14px; color: var(--muted); margin-bottom: 14px; }
+    .chips { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .chip {
+      display: flex; align-items: center; gap: 10px;
+      min-height: 50px; padding: 10px 14px;
+      border: 1.5px solid var(--line); border-radius: 4px; background: #fff;
+      cursor: pointer; font-size: 15px; font-weight: 500; line-height: 1.25;
+      transition: border-color .15s ease, background-color .15s ease;
     }
+    .chip:hover { border-color: var(--line-strong); }
+    .chip input { width: 18px; height: 18px; accent-color: var(--green); flex-shrink: 0; }
+    .chip.is-on { border-color: var(--green); background: var(--green-soft); }
+    .chip:focus-within { outline: 2px solid var(--green); outline-offset: 2px; }
+    .generate { width: 100%; height: 56px; font-size: 16px; }
+    .success { margin-top: 20px; padding: 18px 20px; border-radius: 6px; background: var(--green-soft); border: 1.5px solid var(--green); color: #064A2E; }
+    .success h3 { font-size: 16px; font-weight: 750; }
+    .success p { margin-top: 4px; font-size: 14.5px; }
 
-    .checkbox-item:hover {
-      background: #f8fafc;
-      border-color: #cbd5e0;
+    .aside-title { font-size: 20px; font-weight: 750; letter-spacing: -.01em; }
+    .aside-sub { margin-top: 2px; font-size: 14.5px; color: var(--muted); }
+    .receive { list-style: none; display: grid; gap: 16px; margin-top: 20px; }
+    .receive li { display: grid; grid-template-columns: 20px 1fr; gap: 12px; }
+    .receive svg { width: 20px; height: 20px; stroke: var(--green); fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; margin-top: 1px; }
+    .receive h3 { font-size: 15.5px; font-weight: 700; line-height: 1.3; }
+    .receive p { margin-top: 2px; font-size: 14px; color: var(--ink-2); line-height: 1.45; }
+    .quick { margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--line); }
+    .quick h3 { font-size: 16px; font-weight: 750; }
+    .quick ol { margin-top: 10px; padding-left: 20px; display: grid; gap: 6px; font-size: 14.5px; color: var(--ink-2); }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 1080px) {
+      .nav { display: none; }
+      .menu-btn { display: inline-flex; }
+      .header-cta { margin-left: auto; }
     }
-
-    .checkbox-item input[type="checkbox"] {
-      width: 16px;
-      height: 16px;
+    @media (min-width: 1081px) {
+      .mobile-nav { display: none; }
     }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 16px 24px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 14px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      border: none;
-      text-decoration: none;
-      line-height: 1;
-      width: 100%;
+    @media (max-width: 1000px) {
+      .apva-layout { grid-template-columns: 1fr; }
+      .panel-aside { position: static; }
+      .apva-hero { grid-template-columns: 1fr; }
     }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
-      color: white;
-      box-shadow: 0 8px 24px rgba(26, 54, 93, 0.3);
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .section-head { grid-template-columns: 1fr; margin-bottom: 36px; }
+      .measures { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .g-row { grid-template-columns: 1fr; }
+      .g-axis > div:first-child { display: none; }
+      .cta-inner { grid-template-columns: 1fr; }
+      .stages { grid-template-columns: 1fr; }
+      .stage, .stage:first-child { padding: 26px 0 32px; border-left: 0; border-top: 1px solid var(--line); }
+      .stage:first-child { border-top: 0; }
+      .projects { grid-template-columns: 1fr; }
+      .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .kpi:nth-child(3) { border-top-width: 1px; border-top-color: var(--line); }
+      .chips { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
-
-    .btn-primary:hover {
-      background: linear-gradient(135deg, #2c5282 0%, #3182ce 100%);
-      box-shadow: 0 12px 32px rgba(26, 54, 93, 0.4);
-      transform: translateY(-2px);
+    @media (max-width: 600px) {
+      .measures { grid-template-columns: 1fr; gap: 32px; }
+      .tiles { grid-template-columns: 1fr; }
+      .fields { grid-template-columns: 1fr; }
+      .apva-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .marker { width: 112px; padding-left: 24px; }
+      .hero-actions .btn { flex: 1 1 auto; }
     }
-
-    .info-item {
-      display: flex;
-      gap: 12px;
-      padding: 16px;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      margin-bottom: 12px;
+    @media (max-width: 520px) {
+      .header-cta { display: none; }
+      .menu-btn { margin-left: auto; }
+      .kpis { grid-template-columns: 1fr; }
+      .kpi:nth-child(2) { border-top-width: 1px; border-top-color: var(--line); }
+      .chips { grid-template-columns: 1fr; }
     }
-
-    .info-icon {
-      font-size: 20px;
-      flex-shrink: 0;
-    }
-
-    .info-content h4 {
-      font-weight: 600;
-      font-size: 14px;
-      margin-bottom: 4px;
-      color: #1a202c;
-    }
-
-    .info-content p {
-      font-size: 13px;
-      color: #718096;
-      line-height: 1.4;
-    }
-
-    .success-banner {
-      background: linear-gradient(135deg, #f0fff4 0%, #dcfce7 100%);
-      border: 2px solid #22c55e;
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-      margin-top: 24px;
-    }
-
-    .success-banner h3 {
-      color: #166534;
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .success-banner p {
-      color: #065f46;
-      font-size: 14px;
-    }
-
-    @media (max-width: 1024px) {
-      .nav {
-        display: none;
-      }
-      
-      .mobile-nav-toggle {
-        display: block;
-      }
-      
-      .header-content {
-        padding: 16px 20px;
-      }
-      
-      .main-content {
-        padding: 20px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .header-content {
-        flex-wrap: wrap;
-      }
-      
-      .logo-text h1 {
-        font-size: 24px;
-      }
-      
-      .user-info {
-        display: none;
-      }
-      
-      .main-content {
-        margin-top: 70px;
-        padding: 16px;
-      }
-      
-      .form-container {
-        grid-template-columns: 1fr;
-      }
-      
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .checkbox-group {
-        grid-template-columns: 1fr;
-      }
-      
-      .stats {
-        flex-direction: column;
-        gap: 20px;
-      }
-      
-      .dashboard-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .audit-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .logo-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
-      }
-      
-      .logo-text h1 {
-        font-size: 20px;
-      }
-      
-      .section-header h2 {
-        font-size: 24px;
-      }
-      
-      .apva-header h1 {
-        font-size: 28px;
-      }
-      
-      .stats {
-        gap: 16px;
-      }
-      
-      .stat-value {
-        font-size: 20px;
-      }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .ber, .marker-now, .marker-target { animation: none; }
+      .btn, .input, .chip { transition: none; }
     }
   </style>
 </head>
@@ -746,6 +423,8 @@
   <div id="root"></div>
 
   <script type="text/babel">
+    const { useEffect, useRef } = React;
+
     const { useState } = React;
 
     function APVAGenerator() {
@@ -1312,817 +991,600 @@
         }
       };
 
+      const MEASURE_OPTIONS = [
+        ['solar', 'Solar PV system'],
+        ['heatPump', 'Heat pump system'],
+        ['insulation', 'Building insulation'],
+        ['windows', 'High-performance windows'],
+        ['led', 'LED lighting system'],
+        ['smartControls', 'Smart building controls']
+      ];
+      const maxYear = new Date().getFullYear();
+      const ber = berStyle(formData.berRating);
+
       return (
-        <div className="apva-container">
-          {/* Header */}
-          <div className="apva-header">
-            <h1>Professional APVA Generator</h1>
-            <p>Generate comprehensive, Revenue-compliant APVA grant applications with professional financial analysis</p>
-            <div className="stats">
-              <div className="stat">
-                <div className="stat-value">€2.1M+</div>
-                <div className="stat-label">Grants Secured</div>
-              </div>
-              <div className="stat">
-                <div className="stat-value">89%</div>
-                <div className="stat-label">Success Rate</div>
-              </div>
-              <div className="stat">
-                <div className="stat-value">156</div>
-                <div className="stat-label">Happy Clients</div>
-              </div>
+        <div className="wrap page-body">
+          <section className="apva-hero">
+            <div>
+              <h1>Professional APVA generator</h1>
+              <p>Generate comprehensive, Revenue-compliant APVA grant applications with professional financial analysis.</p>
             </div>
-          </div>
+            <dl className="apva-stats">
+              <div className="apva-stat"><dt>Grants secured</dt><dd>€2.1M+</dd></div>
+              <div className="apva-stat"><dt>Success rate</dt><dd>89%</dd></div>
+              <div className="apva-stat"><dt>Happy clients</dt><dd>156</dd></div>
+            </dl>
+          </section>
 
-          {/* Main Form */}
-          <div className="form-container">
-            <div className="card">
-              <div className="card-title">APVA Application Form</div>
-              <div className="card-subtitle">Complete the form below to generate your professional APVA grant application</div>
+          <div className="apva-layout">
+            <div className="panel">
+              <div className="panel-head">
+                <h2>Application form</h2>
+                <p>Complete the form below to generate your professional APVA grant application.</p>
+              </div>
 
-              {/* Company Information */}
-              <div className="form-section">
-                <div className="form-section-title">Company Information</div>
-                <div className="form-grid">
-                  <div className="form-group">
-                    <label className="label">Company Name *</label>
-                    <input
-                      type="text"
-                      className="input"
-                      placeholder="e.g. TechCorp Limited"
-                      value={formData.companyName}
-                      onChange={(e) => handleInputChange('companyName', e.target.value)}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label className="label">Tax Reference Number</label>
-                    <input
-                      type="text"
-                      className="input"
-                      placeholder="e.g. 1234567T"
-                      value={formData.taxReference}
-                      onChange={(e) => handleInputChange('taxReference', e.target.value)}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label className="label">Contact Person</label>
-                    <input
-                      type="text"
-                      className="input"
-                      placeholder="e.g. John Smith"
-                      value={formData.contactPerson}
-                      onChange={(e) => handleInputChange('contactPerson', e.target.value)}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label className="label">Email Address</label>
-                    <input
-                      type="email"
-                      className="input"
-                      placeholder="e.g. john@company.com"
-                      value={formData.email}
-                      onChange={(e) => handleInputChange('email', e.target.value)}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label className="label">Phone Number</label>
-                    <input
-                      type="tel"
-                      className="input"
-                      placeholder="e.g. +353 1 234 5678"
-                      value={formData.phone}
-                      onChange={(e) => handleInputChange('phone', e.target.value)}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label className="label">Business Address</label>
-                    <input
-                      type="text"
-                      className="input"
-                      placeholder="e.g. 123 Business Street, Dublin"
-                      value={formData.address}
-                      onChange={(e) => handleInputChange('address', e.target.value)}
-                    />
-                  </div>
+              <div className="fieldset">
+                <h3 className="fieldset-title"><span>1</span>Company information</h3>
+                <div className="fields">
+                  <Field label="Company name *">
+                    <input type="text" className="input" placeholder="e.g. TechCorp Limited" value={formData.companyName} onChange={(e) => handleInputChange('companyName', e.target.value)} />
+                  </Field>
+                  <Field label="Tax reference number">
+                    <input type="text" className="input" placeholder="e.g. 1234567T" value={formData.taxReference} onChange={(e) => handleInputChange('taxReference', e.target.value)} />
+                  </Field>
+                  <Field label="Contact person">
+                    <input type="text" className="input" placeholder="e.g. John Smith" value={formData.contactPerson} onChange={(e) => handleInputChange('contactPerson', e.target.value)} />
+                  </Field>
+                  <Field label="Email address">
+                    <input type="email" className="input" placeholder="e.g. john@company.com" value={formData.email} onChange={(e) => handleInputChange('email', e.target.value)} />
+                  </Field>
+                  <Field label="Phone number">
+                    <input type="tel" className="input" placeholder="e.g. +353 1 234 5678" value={formData.phone} onChange={(e) => handleInputChange('phone', e.target.value)} />
+                  </Field>
+                  <Field label="Business address">
+                    <input type="text" className="input" placeholder="e.g. 123 Business Street, Dublin" value={formData.address} onChange={(e) => handleInputChange('address', e.target.value)} />
+                  </Field>
                 </div>
               </div>
 
-              {/* Building Information */}
-              <div className="form-section">
-                <div className="form-section-title">Building Information</div>
-                <div className="form-grid">
-                  <div className="form-group">
-                    <label className="label">Building Type</label>
-                    <select
-                      className="input select"
-                      value={formData.buildingType}
-                      onChange={(e) => handleInputChange('buildingType', e.target.value)}
-                    >
-                      <option value="">Select Building Type</option>
-                      <option value="Commercial Office Building">Commercial Office Building</option>
-                      <option value="Retail/Shopping Centre">Retail/Shopping Centre</option>
-                      <option value="Industrial Facility">Industrial Facility</option>
-                      <option value="Warehouse/Distribution">Warehouse/Distribution</option>
-                      <option value="Hotel/Hospitality">Hotel/Hospitality</option>
-                      <option value="Healthcare Facility">Healthcare Facility</option>
-                      <option value="Educational Building">Educational Building</option>
-                      <option value="Mixed Use Development">Mixed Use Development</option>
+              <div className="fieldset">
+                <h3 className="fieldset-title"><span>2</span>Building information</h3>
+                <div className="fields">
+                  <Field label="Building type">
+                    <select className="input" value={formData.buildingType} onChange={(e) => handleInputChange('buildingType', e.target.value)}>
+                      <option value="">Select building type</option>
+                      <option value="Commercial Office Building">Commercial office building</option>
+                      <option value="Retail/Shopping Centre">Retail or shopping centre</option>
+                      <option value="Industrial Facility">Industrial facility</option>
+                      <option value="Warehouse/Distribution">Warehouse or distribution</option>
+                      <option value="Hotel/Hospitality">Hotel or hospitality</option>
+                      <option value="Healthcare Facility">Healthcare facility</option>
+                      <option value="Educational Building">Educational building</option>
+                      <option value="Mixed Use Development">Mixed use development</option>
                     </select>
-                  </div>
-                  <div className="form-group">
-                    <label className="label">Floor Area (m²)</label>
-                    <input
-                      type="number"
-                      className="input"
-                      placeholder="e.g. 300"
-                      value={formData.floorArea}
-                      onChange={(e) => handleInputChange('floorArea', e.target.value)}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label className="label">Year Built</label>
-                    <input
-                      type="number"
-                      className="input"
-                      placeholder="e.g. 2010"
-                      min="1900"
-                      max="2024"
-                      value={formData.yearBuilt}
-                      onChange={(e) => handleInputChange('yearBuilt', e.target.value)}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label className="label">Number of Floors</label>
-                    <select
-                      className="input select"
-                      value={formData.floors}
-                      onChange={(e) => handleInputChange('floors', e.target.value)}
-                    >
-                      <option value="">Select Floors</option>
-                      <option value="1">1 Floor</option>
-                      <option value="2">2 Floors</option>
-                      <option value="3">3 Floors</option>
-                      <option value="4">4 Floors</option>
-                      <option value="5+">5+ Floors</option>
+                  </Field>
+                  <Field label="Floor area (m²)">
+                    <input type="number" className="input" placeholder="e.g. 300" value={formData.floorArea} onChange={(e) => handleInputChange('floorArea', e.target.value)} />
+                  </Field>
+                  <Field label="Year built">
+                    <input type="number" className="input" placeholder="e.g. 2010" min="1900" max={maxYear} value={formData.yearBuilt} onChange={(e) => handleInputChange('yearBuilt', e.target.value)} />
+                  </Field>
+                  <Field label="Number of floors">
+                    <select className="input" value={formData.floors} onChange={(e) => handleInputChange('floors', e.target.value)}>
+                      <option value="">Select floors</option>
+                      <option value="1">1 floor</option>
+                      <option value="2">2 floors</option>
+                      <option value="3">3 floors</option>
+                      <option value="4">4 floors</option>
+                      <option value="5+">5+ floors</option>
                     </select>
-                  </div>
-                  <div className="form-group">
-                    <label className="label">Current BER Rating</label>
-                    <select
-                      className="input select"
-                      value={formData.berRating}
-                      onChange={(e) => handleInputChange('berRating', e.target.value)}
-                    >
-                      <option value="">Select BER Rating</option>
-                      <option value="A1">A1 (Best)</option>
-                      <option value="A2">A2</option>
-                      <option value="A3">A3</option>
-                      <option value="B1">B1</option>
-                      <option value="B2">B2</option>
-                      <option value="B3">B3</option>
-                      <option value="C1">C1</option>
-                      <option value="C2">C2</option>
-                      <option value="C3">C3</option>
-                      <option value="D1">D1</option>
-                      <option value="D2">D2</option>
-                      <option value="E1">E1</option>
-                      <option value="E2">E2</option>
-                      <option value="F">F</option>
-                      <option value="G">G (Worst)</option>
+                  </Field>
+                  <Field label={<>Current BER rating {ber && <span className="ber-tag" style={ber}>{formData.berRating}</span>}</>}>
+                    <select className="input" value={formData.berRating} onChange={(e) => handleInputChange('berRating', e.target.value)}>
+                      <option value="">Select BER rating</option>
+                      {['A1','A2','A3','B1','B2','B3','C1','C2','C3','D1','D2','E1','E2','F','G'].map(r => (
+                        <option key={r} value={r}>{r === 'A1' ? 'A1 (best)' : r === 'G' ? 'G (worst)' : r}</option>
+                      ))}
                     </select>
-                  </div>
-                  <div className="form-group">
-                    <label className="label">Primary Heating</label>
-                    <select
-                      className="input select"
-                      value={formData.heatingType}
-                      onChange={(e) => handleInputChange('heatingType', e.target.value)}
-                    >
-                      <option value="">Select Heating Type</option>
-                      <option value="Natural Gas">Natural Gas</option>
+                  </Field>
+                  <Field label="Primary heating">
+                    <select className="input" value={formData.heatingType} onChange={(e) => handleInputChange('heatingType', e.target.value)}>
+                      <option value="">Select heating type</option>
+                      <option value="Natural Gas">Natural gas</option>
                       <option value="Oil">Oil</option>
                       <option value="Electric">Electric</option>
-                      <option value="Heat Pump">Heat Pump</option>
-                      <option value="District Heating">District Heating</option>
+                      <option value="Heat Pump">Heat pump</option>
+                      <option value="District Heating">District heating</option>
                       <option value="Biomass">Biomass</option>
                     </select>
-                  </div>
+                  </Field>
                 </div>
               </div>
 
-              {/* Energy Data */}
-              <div className="form-section">
-                <div className="form-section-title">Energy Consumption Data</div>
-                <div className="form-grid">
-                  <div className="form-group">
-                    <label className="label">Annual kWh Usage</label>
-                    <input
-                      type="number"
-                      className="input"
-                      placeholder="e.g. 25000"
-                      value={formData.annualKwh}
-                      onChange={(e) => handleInputChange('annualKwh', e.target.value)}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label className="label">Current Annual Energy Cost (€)</label>
-                    <input
-                      type="number"
-                      className="input"
-                      placeholder="e.g. 8000"
-                      value={formData.currentEnergyCost}
-                      onChange={(e) => handleInputChange('currentEnergyCost', e.target.value)}
-                    />
-                  </div>
+              <div className="fieldset">
+                <h3 className="fieldset-title"><span>3</span>Energy consumption</h3>
+                <div className="fields">
+                  <Field label="Annual kWh usage">
+                    <input type="number" className="input" placeholder="e.g. 25000" value={formData.annualKwh} onChange={(e) => handleInputChange('annualKwh', e.target.value)} />
+                  </Field>
+                  <Field label="Current annual energy cost (€)">
+                    <input type="number" className="input" placeholder="e.g. 8000" value={formData.currentEnergyCost} onChange={(e) => handleInputChange('currentEnergyCost', e.target.value)} />
+                  </Field>
                 </div>
               </div>
 
-              {/* Energy Efficiency Measures */}
-              <div className="form-section">
-                <div className="form-section-title">Proposed Energy Efficiency Measures</div>
-                <div className="form-group full-width">
-                  <label className="label">Select the measures you want to include (optional - all measures included by default):</label>
-                  <div className="checkbox-group">
-                    <div className="checkbox-item">
-                      <input
-                        type="checkbox"
-                        checked={formData.measures.solar}
-                        onChange={(e) => handleMeasureChange('solar', e.target.checked)}
-                      />
-                      <span>Solar PV System</span>
-                    </div>
-                    <div className="checkbox-item">
-                      <input
-                        type="checkbox"
-                        checked={formData.measures.heatPump}
-                        onChange={(e) => handleMeasureChange('heatPump', e.target.checked)}
-                      />
-                      <span>Heat Pump System</span>
-                    </div>
-                    <div className="checkbox-item">
-                      <input
-                        type="checkbox"
-                        checked={formData.measures.insulation}
-                        onChange={(e) => handleMeasureChange('insulation', e.target.checked)}
-                      />
-                      <span>Building Insulation</span>
-                    </div>
-                    <div className="checkbox-item">
-                      <input
-                        type="checkbox"
-                        checked={formData.measures.windows}
-                        onChange={(e) => handleMeasureChange('windows', e.target.checked)}
-                      />
-                      <span>High-Performance Windows</span>
-                    </div>
-                    <div className="checkbox-item">
-                      <input
-                        type="checkbox"
-                        checked={formData.measures.led}
-                        onChange={(e) => handleMeasureChange('led', e.target.checked)}
-                      />
-                      <span>LED Lighting System</span>
-                    </div>
-                    <div className="checkbox-item">
-                      <input
-                        type="checkbox"
-                        checked={formData.measures.smartControls}
-                        onChange={(e) => handleMeasureChange('smartControls', e.target.checked)}
-                      />
-                      <span>Smart Building Controls</span>
-                    </div>
-                  </div>
+              <div className="fieldset">
+                <h3 className="fieldset-title"><span>4</span>Energy efficiency measures</h3>
+                <p className="hint">Tick the measures you're interested in. The PDF covers all six either way.</p>
+                <div className="chips">
+                  {MEASURE_OPTIONS.map(([key, label]) => (
+                    <label key={key} className={`chip ${formData.measures[key] ? 'is-on' : ''}`}>
+                      <input type="checkbox" checked={formData.measures[key]} onChange={(e) => handleMeasureChange(key, e.target.checked)} />
+                      <span>{label}</span>
+                    </label>
+                  ))}
                 </div>
               </div>
 
-              {/* Project Notes */}
-              <div className="form-section">
-                <div className="form-group full-width">
-                  <label className="label">Additional Project Notes (Optional)</label>
-                  <textarea
-                    className="input textarea"
-                    placeholder="Any specific requirements, constraints, or additional information about your project..."
-                    value={formData.projectNotes}
-                    onChange={(e) => handleInputChange('projectNotes', e.target.value)}
-                  />
-                </div>
+              <div className="fieldset">
+                <h3 className="fieldset-title"><span>5</span>Project notes</h3>
+                <Field label="Additional notes (optional)" full>
+                  <textarea className="input" placeholder="Any specific requirements, constraints, or other details about your project" value={formData.projectNotes} onChange={(e) => handleInputChange('projectNotes', e.target.value)} />
+                </Field>
               </div>
 
-              {/* Generate Button */}
-              <button 
-                className="btn btn-primary"
-                onClick={generateProfessionalAPVA}
-                disabled={isGenerating}
-              >
-                {isGenerating ? (
-                  <>
-                    <span>🔄</span>
-                    Generating Professional APVA Application...
-                  </>
-                ) : (
-                  <>
-                    <span>📄</span>
-                    Generate Professional APVA Application PDF
-                  </>
-                )}
+              <button type="button" className="btn btn-ink generate" onClick={generateProfessionalAPVA} disabled={isGenerating}>
+                {isGenerating ? 'Generating your PDF…' : 'Generate APVA application PDF'}
               </button>
 
-              {/* Success Message */}
               {showSuccess && (
-                <div className="success-banner">
-                  <h3>✅ Professional APVA Application Generated Successfully!</h3>
-                  <p>Your comprehensive, Revenue-compliant APVA grant application has been created and downloaded. The PDF includes complete financial analysis, technical specifications, and professional certification ready for submission.</p>
+                <div className="success" role="status">
+                  <h3>Your APVA application has downloaded</h3>
+                  <p>The PDF includes the financial analysis, technical specifications and certification pages. Open it to check the details before you send it.</p>
                 </div>
               )}
             </div>
 
-            {/* Information Panel */}
-            <div className="card">
-              <div className="card-title">What You'll Receive</div>
-              <div className="card-subtitle">Professional APVA application package</div>
-
-              <div className="info-item">
-                <div className="info-icon">📋</div>
-                <div className="info-content">
-                  <h4>Revenue-Compliant Forms</h4>
-                  <p>Complete APVA application forms meeting all Revenue Commissioners requirements</p>
-                </div>
+            <aside className="panel panel-aside">
+              <h2 className="aside-title">What you'll receive</h2>
+              <p className="aside-sub">Professional APVA application package</p>
+              <ul className="receive">
+                {[
+                  ['Revenue-compliant forms', 'Complete APVA application forms meeting all Revenue Commissioners requirements'],
+                  ['Comprehensive financial analysis', 'Detailed cost breakdowns, ROI calculations, payback analysis and grant projections'],
+                  ['Technical specifications', 'Professional equipment specs, installation standards and compliance certifications'],
+                  ['Environmental impact assessment', 'CO₂ reduction calculations, renewable energy generation and sustainability metrics'],
+                  ['Professional certification', 'EcoRetrofit24 professional review, certification and advisory support included'],
+                  ['Submission-ready package', 'Complete 5-page professional document ready for Revenue Commissioners submission']
+                ].map(([title, text]) => (
+                  <li key={title}>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+                    <div><h3>{title}</h3><p>{text}</p></div>
+                  </li>
+                ))}
+              </ul>
+              <div className="quick">
+                <h3>Quick start</h3>
+                <ol>
+                  <li>Fill in your company and building details</li>
+                  <li>Click generate to create your professional PDF</li>
+                  <li>Review and complete any missing information</li>
+                  <li>Submit to Revenue Commissioners</li>
+                  <li>Receive up to 70% grant funding</li>
+                </ol>
               </div>
-
-              <div className="info-item">
-                <div className="info-icon">💰</div>
-                <div className="info-content">
-                  <h4>Comprehensive Financial Analysis</h4>
-                  <p>Detailed cost breakdowns, ROI calculations, payback analysis, and grant projections</p>
-                </div>
-              </div>
-
-              <div className="info-item">
-                <div className="info-icon">🔧</div>
-                <div className="info-content">
-                  <h4>Technical Specifications</h4>
-                  <p>Professional equipment specs, installation standards, and compliance certifications</p>
-                </div>
-              </div>
-
-              <div className="info-item">
-                <div className="info-icon">🌱</div>
-                <div className="info-content">
-                  <h4>Environmental Impact Assessment</h4>
-                  <p>CO₂ reduction calculations, renewable energy generation, and sustainability metrics</p>
-                </div>
-              </div>
-
-              <div className="info-item">
-                <div className="info-icon">✅</div>
-                <div className="info-content">
-                  <h4>Professional Certification</h4>
-                  <p>EcoRetrofit24 professional review, certification, and advisory support included</p>
-                </div>
-              </div>
-
-              <div className="info-item">
-                <div className="info-icon">📤</div>
-                <div className="info-content">
-                  <h4>Submission-Ready Package</h4>
-                  <p>Complete 5-page professional document ready for Revenue Commissioners submission</p>
-                </div>
-              </div>
-
-              <div style={{
-                marginTop: '24px',
-                padding: '16px',
-                background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
-                border: '2px solid #22c55e',
-                borderRadius: '8px',
-                textAlign: 'center'
-              }}>
-                <div style={{ fontSize: '14px', fontWeight: '600', color: '#166534', marginBottom: '4px' }}>
-                  💡 Quick Start Guide
-                </div>
-                <div style={{ fontSize: '13px', color: '#065f46', lineHeight: '1.4' }}>
-                  1. Fill in your company and building details<br/>
-                  2. Click generate to create your professional PDF<br/>
-                  3. Review and complete any missing information<br/>
-                  4. Submit to Revenue Commissioners<br/>
-                  5. Receive up to 70% grant funding!
-                </div>
-              </div>
-            </div>
+            </aside>
           </div>
         </div>
       );
     }
 
-    function EcoRetrofit24Platform() {
-      const [activeSection, setActiveSection] = useState('dashboard');
-      const [mobileNavOpen, setMobileNavOpen] = useState(false);
+    /* ---------- Shared pieces ---------- */
 
-      const toggleMobileNav = () => {
-        setMobileNavOpen(!mobileNavOpen);
-      };
+    const BER_COLOURS = {
+      A: ['var(--ber-a)', '#fff'],
+      B: ['var(--ber-b)', 'var(--ink)'],
+      C: ['var(--ber-c)', 'var(--ink)'],
+      D: ['var(--ber-d)', 'var(--ink)'],
+      E: ['var(--ber-e)', 'var(--ink)'],
+      F: ['var(--ber-f)', '#fff'],
+      G: ['var(--ber-g)', '#fff']
+    };
 
-      const handleNavClick = (section) => {
-        setActiveSection(section);
-        setMobileNavOpen(false);
-      };
+    function berStyle(rating) {
+      if (!rating) return null;
+      const pair = BER_COLOURS[rating[0]];
+      return pair ? { '--c': pair[0], '--t': pair[1] } : null;
+    }
 
-      const renderSection = () => {
-        switch(activeSection) {
-          case 'dashboard':
-            return (
-              <div className="section active" id="dashboard">
-                <div className="section-header">
-                  <h2>📊 Portfolio Dashboard</h2>
-                  <p>Real-time overview of your energy retrofit portfolio performance and key metrics</p>
-                </div>
-                <div className="dashboard-grid">
-                  <div className="card">
-                    <div className="card-header">
-                      <div className="card-icon">💰</div>
-                      <div className="card-title">Total Portfolio Value</div>
-                    </div>
-                    <div className="card-value">€2.4M</div>
-                    <div className="card-subtitle">+18% from last quarter</div>
-                  </div>
-                  <div className="card">
-                    <div className="card-header">
-                      <div className="card-icon">🏗️</div>
-                      <div className="card-title">Active Projects</div>
-                    </div>
-                    <div className="card-value">12</div>
-                    <div className="card-subtitle">3 completing this month</div>
-                  </div>
-                  <div className="card">
-                    <div className="card-header">
-                      <div className="card-icon">⚡</div>
-                      <div className="card-title">Energy Savings</div>
-                    </div>
-                    <div className="card-value">847 MWh</div>
-                    <div className="card-subtitle">Annual reduction achieved</div>
-                  </div>
-                  <div className="card">
-                    <div className="card-header">
-                      <div className="card-icon">🌱</div>
-                      <div className="card-title">CO₂ Reduction</div>
-                    </div>
-                    <div className="card-value">312 tonnes</div>
-                    <div className="card-subtitle">Environmental impact</div>
-                  </div>
-                  <div className="card">
-                    <div className="card-header">
-                      <div className="card-icon">📈</div>
-                      <div className="card-title">ROI Performance</div>
-                    </div>
-                    <div className="card-value">24.7%</div>
-                    <div className="card-subtitle">Average portfolio return</div>
-                  </div>
-                  <div className="card">
-                    <div className="card-header">
-                      <div className="card-icon">🎯</div>
-                      <div className="card-title">Grant Success Rate</div>
-                    </div>
-                    <div className="card-value">89%</div>
-                    <div className="card-subtitle">Applications approved</div>
-                  </div>
-                </div>
-              </div>
-            );
-          case 'projects':
-            return (
-              <div className="section active" id="projects">
-                <div className="section-header">
-                  <h2>🏗️ Project Management</h2>
-                  <p>Comprehensive project pipeline and performance tracking</p>
-                </div>
-                <div className="projects-grid">
-                  <div className="project-card">
-                    <div className="project-header">
-                      <div>
-                        <div className="project-title">Dublin Office Complex</div>
-                        <div className="project-location">Sandyford, Dublin 18</div>
-                      </div>
-                      <div className="project-status status-active">Active</div>
-                    </div>
-                    <div className="project-metrics">
-                      <div className="metric">
-                        <span className="metric-value">€340K</span>
-                        <span className="metric-label">Investment</span>
-                      </div>
-                      <div className="metric">
-                        <span className="metric-value">65%</span>
-                        <span className="metric-label">Complete</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="project-card">
-                    <div className="project-header">
-                      <div>
-                        <div className="project-title">Cork Manufacturing Plant</div>
-                        <div className="project-location">Little Island, Cork</div>
-                      </div>
-                      <div className="project-status status-planning">Planning</div>
-                    </div>
-                    <div className="project-metrics">
-                      <div className="metric">
-                        <span className="metric-value">€580K</span>
-                        <span className="metric-label">Investment</span>
-                      </div>
-                      <div className="metric">
-                        <span className="metric-value">15%</span>
-                        <span className="metric-label">Complete</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="project-card">
-                    <div className="project-header">
-                      <div>
-                        <div className="project-title">Galway Retail Center</div>
-                        <div className="project-location">Galway City Centre</div>
-                      </div>
-                      <div className="project-status status-completed">Completed</div>
-                    </div>
-                    <div className="project-metrics">
-                      <div className="metric">
-                        <span className="metric-value">€220K</span>
-                        <span className="metric-label">Investment</span>
-                      </div>
-                      <div className="metric">
-                        <span className="metric-value">100%</span>
-                        <span className="metric-label">Complete</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          case 'energy-audit':
-            return (
-              <div className="section active" id="energy-audit">
-                <div className="section-header">
-                  <h2>🔍 Energy Audit</h2>
-                  <p>Comprehensive building energy assessment and optimization recommendations</p>
-                </div>
-                <div className="audit-grid">
-                  <div className="audit-card">
-                    <div className="audit-icon">🏢</div>
-                    <h3>Building Assessment</h3>
-                    <p>Complete thermal imaging and energy performance evaluation</p>
-                    <div className="audit-metrics">
-                      <div className="metric">
-                        <span className="metric-value">15</span>
-                        <span className="metric-label">Data Points</span>
-                      </div>
-                      <div className="metric">
-                        <span className="metric-value">98%</span>
-                        <span className="metric-label">Accuracy</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="audit-card">
-                    <div className="audit-icon">📊</div>
-                    <h3>Performance Analysis</h3>
-                    <p>Detailed energy consumption patterns and efficiency opportunities</p>
-                    <div className="audit-metrics">
-                      <div className="metric">
-                        <span className="metric-value">24/7</span>
-                        <span className="metric-label">Monitoring</span>
-                      </div>
-                      <div className="metric">
-                        <span className="metric-value">45%</span>
-                        <span className="metric-label">Avg Savings</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="audit-card">
-                    <div className="audit-icon">💡</div>
-                    <h3>Optimization Plan</h3>
-                    <p>Customized recommendations for maximum energy efficiency gains</p>
-                    <div className="audit-metrics">
-                      <div className="metric">
-                        <span className="metric-value">ROI</span>
-                        <span className="metric-label">3.2x Return</span>
-                      </div>
-                      <div className="metric">
-                        <span className="metric-value">2-4</span>
-                        <span className="metric-label">Year Payback</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          case 'apva-generator':
-            return (
-              <div className="section active" id="apva-generator">
-                <div className="section-header">
-                  <h2>📄 APVA Generator</h2>
-                  <p>Generate professional Revenue-compliant APVA grant applications with comprehensive financial analysis</p>
-                </div>
-                <APVAGenerator />
-              </div>
-            );
-          case 'clients':
-            return (
-              <div className="section active" id="clients">
-                <div className="section-header">
-                  <h2>👥 Client Portal</h2>
-                  <p>Client relationship management and project collaboration hub</p>
-                </div>
-                <div className="card">
-                  <div className="card-title">Client Management System</div>
-                  <p>Comprehensive client portal with project tracking, document sharing, and communication tools.</p>
-                </div>
-              </div>
-            );
-          case 'documents':
-            return (
-              <div className="section active" id="documents">
-                <div className="section-header">
-                  <h2>📁 Document Management</h2>
-                  <p>Centralized document storage and collaboration system</p>
-                </div>
-                <div className="card">
-                  <div className="card-title">Document Library</div>
-                  <p>Secure document storage with version control and team collaboration features.</p>
-                </div>
-              </div>
-            );
-          case 'reports':
-            return (
-              <div className="section active" id="reports">
-                <div className="section-header">
-                  <h2>📈 Analytics & Reports</h2>
-                  <p>Comprehensive performance analytics and business intelligence</p>
-                </div>
-                <div className="card">
-                  <div className="card-title">Performance Analytics</div>
-                  <p>Advanced reporting and analytics dashboard for portfolio performance tracking.</p>
-                </div>
-              </div>
-            );
-          case 'ai-insights':
-            return (
-              <div className="section active" id="ai-insights">
-                <div className="section-header">
-                  <h2>🤖 AI-Powered Insights</h2>
-                  <p>Machine learning-driven recommendations and predictive analytics</p>
-                </div>
-                <div className="card">
-                  <div className="card-title">AI Recommendations</div>
-                  <p>Intelligent insights and recommendations powered by advanced machine learning algorithms.</p>
-                </div>
-              </div>
-            );
-          default:
-            return null;
-        }
-      };
-
+    function Field({ label, full, children }) {
       return (
-        <div className="container">
-          {/* Header */}
-          <header className="header">
-            <div className="header-content">
-              <div className="logo">
-                <div className="logo-icon">🌱</div>
-                <div className="logo-text">
-                  <h1>EcoRetrofit24</h1>
-                  <p>Professional Portal</p>
+        <label className={`field ${full ? 'field-full' : ''}`}>
+          <span className="field-label">{label}</span>
+          {children}
+        </label>
+      );
+    }
+
+    function Logo({ size = 28 }) {
+      return (
+        <svg width={size} height={size * 26 / 30} viewBox="0 0 30 26" aria-hidden="true">
+          <path d="M0 0h14l4 4-4 4H0z" fill="#00965A" />
+          <path d="M0 9h19l4 4-4 4H0z" fill="#4CAF4A" />
+          <path d="M0 18h24l4 4-4 4H0z" fill="#B8D333" />
+        </svg>
+      );
+    }
+
+    const VIEWS = [
+      { id: 'home', label: 'Home' },
+      { id: 'audit', label: 'Energy audit' },
+      { id: 'projects', label: 'Projects' },
+      { id: 'dashboard', label: 'Dashboard' },
+      { id: 'apva', label: 'APVA generator' },
+      { id: 'portal', label: 'Client portal' }
+    ];
+    const VIEW_IDS = VIEWS.map(v => v.id);
+    const viewFromHash = () => {
+      const h = window.location.hash.replace('#', '');
+      return VIEW_IDS.includes(h) ? h : 'home';
+    };
+    const prefersReducedMotion = () =>
+      window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ---------- Home ---------- */
+
+    const BANDS = [
+      { l: 'A', w: 34 }, { l: 'B', w: 42 }, { l: 'C', w: 50 }, { l: 'D', w: 58 },
+      { l: 'E', w: 68 }, { l: 'F', w: 80 }, { l: 'G', w: 92 }
+    ];
+
+    function RatingLadder() {
+      return (
+        <figure className="ladder-fig">
+          <div className="ladder-end ladder-end-top">Most efficient</div>
+          <div className="ladder" role="img" aria-label="Building Energy Rating scale from A to G, showing an example building rated D2 today with a target of A2 after a retrofit.">
+            {BANDS.map((b, i) => (
+              <div className="ladder-row" key={b.l}>
+                <div className="ber" style={{ ...berStyle(b.l), '--w': b.w + '%', '--i': i }}>{b.l}</div>
+              </div>
+            ))}
+            <div className="marker marker-now" aria-hidden="true"><small>Today</small><strong>D2</strong></div>
+            <div className="marker marker-target" aria-hidden="true"><small>Target</small><strong>A2</strong></div>
+          </div>
+          <div className="ladder-end ladder-end-bottom">Least efficient</div>
+          <figcaption className="ladder-caption">Building Energy Rating scale. The example is illustrative. Your audit sets the real starting point and the target.</figcaption>
+        </figure>
+      );
+    }
+
+    const ICONS = {
+      solar: <><path d="M3 15l3-9h12l3 9z" /><path d="M4.5 10.5h15" /><path d="M10 6l-1 9" /><path d="M14 6l1 9" /><path d="M12 15v4" /><path d="M8 19h8" /></>,
+      heatPump: <><rect x="3" y="5" width="18" height="13" rx="1.5" /><circle cx="10" cy="11.5" r="4" /><path d="M10 7.5v8" /><path d="M6 11.5h8" /><path d="M17.5 8.5v6" /><path d="M6 18v2" /><path d="M18 18v2" /></>,
+      insulation: <><path d="M3 5h18" /><path d="M3 19h18" /><path d="M3 12c1.5-3 3-3 4.5 0s3 3 4.5 0 3-3 4.5 0 3 3 4.5 0" /></>,
+      windows: <><rect x="5" y="3" width="14" height="18" rx="1" /><path d="M12 3v18" /><path d="M5 12h14" /></>,
+      led: <><path d="M9 18h6" /><path d="M10 21h4" /><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z" /></>,
+      controls: <><circle cx="12" cy="12" r="8" /><path d="M12 12l4-3" /><path d="M12 4v2" /><path d="M20 12h-2" /><path d="M4 12h2" /></>
+    };
+
+    const MEASURES = [
+      { icon: 'solar', title: 'Solar PV', text: 'Tier 1 monocrystalline panels with string inverters, sized to the building.' },
+      { icon: 'heatPump', title: 'Heat pumps', text: 'A+++ air-to-water units that replace gas or oil heating.' },
+      { icon: 'insulation', title: 'Insulation', text: 'Wall and roof insulation laid as one continuous layer to cut thermal bridging.' },
+      { icon: 'windows', title: 'Windows and doors', text: 'Triple glazing with low-E coating and argon fill, U-value of 1.0 or better.' },
+      { icon: 'led', title: 'LED lighting', text: 'A full LED retrofit with daylight and occupancy sensors.' },
+      { icon: 'controls', title: 'Smart controls', text: 'Controls that run heating and lighting around how the building is actually used.' }
+    ];
+
+    const PHASES = [
+      { n: 1, title: 'Design and planning', weeks: '4 to 6 weeks', s: 0, d: 5, text: 'We survey the building, model the options and agree the scope with you.' },
+      { n: 2, title: 'Procurement and permits', weeks: '2 to 3 weeks', s: 5, d: 2.5, text: 'Equipment is ordered and any permits are sorted before work starts.' },
+      { n: 3, title: 'Installation and commissioning', weeks: '6 to 8 weeks', s: 7.5, d: 7, text: 'Installers fit each measure and commission every system on site.' },
+      { n: 4, title: 'Testing and handover', weeks: '1 to 2 weeks', s: 14.5, d: 1.5, text: 'Systems are checked against the design and you get the full operation and maintenance file.' }
+    ];
+
+    function Home({ go }) {
+      const howRef = useRef(null);
+      const scrollToHow = () => {
+        if (howRef.current) howRef.current.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+      };
+      return (
+        <>
+          <section className="hero">
+            <div className="wrap hero-grid">
+              <div>
+                <h1>Take your building from D to A.</h1>
+                <p className="hero-lede">We audit commercial buildings, work out which upgrades are worth the money, and prepare the funding paperwork so you start with real numbers.</p>
+                <div className="hero-actions">
+                  <button className="btn btn-ink" onClick={() => go('apva')}>Start your application</button>
+                  <button className="btn btn-line" onClick={scrollToHow}>How a project runs</button>
                 </div>
               </div>
+              <RatingLadder />
+            </div>
+          </section>
 
-              {/* Desktop Navigation */}
-              <nav className="nav">
-                <div 
-                  className={`nav-item ${activeSection === 'dashboard' ? 'active' : ''}`} 
-                  onClick={() => handleNavClick('dashboard')}
-                >
-                  <span className="nav-icon">📊</span>
-                  Dashboard
-                </div>
-                <div 
-                  className={`nav-item ${activeSection === 'projects' ? 'active' : ''}`} 
-                  onClick={() => handleNavClick('projects')}
-                >
-                  <span className="nav-icon">🏗️</span>
-                  Projects
-                </div>
-                <div 
-                  className={`nav-item ${activeSection === 'energy-audit' ? 'active' : ''}`} 
-                  onClick={() => handleNavClick('energy-audit')}
-                >
-                  <span className="nav-icon">🔍</span>
-                  Energy Audit
-                </div>
-                <div 
-                  className={`nav-item ${activeSection === 'apva-generator' ? 'active' : ''}`} 
-                  onClick={() => handleNavClick('apva-generator')}
-                >
-                  <span className="nav-icon">📄</span>
-                  APVA Generator
-                </div>
-                <div 
-                  className={`nav-item ${activeSection === 'clients' ? 'active' : ''}`} 
-                  onClick={() => handleNavClick('clients')}
-                >
-                  <span className="nav-icon">👥</span>
-                  Clients
-                </div>
-                <div 
-                  className={`nav-item ${activeSection === 'reports' ? 'active' : ''}`} 
-                  onClick={() => handleNavClick('reports')}
-                >
-                  <span className="nav-icon">📈</span>
-                  Reports
-                </div>
-              </nav>
+          <section className="section section-surface">
+            <div className="wrap">
+              <div className="section-head">
+                <h2>What a retrofit can include</h2>
+                <p>Every building is different, so the audit decides the mix. These are the six measures we plan and price.</p>
+              </div>
+              <div className="measures">
+                {MEASURES.map(m => (
+                  <div className="measure" key={m.title}>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">{ICONS[m.icon]}</svg>
+                    <h3>{m.title}</h3>
+                    <p>{m.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
 
-              {/* Header Actions */}
-              <div className="header-actions">
-                <button className="mobile-nav-toggle" onClick={toggleMobileNav}>
-                  ☰
-                </button>
-                <div className="user-profile">
-                  <div className="user-avatar">WL</div>
-                  <div className="user-info">
-                    <div className="user-name">Waqar Lund</div>
-                    <div className="user-role">CEO & Founder</div>
+          <section className="section" ref={howRef} style={{ scrollMarginTop: '68px' }}>
+            <div className="wrap">
+              <div className="section-head">
+                <h2>How a project runs</h2>
+                <p>Four phases, roughly 13 to 19 weeks from the first survey to handover.</p>
+              </div>
+              <div className="gantt">
+                {PHASES.map(ph => (
+                  <div className="g-row" key={ph.n}>
+                    <div className="g-text">
+                      <div className="g-title"><span className="g-num">{ph.n}</span><h3>{ph.title}</h3></div>
+                      <p>{ph.text}</p>
+                    </div>
+                    <div className="g-chart">
+                      <div className="g-track">
+                        <div className="g-bar" style={{ '--s': ph.s, '--d': ph.d }}>
+                          <span className="g-weeks">{ph.weeks}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                <div className="g-row g-axis" aria-hidden="true">
+                  <div></div>
+                  <div className="g-scale">
+                    {[0, 4, 8, 12, 16, 20].map(n => (
+                      <span key={n} style={{ left: (n / 20 * 100) + '%' }}>{n === 20 ? '20 weeks' : n}</span>
+                    ))}
                   </div>
                 </div>
               </div>
             </div>
-          </header>
+          </section>
 
-          {/* Mobile Navigation */}
-          <nav className={`mobile-nav ${mobileNavOpen ? 'active' : ''}`}>
-            <div 
-              className={`nav-item ${activeSection === 'dashboard' ? 'active' : ''}`} 
-              onClick={() => handleNavClick('dashboard')}
-            >
-              <span className="nav-icon">📊</span>
-              Dashboard
+          <section className="cta">
+            <div className="cta-inner" style={{ maxWidth: 'var(--maxw)', margin: '0 auto' }}>
+              <div>
+                <h2>Put numbers on your building</h2>
+                <p>Fill in your building details and download a draft APVA application as a PDF, with costs, savings and payback worked out.</p>
+              </div>
+              <button className="btn btn-light" onClick={() => go('apva')}>Start your application</button>
             </div>
-            <div 
-              className={`nav-item ${activeSection === 'projects' ? 'active' : ''}`} 
-              onClick={() => handleNavClick('projects')}
-            >
-              <span className="nav-icon">🏗️</span>
-              Projects
-            </div>
-            <div 
-              className={`nav-item ${activeSection === 'energy-audit' ? 'active' : ''}`} 
-              onClick={() => handleNavClick('energy-audit')}
-            >
-              <span className="nav-icon">🔍</span>
-              Energy Audit
-            </div>
-            <div 
-              className={`nav-item ${activeSection === 'apva-generator' ? 'active' : ''}`} 
-              onClick={() => handleNavClick('apva-generator')}
-            >
-              <span className="nav-icon">📄</span>
-              APVA Generator
-            </div>
-            <div 
-              className={`nav-item ${activeSection === 'clients' ? 'active' : ''}`} 
-              onClick={() => handleNavClick('clients')}
-            >
-              <span className="nav-icon">👥</span>
-              Clients
-            </div>
-            <div 
-              className={`nav-item ${activeSection === 'documents' ? 'active' : ''}`} 
-              onClick={() => handleNavClick('documents')}
-            >
-              <span className="nav-icon">📁</span>
-              Documents
-            </div>
-            <div 
-              className={`nav-item ${activeSection === 'reports' ? 'active' : ''}`} 
-              onClick={() => handleNavClick('reports')}
-            >
-              <span className="nav-icon">📈</span>
-              Reports
-            </div>
-            <div 
-              className={`nav-item ${activeSection === 'ai-insights' ? 'active' : ''}`} 
-              onClick={() => handleNavClick('ai-insights')}
-            >
-              <span className="nav-icon">🤖</span>
-              AI Insights
-            </div>
-          </nav>
+          </section>
+        </>
+      );
+    }
 
-          {/* Main Content */}
-          <main className="main-content">
-            {renderSection()}
-          </main>
+    /* ---------- Inner pages ---------- */
+
+    function PageHead({ title, children }) {
+      return (
+        <div className="wrap page-head">
+          <h1>{title}</h1>
+          {children && <p>{children}</p>}
         </div>
       );
     }
 
-    ReactDOM.render(<EcoRetrofit24Platform />, document.getElementById('root'));
+    const STAGES = [
+      { title: 'Building assessment', text: 'Complete thermal imaging and energy performance evaluation.', figs: [['15', 'Data points'], ['98%', 'Accuracy']] },
+      { title: 'Performance analysis', text: 'Detailed energy consumption patterns and efficiency opportunities.', figs: [['24/7', 'Monitoring'], ['45%', 'Average savings']] },
+      { title: 'Optimization plan', text: 'Customized recommendations for maximum energy efficiency gains.', figs: [['3.2x', 'Return on investment'], ['2–4', 'Years to pay back']] }
+    ];
+
+    function AuditPage({ go }) {
+      return (
+        <>
+          <PageHead title="Energy audit">A full assessment of how your building uses energy, and a plan for what to change first.</PageHead>
+          <div className="wrap page-body">
+            <div className="stages">
+              {STAGES.map((st, i) => (
+                <div className="stage" key={st.title}>
+                  <div className="stage-num">{i + 1}</div>
+                  <h2>{st.title}</h2>
+                  <p>{st.text}</p>
+                  <div className="figs">
+                    {st.figs.map(([v, l]) => (
+                      <div key={l}><span className="fig-value">{v}</span><span className="fig-label">{l}</span></div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="audit-cta">
+              <a className="btn btn-ink" href="mailto:tebaiwaqar@gmail.com?subject=Energy%20audit%20enquiry">Ask about an audit</a>
+              <p>Or <button className="text-link" onClick={() => go('apva')}>start a draft application</button> if you already have your building's figures.</p>
+            </div>
+          </div>
+        </>
+      );
+    }
+
+    const PROJECTS = [
+      { name: 'Dublin Office Complex', loc: 'Sandyford, Dublin 18', status: 'Active', cls: 'status-active', invest: '€340K', done: 65 },
+      { name: 'Cork Manufacturing Plant', loc: 'Little Island, Cork', status: 'Planning', cls: 'status-planning', invest: '€580K', done: 15 },
+      { name: 'Galway Retail Center', loc: 'Galway City Centre', status: 'Completed', cls: 'status-completed', invest: '€220K', done: 100 }
+    ];
+
+    function ProjectsPage() {
+      return (
+        <>
+          <PageHead title="Projects">Current and recent retrofit work across the portfolio.</PageHead>
+          <div className="wrap page-body">
+            <div className="projects">
+              {PROJECTS.map(p => (
+                <article className="project" key={p.name}>
+                  <span className={`status ${p.cls}`}>{p.status}</span>
+                  <div>
+                    <h2>{p.name}</h2>
+                    <div className="project-loc">{p.loc}</div>
+                  </div>
+                  <div className="project-figs">
+                    <div><span className="fig-value">{p.invest}</span><span className="fig-label">Investment</span></div>
+                    <div style={{ textAlign: 'right' }}><span className="fig-value">{p.done}%</span><span className="fig-label">Complete</span></div>
+                  </div>
+                  <div className="progress" role="progressbar" aria-valuenow={p.done} aria-valuemin="0" aria-valuemax="100" aria-label={`${p.name} progress`}>
+                    <span style={{ width: p.done + '%' }}></span>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </>
+      );
+    }
+
+    const KPIS = [
+      ['Total portfolio value', '€2.4M', '+18% from last quarter'],
+      ['Active projects', '12', '3 completing this month'],
+      ['Energy savings', '847 MWh', 'Annual reduction achieved'],
+      ['CO₂ reduction', '312 t', 'Tonnes avoided each year'],
+      ['ROI performance', '24.7%', 'Average portfolio return'],
+      ['Grant success rate', '89%', 'Applications approved']
+    ];
+
+    function DashboardPage() {
+      return (
+        <>
+          <PageHead title="Portfolio dashboard">An overview of your energy retrofit portfolio and its key figures.</PageHead>
+          <div className="wrap page-body">
+            <div className="kpis">
+              {KPIS.map(([label, value, note]) => (
+                <div className="kpi" key={label}>
+                  <div className="kpi-label">{label}</div>
+                  <div className="kpi-value">{value}</div>
+                  <div className="kpi-note">{note}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
+      );
+    }
+
+    const TOOLS = [
+      ['Clients', 'Project tracking, document sharing and messaging for each client in one place.'],
+      ['Documents', 'Secure document storage with version control and team collaboration.'],
+      ['Reports', 'Reporting and analytics for tracking portfolio performance over time.'],
+      ['AI insights', 'Recommendations and forecasts drawn from your building and project data.']
+    ];
+
+    function PortalPage() {
+      return (
+        <>
+          <PageHead title="Client portal">Tools for clients to follow their projects. These are still being built.</PageHead>
+          <div className="wrap page-body">
+            <div className="tiles">
+              {TOOLS.map(([title, text]) => (
+                <div className="tile" key={title}>
+                  <span className="tile-tag">In development</span>
+                  <h2>{title}</h2>
+                  <p>{text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
+      );
+    }
+
+    /* ---------- App shell ---------- */
+
+    function EcoRetrofit24Platform() {
+      const [view, setView] = useState(viewFromHash);
+      const [menuOpen, setMenuOpen] = useState(false);
+
+      useEffect(() => {
+        const onHash = () => setView(viewFromHash());
+        window.addEventListener('hashchange', onHash);
+        return () => window.removeEventListener('hashchange', onHash);
+      }, []);
+
+      useEffect(() => {
+        const current = VIEWS.find(v => v.id === view);
+        document.title = view === 'home'
+          ? 'EcoRetrofit24 | Energy retrofits for commercial buildings'
+          : `${current.label} | EcoRetrofit24`;
+      }, [view]);
+
+      const go = (id) => {
+        setMenuOpen(false);
+        if (id !== view) {
+          if (id === 'home') {
+            history.pushState(null, '', window.location.pathname + window.location.search);
+            setView('home');
+          } else {
+            window.location.hash = id;
+          }
+        }
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      };
+
+      const navLinks = VIEWS.map(v => (
+        <button key={v.id} className="nav-link" aria-current={view === v.id ? 'page' : undefined} onClick={() => go(v.id)}>
+          {v.label}
+        </button>
+      ));
+
+      let page;
+      switch (view) {
+        case 'audit': page = <AuditPage go={go} />; break;
+        case 'projects': page = <ProjectsPage />; break;
+        case 'dashboard': page = <DashboardPage />; break;
+        case 'apva': page = <APVAGenerator />; break;
+        case 'portal': page = <PortalPage />; break;
+        default: page = <Home go={go} />;
+      }
+
+      return (
+        <>
+          <header className="topbar">
+            <div className="wrap topbar-inner">
+              <button className="brand" onClick={() => go('home')} aria-label="EcoRetrofit24 home">
+                <Logo />
+                <span className="brand-name">EcoRetrofit24</span>
+              </button>
+              <nav className="nav" aria-label="Main">{navLinks}</nav>
+              <button className="btn btn-ink btn-sm header-cta" onClick={() => go('apva')}>Start application</button>
+              <button className="menu-btn" aria-expanded={menuOpen} aria-controls="mobile-nav" onClick={() => setMenuOpen(o => !o)}>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  {menuOpen ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+                </svg>
+                {menuOpen ? 'Close' : 'Menu'}
+              </button>
+            </div>
+            {menuOpen && <nav id="mobile-nav" className="mobile-nav" aria-label="Main">{navLinks}</nav>}
+          </header>
+
+          <main>{page}</main>
+
+          <footer className="footer">
+            <div className="wrap footer-inner">
+              <div className="footer-brand"><Logo size={22} /> EcoRetrofit24</div>
+              <div>Founded by Waqar Lund, CEO</div>
+              <a href="mailto:tebaiwaqar@gmail.com">tebaiwaqar@gmail.com</a>
+              <div>© {new Date().getFullYear()} EcoRetrofit24</div>
+            </div>
+          </footer>
+        </>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<EcoRetrofit24Platform />);
   </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97e6231cd0404b13',t:'MTc1Nzc1MDcwMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
